@@ -1322,6 +1322,24 @@
       "valueFlash": "World Cup - Qualification - First round",
       "canonical": "FIBA World Cup Qualification",
       "decidedAt": "2026-07-02T16:56:33.411Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Europe",
+      "value365": "Sabah / The New Saints",
+      "valueFlash": "Sabah Baku (Aze) / TNS (Wal)",
+      "canonical": "Sabah / The New Saints",
+      "decidedAt": "2026-07-06T16:05:00.189Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Europe",
+      "value365": "UEFA Champions League Qualifiers",
+      "valueFlash": "Champions League - Qualification",
+      "canonical": "UEFA Champions League Qualifiers",
+      "decidedAt": "2026-07-06T16:05:00.190Z"
     }
   ],
   "rejected": [
