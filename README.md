@@ -10,8 +10,8 @@ Compara jogos do Flashscore e 365Scores, com UI web, integração Asana e lembre
 ## Setup em uma máquina nova
 
 ```bash
-git clone https://github.com/SEU_USUARIO/SEU_REPOSITORIO.git
-cd SEU_REPOSITORIO
+git clone https://github.com/gbalassiano-lgtm/Cursor-verison-2.git
+cd Cursor-verison-2
 npm install
 npx playwright install chromium
 cp .env.example .env
