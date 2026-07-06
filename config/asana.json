@@ -1,0 +1,32 @@
+{
+  "taskPrefix": "Daily ",
+  "projectGid": "",
+  "projectName": "Daily Games Overview",
+  "taskOrder": [
+    "Daily Basketball",
+    "Daily Hockey",
+    "Daily US",
+    "Daily Football",
+    "Daily Tennis",
+    "Daily Volley"
+  ],
+  "usaAllSportKeys": [
+    "american_football_usa",
+    "baseball_usa",
+    "basketball_usa"
+  ],
+  "sportAliases": {
+    "Football": "football",
+    "Basketball": "basketball",
+    "Hockey": "hockey",
+    "Tennis": "tennis",
+    "Volley": "volleyball",
+    "Volleyball": "volleyball",
+    "US": "usa_all",
+    "USA": "usa_all",
+    "LATAM Football": "latam_football",
+    "LATAM All": "latam_all",
+    "Israel Football": "israel_football",
+    "Israel All": "israel_all"
+  }
+}

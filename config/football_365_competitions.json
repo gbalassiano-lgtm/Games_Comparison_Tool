@@ -1,0 +1,3227 @@
+[
+  {
+    "id": "588",
+    "competition": "Africa Cup of Nations Qualification",
+    "country": "Africa"
+  },
+  {
+    "id": "8640",
+    "competition": "Africa Cup of Nations U17",
+    "country": "Africa"
+  },
+  {
+    "id": "8746",
+    "competition": "Africa Cup of Nations Women",
+    "country": "Africa"
+  },
+  {
+    "id": "7619",
+    "competition": "Africa U20 Cup of Nations",
+    "country": "Africa"
+  },
+  {
+    "id": "6319",
+    "competition": "African Cup Of Nations U23",
+    "country": "Africa"
+  },
+  {
+    "id": "7984",
+    "competition": "African Football League",
+    "country": "Africa"
+  },
+  {
+    "id": "6265",
+    "competition": "African Nations Championship",
+    "country": "Africa"
+  },
+  {
+    "id": "624",
+    "competition": "CAF Champions League",
+    "country": "Africa"
+  },
+  {
+    "id": "627",
+    "competition": "CAF Confederation Cup",
+    "country": "Africa"
+  },
+  {
+    "id": "5581",
+    "competition": "CAF Super Cup",
+    "country": "Africa"
+  },
+  {
+    "id": "645",
+    "competition": "CAF WC Qualification",
+    "country": "Africa"
+  },
+  {
+    "id": "7618",
+    "competition": "CECAFA U20 Championship",
+    "country": "Africa"
+  },
+  {
+    "id": "6381",
+    "competition": "COSAFA Cup",
+    "country": "Africa"
+  },
+  {
+    "id": "5794",
+    "competition": "Abissnet Superiore",
+    "country": "Albania"
+  },
+  {
+    "id": "5796",
+    "competition": "Albanian Cup",
+    "country": "Albania"
+  },
+  {
+    "id": "7540",
+    "competition": "Kategoria e Dytë",
+    "country": "Albania"
+  },
+  {
+    "id": "5797",
+    "competition": "Super Cup",
+    "country": "Albania"
+  },
+  {
+    "id": "558",
+    "competition": "Algerian Cup",
+    "country": "Algeria"
+  },
+  {
+    "id": "560",
+    "competition": "Ligue 1",
+    "country": "Algeria"
+  },
+  {
+    "id": "5802",
+    "competition": "Ligue 2",
+    "country": "Algeria"
+  },
+  {
+    "id": "6165",
+    "competition": "Super Cup",
+    "country": "Algeria"
+  },
+  {
+    "id": "7254",
+    "competition": "Pan American Games",
+    "country": "America"
+  },
+  {
+    "id": "8031",
+    "competition": "Pan American Games Women",
+    "country": "America"
+  },
+  {
+    "id": "6022",
+    "competition": "Andorra Cup",
+    "country": "Andorra"
+  },
+  {
+    "id": "407",
+    "competition": "Super League",
+    "country": "Andorra"
+  },
+  {
+    "id": "5454",
+    "competition": "Amistosos de Verano",
+    "country": "Argentina"
+  },
+  {
+    "id": "8760",
+    "competition": "Argentina Winter Cup (W)",
+    "country": "Argentina"
+  },
+  {
+    "id": "6224",
+    "competition": "Campeonato Femenino",
+    "country": "Argentina"
+  },
+  {
+    "id": "640",
+    "competition": "Copa Argentina",
+    "country": "Argentina"
+  },
+  {
+    "id": "5078",
+    "competition": "Federal A",
+    "country": "Argentina"
+  },
+  {
+    "id": "72",
+    "competition": "Liga Profesional",
+    "country": "Argentina"
+  },
+  {
+    "id": "7712",
+    "competition": "Liga Profesional - Reserva",
+    "country": "Argentina"
+  },
+  {
+    "id": "5077",
+    "competition": "Primera B Metropolitana",
+    "country": "Argentina"
+  },
+  {
+    "id": "5591",
+    "competition": "Primera C",
+    "country": "Argentina"
+  },
+  {
+    "id": "419",
+    "competition": "Primera Nacional",
+    "country": "Argentina"
+  },
+  {
+    "id": "8064",
+    "competition": "Promocional Amateur",
+    "country": "Argentina"
+  },
+  {
+    "id": "8470",
+    "competition": "Super Copa International",
+    "country": "Argentina"
+  },
+  {
+    "id": "5433",
+    "competition": "Super Cup",
+    "country": "Argentina"
+  },
+  {
+    "id": "8960",
+    "competition": "Trofeo de Campeonas (W)",
+    "country": "Argentina"
+  },
+  {
+    "id": "7285",
+    "competition": "Trofeo de Campeones",
+    "country": "Argentina"
+  },
+  {
+    "id": "8043",
+    "competition": "Trofeo de Campeones - Reserva",
+    "country": "Argentina"
+  },
+  {
+    "id": "5641",
+    "competition": "Armenian Cup",
+    "country": "Armenia"
+  },
+  {
+    "id": "5640",
+    "competition": "Premier League",
+    "country": "Armenia"
+  },
+  {
+    "id": "9018",
+    "competition": "AFC Asian Cup Women",
+    "country": "Asia"
+  },
+  {
+    "id": "8135",
+    "competition": "AFC Challenge League",
+    "country": "Asia"
+  },
+  {
+    "id": "623",
+    "competition": "AFC Champions League Elite",
+    "country": "Asia"
+  },
+  {
+    "id": "568",
+    "competition": "AFC Champions League Two",
+    "country": "Asia"
+  },
+  {
+    "id": "6815",
+    "competition": "AFC U20 Championship",
+    "country": "Asia"
+  },
+  {
+    "id": "6332",
+    "competition": "AFC U23 Asian Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "605",
+    "competition": "AFC WC Qualification",
+    "country": "Asia"
+  },
+  {
+    "id": "8814",
+    "competition": "AGCFF Gulf Cup U20",
+    "country": "Asia"
+  },
+  {
+    "id": "8950",
+    "competition": "AGCFF U-23 Gulf Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "6840",
+    "competition": "Arab Club Champions Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "5452",
+    "competition": "Arabian Gulf Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "7180",
+    "competition": "ASEAN Championship",
+    "country": "Asia"
+  },
+  {
+    "id": "8490",
+    "competition": "ASEAN Club Championship",
+    "country": "Asia"
+  },
+  {
+    "id": "6196",
+    "competition": "Asian Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "5472",
+    "competition": "Asian Cup Qualification",
+    "country": "Asia"
+  },
+  {
+    "id": "7142",
+    "competition": "Asian Games",
+    "country": "Asia"
+  },
+  {
+    "id": "8823",
+    "competition": "CAFA Nations Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "8453",
+    "competition": "EAFF E-1 Football Championship",
+    "country": "Asia"
+  },
+  {
+    "id": "5572",
+    "competition": "East Asian Championship",
+    "country": "Asia"
+  },
+  {
+    "id": "8400",
+    "competition": "Gulf Club Champions League",
+    "country": "Asia"
+  },
+  {
+    "id": "8496",
+    "competition": "Qatar-UAE Challenge Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "8094",
+    "competition": "Qatar-UAE Super Cup",
+    "country": "Asia"
+  },
+  {
+    "id": "7958",
+    "competition": "SAFF Championship",
+    "country": "Asia"
+  },
+  {
+    "id": "8497",
+    "competition": "UAE-Qatar Challenge Shield",
+    "country": "Asia"
+  },
+  {
+    "id": "8095",
+    "competition": "UAE-Qatar Super Shield",
+    "country": "Asia"
+  },
+  {
+    "id": "5960",
+    "competition": "West Asian Championship",
+    "country": "Asia"
+  },
+  {
+    "id": "151",
+    "competition": "A-League",
+    "country": "Australia"
+  },
+  {
+    "id": "6193",
+    "competition": "Australia Cup",
+    "country": "Australia"
+  },
+  {
+    "id": "112",
+    "competition": "2. Liga",
+    "country": "Austria"
+  },
+  {
+    "id": "111",
+    "competition": "Bundesliga",
+    "country": "Austria"
+  },
+  {
+    "id": "356",
+    "competition": "OFB Pokal Cup",
+    "country": "Austria"
+  },
+  {
+    "id": "5804",
+    "competition": "Cup",
+    "country": "Azerbaijan"
+  },
+  {
+    "id": "5618",
+    "competition": "Premier League",
+    "country": "Azerbaijan"
+  },
+  {
+    "id": "5828",
+    "competition": "Federation Cup",
+    "country": "Bahrain"
+  },
+  {
+    "id": "7184",
+    "competition": "King's Cup",
+    "country": "Bahrain"
+  },
+  {
+    "id": "5479",
+    "competition": "Premier League",
+    "country": "Bahrain"
+  },
+  {
+    "id": "6904",
+    "competition": "Super Cup",
+    "country": "Bahrain"
+  },
+  {
+    "id": "6896",
+    "competition": "Premier League",
+    "country": "Bangladesh"
+  },
+  {
+    "id": "638",
+    "competition": "Belarusian Cup",
+    "country": "Belarus"
+  },
+  {
+    "id": "5671",
+    "competition": "Pershaya Liga",
+    "country": "Belarus"
+  },
+  {
+    "id": "5507",
+    "competition": "Super Cup",
+    "country": "Belarus"
+  },
+  {
+    "id": "5444",
+    "competition": "Vysshaya Liga",
+    "country": "Belarus"
+  },
+  {
+    "id": "100",
+    "competition": "Belgian Cup",
+    "country": "Belgium"
+  },
+  {
+    "id": "6142",
+    "competition": "Challenger Pro League",
+    "country": "Belgium"
+  },
+  {
+    "id": "98",
+    "competition": "Jupiler Pro League",
+    "country": "Belgium"
+  },
+  {
+    "id": "6152",
+    "competition": "Super Cup",
+    "country": "Belgium"
+  },
+  {
+    "id": "5833",
+    "competition": "Copa Simón Bolívar",
+    "country": "Bolivia"
+  },
+  {
+    "id": "5055",
+    "competition": "División Profesional",
+    "country": "Bolivia"
+  },
+  {
+    "id": "5803",
+    "competition": "Bosnia Hezergovina Cup",
+    "country": "Bosnia & Herzegovina"
+  },
+  {
+    "id": "5626",
+    "competition": "Premier League",
+    "country": "Bosnia & Herzegovina"
+  },
+  {
+    "id": "7003",
+    "competition": "Acreano",
+    "country": "Brazil"
+  },
+  {
+    "id": "6084",
+    "competition": "Alagoano",
+    "country": "Brazil"
+  },
+  {
+    "id": "7742",
+    "competition": "Amapaense",
+    "country": "Brazil"
+  },
+  {
+    "id": "6864",
+    "competition": "Amazonense",
+    "country": "Brazil"
+  },
+  {
+    "id": "5059",
+    "competition": "Baiano",
+    "country": "Brazil"
+  },
+  {
+    "id": "9049",
+    "competition": "Baiano - Série B",
+    "country": "Brazil"
+  },
+  {
+    "id": "116",
+    "competition": "Brasileirão - Série B",
+    "country": "Brazil"
+  },
+  {
+    "id": "113",
+    "competition": "Brasileirão Série A",
+    "country": "Brazil"
+  },
+  {
+    "id": "6223",
+    "competition": "Brasileirão Women",
+    "country": "Brazil"
+  },
+  {
+    "id": "6876",
+    "competition": "Brasileiro U20",
+    "country": "Brazil"
+  },
+  {
+    "id": "6207",
+    "competition": "Brasiliense",
+    "country": "Brazil"
+  },
+  {
+    "id": "5064",
+    "competition": "Capixaba",
+    "country": "Brazil"
+  },
+  {
+    "id": "418",
+    "competition": "Carioca",
+    "country": "Brazil"
+  },
+  {
+    "id": "5067",
+    "competition": "Catarinense",
+    "country": "Brazil"
+  },
+  {
+    "id": "7840",
+    "competition": "Catarinense - Serie B",
+    "country": "Brazil"
+  },
+  {
+    "id": "5068",
+    "competition": "Cearense",
+    "country": "Brazil"
+  },
+  {
+    "id": "8574",
+    "competition": "Cearense 2",
+    "country": "Brazil"
+  },
+  {
+    "id": "7982",
+    "competition": "Copa Acerj",
+    "country": "Brazil"
+  },
+  {
+    "id": "7316",
+    "competition": "Copa Alagoas",
+    "country": "Brazil"
+  },
+  {
+    "id": "115",
+    "competition": "Copa do Brasil",
+    "country": "Brazil"
+  },
+  {
+    "id": "7050",
+    "competition": "Copa Do Brasil U20",
+    "country": "Brazil"
+  },
+  {
+    "id": "8702",
+    "competition": "Copa do Brasil Women",
+    "country": "Brazil"
+  },
+  {
+    "id": "6007",
+    "competition": "Copa do Nordeste",
+    "country": "Brazil"
+  },
+  {
+    "id": "8142",
+    "competition": "Copa Espirito Santo",
+    "country": "Brazil"
+  },
+  {
+    "id": "8302",
+    "competition": "Copa FGF",
+    "country": "Brazil"
+  },
+  {
+    "id": "8774",
+    "competition": "Copa Governo de Sergipe",
+    "country": "Brazil"
+  },
+  {
+    "id": "7137",
+    "competition": "Copa Paulista",
+    "country": "Brazil"
+  },
+  {
+    "id": "7986",
+    "competition": "Copa Rio",
+    "country": "Brazil"
+  },
+  {
+    "id": "8073",
+    "competition": "Copa Rio Women",
+    "country": "Brazil"
+  },
+  {
+    "id": "7775",
+    "competition": "Copa Santa Catarina",
+    "country": "Brazil"
+  },
+  {
+    "id": "9022",
+    "competition": "Copa Sul-Sudeste",
+    "country": "Brazil"
+  },
+  {
+    "id": "6208",
+    "competition": "Copa Verde",
+    "country": "Brazil"
+  },
+  {
+    "id": "7778",
+    "competition": "Fares Lopes",
+    "country": "Brazil"
+  },
+  {
+    "id": "5058",
+    "competition": "Gaucho",
+    "country": "Brazil"
+  },
+  {
+    "id": "8155",
+    "competition": "Gaucho A2",
+    "country": "Brazil"
+  },
+  {
+    "id": "5063",
+    "competition": "Goiano",
+    "country": "Brazil"
+  },
+  {
+    "id": "5539",
+    "competition": "Maranhense",
+    "country": "Brazil"
+  },
+  {
+    "id": "5069",
+    "competition": "Mato-Grossense",
+    "country": "Brazil"
+  },
+  {
+    "id": "7223",
+    "competition": "Midia's Cup",
+    "country": "Brazil"
+  },
+  {
+    "id": "5057",
+    "competition": "Mineiro",
+    "country": "Brazil"
+  },
+  {
+    "id": "7835",
+    "competition": "Mineiro – Módulo II",
+    "country": "Brazil"
+  },
+  {
+    "id": "5060",
+    "competition": "Paraense",
+    "country": "Brazil"
+  },
+  {
+    "id": "5070",
+    "competition": "Paraibano",
+    "country": "Brazil"
+  },
+  {
+    "id": "6008",
+    "competition": "Paranaense",
+    "country": "Brazil"
+  },
+  {
+    "id": "8122",
+    "competition": "Paranaense 2",
+    "country": "Brazil"
+  },
+  {
+    "id": "114",
+    "competition": "Paulista",
+    "country": "Brazil"
+  },
+  {
+    "id": "6082",
+    "competition": "Paulista A2",
+    "country": "Brazil"
+  },
+  {
+    "id": "6821",
+    "competition": "Paulista A3",
+    "country": "Brazil"
+  },
+  {
+    "id": "7939",
+    "competition": "Paulista A4",
+    "country": "Brazil"
+  },
+  {
+    "id": "8088",
+    "competition": "Paulista Serie B",
+    "country": "Brazil"
+  },
+  {
+    "id": "7762",
+    "competition": "Paulista Women",
+    "country": "Brazil"
+  },
+  {
+    "id": "5066",
+    "competition": "Pernambucano",
+    "country": "Brazil"
+  },
+  {
+    "id": "6153",
+    "competition": "Piauiense",
+    "country": "Brazil"
+  },
+  {
+    "id": "6044",
+    "competition": "Potiguar",
+    "country": "Brazil"
+  },
+  {
+    "id": "7243",
+    "competition": "Recopa Catarinense",
+    "country": "Brazil"
+  },
+  {
+    "id": "7315",
+    "competition": "Recopa Gaúcha",
+    "country": "Brazil"
+  },
+  {
+    "id": "7030",
+    "competition": "Rondoniense",
+    "country": "Brazil"
+  },
+  {
+    "id": "7906",
+    "competition": "Roraimense",
+    "country": "Brazil"
+  },
+  {
+    "id": "6325",
+    "competition": "Sao Paulo Youth Cup",
+    "country": "Brazil"
+  },
+  {
+    "id": "5065",
+    "competition": "Sergipano",
+    "country": "Brazil"
+  },
+  {
+    "id": "5518",
+    "competition": "Serie C",
+    "country": "Brazil"
+  },
+  {
+    "id": "5519",
+    "competition": "Serie D",
+    "country": "Brazil"
+  },
+  {
+    "id": "6203",
+    "competition": "Sul-Matogrossense",
+    "country": "Brazil"
+  },
+  {
+    "id": "7812",
+    "competition": "Supercopa (W)",
+    "country": "Brazil"
+  },
+  {
+    "id": "8502",
+    "competition": "Supercopa Grão-Pará",
+    "country": "Brazil"
+  },
+  {
+    "id": "8143",
+    "competition": "Supercopa Pioneer",
+    "country": "Brazil"
+  },
+  {
+    "id": "7284",
+    "competition": "Supercopa Rei",
+    "country": "Brazil"
+  },
+  {
+    "id": "7907",
+    "competition": "Tocantinense",
+    "country": "Brazil"
+  },
+  {
+    "id": "350",
+    "competition": "Cup",
+    "country": "Bulgaria"
+  },
+  {
+    "id": "163",
+    "competition": "Parva Liga",
+    "country": "Bulgaria"
+  },
+  {
+    "id": "164",
+    "competition": "Super Cup",
+    "country": "Bulgaria"
+  },
+  {
+    "id": "5668",
+    "competition": "Vtora Liga",
+    "country": "Bulgaria"
+  },
+  {
+    "id": "5621",
+    "competition": "Premier Division",
+    "country": "Cameroon"
+  },
+  {
+    "id": "6246",
+    "competition": "Canadian Championship",
+    "country": "Canada"
+  },
+  {
+    "id": "5620",
+    "competition": "Canadian Premier League",
+    "country": "Canada"
+  },
+  {
+    "id": "7608",
+    "competition": "Championship Women",
+    "country": "Chile"
+  },
+  {
+    "id": "593",
+    "competition": "Chilean Cup",
+    "country": "Chile"
+  },
+  {
+    "id": "8971",
+    "competition": "Copa de la Liga",
+    "country": "Chile"
+  },
+  {
+    "id": "135",
+    "competition": "First Division",
+    "country": "Chile"
+  },
+  {
+    "id": "622",
+    "competition": "First Division B",
+    "country": "Chile"
+  },
+  {
+    "id": "5652",
+    "competition": "Segunda División",
+    "country": "Chile"
+  },
+  {
+    "id": "5546",
+    "competition": "Supercopa",
+    "country": "Chile"
+  },
+  {
+    "id": "7989",
+    "competition": "Tercera Division A",
+    "country": "Chile"
+  },
+  {
+    "id": "8652",
+    "competition": "Tercera División B",
+    "country": "Chile"
+  },
+  {
+    "id": "5510",
+    "competition": "Chinese FA Cup",
+    "country": "China"
+  },
+  {
+    "id": "5625",
+    "competition": "League One",
+    "country": "China"
+  },
+  {
+    "id": "5087",
+    "competition": "Super Cup",
+    "country": "China"
+  },
+  {
+    "id": "150",
+    "competition": "Super League",
+    "country": "China"
+  },
+  {
+    "id": "7298",
+    "competition": "Premier League",
+    "country": "Chinese Taipei"
+  },
+  {
+    "id": "7041",
+    "competition": "Colombian Women's League",
+    "country": "Colombia"
+  },
+  {
+    "id": "616",
+    "competition": "Copa Colombia",
+    "country": "Colombia"
+  },
+  {
+    "id": "5080",
+    "competition": "Primera B",
+    "country": "Colombia"
+  },
+  {
+    "id": "5106",
+    "competition": "Superliga",
+    "country": "Colombia"
+  },
+  {
+    "id": "5669",
+    "competition": "Copa Costa Rica",
+    "country": "Costa Rica"
+  },
+  {
+    "id": "7514",
+    "competition": "Liga de Ascenso",
+    "country": "Costa Rica"
+  },
+  {
+    "id": "5056",
+    "competition": "liga FPD",
+    "country": "Costa Rica"
+  },
+  {
+    "id": "7546",
+    "competition": "Primera Division Women",
+    "country": "Costa Rica"
+  },
+  {
+    "id": "7974",
+    "competition": "Recopa",
+    "country": "Costa Rica"
+  },
+  {
+    "id": "5594",
+    "competition": "Super Cup",
+    "country": "Costa Rica"
+  },
+  {
+    "id": "159",
+    "competition": "Croatia Cup",
+    "country": "Croatia"
+  },
+  {
+    "id": "5515",
+    "competition": "Division 2",
+    "country": "Croatia"
+  },
+  {
+    "id": "158",
+    "competition": "HNL",
+    "country": "Croatia"
+  },
+  {
+    "id": "464",
+    "competition": "Super Cup",
+    "country": "Croatia"
+  },
+  {
+    "id": "162",
+    "competition": "Cyprus Cup",
+    "country": "Cyprus"
+  },
+  {
+    "id": "160",
+    "competition": "Cyta Championship",
+    "country": "Cyprus"
+  },
+  {
+    "id": "161",
+    "competition": "Super Cup",
+    "country": "Cyprus"
+  },
+  {
+    "id": "117",
+    "competition": "Chance Liga",
+    "country": "Czechia"
+  },
+  {
+    "id": "118",
+    "competition": "Division 2",
+    "country": "Czechia"
+  },
+  {
+    "id": "363",
+    "competition": "MOL Cup",
+    "country": "Czechia"
+  },
+  {
+    "id": "6846",
+    "competition": "Tipsport Liga",
+    "country": "Czechia"
+  },
+  {
+    "id": "120",
+    "competition": "1st Division",
+    "country": "Denmark"
+  },
+  {
+    "id": "7560",
+    "competition": "Danish Cup (W)",
+    "country": "Denmark"
+  },
+  {
+    "id": "121",
+    "competition": "DBU Pokalen",
+    "country": "Denmark"
+  },
+  {
+    "id": "6218",
+    "competition": "Elitedivisionen",
+    "country": "Denmark"
+  },
+  {
+    "id": "119",
+    "competition": "Superliga",
+    "country": "Denmark"
+  },
+  {
+    "id": "6869",
+    "competition": "Liga Mayor",
+    "country": "Dominican Republic"
+  },
+  {
+    "id": "7225",
+    "competition": "Copa Ecuador",
+    "country": "Ecuador"
+  },
+  {
+    "id": "7615",
+    "competition": "Division 2",
+    "country": "Ecuador"
+  },
+  {
+    "id": "5062",
+    "competition": "Liga Pro",
+    "country": "Ecuador"
+  },
+  {
+    "id": "7292",
+    "competition": "Supercopa",
+    "country": "Ecuador"
+  },
+  {
+    "id": "7676",
+    "competition": "Superliga Femenina",
+    "country": "Ecuador"
+  },
+  {
+    "id": "553",
+    "competition": "Egypt Cup",
+    "country": "Egypt"
+  },
+  {
+    "id": "552",
+    "competition": "Premier League",
+    "country": "Egypt"
+  },
+  {
+    "id": "6994",
+    "competition": "Second Division",
+    "country": "Egypt"
+  },
+  {
+    "id": "5595",
+    "competition": "Super Cup",
+    "country": "Egypt"
+  },
+  {
+    "id": "8989",
+    "competition": "Copa Presidente",
+    "country": "El Salvador"
+  },
+  {
+    "id": "8415",
+    "competition": "Liga Femenina",
+    "country": "El Salvador"
+  },
+  {
+    "id": "5543",
+    "competition": "Primera Division",
+    "country": "El Salvador"
+  },
+  {
+    "id": "8414",
+    "competition": "Segunda División",
+    "country": "El Salvador"
+  },
+  {
+    "id": "8778",
+    "competition": "Supercopa",
+    "country": "El Salvador"
+  },
+  {
+    "id": "8413",
+    "competition": "Torneo Reservas",
+    "country": "El Salvador"
+  },
+  {
+    "id": "1",
+    "competition": "Championship",
+    "country": "England"
+  },
+  {
+    "id": "10",
+    "competition": "Community Shield",
+    "country": "England"
+  },
+  {
+    "id": "9",
+    "competition": "EFL Cup",
+    "country": "England"
+  },
+  {
+    "id": "6986",
+    "competition": "EFL Trophy",
+    "country": "England"
+  },
+  {
+    "id": "8",
+    "competition": "FA Cup",
+    "country": "England"
+  },
+  {
+    "id": "7856",
+    "competition": "FA Cup - Qualifying Rounds",
+    "country": "England"
+  },
+  {
+    "id": "5",
+    "competition": "FA Trophy",
+    "country": "England"
+  },
+  {
+    "id": "2",
+    "competition": "League One",
+    "country": "England"
+  },
+  {
+    "id": "3",
+    "competition": "League Two",
+    "country": "England"
+  },
+  {
+    "id": "4",
+    "competition": "National League",
+    "country": "England"
+  },
+  {
+    "id": "5677",
+    "competition": "Non League Premier",
+    "country": "England"
+  },
+  {
+    "id": "7",
+    "competition": "Premier League",
+    "country": "England"
+  },
+  {
+    "id": "6217",
+    "competition": "Women's FA Cup",
+    "country": "England"
+  },
+  {
+    "id": "6216",
+    "competition": "Women’s Super League",
+    "country": "England"
+  },
+  {
+    "id": "7918",
+    "competition": "Womens League Cup",
+    "country": "England"
+  },
+  {
+    "id": "5605",
+    "competition": "Esiliiga",
+    "country": "Estonia"
+  },
+  {
+    "id": "5606",
+    "competition": "Estonian Cup",
+    "country": "Estonia"
+  },
+  {
+    "id": "5604",
+    "competition": "Meistriliiga",
+    "country": "Estonia"
+  },
+  {
+    "id": "6350",
+    "competition": "Super Cup",
+    "country": "Estonia"
+  },
+  {
+    "id": "7318",
+    "competition": "Premier League",
+    "country": "Ethiopia"
+  },
+  {
+    "id": "6849",
+    "competition": "Atlantic Cup",
+    "country": "Europe"
+  },
+  {
+    "id": "6372",
+    "competition": "Baltic Cup",
+    "country": "Europe"
+  },
+  {
+    "id": "6910",
+    "competition": "Elite League U20",
+    "country": "Europe"
+  },
+  {
+    "id": "6281",
+    "competition": "Emirates Cup",
+    "country": "Europe"
+  },
+  {
+    "id": "6316",
+    "competition": "Euro",
+    "country": "Europe"
+  },
+  {
+    "id": "328",
+    "competition": "Euro U17",
+    "country": "Europe"
+  },
+  {
+    "id": "323",
+    "competition": "Euro U17 Qualification",
+    "country": "Europe"
+  },
+  {
+    "id": "467",
+    "competition": "Euro U19",
+    "country": "Europe"
+  },
+  {
+    "id": "324",
+    "competition": "Euro U19 Qualification",
+    "country": "Europe"
+  },
+  {
+    "id": "591",
+    "competition": "Euro U21",
+    "country": "Europe"
+  },
+  {
+    "id": "322",
+    "competition": "Euro U21 Qualification",
+    "country": "Europe"
+  },
+  {
+    "id": "6071",
+    "competition": "European Qualifiers",
+    "country": "Europe"
+  },
+  {
+    "id": "332",
+    "competition": "UEFA Champions League Qualifiers",
+    "country": "Europe"
+  },
+  {
+    "id": "7685",
+    "competition": "UEFA Conference League",
+    "country": "Europe"
+  },
+  {
+    "id": "573",
+    "competition": "UEFA Europa League",
+    "country": "Europe"
+  },
+  {
+    "id": "7016",
+    "competition": "UEFA Nations League",
+    "country": "Europe"
+  },
+  {
+    "id": "7995",
+    "competition": "UEFA Nations League Women",
+    "country": "Europe"
+  },
+  {
+    "id": "472",
+    "competition": "UEFA Super Cup",
+    "country": "Europe"
+  },
+  {
+    "id": "5421",
+    "competition": "UEFA WC Qualification",
+    "country": "Europe"
+  },
+  {
+    "id": "7756",
+    "competition": "UEFA Women WC Qualifiers",
+    "country": "Europe"
+  },
+  {
+    "id": "6225",
+    "competition": "UEFA Women's Champions League",
+    "country": "Europe"
+  },
+  {
+    "id": "5549",
+    "competition": "UEFA Women's EURO",
+    "country": "Europe"
+  },
+  {
+    "id": "6307",
+    "competition": "UEFA Women's EURO Qualification",
+    "country": "Europe"
+  },
+  {
+    "id": "8833",
+    "competition": "UEFA Women's Europa Cup",
+    "country": "Europe"
+  },
+  {
+    "id": "6297",
+    "competition": "UEFA Youth League",
+    "country": "Europe"
+  },
+  {
+    "id": "5825",
+    "competition": "Formuladeildin",
+    "country": "Faroe Islands"
+  },
+  {
+    "id": "7564",
+    "competition": "Løgmanssteypid Cup",
+    "country": "Faroe Islands"
+  },
+  {
+    "id": "128",
+    "competition": "Suomen Cup",
+    "country": "Finland"
+  },
+  {
+    "id": "126",
+    "competition": "Veikkausliiga",
+    "country": "Finland"
+  },
+  {
+    "id": "127",
+    "competition": "Ykkonen",
+    "country": "Finland"
+  },
+  {
+    "id": "8086",
+    "competition": "Ykkosliiga",
+    "country": "Finland"
+  },
+  {
+    "id": "357",
+    "competition": "Championnat National",
+    "country": "France"
+  },
+  {
+    "id": "37",
+    "competition": "Coupe de France",
+    "country": "France"
+  },
+  {
+    "id": "7577",
+    "competition": "Coupe de France Féminine",
+    "country": "France"
+  },
+  {
+    "id": "6083",
+    "competition": "Division 1 Feminine",
+    "country": "France"
+  },
+  {
+    "id": "35",
+    "competition": "Ligue 1",
+    "country": "France"
+  },
+  {
+    "id": "36",
+    "competition": "Ligue 2",
+    "country": "France"
+  },
+  {
+    "id": "40",
+    "competition": "Super Cup",
+    "country": "France"
+  },
+  {
+    "id": "5630",
+    "competition": "David Kipiani Cup",
+    "country": "Georgia"
+  },
+  {
+    "id": "5628",
+    "competition": "Erovnuli Liga",
+    "country": "Georgia"
+  },
+  {
+    "id": "8263",
+    "competition": "Erovnuli Liga 2",
+    "country": "Georgia"
+  },
+  {
+    "id": "5933",
+    "competition": "Super Cup",
+    "country": "Georgia"
+  },
+  {
+    "id": "34",
+    "competition": "3. Liga",
+    "country": "Germany"
+  },
+  {
+    "id": "25",
+    "competition": "Bundesliga",
+    "country": "Germany"
+  },
+  {
+    "id": "6862",
+    "competition": "DFB Pokal Women",
+    "country": "Germany"
+  },
+  {
+    "id": "28",
+    "competition": "DFB-Pokal",
+    "country": "Germany"
+  },
+  {
+    "id": "6215",
+    "competition": "Frauen Bundesliga",
+    "country": "Germany"
+  },
+  {
+    "id": "32",
+    "competition": "Super Cup",
+    "country": "Germany"
+  },
+  {
+    "id": "8264",
+    "competition": "Super Cup (W)",
+    "country": "Germany"
+  },
+  {
+    "id": "551",
+    "competition": "Premier League",
+    "country": "Ghana"
+  },
+  {
+    "id": "5805",
+    "competition": "Premier Division",
+    "country": "Gibraltar"
+  },
+  {
+    "id": "87",
+    "competition": "Greece Cup",
+    "country": "Greece"
+  },
+  {
+    "id": "5673",
+    "competition": "Super Cup",
+    "country": "Greece"
+  },
+  {
+    "id": "84",
+    "competition": "Super League",
+    "country": "Greece"
+  },
+  {
+    "id": "86",
+    "competition": "Super League 2",
+    "country": "Greece"
+  },
+  {
+    "id": "6211",
+    "competition": "Liga Nacional",
+    "country": "Guatemala"
+  },
+  {
+    "id": "7610",
+    "competition": "Primera Division",
+    "country": "Guatemala"
+  },
+  {
+    "id": "5071",
+    "competition": "Liga Nacional",
+    "country": "Honduras"
+  },
+  {
+    "id": "5799",
+    "competition": "Premier League",
+    "country": "Hong Kong"
+  },
+  {
+    "id": "138",
+    "competition": "Hungarian Cup",
+    "country": "Hungary"
+  },
+  {
+    "id": "5443",
+    "competition": "NB II",
+    "country": "Hungary"
+  },
+  {
+    "id": "137",
+    "competition": "OTP Bank Liga",
+    "country": "Hungary"
+  },
+  {
+    "id": "143",
+    "competition": "Besta-deild karla",
+    "country": "Iceland"
+  },
+  {
+    "id": "144",
+    "competition": "Icelandic Cup - Mjólkurbikarinn",
+    "country": "Iceland"
+  },
+  {
+    "id": "5547",
+    "competition": "Inkasso Deildin",
+    "country": "Iceland"
+  },
+  {
+    "id": "6335",
+    "competition": "Reykjavik Cup",
+    "country": "Iceland"
+  },
+  {
+    "id": "5596",
+    "competition": "Super Cup",
+    "country": "Iceland"
+  },
+  {
+    "id": "5694",
+    "competition": "I-League",
+    "country": "India"
+  },
+  {
+    "id": "6172",
+    "competition": "Indian Super League",
+    "country": "India"
+  },
+  {
+    "id": "5431",
+    "competition": "Super League",
+    "country": "Indonesia"
+  },
+  {
+    "id": "6861",
+    "competition": "Algarve Cup",
+    "country": "International"
+  },
+  {
+    "id": "6280",
+    "competition": "Audi Cup",
+    "country": "International"
+  },
+  {
+    "id": "5096",
+    "competition": "Club World Cup",
+    "country": "International"
+  },
+  {
+    "id": "8745",
+    "competition": "Como Cup",
+    "country": "International"
+  },
+  {
+    "id": "8230",
+    "competition": "COTIF Tournament U20",
+    "country": "International"
+  },
+  {
+    "id": "6324",
+    "competition": "FC Series",
+    "country": "International"
+  },
+  {
+    "id": "7674",
+    "competition": "FIFA Arab Cup",
+    "country": "International"
+  },
+  {
+    "id": "8268",
+    "competition": "FIFA Intercontinental Cup",
+    "country": "International"
+  },
+  {
+    "id": "9034",
+    "competition": "FIFA Series",
+    "country": "International"
+  },
+  {
+    "id": "9042",
+    "competition": "FIFA Series (W)",
+    "country": "International"
+  },
+  {
+    "id": "8882",
+    "competition": "FIFA Women's Champions Cup",
+    "country": "International"
+  },
+  {
+    "id": "5930",
+    "competition": "FIFA World Cup",
+    "country": "International"
+  },
+  {
+    "id": "7823",
+    "competition": "Finalissima",
+    "country": "International"
+  },
+  {
+    "id": "7923",
+    "competition": "Finalissima (W)",
+    "country": "International"
+  },
+  {
+    "id": "7985",
+    "competition": "Intercontinental Cup U20",
+    "country": "International"
+  },
+  {
+    "id": "7860",
+    "competition": "International Champions Cup Women",
+    "country": "International"
+  },
+  {
+    "id": "7737",
+    "competition": "Joan Gamper Trophy",
+    "country": "International"
+  },
+  {
+    "id": "6375",
+    "competition": "Kirin Cup",
+    "country": "International"
+  },
+  {
+    "id": "8896",
+    "competition": "Messi Cup",
+    "country": "International"
+  },
+  {
+    "id": "8081",
+    "competition": "New Administrative Capital Cup",
+    "country": "International"
+  },
+  {
+    "id": "8785",
+    "competition": "Premier League Summer Series",
+    "country": "International"
+  },
+  {
+    "id": "8056",
+    "competition": "Riyadh Season Cup",
+    "country": "International"
+  },
+  {
+    "id": "6356",
+    "competition": "SheBelieves Cup",
+    "country": "International"
+  },
+  {
+    "id": "7326",
+    "competition": "Tournoi de France",
+    "country": "International"
+  },
+  {
+    "id": "5582",
+    "competition": "U17 World Cup",
+    "country": "International"
+  },
+  {
+    "id": "7321",
+    "competition": "U20 Arab Championship",
+    "country": "International"
+  },
+  {
+    "id": "5525",
+    "competition": "U20 World Cup",
+    "country": "International"
+  },
+  {
+    "id": "7970",
+    "competition": "UEFA-CONMEBOL Club Challenge",
+    "country": "International"
+  },
+  {
+    "id": "6085",
+    "competition": "Women U17 World Cup",
+    "country": "International"
+  },
+  {
+    "id": "7176",
+    "competition": "Women's WC Qualification Playoff",
+    "country": "International"
+  },
+  {
+    "id": "597",
+    "competition": "Women's World Cup",
+    "country": "International"
+  },
+  {
+    "id": "6818",
+    "competition": "World Cup Women U20",
+    "country": "International"
+  },
+  {
+    "id": "5815",
+    "competition": "Division 1",
+    "country": "Iran"
+  },
+  {
+    "id": "561",
+    "competition": "Persian Gulf Pro League",
+    "country": "Iran"
+  },
+  {
+    "id": "7181",
+    "competition": "FA Iraqi Cup",
+    "country": "Iraq"
+  },
+  {
+    "id": "6822",
+    "competition": "Iraqi League",
+    "country": "Iraq"
+  },
+  {
+    "id": "7270",
+    "competition": "Super Cup",
+    "country": "Iraq"
+  },
+  {
+    "id": "70",
+    "competition": "Division 1",
+    "country": "Ireland"
+  },
+  {
+    "id": "69",
+    "competition": "FAI Cup",
+    "country": "Ireland"
+  },
+  {
+    "id": "68",
+    "competition": "Premier Division",
+    "country": "Ireland"
+  },
+  {
+    "id": "7195",
+    "competition": "Super Cup",
+    "country": "Ireland"
+  },
+  {
+    "id": "8248",
+    "competition": "Division 3",
+    "country": "Israel"
+  },
+  {
+    "id": "7698",
+    "competition": "Division 4",
+    "country": "Israel"
+  },
+  {
+    "id": "49",
+    "competition": "FA Cup",
+    "country": "Israel"
+  },
+  {
+    "id": "43",
+    "competition": "National League",
+    "country": "Israel"
+  },
+  {
+    "id": "42",
+    "competition": "Premier League",
+    "country": "Israel"
+  },
+  {
+    "id": "6285",
+    "competition": "Super Cup",
+    "country": "Israel"
+  },
+  {
+    "id": "53",
+    "competition": "Toto Cup National League",
+    "country": "Israel"
+  },
+  {
+    "id": "546",
+    "competition": "Toto League Cup",
+    "country": "Israel"
+  },
+  {
+    "id": "7620",
+    "competition": "Women's Premier League",
+    "country": "Israel"
+  },
+  {
+    "id": "578",
+    "competition": "Youth Cup",
+    "country": "Israel"
+  },
+  {
+    "id": "525",
+    "competition": "Youth League",
+    "country": "Israel"
+  },
+  {
+    "id": "20",
+    "competition": "Coppa Italia",
+    "country": "Italy"
+  },
+  {
+    "id": "6315",
+    "competition": "Coppa Italia Lega Pro",
+    "country": "Italy"
+  },
+  {
+    "id": "8060",
+    "competition": "Coppa Italia Women",
+    "country": "Italy"
+  },
+  {
+    "id": "7635",
+    "competition": "Primavera 1",
+    "country": "Italy"
+  },
+  {
+    "id": "17",
+    "competition": "Serie A",
+    "country": "Italy"
+  },
+  {
+    "id": "6222",
+    "competition": "Serie A Women",
+    "country": "Italy"
+  },
+  {
+    "id": "18",
+    "competition": "Serie B",
+    "country": "Italy"
+  },
+  {
+    "id": "6168",
+    "competition": "Serie C",
+    "country": "Italy"
+  },
+  {
+    "id": "23",
+    "competition": "Supercoppa Italiana",
+    "country": "Italy"
+  },
+  {
+    "id": "8259",
+    "competition": "Supercoppa Primavera",
+    "country": "Italy"
+  },
+  {
+    "id": "8486",
+    "competition": "Supercoppa Women",
+    "country": "Italy"
+  },
+  {
+    "id": "5798",
+    "competition": "Premier League",
+    "country": "Jamaica"
+  },
+  {
+    "id": "149",
+    "competition": "Emperors Cup",
+    "country": "Japan"
+  },
+  {
+    "id": "147",
+    "competition": "J1 League",
+    "country": "Japan"
+  },
+  {
+    "id": "148",
+    "competition": "J2 League",
+    "country": "Japan"
+  },
+  {
+    "id": "619",
+    "competition": "League Cup",
+    "country": "Japan"
+  },
+  {
+    "id": "5086",
+    "competition": "Super Cup",
+    "country": "Japan"
+  },
+  {
+    "id": "5635",
+    "competition": "Jordan Cup",
+    "country": "Jordan"
+  },
+  {
+    "id": "565",
+    "competition": "Pro League",
+    "country": "Jordan"
+  },
+  {
+    "id": "6798",
+    "competition": "Shield Cup",
+    "country": "Jordan"
+  },
+  {
+    "id": "5599",
+    "competition": "Super Cup",
+    "country": "Jordan"
+  },
+  {
+    "id": "5808",
+    "competition": "Kazakhstan Cup",
+    "country": "Kazakhstan"
+  },
+  {
+    "id": "5455",
+    "competition": "Premier League",
+    "country": "Kazakhstan"
+  },
+  {
+    "id": "6351",
+    "competition": "Super Cup",
+    "country": "Kazakhstan"
+  },
+  {
+    "id": "5575",
+    "competition": "SportPesa Premier League",
+    "country": "Kenya"
+  },
+  {
+    "id": "5920",
+    "competition": "Cup",
+    "country": "Kosovo"
+  },
+  {
+    "id": "6803",
+    "competition": "Superliga",
+    "country": "Kosovo"
+  },
+  {
+    "id": "6005",
+    "competition": "Crown Prince Cup",
+    "country": "Kuwait"
+  },
+  {
+    "id": "6344",
+    "competition": "Emir Cup",
+    "country": "Kuwait"
+  },
+  {
+    "id": "5474",
+    "competition": "Federation Cup",
+    "country": "Kuwait"
+  },
+  {
+    "id": "5473",
+    "competition": "Premier Division",
+    "country": "Kuwait"
+  },
+  {
+    "id": "5475",
+    "competition": "Super Cup",
+    "country": "Kuwait"
+  },
+  {
+    "id": "5085",
+    "competition": "Latvian Cup",
+    "country": "Latvia"
+  },
+  {
+    "id": "165",
+    "competition": "Virsliga",
+    "country": "Latvia"
+  },
+  {
+    "id": "566",
+    "competition": "Premier League",
+    "country": "Lebanon"
+  },
+  {
+    "id": "559",
+    "competition": "Premier League",
+    "country": "Libya"
+  },
+  {
+    "id": "166",
+    "competition": "A Lyga",
+    "country": "Lithuania"
+  },
+  {
+    "id": "5818",
+    "competition": "I Lyga",
+    "country": "Lithuania"
+  },
+  {
+    "id": "614",
+    "competition": "Lithuanian Cup",
+    "country": "Lithuania"
+  },
+  {
+    "id": "6241",
+    "competition": "BGL Ligue",
+    "country": "Luxembourg"
+  },
+  {
+    "id": "6256",
+    "competition": "Cup",
+    "country": "Luxembourg"
+  },
+  {
+    "id": "6025",
+    "competition": "Liga Premier",
+    "country": "Malaysia"
+  },
+  {
+    "id": "5432",
+    "competition": "Liga Super",
+    "country": "Malaysia"
+  },
+  {
+    "id": "6389",
+    "competition": "Malaysia Cup",
+    "country": "Malaysia"
+  },
+  {
+    "id": "8063",
+    "competition": "Premiere Division",
+    "country": "Mali"
+  },
+  {
+    "id": "6248",
+    "competition": "FA Trophy",
+    "country": "Malta"
+  },
+  {
+    "id": "5653",
+    "competition": "Premier League",
+    "country": "Malta"
+  },
+  {
+    "id": "6264",
+    "competition": "Campeon de Campeones",
+    "country": "Mexico"
+  },
+  {
+    "id": "8130",
+    "competition": "Campeon de Campeones (Expansion)",
+    "country": "Mexico"
+  },
+  {
+    "id": "7965",
+    "competition": "Campeón de Campeones (W)",
+    "country": "Mexico"
+  },
+  {
+    "id": "8055",
+    "competition": "Copa Conecta",
+    "country": "Mexico"
+  },
+  {
+    "id": "8964",
+    "competition": "Copa Pacífica",
+    "country": "Mexico"
+  },
+  {
+    "id": "5514",
+    "competition": "Liga de Expansión MX",
+    "country": "Mexico"
+  },
+  {
+    "id": "141",
+    "competition": "Liga MX",
+    "country": "Mexico"
+  },
+  {
+    "id": "7143",
+    "competition": "Liga MX Femenil",
+    "country": "Mexico"
+  },
+  {
+    "id": "8751",
+    "competition": "Liga MX U21",
+    "country": "Mexico"
+  },
+  {
+    "id": "5814",
+    "competition": "Moldovan Cup",
+    "country": "Moldova"
+  },
+  {
+    "id": "5103",
+    "competition": "Super Liga",
+    "country": "Moldova"
+  },
+  {
+    "id": "5826",
+    "competition": "Crnogorski Cup",
+    "country": "Montenegro"
+  },
+  {
+    "id": "5565",
+    "competition": "First League",
+    "country": "Montenegro"
+  },
+  {
+    "id": "5639",
+    "competition": "Second League",
+    "country": "Montenegro"
+  },
+  {
+    "id": "5651",
+    "competition": "Botola 2",
+    "country": "Morocco"
+  },
+  {
+    "id": "557",
+    "competition": "Botola Pro",
+    "country": "Morocco"
+  },
+  {
+    "id": "5420",
+    "competition": "Cup",
+    "country": "Morocco"
+  },
+  {
+    "id": "8286",
+    "competition": "Moroccan Excellence Cup",
+    "country": "Morocco"
+  },
+  {
+    "id": "7299",
+    "competition": "National League",
+    "country": "Myanmar"
+  },
+  {
+    "id": "58",
+    "competition": "Eerste Divisie",
+    "country": "Netherlands"
+  },
+  {
+    "id": "57",
+    "competition": "Eredivisie",
+    "country": "Netherlands"
+  },
+  {
+    "id": "6287",
+    "competition": "Eredivisie Vrouwen",
+    "country": "Netherlands"
+  },
+  {
+    "id": "60",
+    "competition": "Johan Cruyff Shield",
+    "country": "Netherlands"
+  },
+  {
+    "id": "59",
+    "competition": "KNVB Cup",
+    "country": "Netherlands"
+  },
+  {
+    "id": "6807",
+    "competition": "Tweede Divisie",
+    "country": "Netherlands"
+  },
+  {
+    "id": "5830",
+    "competition": "National League",
+    "country": "New Zealand"
+  },
+  {
+    "id": "6108",
+    "competition": "First Division",
+    "country": "Nicaragua"
+  },
+  {
+    "id": "8529",
+    "competition": "Liga de Ascenso",
+    "country": "Nicaragua"
+  },
+  {
+    "id": "8779",
+    "competition": "Liga Primera Juvenil",
+    "country": "Nicaragua"
+  },
+  {
+    "id": "7929",
+    "competition": "Nicaragua Cup",
+    "country": "Nicaragua"
+  },
+  {
+    "id": "405",
+    "competition": "NPFL",
+    "country": "Nigeria"
+  },
+  {
+    "id": "7259",
+    "competition": "Campeones Cup",
+    "country": "North America"
+  },
+  {
+    "id": "7130",
+    "competition": "Central American and Caribbean Games",
+    "country": "North America"
+  },
+  {
+    "id": "7969",
+    "competition": "Central American and Caribbean Games Women",
+    "country": "North America"
+  },
+  {
+    "id": "8908",
+    "competition": "Central American Games",
+    "country": "North America"
+  },
+  {
+    "id": "8907",
+    "competition": "Central American Games (W)",
+    "country": "North America"
+  },
+  {
+    "id": "7837",
+    "competition": "CFU Club Shield",
+    "country": "North America"
+  },
+  {
+    "id": "8240",
+    "competition": "CONCACAF (W) Champions Cup",
+    "country": "North America"
+  },
+  {
+    "id": "7975",
+    "competition": "CONCACAF Caribbean Cup",
+    "country": "North America"
+  },
+  {
+    "id": "7954",
+    "competition": "CONCACAF Central American Cup",
+    "country": "North America"
+  },
+  {
+    "id": "171",
+    "competition": "CONCACAF Champions Cup",
+    "country": "North America"
+  },
+  {
+    "id": "7850",
+    "competition": "CONCACAF Championship Women",
+    "country": "North America"
+  },
+  {
+    "id": "589",
+    "competition": "CONCACAF Gold Cup",
+    "country": "North America"
+  },
+  {
+    "id": "7165",
+    "competition": "CONCACAF Nations League",
+    "country": "North America"
+  },
+  {
+    "id": "8928",
+    "competition": "CONCACAF Series",
+    "country": "North America"
+  },
+  {
+    "id": "6870",
+    "competition": "CONCACAF U17",
+    "country": "North America"
+  },
+  {
+    "id": "8530",
+    "competition": "CONCACAF Women's U17 Championship",
+    "country": "North America"
+  },
+  {
+    "id": "7933",
+    "competition": "CONCACAF Women's U20 Championship",
+    "country": "North America"
+  },
+  {
+    "id": "611",
+    "competition": "CONCACAF World Cup Qualification",
+    "country": "North America"
+  },
+  {
+    "id": "7996",
+    "competition": "Gold Cup (W)",
+    "country": "North America"
+  },
+  {
+    "id": "7242",
+    "competition": "Leagues Cup",
+    "country": "North America"
+  },
+  {
+    "id": "8218",
+    "competition": "NWSL x Liga MX Femenil Summer Cup",
+    "country": "North America"
+  },
+  {
+    "id": "5485",
+    "competition": "U20 CONCACAF Championship",
+    "country": "North America"
+  },
+  {
+    "id": "8952",
+    "competition": "UNCAF U19",
+    "country": "North America"
+  },
+  {
+    "id": "5827",
+    "competition": "Cup",
+    "country": "North Macedonia"
+  },
+  {
+    "id": "5632",
+    "competition": "First League",
+    "country": "North Macedonia"
+  },
+  {
+    "id": "6160",
+    "competition": "Charity Shield",
+    "country": "Northern Ireland"
+  },
+  {
+    "id": "5965",
+    "competition": "Cup",
+    "country": "Northern Ireland"
+  },
+  {
+    "id": "5812",
+    "competition": "League Cup",
+    "country": "Northern Ireland"
+  },
+  {
+    "id": "5819",
+    "competition": "NIFL Championship",
+    "country": "Northern Ireland"
+  },
+  {
+    "id": "5511",
+    "competition": "Premiership",
+    "country": "Northern Ireland"
+  },
+  {
+    "id": "131",
+    "competition": "Eliteserien",
+    "country": "Norway"
+  },
+  {
+    "id": "133",
+    "competition": "NM Cupen",
+    "country": "Norway"
+  },
+  {
+    "id": "132",
+    "competition": "OBOS-ligaen",
+    "country": "Norway"
+  },
+  {
+    "id": "6237",
+    "competition": "OFC Champions League",
+    "country": "Oceania"
+  },
+  {
+    "id": "6290",
+    "competition": "World Cup Qualifications - Oceania",
+    "country": "Oceania"
+  },
+  {
+    "id": "5505",
+    "competition": "Federation Cup",
+    "country": "Oman"
+  },
+  {
+    "id": "5480",
+    "competition": "Professional League",
+    "country": "Oman"
+  },
+  {
+    "id": "5836",
+    "competition": "Sultan Cup",
+    "country": "Oman"
+  },
+  {
+    "id": "6166",
+    "competition": "Super Cup",
+    "country": "Oman"
+  },
+  {
+    "id": "6079",
+    "competition": "West Bank League",
+    "country": "Palestine"
+  },
+  {
+    "id": "8123",
+    "competition": "LFF",
+    "country": "Panama"
+  },
+  {
+    "id": "5809",
+    "competition": "Liga Panameña",
+    "country": "Panama"
+  },
+  {
+    "id": "8124",
+    "competition": "Liga Prom",
+    "country": "Panama"
+  },
+  {
+    "id": "8241",
+    "competition": "APF Primera B",
+    "country": "Paraguay"
+  },
+  {
+    "id": "8495",
+    "competition": "APF Primera C",
+    "country": "Paraguay"
+  },
+  {
+    "id": "8106",
+    "competition": "Championship (W)",
+    "country": "Paraguay"
+  },
+  {
+    "id": "621",
+    "competition": "Copa de Primera",
+    "country": "Paraguay"
+  },
+  {
+    "id": "8340",
+    "competition": "Copa EFE (W)",
+    "country": "Paraguay"
+  },
+  {
+    "id": "7127",
+    "competition": "Copa Paraguay",
+    "country": "Paraguay"
+  },
+  {
+    "id": "8953",
+    "competition": "Copa Paraguay Women",
+    "country": "Paraguay"
+  },
+  {
+    "id": "5667",
+    "competition": "Division Intermedia",
+    "country": "Paraguay"
+  },
+  {
+    "id": "8246",
+    "competition": "División Reserva",
+    "country": "Paraguay"
+  },
+  {
+    "id": "7800",
+    "competition": "Supercopa",
+    "country": "Paraguay"
+  },
+  {
+    "id": "6311",
+    "competition": "Copa Peru",
+    "country": "Peru"
+  },
+  {
+    "id": "9051",
+    "competition": "League Cup",
+    "country": "Peru"
+  },
+  {
+    "id": "583",
+    "competition": "Liga 1",
+    "country": "Peru"
+  },
+  {
+    "id": "584",
+    "competition": "Liga 2",
+    "country": "Peru"
+  },
+  {
+    "id": "7702",
+    "competition": "Women League",
+    "country": "Peru"
+  },
+  {
+    "id": "153",
+    "competition": "Ekstraklasa",
+    "country": "Poland"
+  },
+  {
+    "id": "154",
+    "competition": "I Liga",
+    "country": "Poland"
+  },
+  {
+    "id": "157",
+    "competition": "Polish Cup",
+    "country": "Poland"
+  },
+  {
+    "id": "156",
+    "competition": "Super Cup",
+    "country": "Poland"
+  },
+  {
+    "id": "76",
+    "competition": "League Cup",
+    "country": "Portugal"
+  },
+  {
+    "id": "7927",
+    "competition": "Liga 3",
+    "country": "Portugal"
+  },
+  {
+    "id": "7855",
+    "competition": "Liga BPI",
+    "country": "Portugal"
+  },
+  {
+    "id": "73",
+    "competition": "Liga Portugal",
+    "country": "Portugal"
+  },
+  {
+    "id": "74",
+    "competition": "Liga Portugal 2",
+    "country": "Portugal"
+  },
+  {
+    "id": "7260",
+    "competition": "Liga Revelacao U23",
+    "country": "Portugal"
+  },
+  {
+    "id": "77",
+    "competition": "Super Cup",
+    "country": "Portugal"
+  },
+  {
+    "id": "7749",
+    "competition": "Super Cup Women",
+    "country": "Portugal"
+  },
+  {
+    "id": "75",
+    "competition": "Taça de Portugal",
+    "country": "Portugal"
+  },
+  {
+    "id": "8108",
+    "competition": "LPR Pro",
+    "country": "Puerto Rico"
+  },
+  {
+    "id": "6242",
+    "competition": "Amir Cup",
+    "country": "Qatar"
+  },
+  {
+    "id": "408",
+    "competition": "Doha Bank Stars League",
+    "country": "Qatar"
+  },
+  {
+    "id": "5831",
+    "competition": "Q League",
+    "country": "Qatar"
+  },
+  {
+    "id": "387",
+    "competition": "Cupa Romaniei",
+    "country": "Romania"
+  },
+  {
+    "id": "136",
+    "competition": "Liga 1",
+    "country": "Romania"
+  },
+  {
+    "id": "5513",
+    "competition": "Liga 2",
+    "country": "Romania"
+  },
+  {
+    "id": "463",
+    "competition": "Super Cup",
+    "country": "Romania"
+  },
+  {
+    "id": "89",
+    "competition": "Premier Liga",
+    "country": "Russia"
+  },
+  {
+    "id": "91",
+    "competition": "Russian Cup",
+    "country": "Russia"
+  },
+  {
+    "id": "92",
+    "competition": "Russian First League",
+    "country": "Russia"
+  },
+  {
+    "id": "93",
+    "competition": "Super Cup",
+    "country": "Russia"
+  },
+  {
+    "id": "6221",
+    "competition": "Supreme Division Women",
+    "country": "Russia"
+  },
+  {
+    "id": "8883",
+    "competition": "Elite League U21",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "5502",
+    "competition": "First Division",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "5501",
+    "competition": "King's Cup",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "8895",
+    "competition": "SAFF Women's Cup",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "649",
+    "competition": "Saudi League",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "8830",
+    "competition": "Saudi Women's Super Cup",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "6164",
+    "competition": "Super Cup",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "8273",
+    "competition": "Women’s Premier League",
+    "country": "Saudi Arabia"
+  },
+  {
+    "id": "8084",
+    "competition": "Challenge Cup",
+    "country": "Scotland"
+  },
+  {
+    "id": "63",
+    "competition": "FA Cup",
+    "country": "Scotland"
+  },
+  {
+    "id": "64",
+    "competition": "League Cup",
+    "country": "Scotland"
+  },
+  {
+    "id": "66",
+    "competition": "League One",
+    "country": "Scotland"
+  },
+  {
+    "id": "67",
+    "competition": "League Two",
+    "country": "Scotland"
+  },
+  {
+    "id": "62",
+    "competition": "Scottish Championship",
+    "country": "Scotland"
+  },
+  {
+    "id": "61",
+    "competition": "Scottish Premiership",
+    "country": "Scotland"
+  },
+  {
+    "id": "7700",
+    "competition": "Ligue 1",
+    "country": "Senegal"
+  },
+  {
+    "id": "615",
+    "competition": "Kup",
+    "country": "Serbia"
+  },
+  {
+    "id": "5522",
+    "competition": "Prva Liga",
+    "country": "Serbia"
+  },
+  {
+    "id": "628",
+    "competition": "Super Liga",
+    "country": "Serbia"
+  },
+  {
+    "id": "173",
+    "competition": "Premier League",
+    "country": "Singapore"
+  },
+  {
+    "id": "5820",
+    "competition": "2. Liga",
+    "country": "Slovakia"
+  },
+  {
+    "id": "145",
+    "competition": "Niké liga",
+    "country": "Slovakia"
+  },
+  {
+    "id": "146",
+    "competition": "Slovakia Cup",
+    "country": "Slovakia"
+  },
+  {
+    "id": "606",
+    "competition": "Hervis Pokal",
+    "country": "Slovenia"
+  },
+  {
+    "id": "170",
+    "competition": "PrvaLiga",
+    "country": "Slovenia"
+  },
+  {
+    "id": "5822",
+    "competition": "Championship",
+    "country": "South Africa"
+  },
+  {
+    "id": "5084",
+    "competition": "Nedbank Cup",
+    "country": "South Africa"
+  },
+  {
+    "id": "414",
+    "competition": "Premier League",
+    "country": "South Africa"
+  },
+  {
+    "id": "102",
+    "competition": "CONMEBOL Libertadores",
+    "country": "South America"
+  },
+  {
+    "id": "389",
+    "competition": "CONMEBOL Sudamericana",
+    "country": "South America"
+  },
+  {
+    "id": "613",
+    "competition": "CONMEBOL WC Qualification",
+    "country": "South America"
+  },
+  {
+    "id": "8794",
+    "competition": "CONMEBOL Women's Nations League",
+    "country": "South America"
+  },
+  {
+    "id": "595",
+    "competition": "Copa America",
+    "country": "South America"
+  },
+  {
+    "id": "7057",
+    "competition": "Copa America Women",
+    "country": "South America"
+  },
+  {
+    "id": "6343",
+    "competition": "Libertadores U20",
+    "country": "South America"
+  },
+  {
+    "id": "6226",
+    "competition": "Libertadores Women",
+    "country": "South America"
+  },
+  {
+    "id": "601",
+    "competition": "Recopa Sudamericana",
+    "country": "South America"
+  },
+  {
+    "id": "8968",
+    "competition": "Serie Colombia",
+    "country": "South America"
+  },
+  {
+    "id": "8052",
+    "competition": "Serie Rio de la Plata",
+    "country": "South America"
+  },
+  {
+    "id": "8078",
+    "competition": "South American Championship U17 (W)",
+    "country": "South America"
+  },
+  {
+    "id": "7005",
+    "competition": "South American Championship U20 (W)",
+    "country": "South America"
+  },
+  {
+    "id": "5483",
+    "competition": "Sudamericano U17",
+    "country": "South America"
+  },
+  {
+    "id": "5453",
+    "competition": "Sudamericano U20",
+    "country": "South America"
+  },
+  {
+    "id": "626",
+    "competition": "FA Cup",
+    "country": "South Korea"
+  },
+  {
+    "id": "618",
+    "competition": "K League 1",
+    "country": "South Korea"
+  },
+  {
+    "id": "5557",
+    "competition": "K League 2",
+    "country": "South Korea"
+  },
+  {
+    "id": "7516",
+    "competition": "K League 3",
+    "country": "South Korea"
+  },
+  {
+    "id": "6279",
+    "competition": "Copa Catalunya",
+    "country": "Spain"
+  },
+  {
+    "id": "6383",
+    "competition": "Copa De La Reina",
+    "country": "Spain"
+  },
+  {
+    "id": "13",
+    "competition": "Copa del Rey",
+    "country": "Spain"
+  },
+  {
+    "id": "6856",
+    "competition": "Copa Federacion",
+    "country": "Spain"
+  },
+  {
+    "id": "11",
+    "competition": "LaLiga",
+    "country": "Spain"
+  },
+  {
+    "id": "12",
+    "competition": "LaLiga 2",
+    "country": "Spain"
+  },
+  {
+    "id": "6220",
+    "competition": "Liga F",
+    "country": "Spain"
+  },
+  {
+    "id": "7865",
+    "competition": "Primera Division RFEF",
+    "country": "Spain"
+  },
+  {
+    "id": "7741",
+    "competition": "Segunda RFEF",
+    "country": "Spain"
+  },
+  {
+    "id": "15",
+    "competition": "Super Cup",
+    "country": "Spain"
+  },
+  {
+    "id": "7632",
+    "competition": "Super Cup (W)",
+    "country": "Spain"
+  },
+  {
+    "id": "5481",
+    "competition": "Premier League",
+    "country": "Sudan"
+  },
+  {
+    "id": "122",
+    "competition": "Allsvenskan",
+    "country": "Sweden"
+  },
+  {
+    "id": "6219",
+    "competition": "Damallsvenskan",
+    "country": "Sweden"
+  },
+  {
+    "id": "123",
+    "competition": "Superettan",
+    "country": "Sweden"
+  },
+  {
+    "id": "124",
+    "competition": "Svenska Cupen",
+    "country": "Sweden"
+  },
+  {
+    "id": "96",
+    "competition": "Challenge League",
+    "country": "Switzerland"
+  },
+  {
+    "id": "95",
+    "competition": "Super League",
+    "country": "Switzerland"
+  },
+  {
+    "id": "97",
+    "competition": "Swiss Cup",
+    "country": "Switzerland"
+  },
+  {
+    "id": "6143",
+    "competition": "Cup",
+    "country": "Syria"
+  },
+  {
+    "id": "564",
+    "competition": "Syrian Premier League",
+    "country": "Syria"
+  },
+  {
+    "id": "7398",
+    "competition": "Vysshaya Liga",
+    "country": "Tajikistan"
+  },
+  {
+    "id": "7304",
+    "competition": "Ligi Kuu Bara",
+    "country": "Tanzania"
+  },
+  {
+    "id": "475",
+    "competition": "Premier League",
+    "country": "Thailand"
+  },
+  {
+    "id": "6255",
+    "competition": "PFL",
+    "country": "The Phillipines"
+  },
+  {
+    "id": "5558",
+    "competition": "Coupe de Tunisie",
+    "country": "Tunisia"
+  },
+  {
+    "id": "554",
+    "competition": "Division 1",
+    "country": "Tunisia"
+  },
+  {
+    "id": "555",
+    "competition": "Division 2",
+    "country": "Tunisia"
+  },
+  {
+    "id": "7203",
+    "competition": "Super Cup",
+    "country": "Tunisia"
+  },
+  {
+    "id": "81",
+    "competition": "1. Lig",
+    "country": "Turkiye"
+  },
+  {
+    "id": "8587",
+    "competition": "2. Lig",
+    "country": "Turkiye"
+  },
+  {
+    "id": "82",
+    "competition": "Super Cup",
+    "country": "Turkiye"
+  },
+  {
+    "id": "78",
+    "competition": "Super Lig",
+    "country": "Turkiye"
+  },
+  {
+    "id": "8303",
+    "competition": "Super Lig Women",
+    "country": "Turkiye"
+  },
+  {
+    "id": "80",
+    "competition": "Turkiye Cup",
+    "country": "Turkiye"
+  },
+  {
+    "id": "5449",
+    "competition": "Division 1",
+    "country": "UAE"
+  },
+  {
+    "id": "5447",
+    "competition": "Emaar Super Cup",
+    "country": "UAE"
+  },
+  {
+    "id": "6181",
+    "competition": "League Cup",
+    "country": "UAE"
+  },
+  {
+    "id": "6346",
+    "competition": "President's Cup",
+    "country": "UAE"
+  },
+  {
+    "id": "549",
+    "competition": "UAE Pro League",
+    "country": "UAE"
+  },
+  {
+    "id": "6995",
+    "competition": "Premier League",
+    "country": "Uganda"
+  },
+  {
+    "id": "397",
+    "competition": "Persha Liga",
+    "country": "Ukraine"
+  },
+  {
+    "id": "129",
+    "competition": "Premier League",
+    "country": "Ukraine"
+  },
+  {
+    "id": "130",
+    "competition": "Super Cup",
+    "country": "Ukraine"
+  },
+  {
+    "id": "355",
+    "competition": "Ukrainian Cup",
+    "country": "Ukraine"
+  },
+  {
+    "id": "8114",
+    "competition": "Campeonato Femenino A",
+    "country": "Uruguay"
+  },
+  {
+    "id": "7847",
+    "competition": "Copa Uruguay",
+    "country": "Uruguay"
+  },
+  {
+    "id": "7592",
+    "competition": "Divisional C",
+    "country": "Uruguay"
+  },
+  {
+    "id": "5523",
+    "competition": "Segunda Division",
+    "country": "Uruguay"
+  },
+  {
+    "id": "7015",
+    "competition": "Super Copa",
+    "country": "Uruguay"
+  },
+  {
+    "id": "617",
+    "competition": "Uruguayan Championship",
+    "country": "Uruguay"
+  },
+  {
+    "id": "6858",
+    "competition": "Carolina Challenge Cup",
+    "country": "USA"
+  },
+  {
+    "id": "104",
+    "competition": "MLS",
+    "country": "USA"
+  },
+  {
+    "id": "7857",
+    "competition": "MLS All-Star",
+    "country": "USA"
+  },
+  {
+    "id": "7826",
+    "competition": "MLS Next Pro",
+    "country": "USA"
+  },
+  {
+    "id": "5566",
+    "competition": "NWSL",
+    "country": "USA"
+  },
+  {
+    "id": "7557",
+    "competition": "NWSL Challenge Cup",
+    "country": "USA"
+  },
+  {
+    "id": "348",
+    "competition": "US Open Cup",
+    "country": "USA"
+  },
+  {
+    "id": "5663",
+    "competition": "USL Championship",
+    "country": "USA"
+  },
+  {
+    "id": "9047",
+    "competition": "USL League One",
+    "country": "USA"
+  },
+  {
+    "id": "5666",
+    "competition": "Cup",
+    "country": "Uzbekistan"
+  },
+  {
+    "id": "5664",
+    "competition": "Super League",
+    "country": "Uzbekistan"
+  },
+  {
+    "id": "634",
+    "competition": "Liga FUTVE",
+    "country": "Venezuela"
+  },
+  {
+    "id": "5602",
+    "competition": "Liga FUTVE 2",
+    "country": "Venezuela"
+  },
+  {
+    "id": "8591",
+    "competition": "Supercopa",
+    "country": "Venezuela"
+  },
+  {
+    "id": "658",
+    "competition": "National Cup",
+    "country": "Vietnam"
+  },
+  {
+    "id": "652",
+    "competition": "V-league",
+    "country": "Vietnam"
+  },
+  {
+    "id": "5577",
+    "competition": "Cymru Premier",
+    "country": "Wales"
+  },
+  {
+    "id": "5806",
+    "competition": "League Cup",
+    "country": "Wales"
+  },
+  {
+    "id": "5578",
+    "competition": "Welsh Cup",
+    "country": "Wales"
+  }
+]

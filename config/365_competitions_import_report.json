@@ -1,0 +1,556 @@
+{
+  "generatedAt": "2026-07-01T12:37:05.165Z",
+  "reports": {
+    "football": {
+      "sport": "football",
+      "source": "football_competitions_365scores.xlsx",
+      "sheetName": "1216551_2026_06_28.csv",
+      "headers": [
+        "COMPETITION_NAME",
+        "competition_ID",
+        "COUNTRY"
+      ],
+      "rawRowCount": 645,
+      "duplicateIdGroups": 0,
+      "catalogCount": 645,
+      "junkRemovedCount": 0,
+      "uniqueCountries": 129,
+      "duplicateCompetitionNames": [
+        {
+          "name": "super cup",
+          "count": 35
+        },
+        {
+          "name": "premier league",
+          "count": 23
+        },
+        {
+          "name": "cup",
+          "count": 9
+        },
+        {
+          "name": "league cup",
+          "count": 7
+        },
+        {
+          "name": "super league",
+          "count": 6
+        },
+        {
+          "name": "supercopa",
+          "count": 5
+        },
+        {
+          "name": "premier division",
+          "count": 4
+        },
+        {
+          "name": "division 2",
+          "count": 4
+        },
+        {
+          "name": "fa cup",
+          "count": 4
+        },
+        {
+          "name": "national league",
+          "count": 4
+        },
+        {
+          "name": "division 1",
+          "count": 4
+        },
+        {
+          "name": "ligue 1",
+          "count": 3
+        },
+        {
+          "name": "federation cup",
+          "count": 3
+        },
+        {
+          "name": "first division",
+          "count": 3
+        },
+        {
+          "name": "segunda division",
+          "count": 3
+        },
+        {
+          "name": "league one",
+          "count": 3
+        },
+        {
+          "name": "superliga",
+          "count": 3
+        },
+        {
+          "name": "ligue 2",
+          "count": 2
+        },
+        {
+          "name": "2. liga",
+          "count": 2
+        },
+        {
+          "name": "bundesliga",
+          "count": 2
+        }
+      ],
+      "legacyComparison": {
+        "legacyCount": 645,
+        "sheetUniqueIds": 645,
+        "overlapCount": 645,
+        "newInSpreadsheetCount": 0,
+        "inLegacyNotSpreadsheetCount": 0,
+        "inLegacyNotSpreadsheetSample": []
+      },
+      "junkSample": [],
+      "sample": [
+        {
+          "id": "588",
+          "competition": "Africa Cup of Nations Qualification",
+          "country": "Africa"
+        },
+        {
+          "id": "8640",
+          "competition": "Africa Cup of Nations U17",
+          "country": "Africa"
+        },
+        {
+          "id": "8746",
+          "competition": "Africa Cup of Nations Women",
+          "country": "Africa"
+        },
+        {
+          "id": "7619",
+          "competition": "Africa U20 Cup of Nations",
+          "country": "Africa"
+        },
+        {
+          "id": "6319",
+          "competition": "African Cup Of Nations U23",
+          "country": "Africa"
+        },
+        {
+          "id": "7984",
+          "competition": "African Football League",
+          "country": "Africa"
+        },
+        {
+          "id": "6265",
+          "competition": "African Nations Championship",
+          "country": "Africa"
+        },
+        {
+          "id": "624",
+          "competition": "CAF Champions League",
+          "country": "Africa"
+        }
+      ],
+      "outputFile": "football_365_competitions.json"
+    },
+    "basketball": {
+      "sport": "basketball",
+      "source": "basketball_competitions_365scores.xlsx",
+      "sheetName": "1216613_2026_06_28.csv",
+      "headers": [
+        "COMPETITION_NAME",
+        "competition_ID",
+        "NAME_ID",
+        "COUNTRY"
+      ],
+      "rawRowCount": 135,
+      "duplicateIdGroups": 0,
+      "catalogCount": 135,
+      "junkRemovedCount": 0,
+      "uniqueCountries": 56,
+      "duplicateCompetitionNames": [
+        {
+          "name": "nbl",
+          "count": 4
+        },
+        {
+          "name": "super cup",
+          "count": 3
+        },
+        {
+          "name": "lnb",
+          "count": 3
+        },
+        {
+          "name": "liga femenina",
+          "count": 2
+        },
+        {
+          "name": "superliga",
+          "count": 2
+        }
+      ],
+      "legacyComparison": null,
+      "junkSample": [],
+      "sample": [
+        {
+          "id": "6289",
+          "competition": "Afrobasket",
+          "country": "Africa"
+        },
+        {
+          "id": "6978",
+          "competition": "World Cup Qualifications - Africa",
+          "country": "Africa"
+        },
+        {
+          "id": "6908",
+          "competition": "AmeriCup",
+          "country": "America"
+        },
+        {
+          "id": "7272",
+          "competition": "Americup (W)",
+          "country": "America"
+        },
+        {
+          "id": "7277",
+          "competition": "Champions League Americas",
+          "country": "America"
+        },
+        {
+          "id": "7642",
+          "competition": "Pan American Games",
+          "country": "America"
+        },
+        {
+          "id": "8034",
+          "competition": "Pan American Games Women",
+          "country": "America"
+        },
+        {
+          "id": "7997",
+          "competition": "WBLA Women",
+          "country": "America"
+        }
+      ],
+      "outputFile": "basketball_365_competitions.json"
+    },
+    "hockey": {
+      "sport": "hockey",
+      "source": "hockey.xlsx",
+      "sheetName": "result",
+      "headers": [
+        "COMPETITION_NAME",
+        "competition_ID",
+        "NAME_ID",
+        "COUNTRY"
+      ],
+      "rawRowCount": 18,
+      "duplicateIdGroups": 0,
+      "catalogCount": 18,
+      "junkRemovedCount": 0,
+      "uniqueCountries": 10,
+      "duplicateCompetitionNames": [
+        {
+          "name": "extraliga",
+          "count": 2
+        }
+      ],
+      "legacyComparison": null,
+      "junkSample": [],
+      "sample": [
+        {
+          "id": "5672",
+          "competition": "Extraliga",
+          "country": "Belarus"
+        },
+        {
+          "id": "369",
+          "competition": "Extraliga",
+          "country": "Czechia"
+        },
+        {
+          "id": "372",
+          "competition": "Ligaen",
+          "country": "Denmark"
+        },
+        {
+          "id": "6180",
+          "competition": "Champions Hockey League",
+          "country": "Europe"
+        },
+        {
+          "id": "8253",
+          "competition": "Dolomiten Cup",
+          "country": "Europe"
+        },
+        {
+          "id": "8252",
+          "competition": "Red Bulls Salute",
+          "country": "Europe"
+        },
+        {
+          "id": "379",
+          "competition": "DEL",
+          "country": "Germany"
+        },
+        {
+          "id": "8330",
+          "competition": "IIHF Continental Cup",
+          "country": "International"
+        }
+      ],
+      "outputFile": "hockey_365_competitions.json"
+    },
+    "tennis": {
+      "sport": "tennis",
+      "source": "tenis.xlsx",
+      "sheetName": "result",
+      "headers": [
+        "COMPETITION_NAME",
+        "competition_ID",
+        "NAME_ID",
+        "COUNTRY"
+      ],
+      "rawRowCount": 778,
+      "duplicateIdGroups": 0,
+      "catalogCount": 778,
+      "junkRemovedCount": 0,
+      "uniqueCountries": 10,
+      "duplicateCompetitionNames": [
+        {
+          "name": "brisbane",
+          "count": 6
+        },
+        {
+          "name": "mallorca",
+          "count": 6
+        },
+        {
+          "name": "rome",
+          "count": 6
+        },
+        {
+          "name": "buenos aires",
+          "count": 5
+        },
+        {
+          "name": "hamburg",
+          "count": 5
+        },
+        {
+          "name": "adelaide",
+          "count": 4
+        },
+        {
+          "name": "athens",
+          "count": 4
+        },
+        {
+          "name": "auckland",
+          "count": 4
+        },
+        {
+          "name": "bastad",
+          "count": 4
+        },
+        {
+          "name": "beijing",
+          "count": 4
+        },
+        {
+          "name": "cincinnati",
+          "count": 4
+        },
+        {
+          "name": "doha",
+          "count": 4
+        },
+        {
+          "name": "dubai",
+          "count": 4
+        },
+        {
+          "name": "hertogenbosch",
+          "count": 4
+        },
+        {
+          "name": "hong kong",
+          "count": 4
+        },
+        {
+          "name": "madrid",
+          "count": 4
+        },
+        {
+          "name": "queen's",
+          "count": 4
+        },
+        {
+          "name": "santiago",
+          "count": 4
+        },
+        {
+          "name": "stuttgart",
+          "count": 4
+        },
+        {
+          "name": "tokyo",
+          "count": 4
+        }
+      ],
+      "legacyComparison": null,
+      "junkSample": [],
+      "sample": [
+        {
+          "id": "192",
+          "competition": "Acapulco",
+          "country": "ATP"
+        },
+        {
+          "id": "178",
+          "competition": "Adelaide",
+          "country": "ATP"
+        },
+        {
+          "id": "7605",
+          "competition": "Almaty",
+          "country": "ATP"
+        },
+        {
+          "id": "6814",
+          "competition": "Antwerp",
+          "country": "ATP"
+        },
+        {
+          "id": "8943",
+          "competition": "AO Asia-Pacific Wildcard",
+          "country": "ATP"
+        },
+        {
+          "id": "8917",
+          "competition": "Athens",
+          "country": "ATP"
+        },
+        {
+          "id": "466",
+          "competition": "Atlanta",
+          "country": "ATP"
+        },
+        {
+          "id": "567",
+          "competition": "Auckland",
+          "country": "ATP"
+        }
+      ],
+      "outputFile": "tennis_365_competitions.json"
+    },
+    "baseball": {
+      "sport": "baseball",
+      "source": "beisebol.xlsx",
+      "sheetName": "result",
+      "headers": [
+        "COMPETITION_NAME",
+        "competition_ID",
+        "NAME_ID",
+        "COUNTRY"
+      ],
+      "rawRowCount": 18,
+      "duplicateIdGroups": 0,
+      "catalogCount": 18,
+      "junkRemovedCount": 0,
+      "uniqueCountries": 12,
+      "duplicateCompetitionNames": [],
+      "legacyComparison": null,
+      "junkSample": [],
+      "sample": [
+        {
+          "id": "7999",
+          "competition": "Champions League Americas",
+          "country": "America"
+        },
+        {
+          "id": "8024",
+          "competition": "Pan American Games",
+          "country": "America"
+        },
+        {
+          "id": "8531",
+          "competition": "Serie de las Americas",
+          "country": "America"
+        },
+        {
+          "id": "7633",
+          "competition": "LPB",
+          "country": "Colombia"
+        },
+        {
+          "id": "8040",
+          "competition": "Liga Elite",
+          "country": "Cuba"
+        },
+        {
+          "id": "7175",
+          "competition": "LIDOM",
+          "country": "Dominican Republic"
+        },
+        {
+          "id": "5603",
+          "competition": "Bundesliga",
+          "country": "Germany"
+        },
+        {
+          "id": "5426",
+          "competition": "World Baseball Classic",
+          "country": "International"
+        }
+      ],
+      "outputFile": "baseball_365_competitions.json"
+    },
+    "american_football": {
+      "sport": "american_football",
+      "source": "futebol americano.xlsx",
+      "sheetName": "result",
+      "headers": [
+        "COMPETITION_NAME",
+        "competition_ID",
+        "NAME_ID",
+        "COUNTRY"
+      ],
+      "rawRowCount": 5,
+      "duplicateIdGroups": 0,
+      "catalogCount": 5,
+      "junkRemovedCount": 0,
+      "uniqueCountries": 3,
+      "duplicateCompetitionNames": [],
+      "legacyComparison": null,
+      "junkSample": [],
+      "sample": [
+        {
+          "id": "7844",
+          "competition": "Liga BFA",
+          "country": "Brazil"
+        },
+        {
+          "id": "5100",
+          "competition": "CFL",
+          "country": "Canada"
+        },
+        {
+          "id": "382",
+          "competition": "NCAAF (FBS)",
+          "country": "USA"
+        },
+        {
+          "id": "352",
+          "competition": "NFL",
+          "country": "USA"
+        },
+        {
+          "id": "7328",
+          "competition": "XFL",
+          "country": "USA"
+        }
+      ],
+      "outputFile": "american_football_365_competitions.json"
+    }
+  }
+}

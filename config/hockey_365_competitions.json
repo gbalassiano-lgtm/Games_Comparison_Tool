@@ -1,0 +1,92 @@
+[
+  {
+    "id": "5672",
+    "competition": "Extraliga",
+    "country": "Belarus"
+  },
+  {
+    "id": "369",
+    "competition": "Extraliga",
+    "country": "Czechia"
+  },
+  {
+    "id": "372",
+    "competition": "Ligaen",
+    "country": "Denmark"
+  },
+  {
+    "id": "6180",
+    "competition": "Champions Hockey League",
+    "country": "Europe"
+  },
+  {
+    "id": "8253",
+    "competition": "Dolomiten Cup",
+    "country": "Europe"
+  },
+  {
+    "id": "8252",
+    "competition": "Red Bulls Salute",
+    "country": "Europe"
+  },
+  {
+    "id": "379",
+    "competition": "DEL",
+    "country": "Germany"
+  },
+  {
+    "id": "8330",
+    "competition": "IIHF Continental Cup",
+    "country": "International"
+  },
+  {
+    "id": "5092",
+    "competition": "IIHF World Championship",
+    "country": "International"
+  },
+  {
+    "id": "7219",
+    "competition": "WCH IIB",
+    "country": "International"
+  },
+  {
+    "id": "6358",
+    "competition": "World Championship (W)",
+    "country": "International"
+  },
+  {
+    "id": "7187",
+    "competition": "World Championship U20",
+    "country": "International"
+  },
+  {
+    "id": "8234",
+    "competition": "NZIHL",
+    "country": "New Zealand"
+  },
+  {
+    "id": "636",
+    "competition": "KHL",
+    "country": "Russia"
+  },
+  {
+    "id": "647",
+    "competition": "VHL",
+    "country": "Russia"
+  },
+  {
+    "id": "373",
+    "competition": "SHL",
+    "country": "Sweden"
+  },
+  {
+    "id": "8452",
+    "competition": "4 Nations Face-Off",
+    "country": "USA"
+  },
+  {
+    "id": "366",
+    "competition": "NHL",
+    "country": "USA"
+  }
+]

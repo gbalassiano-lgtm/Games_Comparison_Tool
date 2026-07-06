@@ -1,0 +1,11 @@
+#scanPanel .latam-card .scanner-tile-hint {
+  margin: 0 0 18px;
+}
+
+#scanPanel .latam-card .latam-map-icon {
+  border-radius: 0;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, .35));
+  height: 27px;
+  object-fit: contain;
+  width: 26px;
+}

@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daily Comparador</title>
+    <link rel="icon" type="image/png" href="/brand/logo-dark.png?v=20260624-logo2">
+    <link rel="shortcut icon" type="image/png" href="/brand/logo-dark.png?v=20260624-logo2">
+    <link rel="apple-touch-icon" href="/brand/logo-dark.png?v=20260624-logo2">
+    <script>
+      (function () {
+        var light = localStorage.getItem('uiTheme') === 'light';
+        if (light) document.documentElement.dataset.theme = 'light';
+        document.addEventListener('DOMContentLoaded', function () {
+          if (!light) return;
+          var logo = document.querySelector('.brand-logo');
+          if (logo) logo.src = '/brand/logo-light.png?v=20260624-logo2';
+        });
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/ui.css?v=20260626-asana">
+    <link rel="stylesheet" href="/ui-usa-sports.css?v=20260625-scanners">
+    <link rel="stylesheet" href="/ui-latam.css?v=20260625-latam-map">
+    <link rel="stylesheet" href="/ui-israel.css?v=20260625-israel">
+    <link rel="stylesheet" href="/ui-theme-light.css?v=20260626-terms-contrast">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div class="brand-mark">
+          <button type="button" class="brand-logo-button" id="homeLogo" data-i18n-title="homeLogo" title="Home" aria-label="Home">
+            <img class="brand-logo" src="/brand/logo-dark.png?v=20260624-logo2" alt="COMP" width="120" height="36">
+          </button>
+        </div>
+        <div class="hero-actions">
+          <nav class="top-menu tabs">
+            <button class="tab active" data-tab="tasks"><span data-i18n="tasksTab">Tasks</span></button>
+            <button class="tab" data-tab="scan"><span data-i18n="scanTab">Scanner</span></button>
+            <button class="tab" data-tab="compare" id="compareTab">
+              <img class="tab-icon tab-icon-brand tab-icon-history" src="/brand/tabs/history.png?v=20260624-tabs" alt="" aria-hidden="true" width="18" height="18">
+              <span data-i18n="historyTab">History</span>
+            </button>
+            <button class="tab hidden" data-tab="terms" id="termsTab">
+              <span data-i18n="termsTab">Terms Fix</span>
+            </button>
+            <button class="tab" data-tab="rules"><span data-i18n="rulesTab">Ignored Competitions</span></button>
+          </nav>
+          <button type="button" class="theme-toggle" id="themeToggle" data-i18n-title="themeLight" title="Light mode" aria-label="Light mode">
+            <span class="theme-toggle-icon" id="themeToggleIcon" aria-hidden="true">☀️</span>
+          </button>
+          <label class="language-switch">
+            <span class="sr-only" data-i18n="language">Language</span>
+            <img id="languageFlag" class="language-flag" src="/api/flag/us?s=20" alt="" aria-hidden="true" width="16" height="12">
+            <select id="languageSelect">
+              <option value="en">EN</option>
+              <option value="pt">PT</option>
+            </select>
+          </label>
+        </div>
+      </header>
+
+      <section class="panel active" id="tasksPanel">
+        <section class="asana-home">
+          <div class="asana-toolbar card">
+            <div class="asana-toolbar-row">
+              <p class="hint asana-toolbar-hint" id="asanaStatusHint">…</p>
+              <div class="asana-toolbar-actions">
+                <label class="asana-date-field">
+                  <span class="asana-date-label" data-i18n="asanaViewDate">Tasks due on</span>
+                  <input type="date" id="asanaViewDate">
+                </label>
+                <button type="button" class="secondary" id="asanaViewToday" data-i18n="asanaToday">Today</button>
+                <button type="button" class="secondary" id="refreshAsanaTasks" data-i18n="refreshTasks">Refresh</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="asana-day-column card">
+            <div class="asana-day-number" id="asanaDayNumber">—</div>
+            <div id="asanaTasksList" class="asana-task-list">
+              <p class="empty-state" id="asanaTasksEmpty">…</p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel" id="scanPanel">
+        <section class="home-hero scanners-hero">
+          <div class="scanner-layout">
+            <div class="scanner-grid scanner-grid-main">
+            <div class="scanner-card scanner-tile" id="scanControls">
+              <div class="scanner-card-head">
+                <h3 class="scanner-title-with-flag">
+                  <img class="scanner-title-flag" src="/api/flag/br?s=24" alt="" aria-hidden="true" width="22" height="16">
+                  <span data-i18n="contentTeam">Content Team</span>
+                </h3>
+              </div>
+              <div class="row scanner-form">
+                <label>
+                  <span data-i18n="sport">Sport</span>
+                  <select id="sportSelect"></select>
+                </label>
+                <label>
+                  <span data-i18n="date">Date</span>
+                  <input type="date" id="scanDate">
+                </label>
+                <button class="primary scanner-submit" id="startScan" data-i18n="scanButton">Scan</button>
+              </div>
+            </div>
+
+            <div class="scanner-card scanner-tile usa-sports-card" id="usaSportsControls">
+              <div class="scanner-card-head">
+                <h3 class="scanner-title-with-flag">
+                  <img class="scanner-title-flag" src="/api/flag/us?s=24" alt="" aria-hidden="true" width="22" height="16">
+                  <span data-i18n="usaSportsTitle">USA Sports</span>
+                </h3>
+              </div>
+              <p class="hint scanner-tile-hint" data-i18n="usaSportsHint">Compare NBA, NFL, MLB and other US leagues between 365Scores and Flashscore.</p>
+              <div class="row scanner-form">
+                <label>
+                  <span data-i18n="sport">Sport</span>
+                  <select id="usaSportSelect"></select>
+                </label>
+                <label>
+                  <span data-i18n="date">Date</span>
+                  <input type="date" id="usaSportsScanDate">
+                </label>
+                <button class="primary scanner-submit" id="startUsaSportsScan" data-i18n="scanButton">Scan</button>
+              </div>
+            </div>
+
+            <div class="scanner-card scanner-tile latam-card" id="latamControls">
+              <div class="scanner-card-head">
+                <h3 class="scanner-title-with-flag">
+                  <img class="scanner-title-flag scanner-title-brand latam-map-icon" src="/brand/tabs/latam.png?v=20260625-latam-map" alt="" aria-hidden="true" width="26" height="27">
+                  <span data-i18n="latamTitle">LATAM</span>
+                </h3>
+              </div>
+              <p class="hint scanner-tile-hint" data-i18n="latamHint">Compare 365Scores and Flashscore for Latin America and Caribbean countries, one sport at a time.</p>
+              <div class="row scanner-form">
+                <label>
+                  <span data-i18n="sport">Sport</span>
+                  <select id="latamSportSelect"></select>
+                </label>
+                <label>
+                  <span data-i18n="date">Date</span>
+                  <input type="date" id="latamScanDate">
+                </label>
+                <button class="primary scanner-submit" id="startLatamScan" data-i18n="scanButton">Scan</button>
+              </div>
+            </div>
+            </div>
+
+            <div class="scanner-row-israel">
+            <div class="scanner-card scanner-tile israel-card" id="israelControls">
+              <div class="scanner-card-head">
+                <h3 class="scanner-title-with-flag">
+                  <img class="scanner-title-flag" src="/api/flag/il?s=24" alt="" aria-hidden="true" width="22" height="16">
+                  <span data-i18n="israelTeamTitle">Israel Team</span>
+                </h3>
+              </div>
+              <p class="hint scanner-tile-hint" data-i18n="israelTeamHint">Compare Israeli football and basketball competitions between 365Scores and Flashscore.</p>
+              <div class="row scanner-form">
+                <label>
+                  <span data-i18n="sport">Sport</span>
+                  <select id="israelSportSelect"></select>
+                </label>
+                <label>
+                  <span data-i18n="date">Date</span>
+                  <input type="date" id="israelScanDate">
+                </label>
+                <button class="primary scanner-submit" id="startIsraelScan" data-i18n="scanButton">Scan</button>
+              </div>
+            </div>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="panel" id="termsPanel">
+        <div class="card">
+          <div class="section-head">
+            <div>
+              <h2 data-i18n="termsTitle">Terms Fix</h2>
+              <p class="hint" data-i18n="termsHint">Review similar names from 365Scores and Flashscore before generating the final report.</p>
+            </div>
+            <button class="primary" id="generateReport" data-i18n="generateReport">Generate report</button>
+          </div>
+          <div class="report-gen-panel hidden" id="reportGenPanel" aria-live="polite">
+            <p id="reportGenMessage" data-i18n="reportStepSave">Saving term decisions...</p>
+            <div class="progress-shell" aria-label="Report generation progress">
+              <div class="progress-bar" id="reportGenProgressBar"></div>
+            </div>
+            <p class="progress-text" id="reportGenProgressText">0%</p>
+            <ol class="loading-steps report-gen-steps" id="reportGenSteps" aria-label="Report generation steps"></ol>
+          </div>
+          <div id="termsList" class="terms-list">
+            <p class="empty-state" data-i18n="noTerms">No term fixes are needed.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="comparePanel">
+        <div class="card">
+          <div class="section-head">
+            <div>
+              <h2 data-i18n="historyTab">History</h2>
+              <p class="hint" data-i18n="historyHint">Select a previous scan to view its comparison report.</p>
+            </div>
+          </div>
+          <div id="historyReportBanner" class="history-report-banner hidden" role="status">
+            <div class="history-report-banner-copy">
+              <span data-i18n="openReportBanner">Open report:</span>
+              <strong id="historyReportBannerName"></strong>
+            </div>
+            <div class="history-report-banner-actions">
+              <button type="button" class="secondary" id="reopenHistoryReport" data-i18n="viewReport">View report</button>
+              <button type="button" class="ghost-danger" id="closeHistoryReport" data-i18n="closeReport">Close report</button>
+            </div>
+          </div>
+          <div class="history-strip" id="historyList"></div>
+        </div>
+
+        <div class="grid results hidden" id="summaryCards">
+          <article class="metric"><span data-i18n="total365">365 games</span><strong id="total365">-</strong></article>
+          <article class="metric"><span data-i18n="totalFlash">Flash games</span><strong id="totalFlash">-</strong></article>
+          <article class="metric"><span data-i18n="matchedCount">Matched games</span><strong id="matched">-</strong></article>
+        </div>
+
+        <div class="card detail-card hidden" id="detailsCard">
+          <div class="section-head">
+            <div>
+              <h2 data-i18n="breakdownTitle">Detailed Results Breakdown</h2>
+              <p class="hint" data-i18n="breakdownHint">Inspect problematic and perfectly synchronized games.</p>
+            </div>
+            <input class="search-input" id="detailsSearch" data-i18n-placeholder="searchPlaceholder" placeholder="Search team or competition...">
+          </div>
+          <div class="segmented">
+            <button class="segment active" data-result-tab="problematic" data-i18n="problematicTab">Problematic Games</button>
+            <button class="segment" data-result-tab="matched" data-i18n="matchedTab">Matched Games</button>
+          </div>
+          <div class="segmented issue-menu" id="issueMenu">
+            <button class="segment active" data-issue-filter="all" data-i18n="allIssues">All issues</button>
+            <button class="segment" data-issue-filter="onlyFlash" data-i18n="onlyFlash">Only Flash</button>
+            <button class="segment" data-issue-filter="only365" data-i18n="only365">Only 365</button>
+            <button class="segment" data-issue-filter="timeDiff" data-i18n="timeDiff">Time diff</button>
+            <button class="segment" data-issue-filter="statusDiff" data-i18n="statusDiff">Status diff</button>
+            <button class="segment" data-issue-filter="nameDiff" data-i18n="nameDiff">Name diff</button>
+          </div>
+          <div id="detailsList" class="details-list">
+            <p class="empty-state" data-i18n="noDetails">Run a scan to inspect game details.</p>
+          </div>
+        </div>
+
+        <div class="card hidden" id="outputFilesCard">
+          <h2 data-i18n="outputFiles">Output Files</h2>
+          <div class="download-grid" id="outputFiles"></div>
+        </div>
+      </section>
+
+      <section class="panel" id="rulesPanel">
+        <div class="card">
+          <h2 data-i18n="addIgnored">Add ignored competition</h2>
+          <div class="row">
+            <label>
+              <span data-i18n="sport">Sport</span>
+              <select id="ruleSport"></select>
+            </label>
+            <label>
+              <span data-i18n="source">Source</span>
+              <select id="ruleSide">
+                <option value="flash" data-i18n="sideFlash">Missing in 365Scores</option>
+                <option value="365" data-i18n="side365">Missing in Flashscore</option>
+              </select>
+            </label>
+            <label>
+              <span data-i18n="scope">Country / Scope</span>
+              <input id="ruleScope" data-i18n-placeholder="scopePlaceholder" placeholder="Brazil, ATP - Simples...">
+            </label>
+            <label>
+              <span data-i18n="competition">Competition</span>
+              <input id="ruleCompetition" data-i18n-placeholder="competitionPlaceholder" placeholder="Kings League, ITF...">
+            </label>
+            <button class="primary" id="addRule" data-i18n="add">Add</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="ignoredRules">Ignored rules</h2>
+          <div id="rulesList" class="rules-list"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="loading-overlay hidden" id="loadingOverlay" aria-live="polite">
+      <div class="loading-card">
+        <div class="orbital-loader">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h2 id="loadingTitle" data-i18n="loadingTitle">Scan in progress</h2>
+        <p id="loadingMessage">Scraping 365Scores...</p>
+        <p class="loading-detail hidden" id="loadingDetail"></p>
+        <div class="progress-shell" aria-label="Scan progress">
+          <div class="progress-bar" id="loadingProgress"></div>
+        </div>
+        <p class="progress-text" id="loadingProgressText">0%</p>
+        <ol class="loading-steps" id="loadingSteps" aria-label="Scan steps"></ol>
+        <button class="ghost-danger loading-stop-button" id="stopScanFromLoading" data-i18n="stopScan">Stop scraping</button>
+      </div>
+    </div>
+
+    <div class="report-overlay hidden" id="reportOverlay" aria-live="polite">
+      <section class="report-shell" id="reportShell">
+        <header class="report-header">
+          <div>
+            <h1 id="reportTitle">Comparison Report</h1>
+            <p class="hint" id="reportSubtitle"></p>
+          </div>
+          <div class="report-header-actions">
+            <button type="button" class="primary hidden" id="finishAsanaTask" data-i18n="finishAsanaTask">Finish task</button>
+            <button type="button" class="report-close-button" id="closeReportButton" data-i18n-title="closeReport" title="Close report" aria-label="Close report">×</button>
+          </div>
+        </header>
+        <div id="reportContent"></div>
+      </section>
+    </div>
+
+    <div class="confirm-overlay hidden" id="leaveTermsOverlay" aria-modal="true" role="dialog" aria-labelledby="leaveTermsTitle">
+      <section class="confirm-dialog">
+        <div class="confirm-icon" aria-hidden="true">!</div>
+        <div>
+          <p class="eyebrow">COMP</p>
+          <h2 id="leaveTermsTitle">Report not generated yet</h2>
+          <p class="hint" id="leaveTermsMessage">This scan is still waiting for Terms Fix. If you leave now, the final report will not be generated or saved to History until you come back and generate it.</p>
+        </div>
+        <div class="confirm-actions">
+          <button class="secondary" id="stayOnTerms">Stay on Terms Fix</button>
+          <button class="ghost-danger" id="confirmLeaveTerms">Leave page</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="/lib/country-flags.js?v=20260624-theme"></script>
+    <script src="/ui.js?v=20260701-daily-us"></script>
+  </body>
+</html>

@@ -1,0 +1,754 @@
+{
+  "football": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "Brazil",
+        "competition": "Amazonense U20"
+      },
+      {
+        "scope": "USA",
+        "competition": "USL League Two"
+      },
+      {
+        "scope": "CHINA",
+        "competition": "League Two"
+      },
+      {
+        "scope": "CHINA",
+        "competition": "Super League Women"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Mineiro 2"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NPL Queensland Women"
+      },
+      {
+        "scope": "Australia",
+        "competition": "NPL Northern NSW"
+      },
+      {
+        "scope": "MOZAMBIQUE",
+        "competition": "Mocambola"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Sul-Matogrossense 2"
+      },
+      {
+        "scope": "Argentina",
+        "competition": "Torneo Promocional Amateur"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "Queensland Premier League"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Brasiliense U20"
+      },
+      {
+        "scope": "ICELAND",
+        "competition": "Besta deild Women"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Matogrossense U20"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Maranhense 2"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Catarinense U20"
+      },
+      {
+        "scope": "KAZAKHSTAN",
+        "competition": "First League"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 3 - Group 3"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 3 - Group 4"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 3 - Group 6"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 2 - Norra Götaland"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 2 - Norra Svealand"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 2 - Södra Svealand"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 2 - Västra Götaland"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 3 - Group 1"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 3 - Group 2"
+      },
+      {
+        "scope": "Finland",
+        "competition": "Kansallinen Ykkonen Women"
+      },
+      {
+        "scope": "Vietnam",
+        "competition": "National League Women"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "Tasmania Southern Championship"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Amapaense 2 - Play Offs"
+      },
+      {
+        "scope": "CANADA",
+        "competition": "NSL Women"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NSW League One"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "SA State League"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NPL South Australia"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Acreano U20"
+      },
+      {
+        "scope": "MACAO",
+        "competition": "Elite League"
+      },
+      {
+        "scope": "SOUTH KOREA",
+        "competition": "WK League Women"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NPL Victoria"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 3 - Group 5"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 2 - Södra Götaland"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 2 - Group 2"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 1 - Södra"
+      },
+      {
+        "scope": "NORTHERN IRELAND",
+        "competition": "Premiership Women"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 1 - Norra"
+      },
+      {
+        "scope": "RUSSIA",
+        "competition": "Youth League"
+      },
+      {
+        "scope": "Australia",
+        "competition": "NPL NSW U20"
+      },
+      {
+        "scope": "Australia",
+        "competition": "NPL NSW"
+      },
+      {
+        "scope": "Australia",
+        "competition": "NPL Queensland"
+      },
+      {
+        "scope": "Australia",
+        "competition": "Victoria Premier League 2"
+      },
+      {
+        "scope": "Australia",
+        "competition": "NPL Western Australia"
+      },
+      {
+        "scope": "BHUTAN",
+        "competition": "Premier League"
+      },
+      {
+        "scope": "Russia",
+        "competition": "FNL 2 - Division B - Group 1"
+      },
+      {
+        "scope": "Russia",
+        "competition": "FNL 2 - Division B - Group 3"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Mineiro U20"
+      },
+      {
+        "scope": "Ireland",
+        "competition": "National League Women"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "WA State League"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NPL Tasmania"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NPL ACT"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Baiano U20 - Play Offs"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Tocantinense U20 - Play Offs"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Paraense A2 - Play Offs"
+      },
+      {
+        "scope": "Norway",
+        "competition": "Norway Cup Women"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Goiano U20 - Play Offs"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Gaucho U20 - Play Offs"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Rondoniense U20"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Paraibano U20 - Play Offs"
+      },
+      {
+        "scope": "EUROPE",
+        "competition": "Euro U19 Women"
+      },
+      {
+        "scope": "Finland",
+        "competition": "Kansallinen Liiga Women"
+      },
+      {
+        "scope": "Finland",
+        "competition": "Kakkonen Group C"
+      },
+      {
+        "scope": "Finland",
+        "competition": "Kakkonen Group B"
+      },
+      {
+        "scope": "South Korea",
+        "competition": "K4 League"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "Tasmania Northern Championship"
+      },
+      {
+        "scope": "LATVIA",
+        "competition": "Nakotnes liga"
+      },
+      {
+        "scope": "Sweden",
+        "competition": "Division 2 - Norrland"
+      },
+      {
+        "scope": "NORWAY",
+        "competition": "Division 1 Women"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "Northern NSW State League"
+      },
+      {
+        "scope": "Japan",
+        "competition": "Nadeshiko League Women"
+      },
+      {
+        "scope": "Norway",
+        "competition": "Division 2 - Group 1"
+      },
+      {
+        "scope": "Finland",
+        "competition": "Kakkonen Group A"
+      },
+      {
+        "scope": "Faroe Islands",
+        "competition": "1. Deild"
+      },
+      {
+        "scope": "Belarus",
+        "competition": "Vysshaya Liga Women"
+      },
+      {
+        "scope": "Cape Verde",
+        "competition": "Campeonato Nacional - Play Offs"
+      },
+      {
+        "scope": "Europe",
+        "competition": "Premier League (Crimea)"
+      },
+      {
+        "scope": "Gabon",
+        "competition": "Championnat D1"
+      },
+      {
+        "scope": "EUROPE",
+        "competition": "All-Island Cup Women - Play Offs"
+      },
+      {
+        "scope": "LATVIA",
+        "competition": "1. Liga Women"
+      },
+      {
+        "scope": "SIERRA LEONE",
+        "competition": "Premier League"
+      },
+      {
+        "scope": "Venezuela",
+        "competition": "Copa Venezuela"
+      },
+      {
+        "scope": "Argentina",
+        "competition": "Torneo Federal"
+      },
+      {
+        "scope": "SOMALIA",
+        "competition": "National league"
+      },
+      {
+        "scope": "ZIMBABWE",
+        "competition": "Premier Soccer League"
+      },
+      {
+        "scope": "Iceland",
+        "competition": "Division 2"
+      },
+      {
+        "scope": "Lithuania",
+        "competition": "I Lyga"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Carioca C"
+      },
+      {
+        "scope": "Russia",
+        "competition": "FNL 2 - Division B - Group 2"
+      },
+      {
+        "scope": "Russia",
+        "competition": "FNL 2 - Division B - Group 4"
+      },
+      {
+        "scope": "Quirguistão",
+        "competition": "Premier Liga"
+      },
+      {
+        "scope": "Malawi",
+        "competition": "Super League"
+      },
+      {
+        "scope": "KAZAKHSTAN",
+        "competition": "League Women"
+      },
+      {
+        "scope": "LITHUANIA",
+        "competition": "TOPLYGA"
+      },
+      {
+        "scope": "Finland",
+        "competition": "Suomen Cup Women"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Piauiense U20"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Brasileiro U17"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Brasileiro U20 B - Play Offs"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Serie D - Play Offs"
+      },
+      {
+        "scope": "Argentina",
+        "competition": "Primera B"
+      },
+      {
+        "scope": "Peru",
+        "competition": "Copa de la Liga"
+      },
+      {
+        "scope": "Argentina",
+        "competition": "Primera C"
+      },
+      {
+        "scope": "Paraguay",
+        "competition": "Division Intermedia"
+      },
+      {
+        "scope": "Europe",
+        "competition": "Euro U19"
+      },
+      {
+        "scope": "Brasil",
+        "competition": "Cearense U20"
+      }
+    ],
+    "acknowledgedFlashOnly": [
+      {
+        "scope": "Georgia",
+        "competition": "Georgian Cup"
+      },
+      {
+        "scope": "Syria",
+        "competition": "Premier League"
+      },
+      {
+        "scope": "Kazakhstan",
+        "competition": "Premier League"
+      },
+      {
+        "scope": "Morocco",
+        "competition": "Botola 2"
+      },
+      {
+        "scope": "USA",
+        "competition": "MLS Next Pro"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Copa FGF - Play Offs"
+      },
+      {
+        "scope": "Peru",
+        "competition": "Liga Women - Apertura - Play Offs"
+      },
+      {
+        "scope": "Belarus",
+        "competition": "Pershaya Liga"
+      },
+      {
+        "scope": "Finland",
+        "competition": "Veikkausliiga"
+      },
+      {
+        "scope": "Argentina",
+        "competition": "Primera A Women - Apertura"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Carioca 2"
+      },
+      {
+        "scope": "GEORGIA",
+        "competition": "Super Cup"
+      },
+      {
+        "scope": "Ecuador",
+        "competition": "Liga Pro"
+      }
+    ],
+    "acknowledged365Only": [
+      {
+        "scope": "New Zealand",
+        "competition": "National League"
+      },
+      {
+        "scope": "Syria",
+        "competition": "Syrian Premier League"
+      },
+      {
+        "scope": "Uruguay",
+        "competition": "Divisional C"
+      },
+      {
+        "scope": "Chile",
+        "competition": "Tercera Division A"
+      },
+      {
+        "scope": "Paraguay",
+        "competition": "APF Primera C"
+      },
+      {
+        "scope": "Iceland",
+        "competition": "Inkasso Deildin"
+      },
+      {
+        "scope": "Argentina",
+        "competition": "Promocional Amateur"
+      }
+    ]
+  },
+  "basketball": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "PHILIPPINES",
+        "competition": "MPBL"
+      },
+      {
+        "scope": "EUROPE",
+        "competition": "Small Countries European Championship"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 South"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 North Women"
+      },
+      {
+        "scope": "INDONESIA",
+        "competition": "IBL - Play Offs"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 West Women"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 West"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 North"
+      },
+      {
+        "scope": "VIETNAM",
+        "competition": "VBA"
+      },
+      {
+        "scope": "International",
+        "competition": "World Tour Ulaanbaatar 3x3"
+      },
+      {
+        "scope": "International",
+        "competition": "World Championship U17"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 East"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 East Women"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 Central"
+      },
+      {
+        "scope": "AUSTRALIA",
+        "competition": "NBL1 Central Women"
+      },
+      {
+        "scope": "USA",
+        "competition": "BIG3 (3x3)"
+      },
+      {
+        "scope": "AUSTRALASIA",
+        "competition": "World Cup - Qualification - First round"
+      }
+    ],
+    "acknowledgedFlashOnly": [
+      {
+        "scope": "DOMINICAN REPUBLIC",
+        "competition": "LNB - Play Offs"
+      },
+      {
+        "scope": "CHILE",
+        "competition": "LNB 2 - Play Offs"
+      }
+    ],
+    "acknowledged365Only": []
+  },
+  "hockey": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "NEW ZEALAND",
+        "competition": "NZIHL"
+      }
+    ],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "volleyball": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "International",
+        "competition": "Pan-American Cup U21"
+      }
+    ],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "tennis": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "ITF Men - Singles",
+        "competition": "*"
+      },
+      {
+        "scope": "ITF Men - Doubles",
+        "competition": "*"
+      },
+      {
+        "scope": "ITF Women - Singles",
+        "competition": "*"
+      },
+      {
+        "scope": "ITF Women - Doubles",
+        "competition": "*"
+      },
+      {
+        "scope": "(World)",
+        "competition": "Billie Jean King Cup"
+      },
+      {
+        "scope": "World",
+        "competition": "Davis Cup - Group IV"
+      },
+      {
+        "scope": "Challenger - Singles",
+        "competition": "Troyes (France) - Qualification, clay"
+      }
+    ],
+    "acknowledgedFlashOnly": [
+      {
+        "scope": "ATP - Singles",
+        "competition": "Eastbourne (United Kingdom), grass"
+      }
+    ],
+    "acknowledged365Only": []
+  },
+  "basketball_usa": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "USA",
+        "competition": "BIG3 (3x3)"
+      }
+    ],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "latam_football": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "latam_basketball": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "latam_hockey": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": []
+  },
+  "latam_volleyball": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": []
+  },
+  "latam_tennis": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": []
+  },
+  "american_football_usa": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "USA",
+        "competition": "AF1"
+      }
+    ],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "baseball_usa": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [
+      {
+        "scope": "USA",
+        "competition": "IL - Second stage"
+      },
+      {
+        "scope": "USA",
+        "competition": "PCL - Second stage"
+      }
+    ],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "israel_football": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  },
+  "israel_basketball": {
+    "ignore365Only": [],
+    "ignoreFlashOnly": [],
+    "acknowledgedFlashOnly": [],
+    "acknowledged365Only": []
+  }
+}

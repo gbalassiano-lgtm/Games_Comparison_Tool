@@ -1,0 +1,23 @@
+{
+  "name": "daily",
+  "version": "1.0.0",
+  "description": "",
+  "main": "365.js",
+  "scripts": {
+    "dev": "node server.js",
+    "scan": "node run-all.js",
+    "import:365-catalogs": "node scripts/import-365-competitions.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "exceljs": "^4.4.0",
+    "form-data": "^4.0.5",
+    "node-fetch": "^2.7.0",
+    "playwright": "^1.58.2"
+  }
+}

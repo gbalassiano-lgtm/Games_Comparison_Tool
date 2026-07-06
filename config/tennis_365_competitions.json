@@ -1,0 +1,3892 @@
+[
+  {
+    "id": "192",
+    "competition": "Acapulco",
+    "country": "ATP"
+  },
+  {
+    "id": "178",
+    "competition": "Adelaide",
+    "country": "ATP"
+  },
+  {
+    "id": "7605",
+    "competition": "Almaty",
+    "country": "ATP"
+  },
+  {
+    "id": "6814",
+    "competition": "Antwerp",
+    "country": "ATP"
+  },
+  {
+    "id": "8943",
+    "competition": "AO Asia-Pacific Wildcard",
+    "country": "ATP"
+  },
+  {
+    "id": "8917",
+    "competition": "Athens",
+    "country": "ATP"
+  },
+  {
+    "id": "466",
+    "competition": "Atlanta",
+    "country": "ATP"
+  },
+  {
+    "id": "567",
+    "competition": "Auckland",
+    "country": "ATP"
+  },
+  {
+    "id": "183",
+    "competition": "Australian Open - Men",
+    "country": "ATP"
+  },
+  {
+    "id": "202",
+    "competition": "Barcelona Open",
+    "country": "ATP"
+  },
+  {
+    "id": "241",
+    "competition": "Basel",
+    "country": "ATP"
+  },
+  {
+    "id": "219",
+    "competition": "Bastad",
+    "country": "ATP"
+  },
+  {
+    "id": "232",
+    "competition": "Beijing",
+    "country": "ATP"
+  },
+  {
+    "id": "441",
+    "competition": "Belgrade",
+    "country": "ATP"
+  },
+  {
+    "id": "315",
+    "competition": "Brisbane",
+    "country": "ATP"
+  },
+  {
+    "id": "8885",
+    "competition": "Brussels",
+    "country": "ATP"
+  },
+  {
+    "id": "231",
+    "competition": "Bucharest",
+    "country": "ATP"
+  },
+  {
+    "id": "190",
+    "competition": "Buenos Aires",
+    "country": "ATP"
+  },
+  {
+    "id": "6809",
+    "competition": "Chengdu",
+    "country": "ATP"
+  },
+  {
+    "id": "225",
+    "competition": "Cincinnati",
+    "country": "ATP"
+  },
+  {
+    "id": "7194",
+    "competition": "Cordoba",
+    "country": "ATP"
+  },
+  {
+    "id": "7813",
+    "competition": "Dallas",
+    "country": "ATP"
+  },
+  {
+    "id": "311",
+    "competition": "Davis Cup",
+    "country": "ATP"
+  },
+  {
+    "id": "186",
+    "competition": "Delray Beach",
+    "country": "ATP"
+  },
+  {
+    "id": "179",
+    "competition": "Doha",
+    "country": "ATP"
+  },
+  {
+    "id": "194",
+    "competition": "Dubai",
+    "country": "ATP"
+  },
+  {
+    "id": "453",
+    "competition": "Eastbourne",
+    "country": "ATP"
+  },
+  {
+    "id": "6247",
+    "competition": "Geneva",
+    "country": "ATP"
+  },
+  {
+    "id": "7882",
+    "competition": "Gijon",
+    "country": "ATP"
+  },
+  {
+    "id": "217",
+    "competition": "Gstaad",
+    "country": "ATP"
+  },
+  {
+    "id": "212",
+    "competition": "Halle",
+    "country": "ATP"
+  },
+  {
+    "id": "8317",
+    "competition": "Hangzhou",
+    "country": "ATP"
+  },
+  {
+    "id": "213",
+    "competition": "Hertogenbosch",
+    "country": "ATP"
+  },
+  {
+    "id": "8046",
+    "competition": "Hong Kong",
+    "country": "ATP"
+  },
+  {
+    "id": "200",
+    "competition": "Houston",
+    "country": "ATP"
+  },
+  {
+    "id": "222",
+    "competition": "Indian Wells",
+    "country": "ATP"
+  },
+  {
+    "id": "220",
+    "competition": "Kitzbuhel",
+    "country": "ATP"
+  },
+  {
+    "id": "6925",
+    "competition": "Laver Cup",
+    "country": "ATP"
+  },
+  {
+    "id": "6891",
+    "competition": "Los Cabos",
+    "country": "ATP"
+  },
+  {
+    "id": "242",
+    "competition": "Lyon Open",
+    "country": "ATP"
+  },
+  {
+    "id": "240",
+    "competition": "Madrid",
+    "country": "ATP"
+  },
+  {
+    "id": "7693",
+    "competition": "Mallorca",
+    "country": "ATP"
+  },
+  {
+    "id": "6359",
+    "competition": "Marrakech",
+    "country": "ATP"
+  },
+  {
+    "id": "185",
+    "competition": "Marseille",
+    "country": "ATP"
+  },
+  {
+    "id": "235",
+    "competition": "Metz",
+    "country": "ATP"
+  },
+  {
+    "id": "197",
+    "competition": "Miami",
+    "country": "ATP"
+  },
+  {
+    "id": "201",
+    "competition": "Monte Carlo",
+    "country": "ATP"
+  },
+  {
+    "id": "510",
+    "competition": "Montpellier",
+    "country": "ATP"
+  },
+  {
+    "id": "203",
+    "competition": "Munich Open",
+    "country": "ATP"
+  },
+  {
+    "id": "218",
+    "competition": "Newport Open",
+    "country": "ATP"
+  },
+  {
+    "id": "6962",
+    "competition": "Next Gen Finals",
+    "country": "ATP"
+  },
+  {
+    "id": "388",
+    "competition": "Nitto ATP Finals",
+    "country": "ATP"
+  },
+  {
+    "id": "244",
+    "competition": "Paris",
+    "country": "ATP"
+  },
+  {
+    "id": "210",
+    "competition": "Queen's",
+    "country": "ATP"
+  },
+  {
+    "id": "6064",
+    "competition": "Rio Open",
+    "country": "ATP"
+  },
+  {
+    "id": "209",
+    "competition": "Roland Garros - Men",
+    "country": "ATP"
+  },
+  {
+    "id": "204",
+    "competition": "Rome",
+    "country": "ATP"
+  },
+  {
+    "id": "188",
+    "competition": "Rotterdam",
+    "country": "ATP"
+  },
+  {
+    "id": "184",
+    "competition": "Santiago",
+    "country": "ATP"
+  },
+  {
+    "id": "364",
+    "competition": "Shanghai",
+    "country": "ATP"
+  },
+  {
+    "id": "8385",
+    "competition": "Six Kings Slam",
+    "country": "ATP"
+  },
+  {
+    "id": "238",
+    "competition": "Stockholm",
+    "country": "ATP"
+  },
+  {
+    "id": "216",
+    "competition": "Stuttgart",
+    "country": "ATP"
+  },
+  {
+    "id": "7875",
+    "competition": "Tel Aviv",
+    "country": "ATP"
+  },
+  {
+    "id": "234",
+    "competition": "Tokyo",
+    "country": "ATP"
+  },
+  {
+    "id": "6895",
+    "competition": "Toronto",
+    "country": "ATP"
+  },
+  {
+    "id": "223",
+    "competition": "Umag",
+    "country": "ATP"
+  },
+  {
+    "id": "230",
+    "competition": "US Open - Men",
+    "country": "ATP"
+  },
+  {
+    "id": "237",
+    "competition": "Vienna",
+    "country": "ATP"
+  },
+  {
+    "id": "228",
+    "competition": "Washington",
+    "country": "ATP"
+  },
+  {
+    "id": "215",
+    "competition": "Wimbledon - Men",
+    "country": "ATP"
+  },
+  {
+    "id": "6905",
+    "competition": "Winston Salem",
+    "country": "ATP"
+  },
+  {
+    "id": "7274",
+    "competition": "Zhuhai",
+    "country": "ATP"
+  },
+  {
+    "id": "8068",
+    "competition": "Acapulco",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8483",
+    "competition": "Adelaide",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8388",
+    "competition": "Almaty",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8387",
+    "competition": "Antwerp",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8918",
+    "competition": "Athens",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8221",
+    "competition": "Atlanta",
+    "country": "ATP-D"
+  },
+  {
+    "id": "6318",
+    "competition": "ATP Finals - Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8244",
+    "competition": "ATP Montreal | Men | Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8208",
+    "competition": "ATP Newport | Men | Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8482",
+    "competition": "Auckland",
+    "country": "ATP-D"
+  },
+  {
+    "id": "420",
+    "competition": "Australian Open - Doubles (M)",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8505",
+    "competition": "Australian Open - Mixed Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8206",
+    "competition": "Bastad",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8336",
+    "competition": "Beijing",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8421",
+    "competition": "Belgrade",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8050",
+    "competition": "Brisbane",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8886",
+    "competition": "Brussels",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8101",
+    "competition": "Bucharest Open",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8563",
+    "competition": "Buenos Aires",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8316",
+    "competition": "Chengdu",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8249",
+    "competition": "Cincinnati",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8543",
+    "competition": "Dallas",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8567",
+    "competition": "Delray Beach",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8071",
+    "competition": "Doha",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8067",
+    "competition": "Dubai",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8178",
+    "competition": "Eastbourne Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8134",
+    "competition": "Geneva",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8205",
+    "competition": "Gstaad",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8164",
+    "competition": "Halle",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8207",
+    "competition": "Hamburg",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8318",
+    "competition": "Hangzhou",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8157",
+    "competition": "Hertogenbosch",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8048",
+    "competition": "Hong Kong",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8090",
+    "competition": "Houston Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8223",
+    "competition": "Kitzbuhel",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8072",
+    "competition": "Los Cabos",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8133",
+    "competition": "Lyon",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8175",
+    "competition": "Mallorca",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8089",
+    "competition": "Marrakesh Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8562",
+    "competition": "Marseille",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8420",
+    "competition": "Metz",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8104",
+    "competition": "Munich Open",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8167",
+    "competition": "Queen's",
+    "country": "ATP-D"
+  },
+  {
+    "id": "6260",
+    "competition": "Roland Garros - Doubles (M)",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8145",
+    "competition": "Roland Garros - Mixed Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8541",
+    "competition": "Rotterdam",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8070",
+    "competition": "Santiago",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8365",
+    "competition": "Shanghai",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8389",
+    "competition": "Stockholm",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8159",
+    "competition": "Stuttgart",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8021",
+    "competition": "Tokyo",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8793",
+    "competition": "Toronto",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8222",
+    "competition": "Umag",
+    "country": "ATP-D"
+  },
+  {
+    "id": "6291",
+    "competition": "US Open - Doubles (M)",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8271",
+    "competition": "US Open - Mixed Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8236",
+    "competition": "Washington",
+    "country": "ATP-D"
+  },
+  {
+    "id": "6272",
+    "competition": "Wimbledon - Doubles (M)",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8198",
+    "competition": "Wimbledon - Mixed Doubles",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8257",
+    "competition": "Winston Salem",
+    "country": "ATP-D"
+  },
+  {
+    "id": "8705",
+    "competition": "Smartfit Open - Doubles A (M)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8706",
+    "competition": "Smartfit Open - Doubles A (W)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8657",
+    "competition": "Smartfit Open - Doubles B (M)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8655",
+    "competition": "Smartfit Open - Doubles B (W)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8656",
+    "competition": "Smartfit Open - Doubles C (M)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8654",
+    "competition": "Smartfit Open - Doubles C (W)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8653",
+    "competition": "Smartfit Open - Doubles D (M)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8623",
+    "competition": "Smartfit Open - Doubles D (W)",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8707",
+    "competition": "Smartfit Open - Mixed A",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8660",
+    "competition": "Smartfit Open - Mixed B",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8659",
+    "competition": "Smartfit Open - Mixed C",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8658",
+    "competition": "Smartfit Open - Mixed D",
+    "country": "Beach Tennis"
+  },
+  {
+    "id": "8661",
+    "competition": "Abidjan",
+    "country": "Challenger"
+  },
+  {
+    "id": "8098",
+    "competition": "Acapulco Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7831",
+    "competition": "Aguascalientes",
+    "country": "Challenger"
+  },
+  {
+    "id": "7082",
+    "competition": "Aix-en-Provence",
+    "country": "Challenger"
+  },
+  {
+    "id": "7056",
+    "competition": "Alicante",
+    "country": "Challenger"
+  },
+  {
+    "id": "7248",
+    "competition": "Amersfoort Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7993",
+    "competition": "Antofagasta",
+    "country": "Challenger"
+  },
+  {
+    "id": "7123",
+    "competition": "Astana",
+    "country": "Challenger"
+  },
+  {
+    "id": "8079",
+    "competition": "Asunción",
+    "country": "Challenger"
+  },
+  {
+    "id": "8936",
+    "competition": "Athens",
+    "country": "Challenger"
+  },
+  {
+    "id": "7258",
+    "competition": "Augsburg",
+    "country": "Challenger"
+  },
+  {
+    "id": "9061",
+    "competition": "Bad Rappenau",
+    "country": "Challenger"
+  },
+  {
+    "id": "7992",
+    "competition": "Bad Waltersdorf",
+    "country": "Challenger"
+  },
+  {
+    "id": "6915",
+    "competition": "Banja Luka Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7171",
+    "competition": "Barcelona Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7061",
+    "competition": "Barletta",
+    "country": "Challenger"
+  },
+  {
+    "id": "8801",
+    "competition": "Barranquilla",
+    "country": "Challenger"
+  },
+  {
+    "id": "9009",
+    "competition": "Baton Rouge",
+    "country": "Challenger"
+  },
+  {
+    "id": "7319",
+    "competition": "Bengaluru",
+    "country": "Challenger"
+  },
+  {
+    "id": "7032",
+    "competition": "Bergamo",
+    "country": "Challenger"
+  },
+  {
+    "id": "6890",
+    "competition": "Biella",
+    "country": "Challenger"
+  },
+  {
+    "id": "8719",
+    "competition": "Birmingham",
+    "country": "Challenger"
+  },
+  {
+    "id": "7107",
+    "competition": "Blois Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7966",
+    "competition": "Bloomfield Hills",
+    "country": "Challenger"
+  },
+  {
+    "id": "6914",
+    "competition": "Bogota",
+    "country": "Challenger"
+  },
+  {
+    "id": "8242",
+    "competition": "Bonn",
+    "country": "Challenger"
+  },
+  {
+    "id": "7086",
+    "competition": "Bordeaux",
+    "country": "Challenger"
+  },
+  {
+    "id": "7083",
+    "competition": "Braga",
+    "country": "Challenger"
+  },
+  {
+    "id": "7797",
+    "competition": "Brasilia",
+    "country": "Challenger"
+  },
+  {
+    "id": "8195",
+    "competition": "Brasov",
+    "country": "Challenger"
+  },
+  {
+    "id": "6961",
+    "competition": "Bratislava",
+    "country": "Challenger"
+  },
+  {
+    "id": "7117",
+    "competition": "Braunschweig",
+    "country": "Challenger"
+  },
+  {
+    "id": "8407",
+    "competition": "Brazzaville",
+    "country": "Challenger"
+  },
+  {
+    "id": "6949",
+    "competition": "Brest",
+    "country": "Challenger"
+  },
+  {
+    "id": "8519",
+    "competition": "Brisbane",
+    "country": "Challenger"
+  },
+  {
+    "id": "9028",
+    "competition": "Bucaramanga",
+    "country": "Challenger"
+  },
+  {
+    "id": "6940",
+    "competition": "Buenos Aires",
+    "country": "Challenger"
+  },
+  {
+    "id": "8767",
+    "competition": "Bunschoten",
+    "country": "Challenger"
+  },
+  {
+    "id": "7087",
+    "competition": "Busan",
+    "country": "Challenger"
+  },
+  {
+    "id": "7940",
+    "competition": "Cagliari",
+    "country": "Challenger"
+  },
+  {
+    "id": "7173",
+    "competition": "Calgary Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "6943",
+    "competition": "Cali",
+    "country": "Challenger"
+  },
+  {
+    "id": "6935",
+    "competition": "Campinas",
+    "country": "Challenger"
+  },
+  {
+    "id": "7000",
+    "competition": "Canberra",
+    "country": "Challenger"
+  },
+  {
+    "id": "8803",
+    "competition": "Cancun",
+    "country": "Challenger"
+  },
+  {
+    "id": "8612",
+    "competition": "Cap Cana",
+    "country": "Challenger"
+  },
+  {
+    "id": "6916",
+    "competition": "Cary",
+    "country": "Challenger"
+  },
+  {
+    "id": "7160",
+    "competition": "Cassis",
+    "country": "Challenger"
+  },
+  {
+    "id": "9064",
+    "competition": "Cattolica",
+    "country": "Challenger"
+  },
+  {
+    "id": "9056",
+    "competition": "Centurion",
+    "country": "Challenger"
+  },
+  {
+    "id": "9052",
+    "competition": "Cervia",
+    "country": "Challenger"
+  },
+  {
+    "id": "9006",
+    "competition": "Cesenatico",
+    "country": "Challenger"
+  },
+  {
+    "id": "6968",
+    "competition": "Champaign",
+    "country": "Challenger"
+  },
+  {
+    "id": "7877",
+    "competition": "Charleston Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "6955",
+    "competition": "Charlottesville",
+    "country": "Challenger"
+  },
+  {
+    "id": "7027",
+    "competition": "Cherbourg",
+    "country": "Challenger"
+  },
+  {
+    "id": "7161",
+    "competition": "Chicago",
+    "country": "Challenger"
+  },
+  {
+    "id": "8710",
+    "competition": "Chinisau",
+    "country": "Challenger"
+  },
+  {
+    "id": "7192",
+    "competition": "Cleveland",
+    "country": "Challenger"
+  },
+  {
+    "id": "6923",
+    "competition": "Columbus",
+    "country": "Challenger"
+  },
+  {
+    "id": "6906",
+    "competition": "Como",
+    "country": "Challenger"
+  },
+  {
+    "id": "7646",
+    "competition": "Concepcion",
+    "country": "Challenger"
+  },
+  {
+    "id": "6900",
+    "competition": "Cordenons",
+    "country": "Challenger"
+  },
+  {
+    "id": "8604",
+    "competition": "Cordoba",
+    "country": "Challenger"
+  },
+  {
+    "id": "8898",
+    "competition": "Costa do Sauipe",
+    "country": "Challenger"
+  },
+  {
+    "id": "8026",
+    "competition": "Curitiba",
+    "country": "Challenger"
+  },
+  {
+    "id": "8254",
+    "competition": "Dobrich Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7042",
+    "competition": "Drummondville",
+    "country": "Challenger"
+  },
+  {
+    "id": "9069",
+    "competition": "Dublin",
+    "country": "Challenger"
+  },
+  {
+    "id": "198",
+    "competition": "Estoril",
+    "country": "Challenger"
+  },
+  {
+    "id": "6939",
+    "competition": "Fairfield",
+    "country": "Challenger"
+  },
+  {
+    "id": "7801",
+    "competition": "Florianópolis",
+    "country": "Challenger"
+  },
+  {
+    "id": "7072",
+    "competition": "Francavilla",
+    "country": "Challenger"
+  },
+  {
+    "id": "9020",
+    "competition": "Fujairah",
+    "country": "Challenger"
+  },
+  {
+    "id": "6913",
+    "competition": "Genoa",
+    "country": "Challenger"
+  },
+  {
+    "id": "7935",
+    "competition": "Girona",
+    "country": "Challenger"
+  },
+  {
+    "id": "7079",
+    "competition": "Glasgow",
+    "country": "Challenger"
+  },
+  {
+    "id": "6884",
+    "competition": "Granby",
+    "country": "Challenger"
+  },
+  {
+    "id": "7858",
+    "competition": "Grodzisk Mazowiecki",
+    "country": "Challenger"
+  },
+  {
+    "id": "7987",
+    "competition": "Guangzhou",
+    "country": "Challenger"
+  },
+  {
+    "id": "6953",
+    "competition": "Guayaquil",
+    "country": "Challenger"
+  },
+  {
+    "id": "6922",
+    "competition": "Gwangju",
+    "country": "Challenger"
+  },
+  {
+    "id": "8789",
+    "competition": "Hagen",
+    "country": "Challenger"
+  },
+  {
+    "id": "7276",
+    "competition": "Hamburg",
+    "country": "Challenger"
+  },
+  {
+    "id": "8382",
+    "competition": "Hangzhou Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7088",
+    "competition": "Heilbronn",
+    "country": "Challenger"
+  },
+  {
+    "id": "7279",
+    "competition": "Helsinki",
+    "country": "Challenger"
+  },
+  {
+    "id": "8606",
+    "competition": "Hersonissos",
+    "country": "Challenger"
+  },
+  {
+    "id": "7588",
+    "competition": "Iasi",
+    "country": "Challenger"
+  },
+  {
+    "id": "8177",
+    "competition": "Ibague Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7108",
+    "competition": "Ilkley",
+    "country": "Challenger"
+  },
+  {
+    "id": "8938",
+    "competition": "Islamabad",
+    "country": "Challenger"
+  },
+  {
+    "id": "6917",
+    "competition": "Istanbul",
+    "country": "Challenger"
+  },
+  {
+    "id": "8975",
+    "competition": "Itajai",
+    "country": "Challenger"
+  },
+  {
+    "id": "7138",
+    "competition": "Jinan",
+    "country": "Challenger"
+  },
+  {
+    "id": "8855",
+    "competition": "Jingshan",
+    "country": "Challenger"
+  },
+  {
+    "id": "9045",
+    "competition": "Jiujiang",
+    "country": "Challenger"
+  },
+  {
+    "id": "8132",
+    "competition": "Kachreti",
+    "country": "Challenger"
+  },
+  {
+    "id": "7968",
+    "competition": "Karlsruhe Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "8066",
+    "competition": "Kigali",
+    "country": "Challenger"
+  },
+  {
+    "id": "6963",
+    "competition": "Knoxville",
+    "country": "Challenger"
+  },
+  {
+    "id": "6960",
+    "competition": "Kobe",
+    "country": "Challenger"
+  },
+  {
+    "id": "7004",
+    "competition": "Koblenz",
+    "country": "Challenger"
+  },
+  {
+    "id": "9057",
+    "competition": "Kosice",
+    "country": "Challenger"
+  },
+  {
+    "id": "195",
+    "competition": "Las Vegas",
+    "country": "Challenger"
+  },
+  {
+    "id": "6889",
+    "competition": "Lexington",
+    "country": "Challenger"
+  },
+  {
+    "id": "6888",
+    "competition": "Liberec",
+    "country": "Challenger"
+  },
+  {
+    "id": "7046",
+    "competition": "Lille",
+    "country": "Challenger"
+  },
+  {
+    "id": "6948",
+    "competition": "Lima",
+    "country": "Challenger"
+  },
+  {
+    "id": "8243",
+    "competition": "Lincoln",
+    "country": "Challenger"
+  },
+  {
+    "id": "7089",
+    "competition": "Lisbon",
+    "country": "Challenger"
+  },
+  {
+    "id": "7233",
+    "competition": "Little Rock",
+    "country": "Challenger"
+  },
+  {
+    "id": "7745",
+    "competition": "Luedenscheid",
+    "country": "Challenger"
+  },
+  {
+    "id": "7655",
+    "competition": "Lugano",
+    "country": "Challenger"
+  },
+  {
+    "id": "7103",
+    "competition": "Lyon",
+    "country": "Challenger"
+  },
+  {
+    "id": "7829",
+    "competition": "Madrid",
+    "country": "Challenger"
+  },
+  {
+    "id": "7280",
+    "competition": "Maia",
+    "country": "Challenger"
+  },
+  {
+    "id": "7158",
+    "competition": "Mallorca",
+    "country": "Challenger"
+  },
+  {
+    "id": "7799",
+    "competition": "Manama",
+    "country": "Challenger"
+  },
+  {
+    "id": "8438",
+    "competition": "Manzanillo",
+    "country": "Challenger"
+  },
+  {
+    "id": "7893",
+    "competition": "Matsuyama",
+    "country": "Challenger"
+  },
+  {
+    "id": "7832",
+    "competition": "Mauthausen",
+    "country": "Challenger"
+  },
+  {
+    "id": "6899",
+    "competition": "Meerbusch Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "8637",
+    "competition": "Menorca",
+    "country": "Challenger"
+  },
+  {
+    "id": "8080",
+    "competition": "Mérida",
+    "country": "Challenger"
+  },
+  {
+    "id": "7060",
+    "competition": "Mexico City",
+    "country": "Challenger"
+  },
+  {
+    "id": "7112",
+    "competition": "Milan",
+    "country": "Challenger"
+  },
+  {
+    "id": "9037",
+    "competition": "Miyazaki",
+    "country": "Challenger"
+  },
+  {
+    "id": "7962",
+    "competition": "Modena",
+    "country": "Challenger"
+  },
+  {
+    "id": "8911",
+    "competition": "Monastir",
+    "country": "Challenger"
+  },
+  {
+    "id": "8428",
+    "competition": "Montemar",
+    "country": "Challenger"
+  },
+  {
+    "id": "6959",
+    "competition": "Montevideo",
+    "country": "Challenger"
+  },
+  {
+    "id": "8651",
+    "competition": "Monza",
+    "country": "Challenger"
+  },
+  {
+    "id": "8628",
+    "competition": "Morelia",
+    "country": "Challenger"
+  },
+  {
+    "id": "7034",
+    "competition": "Morelos",
+    "country": "Challenger"
+  },
+  {
+    "id": "6958",
+    "competition": "Mouilleron-Le-Captif",
+    "country": "Challenger"
+  },
+  {
+    "id": "7216",
+    "competition": "Murcia",
+    "country": "Challenger"
+  },
+  {
+    "id": "7774",
+    "competition": "Napoli",
+    "country": "Challenger"
+  },
+  {
+    "id": "8065",
+    "competition": "New Dehli",
+    "country": "Challenger"
+  },
+  {
+    "id": "7013",
+    "competition": "Newport Beach",
+    "country": "Challenger"
+  },
+  {
+    "id": "7862",
+    "competition": "Nonthaburi",
+    "country": "Challenger"
+  },
+  {
+    "id": "7104",
+    "competition": "Nottingham",
+    "country": "Challenger"
+  },
+  {
+    "id": "6999",
+    "competition": "Noumea",
+    "country": "Challenger"
+  },
+  {
+    "id": "7658",
+    "competition": "Oeiras",
+    "country": "Challenger"
+  },
+  {
+    "id": "8020",
+    "competition": "Olbia",
+    "country": "Challenger"
+  },
+  {
+    "id": "6931",
+    "competition": "Orleans",
+    "country": "Challenger"
+  },
+  {
+    "id": "7075",
+    "competition": "Ostrava",
+    "country": "Challenger"
+  },
+  {
+    "id": "7237",
+    "competition": "Parma",
+    "country": "Challenger"
+  },
+  {
+    "id": "7198",
+    "competition": "Pau",
+    "country": "Challenger"
+  },
+  {
+    "id": "7120",
+    "competition": "Perugia",
+    "country": "Challenger"
+  },
+  {
+    "id": "8974",
+    "competition": "Phan Thiet",
+    "country": "Challenger"
+  },
+  {
+    "id": "7201",
+    "competition": "Phoenix",
+    "country": "Challenger"
+  },
+  {
+    "id": "7916",
+    "competition": "Piracicaba",
+    "country": "Challenger"
+  },
+  {
+    "id": "6998",
+    "competition": "Playford",
+    "country": "Challenger"
+  },
+  {
+    "id": "9075",
+    "competition": "Plovdiv",
+    "country": "Challenger"
+  },
+  {
+    "id": "7696",
+    "competition": "Porto",
+    "country": "Challenger"
+  },
+  {
+    "id": "8115",
+    "competition": "Porto Alegre",
+    "country": "Challenger"
+  },
+  {
+    "id": "7099",
+    "competition": "Poznan",
+    "country": "Challenger"
+  },
+  {
+    "id": "7714",
+    "competition": "Pozoblanco",
+    "country": "Challenger"
+  },
+  {
+    "id": "6883",
+    "competition": "Prague",
+    "country": "Challenger"
+  },
+  {
+    "id": "7098",
+    "competition": "Prostejov",
+    "country": "Challenger"
+  },
+  {
+    "id": "7078",
+    "competition": "Puerto Vallarta",
+    "country": "Challenger"
+  },
+  {
+    "id": "6967",
+    "competition": "Pune",
+    "country": "Challenger"
+  },
+  {
+    "id": "7035",
+    "competition": "Punta Del Este",
+    "country": "Challenger"
+  },
+  {
+    "id": "7020",
+    "competition": "Quimper",
+    "country": "Challenger"
+  },
+  {
+    "id": "6907",
+    "competition": "Quito",
+    "country": "Challenger"
+  },
+  {
+    "id": "7012",
+    "competition": "Rennes",
+    "country": "Challenger"
+  },
+  {
+    "id": "7791",
+    "competition": "Roanne",
+    "country": "Challenger"
+  },
+  {
+    "id": "7081",
+    "competition": "Rome",
+    "country": "Challenger"
+  },
+  {
+    "id": "8545",
+    "competition": "Rosario",
+    "country": "Challenger"
+  },
+  {
+    "id": "7926",
+    "competition": "Rovereto",
+    "country": "Challenger"
+  },
+  {
+    "id": "8736",
+    "competition": "Royan",
+    "country": "Challenger"
+  },
+  {
+    "id": "7750",
+    "competition": "Saint Tropez",
+    "country": "Challenger"
+  },
+  {
+    "id": "7705",
+    "competition": "Salzburg",
+    "country": "Challenger"
+  },
+  {
+    "id": "7768",
+    "competition": "San Diego",
+    "country": "Challenger"
+  },
+  {
+    "id": "7053",
+    "competition": "San Luis Potosi",
+    "country": "Challenger"
+  },
+  {
+    "id": "7740",
+    "competition": "San Marino",
+    "country": "Challenger"
+  },
+  {
+    "id": "8099",
+    "competition": "San Miguel de Tucuman",
+    "country": "Challenger"
+  },
+  {
+    "id": "7811",
+    "competition": "Santa Cruz",
+    "country": "Challenger"
+  },
+  {
+    "id": "7967",
+    "competition": "Santa Fe",
+    "country": "Challenger"
+  },
+  {
+    "id": "7039",
+    "competition": "Santiago",
+    "country": "Challenger"
+  },
+  {
+    "id": "6898",
+    "competition": "Santo Domingo Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "8121",
+    "competition": "Santos",
+    "country": "Challenger"
+  },
+  {
+    "id": "7896",
+    "competition": "Sao Leopoldo",
+    "country": "Challenger"
+  },
+  {
+    "id": "7616",
+    "competition": "Sao Paulo",
+    "country": "Challenger"
+  },
+  {
+    "id": "7069",
+    "competition": "Sarasota",
+    "country": "Challenger"
+  },
+  {
+    "id": "8165",
+    "competition": "Sassuolo Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7077",
+    "competition": "Savannah",
+    "country": "Challenger"
+  },
+  {
+    "id": "6887",
+    "competition": "Segovia",
+    "country": "Challenger"
+  },
+  {
+    "id": "7076",
+    "competition": "Seoul",
+    "country": "Challenger"
+  },
+  {
+    "id": "6909",
+    "competition": "Seville",
+    "country": "Challenger"
+  },
+  {
+    "id": "8019",
+    "competition": "Shenzhen",
+    "country": "Challenger"
+  },
+  {
+    "id": "6952",
+    "competition": "Shenzhen 2 Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "7096",
+    "competition": "Shymkent",
+    "country": "Challenger"
+  },
+  {
+    "id": "6920",
+    "competition": "Sibiu Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "8395",
+    "competition": "Sioux Falls",
+    "country": "Challenger"
+  },
+  {
+    "id": "7946",
+    "competition": "Skopje",
+    "country": "Challenger"
+  },
+  {
+    "id": "8802",
+    "competition": "Sofia",
+    "country": "Challenger"
+  },
+  {
+    "id": "8929",
+    "competition": "Soma Bay",
+    "country": "Challenger"
+  },
+  {
+    "id": "7593",
+    "competition": "Split",
+    "country": "Challenger"
+  },
+  {
+    "id": "7052",
+    "competition": "St. Brieuc",
+    "country": "Challenger"
+  },
+  {
+    "id": "8804",
+    "competition": "Sumter",
+    "country": "Challenger"
+  },
+  {
+    "id": "7097",
+    "competition": "Surbiton Challenger",
+    "country": "Challenger"
+  },
+  {
+    "id": "6946",
+    "competition": "Suzhou",
+    "country": "Challenger"
+  },
+  {
+    "id": "7891",
+    "competition": "Sydney",
+    "country": "Challenger"
+  },
+  {
+    "id": "6919",
+    "competition": "Szczecin",
+    "country": "Challenger"
+  },
+  {
+    "id": "7932",
+    "competition": "Szekesfehervar",
+    "country": "Challenger"
+  },
+  {
+    "id": "7059",
+    "competition": "Taipei",
+    "country": "Challenger"
+  },
+  {
+    "id": "8396",
+    "competition": "Taipei 2",
+    "country": "Challenger"
+  },
+  {
+    "id": "7073",
+    "competition": "Tallahassee",
+    "country": "Challenger"
+  },
+  {
+    "id": "6886",
+    "competition": "Tampere",
+    "country": "Challenger"
+  },
+  {
+    "id": "8824",
+    "competition": "Targu Mures",
+    "country": "Challenger"
+  },
+  {
+    "id": "8698",
+    "competition": "Tbilisi",
+    "country": "Challenger"
+  },
+  {
+    "id": "7899",
+    "competition": "Temuco",
+    "country": "Challenger"
+  },
+  {
+    "id": "7784",
+    "competition": "Tenerife",
+    "country": "Challenger"
+  },
+  {
+    "id": "8605",
+    "competition": "Thionville",
+    "country": "Challenger"
+  },
+  {
+    "id": "6929",
+    "competition": "Tiburon",
+    "country": "Challenger"
+  },
+  {
+    "id": "7914",
+    "competition": "Tigre",
+    "country": "Challenger"
+  },
+  {
+    "id": "7579",
+    "competition": "Todi",
+    "country": "Challenger"
+  },
+  {
+    "id": "7583",
+    "competition": "Trieste",
+    "country": "Challenger"
+  },
+  {
+    "id": "7848",
+    "competition": "Troyes",
+    "country": "Challenger"
+  },
+  {
+    "id": "7754",
+    "competition": "Tulln",
+    "country": "Challenger"
+  },
+  {
+    "id": "7068",
+    "competition": "Tunis",
+    "country": "Challenger"
+  },
+  {
+    "id": "7815",
+    "competition": "Turin",
+    "country": "Challenger"
+  },
+  {
+    "id": "7952",
+    "competition": "Tyler",
+    "country": "Challenger"
+  },
+  {
+    "id": "7898",
+    "competition": "Valencia",
+    "country": "Challenger"
+  },
+  {
+    "id": "7744",
+    "competition": "Verona",
+    "country": "Challenger"
+  },
+  {
+    "id": "7095",
+    "competition": "Vicenza",
+    "country": "Challenger"
+  },
+  {
+    "id": "7867",
+    "competition": "Villa Maria",
+    "country": "Challenger"
+  },
+  {
+    "id": "7121",
+    "competition": "Winnipeg",
+    "country": "Challenger"
+  },
+  {
+    "id": "8829",
+    "competition": "Winston Salem",
+    "country": "Challenger"
+  },
+  {
+    "id": "9038",
+    "competition": "Wuning",
+    "country": "Challenger"
+  },
+  {
+    "id": "8120",
+    "competition": "Wuxi",
+    "country": "Challenger"
+  },
+  {
+    "id": "7257",
+    "competition": "Yokkaichi",
+    "country": "Challenger"
+  },
+  {
+    "id": "7036",
+    "competition": "Yokohama",
+    "country": "Challenger"
+  },
+  {
+    "id": "7654",
+    "competition": "Zadar",
+    "country": "Challenger"
+  },
+  {
+    "id": "7677",
+    "competition": "Zagreb",
+    "country": "Challenger"
+  },
+  {
+    "id": "6912",
+    "competition": "Zhangjiagang",
+    "country": "Challenger"
+  },
+  {
+    "id": "7854",
+    "competition": "Zug",
+    "country": "Challenger"
+  },
+  {
+    "id": "8666",
+    "competition": "Abidjan",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8681",
+    "competition": "Aix en Provence",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8867",
+    "competition": "Alicante",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8872",
+    "competition": "Antofagasta",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8620",
+    "competition": "Asuncion",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8939",
+    "competition": "Athens",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8810",
+    "competition": "Augsburg",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8847",
+    "competition": "Bad Waltersdorf",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8635",
+    "competition": "Barletta",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8594",
+    "competition": "Bengaluru",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8934",
+    "competition": "Bergamo",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8837",
+    "competition": "Biella",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8716",
+    "competition": "Birmingham",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8783",
+    "competition": "Bloomfield Hills",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8691",
+    "competition": "Bogota",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8799",
+    "competition": "Bonn",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8695",
+    "competition": "Bordeaux",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8868",
+    "competition": "Braga",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8731",
+    "competition": "Bratislava",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8753",
+    "competition": "Braunschweig",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8586",
+    "competition": "Brazzaville",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8905",
+    "competition": "Brest",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8522",
+    "competition": "Brisbane",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8504",
+    "competition": "Buenos Aires",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8771",
+    "competition": "Bunschoten",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8662",
+    "competition": "Busan",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8878",
+    "competition": "Cali",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8638",
+    "competition": "Campinas",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8954",
+    "competition": "Canberra",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8615",
+    "competition": "Cap Cana",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8821",
+    "competition": "Cassis",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9054",
+    "competition": "Cervia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9008",
+    "competition": "Cesenatico",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8925",
+    "competition": "Champaign",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8913",
+    "competition": "Charlottesville",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8542",
+    "competition": "Chennai",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8610",
+    "competition": "Cherbourg",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8797",
+    "competition": "Chicago",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8709",
+    "competition": "Chisinau",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8528",
+    "competition": "Cleveland",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8812",
+    "competition": "Como",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8632",
+    "competition": "Concepcion",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8800",
+    "competition": "Cordenons",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8601",
+    "competition": "Cordoba",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8904",
+    "competition": "Costa do Sauipe",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8926",
+    "competition": "Drummondville",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9070",
+    "competition": "Dublin",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8087",
+    "competition": "Estoril Doubles",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8933",
+    "competition": "Florianopolis",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8686",
+    "competition": "Francavilla",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8817",
+    "competition": "Genova",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8633",
+    "competition": "Girona",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8585",
+    "competition": "Glasgow",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8769",
+    "competition": "Granby",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8677",
+    "competition": "Guangzhou",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8931",
+    "competition": "Guayaquil",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8671",
+    "competition": "Gwangju",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8902",
+    "competition": "Hamburg",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8717",
+    "competition": "Heilbronn",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8919",
+    "competition": "Helsinki",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8602",
+    "competition": "Hersonissos",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8752",
+    "competition": "Iasi",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8729",
+    "competition": "Ilkley",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8940",
+    "competition": "Islamabad",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9055",
+    "competition": "Istanbul",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8977",
+    "competition": "Itajai",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8877",
+    "competition": "Jinan",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8859",
+    "competition": "Jingshan",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8593",
+    "competition": "Kigali",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8922",
+    "competition": "Knoxville",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8927",
+    "competition": "Kobe",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8527",
+    "competition": "Koblenz",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8860",
+    "competition": "Las Vegas",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8549",
+    "competition": "Lille",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8742",
+    "competition": "Lima",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8894",
+    "competition": "Lincoln",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8857",
+    "competition": "Lisbon",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8711",
+    "competition": "Little Rock",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8595",
+    "competition": "Lugano",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8728",
+    "competition": "Lyon",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8646",
+    "competition": "Madrid",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8444",
+    "competition": "Maia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8813",
+    "competition": "Mallorca",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8565",
+    "competition": "Manama",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8921",
+    "competition": "Matsuyama",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8683",
+    "competition": "Mauthausen",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8636",
+    "competition": "Menorca",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8619",
+    "competition": "Merida",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8650",
+    "competition": "Mexico City",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8743",
+    "competition": "Milan",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8425",
+    "competition": "Montevideo",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8645",
+    "competition": "Monza",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8631",
+    "competition": "Morelia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8639",
+    "competition": "Morelos",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8869",
+    "competition": "Mouilleron-Le-Captif",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8617",
+    "competition": "Murcia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8630",
+    "competition": "Naples",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8564",
+    "competition": "New Delhi",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8757",
+    "competition": "Newport",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8503",
+    "competition": "Nonthaburi",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8491",
+    "competition": "Nottingham",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8955",
+    "competition": "Noumea",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8487",
+    "competition": "Oeiras",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8892",
+    "competition": "Olbia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8856",
+    "competition": "Orleans",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8682",
+    "competition": "Ostrava",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9074",
+    "competition": "Parma",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8582",
+    "competition": "Pau",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8730",
+    "competition": "Perugia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8978",
+    "competition": "Phan Thiet",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8614",
+    "competition": "Phoenix",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8521",
+    "competition": "Piracicaba",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8941",
+    "competition": "Playford",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8786",
+    "competition": "Porto",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8676",
+    "competition": "Porto Alegre",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8737",
+    "competition": "Poznan",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8762",
+    "competition": "Pozoblanco",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8684",
+    "competition": "Prague",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8718",
+    "competition": "Prostejov",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8583",
+    "competition": "Pune",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8514",
+    "competition": "Punta Del Este",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8513",
+    "competition": "Quimper",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9078",
+    "competition": "Quito",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8836",
+    "competition": "Rennes",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8880",
+    "competition": "Roanne",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8670",
+    "competition": "Rome",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8547",
+    "competition": "Rosario",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8739",
+    "competition": "Royan",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8852",
+    "competition": "Saint Tropez",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8596",
+    "competition": "San Diego",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8665",
+    "competition": "San Luis Potosi",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8770",
+    "competition": "San Marino",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8672",
+    "competition": "San Miguel de Tucuman",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8735",
+    "competition": "Santa Cruz",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8732",
+    "competition": "Santa Fe",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8611",
+    "competition": "Santiago",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8687",
+    "competition": "Santos",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9036",
+    "competition": "Sao Leopoldo",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8649",
+    "competition": "Sarasota",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8738",
+    "competition": "Sassuolo",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8674",
+    "competition": "Savannah",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8780",
+    "competition": "Segovia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8915",
+    "competition": "Seoul",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8819",
+    "competition": "Seville",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8893",
+    "competition": "Shenzhen",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8901",
+    "competition": "Sioux Falls",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8701",
+    "competition": "Skopje",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8806",
+    "competition": "Sofia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8930",
+    "competition": "Soma Bay",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9017",
+    "competition": "St. Brieuc",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8903",
+    "competition": "Suzhou",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8932",
+    "competition": "Sydney",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8838",
+    "competition": "Szczecin",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8920",
+    "competition": "Taipei",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8664",
+    "competition": "Tallahassee",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8781",
+    "competition": "Tampere",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8839",
+    "competition": "Targu Mures",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8700",
+    "competition": "Tbilisi",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8443",
+    "competition": "Temuco",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8548",
+    "competition": "Tenerife",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8608",
+    "competition": "Thionville",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8873",
+    "competition": "Tiburon",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "9013",
+    "competition": "Tigre",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8805",
+    "competition": "Todi",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8748",
+    "competition": "Troyes",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8820",
+    "competition": "Tulln",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8689",
+    "competition": "Tunis",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8694",
+    "competition": "Turin",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8715",
+    "competition": "Tyler",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8879",
+    "competition": "Valencia",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8708",
+    "competition": "Vicenza",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8848",
+    "competition": "Villa Maria",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8755",
+    "competition": "Winnipeg",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8840",
+    "competition": "Winston Salem",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8685",
+    "competition": "Wuxi",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8616",
+    "competition": "Zadar",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8690",
+    "competition": "Zagreb",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8811",
+    "competition": "Zhangjiagang",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8782",
+    "competition": "Zug",
+    "country": "Challenger-D"
+  },
+  {
+    "id": "8951",
+    "competition": "Miami Invitational",
+    "country": "International"
+  },
+  {
+    "id": "6794",
+    "competition": "Olympics Doubles - Men",
+    "country": "Olympics"
+  },
+  {
+    "id": "8111",
+    "competition": "Olympics Tennis - Men",
+    "country": "Olympics"
+  },
+  {
+    "id": "8112",
+    "competition": "Olympics Tennis - Women",
+    "country": "Olympics"
+  },
+  {
+    "id": "7629",
+    "competition": "Abu Dhabi",
+    "country": "WTA"
+  },
+  {
+    "id": "7312",
+    "competition": "Adelaide",
+    "country": "WTA"
+  },
+  {
+    "id": "8944",
+    "competition": "AO Asia-Pacific Wildcard",
+    "country": "WTA"
+  },
+  {
+    "id": "248",
+    "competition": "Auckland",
+    "country": "WTA"
+  },
+  {
+    "id": "251",
+    "competition": "Australian Open - Women",
+    "country": "WTA"
+  },
+  {
+    "id": "7694",
+    "competition": "Bad Homburg",
+    "country": "WTA"
+  },
+  {
+    "id": "298",
+    "competition": "Beijing",
+    "country": "WTA"
+  },
+  {
+    "id": "7690",
+    "competition": "Berlin",
+    "country": "WTA"
+  },
+  {
+    "id": "7667",
+    "competition": "Billie Jean King Cup",
+    "country": "WTA"
+  },
+  {
+    "id": "258",
+    "competition": "Bogota",
+    "country": "WTA"
+  },
+  {
+    "id": "319",
+    "competition": "Brisbane",
+    "country": "WTA"
+  },
+  {
+    "id": "281",
+    "competition": "Budapest",
+    "country": "WTA"
+  },
+  {
+    "id": "266",
+    "competition": "Charleston",
+    "country": "WTA"
+  },
+  {
+    "id": "7864",
+    "competition": "Chennai",
+    "country": "WTA"
+  },
+  {
+    "id": "290",
+    "competition": "Cincinnati",
+    "country": "WTA"
+  },
+  {
+    "id": "7747",
+    "competition": "Cleveland",
+    "country": "WTA"
+  },
+  {
+    "id": "7735",
+    "competition": "Cluj-Napoca",
+    "country": "WTA"
+  },
+  {
+    "id": "577",
+    "competition": "Doha",
+    "country": "WTA"
+  },
+  {
+    "id": "259",
+    "competition": "Dubai",
+    "country": "WTA"
+  },
+  {
+    "id": "6382",
+    "competition": "Eastbourne",
+    "country": "WTA"
+  },
+  {
+    "id": "7652",
+    "competition": "Guadalajara",
+    "country": "WTA"
+  },
+  {
+    "id": "7706",
+    "competition": "Hamburg",
+    "country": "WTA"
+  },
+  {
+    "id": "279",
+    "competition": "Hertogenbosch",
+    "country": "WTA"
+  },
+  {
+    "id": "250",
+    "competition": "Hobart",
+    "country": "WTA"
+  },
+  {
+    "id": "6173",
+    "competition": "Hong Kong",
+    "country": "WTA"
+  },
+  {
+    "id": "7191",
+    "competition": "Hua Hin",
+    "country": "WTA"
+  },
+  {
+    "id": "8219",
+    "competition": "Iasi",
+    "country": "WTA"
+  },
+  {
+    "id": "263",
+    "competition": "Indian Wells",
+    "country": "WTA"
+  },
+  {
+    "id": "7246",
+    "competition": "Lausanne",
+    "country": "WTA"
+  },
+  {
+    "id": "306",
+    "competition": "Linz",
+    "country": "WTA"
+  },
+  {
+    "id": "442",
+    "competition": "Madrid Open",
+    "country": "WTA"
+  },
+  {
+    "id": "7925",
+    "competition": "Merida",
+    "country": "WTA"
+  },
+  {
+    "id": "264",
+    "competition": "Miami",
+    "country": "WTA"
+  },
+  {
+    "id": "7880",
+    "competition": "Monastir",
+    "country": "WTA"
+  },
+  {
+    "id": "318",
+    "competition": "Monterrey Open",
+    "country": "WTA"
+  },
+  {
+    "id": "287",
+    "competition": "Montreal Open",
+    "country": "WTA"
+  },
+  {
+    "id": "6159",
+    "competition": "Nanchang",
+    "country": "WTA"
+  },
+  {
+    "id": "6191",
+    "competition": "Ningbo",
+    "country": "WTA"
+  },
+  {
+    "id": "6377",
+    "competition": "Nottingham",
+    "country": "WTA"
+  },
+  {
+    "id": "365",
+    "competition": "Osaka",
+    "country": "WTA"
+  },
+  {
+    "id": "7603",
+    "competition": "Ostrava",
+    "country": "WTA"
+  },
+  {
+    "id": "270",
+    "competition": "Prague",
+    "country": "WTA"
+  },
+  {
+    "id": "8724",
+    "competition": "Queen's",
+    "country": "WTA"
+  },
+  {
+    "id": "269",
+    "competition": "Rabat",
+    "country": "WTA"
+  },
+  {
+    "id": "275",
+    "competition": "Roland Garros - Women",
+    "country": "WTA"
+  },
+  {
+    "id": "272",
+    "competition": "Rome",
+    "country": "WTA"
+  },
+  {
+    "id": "8097",
+    "competition": "Rouen",
+    "country": "WTA"
+  },
+  {
+    "id": "469",
+    "competition": "San Diego Open",
+    "country": "WTA"
+  },
+  {
+    "id": "8825",
+    "competition": "Sao Paulo",
+    "country": "WTA"
+  },
+  {
+    "id": "299",
+    "competition": "Seoul",
+    "country": "WTA"
+  },
+  {
+    "id": "6187",
+    "competition": "Singapore",
+    "country": "WTA"
+  },
+  {
+    "id": "274",
+    "competition": "Strasbourg",
+    "country": "WTA"
+  },
+  {
+    "id": "300",
+    "competition": "Stuttgart",
+    "country": "WTA"
+  },
+  {
+    "id": "301",
+    "competition": "Tokyo",
+    "country": "WTA"
+  },
+  {
+    "id": "600",
+    "competition": "Toronto",
+    "country": "WTA"
+  },
+  {
+    "id": "293",
+    "competition": "US Open - Women",
+    "country": "WTA"
+  },
+  {
+    "id": "599",
+    "competition": "Washington Open",
+    "country": "WTA"
+  },
+  {
+    "id": "280",
+    "competition": "Wimbledon - Women",
+    "country": "WTA"
+  },
+  {
+    "id": "7892",
+    "competition": "WTA Finals",
+    "country": "WTA"
+  },
+  {
+    "id": "6177",
+    "competition": "Wuhan",
+    "country": "WTA"
+  },
+  {
+    "id": "8016",
+    "competition": "Zhengzhou",
+    "country": "WTA"
+  },
+  {
+    "id": "7903",
+    "competition": "Angers",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8083",
+    "competition": "Antalya",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "603",
+    "competition": "Austin",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8150",
+    "competition": "Bari",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7981",
+    "competition": "Barranquilla",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "459",
+    "competition": "Bastad",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "276",
+    "competition": "Birmingham",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "9072",
+    "competition": "Brescia",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "6277",
+    "competition": "Bucharest",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7786",
+    "competition": "Buenos Aires",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8845",
+    "competition": "Caldas da Rainha",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8419",
+    "competition": "Cali",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8957",
+    "competition": "Canberra",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8566",
+    "competition": "Cancun",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8815",
+    "competition": "Changsha",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7894",
+    "competition": "Colina",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7851",
+    "competition": "Contrexeville",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "9071",
+    "competition": "Figueira Da Foz",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8039",
+    "competition": "Florianopolis",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "9060",
+    "competition": "Foggia",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8166",
+    "competition": "Gaiba Challenger",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8727",
+    "competition": "Grado",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8284",
+    "competition": "Guadalajara 125k",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8828",
+    "competition": "Huzhou",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8726",
+    "competition": "Ilkley",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "375",
+    "competition": "Istanbul",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8889",
+    "competition": "Jinan",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8854",
+    "competition": "Jingshan",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8406",
+    "competition": "Jiujiang",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8085",
+    "competition": "La Bisbal D'Emporda",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "9012",
+    "competition": "Les Sables d Olonne",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "6192",
+    "competition": "Limoges Challenger",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7988",
+    "competition": "Ljubljana",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8117",
+    "competition": "Lleida",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "9040",
+    "competition": "Madrid",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7839",
+    "competition": "Makarska",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "6380",
+    "competition": "Mallorca",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8991",
+    "competition": "Manila",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7785",
+    "competition": "Midland",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "9066",
+    "competition": "Modena",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8816",
+    "competition": "Montreux",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "6975",
+    "competition": "Mumbai",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7014",
+    "competition": "Newport Beach",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8103",
+    "competition": "Oeiras",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "282",
+    "competition": "Palermo Open",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "320",
+    "competition": "Paris",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7680",
+    "competition": "Parma",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8763",
+    "competition": "Porto",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8062",
+    "competition": "Puerto Vallarta",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8899",
+    "competition": "Queretaro",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8947",
+    "competition": "Quito",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8866",
+    "competition": "Rende",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8887",
+    "competition": "Rio de Janeiro",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8765",
+    "competition": "Rome",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8897",
+    "competition": "Rovereto",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7675",
+    "competition": "Saint Malo",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8865",
+    "competition": "Samsun",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7936",
+    "competition": "San Luis Potosi",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8826",
+    "competition": "San Sebastian",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8410",
+    "competition": "Santa Cruz",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8875",
+    "competition": "Suzhou",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7890",
+    "competition": "Tampico",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8846",
+    "competition": "Tolentino",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8923",
+    "competition": "Tucuman",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "7842",
+    "competition": "Valencia",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8680",
+    "competition": "Vic",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "444",
+    "competition": "Warsaw Open",
+    "country": "WTA 125K"
+  },
+  {
+    "id": "8480",
+    "competition": "Adelaide",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8618",
+    "competition": "Antalya",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8047",
+    "competition": "Auckland",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8597",
+    "competition": "Austin",
+    "country": "WTA-D"
+  },
+  {
+    "id": "421",
+    "competition": "Australian Open - Doubles (W)",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8176",
+    "competition": "Bad Homburg",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8200",
+    "competition": "Bastad",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8345",
+    "competition": "Beijing",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8168",
+    "competition": "Berlin",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8169",
+    "competition": "Birmingham",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8091",
+    "competition": "Bogota Doubles",
+    "country": "WTA-D"
+  },
+  {
+    "id": "9073",
+    "competition": "Brescia",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8049",
+    "competition": "Brisbane",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8210",
+    "competition": "Budapest",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8851",
+    "competition": "Caldas da Rainha",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8956",
+    "competition": "Canberra",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8568",
+    "competition": "Cancun",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8092",
+    "competition": "Charleston Doubles",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8910",
+    "competition": "Chennai",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8250",
+    "competition": "Cincinnati",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8255",
+    "competition": "Cleveland",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8546",
+    "competition": "Cluj Napoca",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8430",
+    "competition": "Colina",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8761",
+    "competition": "Contrexeville",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8560",
+    "competition": "Doha",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8581",
+    "competition": "Dubai",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8179",
+    "competition": "Eastbourne Doubles (W)",
+    "country": "WTA-D"
+  },
+  {
+    "id": "7994",
+    "competition": "Guadalajara",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8398",
+    "competition": "Guangzhou",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8764",
+    "competition": "Hamburg",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8158",
+    "competition": "Hertogenbosch",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8481",
+    "competition": "Hobart",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8362",
+    "competition": "Hong Kong",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8319",
+    "competition": "Hua Hin",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8225",
+    "competition": "Iasi",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8733",
+    "competition": "Ilkley",
+    "country": "WTA-D"
+  },
+  {
+    "id": "9048",
+    "competition": "Istanbul",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8858",
+    "competition": "Jingshan",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8408",
+    "competition": "Jiujiang",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8641",
+    "competition": "La Bisbal D'Emporda",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8520",
+    "competition": "Linz",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8110",
+    "competition": "Madrid Doubles",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8876",
+    "competition": "Mallorca",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8409",
+    "competition": "Merida",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8298",
+    "competition": "Monastir",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8256",
+    "competition": "Monterrey",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8792",
+    "competition": "Montreal",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8544",
+    "competition": "Mumbai",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8756",
+    "competition": "Newport",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8391",
+    "competition": "Ningbo",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8160",
+    "competition": "Nottingham",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8663",
+    "competition": "Oeiras",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8390",
+    "competition": "Osaka",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8209",
+    "competition": "Palermo",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8693",
+    "competition": "Paris",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8692",
+    "competition": "Parma",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8768",
+    "competition": "Porto",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8224",
+    "competition": "Prague",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8725",
+    "competition": "Queen's",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8136",
+    "competition": "Rabat",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8870",
+    "competition": "Rende",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8888",
+    "competition": "Rio de Janeiro",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8126",
+    "competition": "Rome",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8102",
+    "competition": "Rouen",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8675",
+    "competition": "Saint Malo",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8871",
+    "competition": "Samsun",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8827",
+    "competition": "Sao Paulo",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8320",
+    "competition": "Seoul",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8523",
+    "competition": "Singapore",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8524",
+    "competition": "Singapore",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8137",
+    "competition": "Strasbourg",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8667",
+    "competition": "Stuttgart",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8874",
+    "competition": "Suzhou",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8399",
+    "competition": "Tampico",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8397",
+    "competition": "Tokyo",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8850",
+    "competition": "Tolentino",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8245",
+    "competition": "Toronto",
+    "country": "WTA-D"
+  },
+  {
+    "id": "6292",
+    "competition": "US Open - Doubles (W)",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8679",
+    "competition": "Vic",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8226",
+    "competition": "Warsaw",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8235",
+    "competition": "Washington",
+    "country": "WTA-D"
+  },
+  {
+    "id": "6273",
+    "competition": "Wimbledon - Doubles (W)",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8035",
+    "competition": "WTA Finals Doubles",
+    "country": "WTA-D"
+  },
+  {
+    "id": "8384",
+    "competition": "Wuhan",
+    "country": "WTA-D"
+  }
+]

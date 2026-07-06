@@ -1,0 +1,92 @@
+[
+  {
+    "id": "7999",
+    "competition": "Champions League Americas",
+    "country": "America"
+  },
+  {
+    "id": "8024",
+    "competition": "Pan American Games",
+    "country": "America"
+  },
+  {
+    "id": "8531",
+    "competition": "Serie de las Americas",
+    "country": "America"
+  },
+  {
+    "id": "7633",
+    "competition": "LPB",
+    "country": "Colombia"
+  },
+  {
+    "id": "8040",
+    "competition": "Liga Elite",
+    "country": "Cuba"
+  },
+  {
+    "id": "7175",
+    "competition": "LIDOM",
+    "country": "Dominican Republic"
+  },
+  {
+    "id": "5603",
+    "competition": "Bundesliga",
+    "country": "Germany"
+  },
+  {
+    "id": "5426",
+    "competition": "World Baseball Classic",
+    "country": "International"
+  },
+  {
+    "id": "8238",
+    "competition": "World Cup Women",
+    "country": "International"
+  },
+  {
+    "id": "439",
+    "competition": "LMB",
+    "country": "Mexico"
+  },
+  {
+    "id": "5880",
+    "competition": "LMP",
+    "country": "Mexico"
+  },
+  {
+    "id": "6063",
+    "competition": "Caribbean Series",
+    "country": "North America"
+  },
+  {
+    "id": "7964",
+    "competition": "Central American & Caribbean Games",
+    "country": "North America"
+  },
+  {
+    "id": "7913",
+    "competition": "LBPRC",
+    "country": "Puerto Rico"
+  },
+  {
+    "id": "7587",
+    "competition": "KBO",
+    "country": "South Korea"
+  },
+  {
+    "id": "438",
+    "competition": "MLB",
+    "country": "USA"
+  },
+  {
+    "id": "7951",
+    "competition": "LMBP",
+    "country": "Venezuela"
+  },
+  {
+    "id": "5722",
+    "competition": "LVBP",
+    "country": "Venezuela"
+  }
+]

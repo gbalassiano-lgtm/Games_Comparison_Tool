@@ -1,0 +1,1563 @@
+{
+  "approved": [
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "ATP - Duplas",
+      "value365": "Schnaitter / Wallner / Paul Tommy / Shelton Ben",
+      "valueFlash": "Schnaitter J. / Wallner M. / T. Paul / Shelton B.",
+      "canonical": "Schnaitter / Wallner / Paul Tommy / Shelton Ben",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "ATP - Duplas",
+      "value365": "Stuttgart",
+      "valueFlash": "Stuttgart (Alemanha), grama",
+      "canonical": "Stuttgart",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Simples",
+      "value365": "Cattolica",
+      "valueFlash": "Cattolica (Itália), saibro",
+      "canonical": "Cattolica",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Simples",
+      "value365": "Marco Trungelliti / Pavel Kotov",
+      "valueFlash": "M. Trungeliti / Kotov P.",
+      "canonical": "Marco Trungelliti / Pavel Kotov",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Simples",
+      "value365": "Lyon",
+      "valueFlash": "Lyon (França), saibro",
+      "canonical": "Lyon",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "WTA - Duplas",
+      "value365": "Hertogenbosch",
+      "valueFlash": "S-Hertogenbosch (Países Baixos), grama",
+      "canonical": "Hertogenbosch",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "name",
+      "scope": "Basquete / Israel",
+      "value365": "Maccabi Ironi Raanana / Hapoel Galil Elion",
+      "valueFlash": "Maccabi Raanana / Galil Elyon",
+      "canonical": "Maccabi Ironi Raanana / Hapoel Galil Elion",
+      "decidedAt": "2026-06-08T12:56:50.238Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "competition",
+      "scope": "Basquete / Israel",
+      "value365": "Winner League",
+      "valueFlash": "Super League - Relegation Group",
+      "canonical": "Winner League",
+      "decidedAt": "2026-06-08T12:56:50.238Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Tênis / ATP - Simples",
+      "value365": "Roberto Bautista / Marcos Giron",
+      "valueFlash": "Bautista-Agut R. / Giron M.",
+      "canonical": "Roberto Bautista / Marcos Giron",
+      "decidedAt": "2026-06-08T12:56:50.238Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Tênis / ATP - Simples",
+      "value365": "Stuttgart",
+      "valueFlash": "Stuttgart (Germany), grass",
+      "canonical": "Stuttgart",
+      "decidedAt": "2026-06-08T12:56:50.238Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Tênis / Challenger - Simples",
+      "value365": "Max Hans Rehberg / Stefano Travaglia",
+      "valueFlash": "Rehberg M. H. / Carballes Baena R.",
+      "canonical": "Max Hans Rehberg / Stefano Travaglia",
+      "decidedAt": "2026-06-08T12:56:50.239Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Tênis / Challenger - Simples",
+      "value365": "Cattolica",
+      "valueFlash": "Cattolica (Italy), clay",
+      "canonical": "Cattolica",
+      "decidedAt": "2026-06-08T12:56:50.239Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "ATP - Simples",
+      "value365": "Roberto Bautista / Marcos Giron",
+      "valueFlash": "Bautista-Agut R. / Giron M.",
+      "canonical": "Roberto Bautista / Marcos Giron",
+      "decidedAt": "2026-06-08T13:00:39.159Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "ATP - Simples",
+      "value365": "Stuttgart",
+      "valueFlash": "Stuttgart (Germany), grass",
+      "canonical": "Stuttgart",
+      "decidedAt": "2026-06-08T13:00:39.159Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Simples",
+      "value365": "Max Hans Rehberg / Stefano Travaglia",
+      "valueFlash": "Rehberg M. H. / Carballes Baena R.",
+      "canonical": "Max Hans Rehberg / Stefano Travaglia",
+      "decidedAt": "2026-06-08T13:00:39.159Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Simples",
+      "value365": "Cattolica",
+      "valueFlash": "Cattolica (Italy), clay",
+      "canonical": "Cattolica",
+      "decidedAt": "2026-06-08T13:00:39.160Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Singles",
+      "value365": "Miguel Damas / Roberto Carballes",
+      "valueFlash": "Damas M. / Carballes Baena R.",
+      "canonical": "Miguel Damas / Roberto Carballes",
+      "decidedAt": "2026-06-14T13:53:43.306Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Singles",
+      "value365": "Parma Challenger",
+      "valueFlash": "Parma (Italy), clay",
+      "canonical": "Parma Challenger",
+      "decidedAt": "2026-06-14T13:53:43.307Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Singles",
+      "value365": "Asunción",
+      "valueFlash": "Asuncion 2 (Paraguay), clay",
+      "canonical": "Asunción",
+      "decidedAt": "2026-06-14T13:53:43.307Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Singles",
+      "value365": "Maya Joint / Yulia Starodubtsewa",
+      "valueFlash": "Joint M. / Starodubtseva Y.",
+      "canonical": "Maya Joint / Yulia Starodubtsewa",
+      "decidedAt": "2026-06-14T13:53:43.307Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "WTA - Singles",
+      "value365": "Nottingham",
+      "valueFlash": "Nottingham (United Kingdom), grass",
+      "canonical": "Nottingham",
+      "decidedAt": "2026-06-14T13:53:43.307Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Singles",
+      "value365": "Iva Jovic / Karolina Pliskova",
+      "valueFlash": "Jovic I. / Pliskova Ka.",
+      "canonical": "Iva Jovic / Karolina Pliskova",
+      "decidedAt": "2026-06-14T13:53:43.307Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Singles",
+      "value365": "Parma",
+      "valueFlash": "Parma (Italy), clay",
+      "canonical": "Parma",
+      "decidedAt": "2026-06-15T09:12:08.846Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Singles",
+      "value365": "Emma Raducanu / Karolina Pliskova",
+      "valueFlash": "Raducanu E. / Pliskova Ka.",
+      "canonical": "Emma Raducanu / Karolina Pliskova",
+      "decidedAt": "2026-06-15T09:12:08.846Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "name",
+      "scope": "Canadá",
+      "value365": "Saskatchewan Rattlers / Ottawa Blackjacks",
+      "valueFlash": "Saskatoon Mamba / Ottawa Blackjacks",
+      "canonical": "Saskatchewan Rattlers / Ottawa Blackjacks",
+      "decidedAt": "2026-06-15T09:49:15.385Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Argentina",
+      "value365": "Boca Juniors Res. / Lanus Res.",
+      "valueFlash": "Boca Juniors 2 / Lanus 2",
+      "canonical": "Boca Juniors Res. / Lanus Res.",
+      "decidedAt": "2026-06-15T10:53:10.631Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Argentina",
+      "value365": "Liga Profesional - Reserva",
+      "valueFlash": "Reserve League - Apertura",
+      "canonical": "Liga Profesional - Reserva",
+      "decidedAt": "2026-06-15T10:53:10.631Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Argentina",
+      "value365": "Independiente Res. / Belgrano Res.",
+      "valueFlash": "Independiente 2 / Belgrano 2",
+      "canonical": "Independiente Res. / Belgrano Res.",
+      "decidedAt": "2026-06-15T10:53:10.631Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Argentina",
+      "value365": "Ferro Carril Oeste Res. / Newell's Old Boys Res.",
+      "valueFlash": "Ferro 2 / Newells Old Boys 2",
+      "canonical": "Ferro Carril Oeste Res. / Newell's Old Boys Res.",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Argentina",
+      "value365": "Huracán Res. / Defensa Y Justicia Res.",
+      "valueFlash": "Huracan 2 / Defensa y Justicia 2",
+      "canonical": "Huracán Res. / Defensa Y Justicia Res.",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Argentina",
+      "value365": "Quilmes AC (Reserves) / San Martin De San Juan Reserves",
+      "valueFlash": "Quilmes 2 / San Martin S.J. 2",
+      "canonical": "Quilmes AC (Reserves) / San Martin De San Juan Reserves",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "RB Bragantino/Sp Youth / Fluminense/Rj Youth",
+      "valueFlash": "RB Bragantino U20 / Fluminense U20",
+      "canonical": "RB Bragantino/Sp Youth / Fluminense/Rj Youth",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "Nação / Juventus SC",
+      "valueFlash": "Nacao / Gremio Juventus",
+      "canonical": "Nação / Juventus SC",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Brazil",
+      "value365": "Catarinense - Serie B",
+      "valueFlash": "Catarinense 2",
+      "canonical": "Catarinense - Serie B",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Brazil",
+      "value365": "Copa Espirito Santo",
+      "valueFlash": "Copa Espirito Santo - Play Offs",
+      "canonical": "Copa Espirito Santo",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Estonia",
+      "value365": "FC Nomme United II / Tallinna Kalev",
+      "valueFlash": "Nomme Utd U21 / Tallinna Kalev",
+      "canonical": "FC Nomme United II / Tallinna Kalev",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Estonia",
+      "value365": "Tallinn CF / Flora U21",
+      "valueFlash": "FC Tallinn / Flora U21",
+      "canonical": "Tallinn CF / Flora U21",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Estonia",
+      "value365": "FC Maardu / Kalju Nomme II",
+      "valueFlash": "Maardu / Nomme Kalju U21",
+      "canonical": "FC Maardu / Kalju Nomme II",
+      "decidedAt": "2026-06-15T10:53:10.632Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Morocco",
+      "value365": "RSB / Olympique Safi",
+      "valueFlash": "Berkane / Olympique de Safi",
+      "canonical": "RSB / Olympique Safi",
+      "decidedAt": "2026-06-15T10:53:10.633Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Lithuania",
+      "value365": "Fk Neptunas / Kauno Zalgiris II",
+      "valueFlash": "Neptunas / Kauno Zalgiris 2",
+      "canonical": "Fk Neptunas / Kauno Zalgiris II",
+      "decidedAt": "2026-06-15T10:53:10.633Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Sweden",
+      "value365": "Damallsvenskan",
+      "valueFlash": "Allsvenskan Women",
+      "canonical": "Damallsvenskan",
+      "decidedAt": "2026-06-15T10:53:10.633Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Tanzania",
+      "value365": "JKT Tanzania / Prisons SC",
+      "valueFlash": "JKT Tanzania / Tanzania Prisons",
+      "canonical": "JKT Tanzania / Prisons SC",
+      "decidedAt": "2026-06-15T10:53:10.633Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "USA",
+      "value365": "Vancouver Whitecaps II / The Town FC",
+      "valueFlash": "Vancouver Whitecaps 2 / San Jose Earthquakes II",
+      "canonical": "Vancouver Whitecaps II / The Town FC",
+      "decidedAt": "2026-06-15T10:53:10.633Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "USA",
+      "value365": "Tacoma Defiance / Houston Dynamo Academy",
+      "valueFlash": "Tacoma Defiance / Houston Dynamo 2",
+      "canonical": "Tacoma Defiance / Houston Dynamo Academy",
+      "decidedAt": "2026-06-15T10:53:10.633Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Doubles",
+      "value365": "Janvier M./Uzhylovskyi V. / Forcano Aparicio I./Vervoort M.",
+      "valueFlash": "Janvier M. / Uzhylovskyi V. / Forcano I. / Vervoort M.",
+      "canonical": "Janvier M./Uzhylovskyi V. / Forcano Aparicio I./Vervoort M.",
+      "decidedAt": "2026-06-16T10:35:50.869Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Doubles",
+      "value365": "Royan",
+      "valueFlash": "Royan (France), clay",
+      "canonical": "Royan",
+      "decidedAt": "2026-06-16T10:35:50.871Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Singles",
+      "value365": "Yulia Starodubtsewa / Emma Navarro",
+      "valueFlash": "Starodubtseva Y. / Navarro E.",
+      "canonical": "Yulia Starodubtsewa / Emma Navarro",
+      "decidedAt": "2026-06-16T10:35:50.871Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger Women - Singles",
+      "value365": "Brescia",
+      "valueFlash": "Brescia (Italy), clay",
+      "canonical": "Brescia",
+      "decidedAt": "2026-06-16T10:47:43.797Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Doubles",
+      "value365": "Poznan",
+      "valueFlash": "Poznan (Poland), clay",
+      "canonical": "Poznan",
+      "decidedAt": "2026-06-16T10:47:43.797Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger Women - Singles",
+      "value365": "Julia Grabher / Anastasiya Soboleva",
+      "valueFlash": "Grabher J. / Sobolieva A.",
+      "canonical": "Julia Grabher / Anastasiya Soboleva",
+      "decidedAt": "2026-06-16T10:47:43.798Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Doubles",
+      "value365": "Karol M./Serdarusic N. / Bassem Sobhy M./Zakaryia F.",
+      "valueFlash": "Karol M. / Serdarusic N. / Bassem Sobhy M. / Zakaria F.",
+      "canonical": "Karol M./Serdarusic N. / Bassem Sobhy M./Zakaryia F.",
+      "decidedAt": "2026-06-16T10:47:43.798Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger Women - Singles",
+      "value365": "Xiyu Wang / Carole Monnet",
+      "valueFlash": "Wang Xiy. / Monnet C.",
+      "canonical": "Xiyu Wang / Carole Monnet",
+      "decidedAt": "2026-06-17T13:25:16.197Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Czechia / South Africa",
+      "valueFlash": "Czech Republic / South Africa",
+      "canonical": "Czechia / South Africa",
+      "decidedAt": "2026-06-17T14:35:47.064Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "International",
+      "value365": "FIFA World Cup",
+      "valueFlash": "World Championship",
+      "canonical": "FIFA World Cup",
+      "decidedAt": "2026-06-17T14:35:47.064Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Sweden",
+      "value365": "Eskilstuna United DFF / Piteå (W)",
+      "valueFlash": "Eskilstuna Utd W / Pitea W",
+      "canonical": "Eskilstuna United DFF / Piteå (W)",
+      "decidedAt": "2026-06-17T14:35:47.065Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "Avaí Fc/Sc Youth / Athletico-PR Youth",
+      "valueFlash": "Avai U20 / Athletico-PR U20",
+      "canonical": "Avaí Fc/Sc Youth / Athletico-PR Youth",
+      "decidedAt": "2026-06-22T07:50:34.768Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "São Gonçalo / Serrano RJ",
+      "valueFlash": "Sao Goncalo / Serrano FC",
+      "canonical": "São Gonçalo / Serrano RJ",
+      "decidedAt": "2026-06-22T07:50:34.768Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Faroe Islands",
+      "value365": "NSÍ Runavík / KÍ",
+      "valueFlash": "NSI Runavik / Klaksvik",
+      "canonical": "NSÍ Runavík / KÍ",
+      "decidedAt": "2026-06-22T07:50:34.768Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Faroe Islands",
+      "value365": "Løgmanssteypid Cup",
+      "valueFlash": "Faroe Islands Cup",
+      "canonical": "Løgmanssteypid Cup",
+      "decidedAt": "2026-06-22T07:50:34.768Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Georgia",
+      "value365": "Rustavi Ii / Irao Tbilisi",
+      "valueFlash": "Rustavi 2 / Orbi",
+      "canonical": "Rustavi Ii / Irao Tbilisi",
+      "decidedAt": "2026-06-22T07:50:34.769Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Georgia",
+      "value365": "David Kipiani Cup",
+      "valueFlash": "Georgian Cup",
+      "canonical": "David Kipiani Cup",
+      "decidedAt": "2026-06-22T07:50:34.769Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Lebanon",
+      "value365": "Shabab Al Sahel / Al-Abbassieh",
+      "valueFlash": "Al Sahel / Al Riyadi Abbasiyah",
+      "canonical": "Shabab Al Sahel / Al-Abbassieh",
+      "decidedAt": "2026-06-22T07:50:34.769Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Lebanon",
+      "value365": "Al Ansar / Jwaya",
+      "valueFlash": "Al Ansar / Jwayya",
+      "canonical": "Al Ansar / Jwaya",
+      "decidedAt": "2026-06-22T07:50:34.769Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Lithuania",
+      "value365": "Babrungas / Kauno Zalgiris II",
+      "valueFlash": "Babrungas / Kauno Zalgiris 2",
+      "canonical": "Babrungas / Kauno Zalgiris II",
+      "decidedAt": "2026-06-22T07:50:34.770Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Sweden",
+      "value365": "FC Rosengard (W) / Djurgårdens (W)",
+      "valueFlash": "Rosengard W / Djurgarden W",
+      "canonical": "FC Rosengard (W) / Djurgårdens (W)",
+      "decidedAt": "2026-06-22T07:50:34.770Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Sweden",
+      "value365": "AIK (W) / Eskilstuna United DFF",
+      "valueFlash": "AIK W / Eskilstuna Utd W",
+      "canonical": "AIK (W) / Eskilstuna United DFF",
+      "decidedAt": "2026-06-22T07:50:34.770Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Syria",
+      "value365": "Khan Sheikhoun / Al Karamah",
+      "valueFlash": "Khan Shaykhun / Al Karamah",
+      "canonical": "Khan Sheikhoun / Al Karamah",
+      "decidedAt": "2026-06-22T07:50:34.771Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Syria",
+      "value365": "Syrian Premier League",
+      "valueFlash": "Premier League",
+      "canonical": "Syrian Premier League",
+      "decidedAt": "2026-06-22T07:50:34.771Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Tanzania",
+      "value365": "KMC FC / Namungo FC",
+      "valueFlash": "Kinondoni MC / Namungo",
+      "canonical": "KMC FC / Namungo FC",
+      "decidedAt": "2026-06-22T07:50:34.771Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Tanzania",
+      "value365": "Singida Big Stars / Prisons SC",
+      "valueFlash": "Singida Black Stars / Tanzania Prisons",
+      "canonical": "Singida Big Stars / Prisons SC",
+      "decidedAt": "2026-06-22T07:50:34.771Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "América Mineiro / Criciúma",
+      "valueFlash": "America MG / Criciuma",
+      "canonical": "América Mineiro / Criciúma",
+      "decidedAt": "2026-06-22T12:16:06.020Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Brazil",
+      "value365": "Brasileirão - Série B",
+      "valueFlash": "Serie B",
+      "canonical": "Brasileirão - Série B",
+      "decidedAt": "2026-06-22T12:16:06.021Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Venezuela",
+      "value365": "Anzoategui Futbol Club / Atletico Ávila FC",
+      "valueFlash": "Anzoategui FC / Avila",
+      "canonical": "Anzoategui Futbol Club / Atletico Ávila FC",
+      "decidedAt": "2026-06-22T12:16:06.021Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Syria",
+      "value365": "Al Shola / Omyyah Idlib",
+      "valueFlash": "Al-Shouleh / Umayya",
+      "canonical": "Al Shola / Omyyah Idlib",
+      "decidedAt": "2026-06-23T13:35:48.405Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Finland",
+      "value365": "FC Jazz Juniorit / Tampere United",
+      "valueFlash": "Jazz Pori / Tampere Utd",
+      "canonical": "FC Jazz Juniorit / Tampere United",
+      "decidedAt": "2026-06-24T12:36:23.255Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Czechia / Mexico",
+      "valueFlash": "Czech Republic / Mexico",
+      "canonical": "Czechia / Mexico",
+      "decidedAt": "2026-06-24T12:36:23.257Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Kuwait",
+      "value365": "Fahaheel SC / Qadisiya Kuwait",
+      "valueFlash": "Al-Fahaheel / Al Qadisiya",
+      "canonical": "Fahaheel SC / Qadisiya Kuwait",
+      "decidedAt": "2026-06-24T12:36:23.258Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Kuwait",
+      "value365": "Premier Division",
+      "valueFlash": "Premier League - Championship Group",
+      "canonical": "Premier Division",
+      "decidedAt": "2026-06-24T12:36:23.259Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Kuwait",
+      "value365": "Salmiyah SC / Al Arabi Kuwait",
+      "valueFlash": "Al Salmiya / Al Arabi",
+      "canonical": "Salmiyah SC / Al Arabi Kuwait",
+      "decidedAt": "2026-06-24T12:36:23.260Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Morocco",
+      "value365": "Wydad AC / Maghreb Fès",
+      "valueFlash": "Wydad AC / Maghreb Fez",
+      "canonical": "Wydad AC / Maghreb Fès",
+      "decidedAt": "2026-06-24T12:36:23.261Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Morocco",
+      "value365": "US Touarga / El Jadida",
+      "valueFlash": "Union Touarga / Difaa El Jadidi",
+      "canonical": "US Touarga / El Jadida",
+      "decidedAt": "2026-06-24T12:36:23.262Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "USA",
+      "value365": "Los Angeles FC II / Minnesota II",
+      "valueFlash": "Los Angeles FC 2 / Minnesota 2",
+      "canonical": "Los Angeles FC II / Minnesota II",
+      "decidedAt": "2026-06-24T12:36:23.263Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Yemen",
+      "value365": "Fahman / Shabab Al Bayda FC",
+      "valueFlash": "Fhman / Al Baydaa",
+      "canonical": "Fahman / Shabab Al Bayda FC",
+      "decidedAt": "2026-06-24T12:36:23.263Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Yemen",
+      "value365": "Yemeni League",
+      "valueFlash": "Division 1",
+      "canonical": "Yemeni League",
+      "decidedAt": "2026-06-24T12:36:23.267Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Yemen",
+      "value365": "Hilal Hudaydah / Al Yarmok",
+      "valueFlash": "Al Hilal / Al Yarmuk",
+      "canonical": "Hilal Hudaydah / Al Yarmok",
+      "decidedAt": "2026-06-24T12:36:23.267Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "name",
+      "scope": "Canada",
+      "value365": "Saskatchewan Rattlers / Edmonton Stingers",
+      "valueFlash": "Saskatoon Mamba / Edmonton Stingers",
+      "canonical": "Saskatchewan Rattlers / Edmonton Stingers",
+      "decidedAt": "2026-06-24T13:31:33.211Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "name",
+      "scope": "Puerto Rico",
+      "value365": "Cangrejeros / Santeros de Aguada",
+      "valueFlash": "Cangrejeros / Aguada Santeros",
+      "canonical": "Cangrejeros / Santeros de Aguada",
+      "decidedAt": "2026-06-24T13:31:33.212Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Singles",
+      "value365": "Xin-Yu Wang / Elina Svitolina",
+      "valueFlash": "Wang Xin. / Svitolina E.",
+      "canonical": "Xin-Yu Wang / Elina Svitolina",
+      "decidedAt": "2026-06-24T13:41:25.807Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "WTA - Singles",
+      "value365": "Bad Homburg",
+      "valueFlash": "Bad Homburg (Germany), grass",
+      "canonical": "Bad Homburg",
+      "decidedAt": "2026-06-24T13:41:25.808Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Doubles",
+      "value365": "Korpatsch T./Webley-Smith E. / Su-Wei Hsieh/Xinyu Wang",
+      "valueFlash": "Korpatsch T. / Webley-Smith E. / Hsieh S-W. / Wang Xin.",
+      "canonical": "Korpatsch T./Webley-Smith E. / Su-Wei Hsieh/Xinyu Wang",
+      "decidedAt": "2026-06-24T13:41:25.808Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "WTA - Doubles",
+      "value365": "Bad Homburg",
+      "valueFlash": "Bad Homburg (Germany), grass",
+      "canonical": "Bad Homburg",
+      "decidedAt": "2026-06-24T13:41:25.809Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "name",
+      "scope": "International",
+      "value365": "Poland / Turkiye",
+      "valueFlash": "Poland / Turkey",
+      "canonical": "Poland / Turkiye",
+      "decidedAt": "2026-06-24T13:42:42.073Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "competition",
+      "scope": "International",
+      "value365": "Volleyball Nations League",
+      "valueFlash": "Nations League",
+      "canonical": "Volleyball Nations League",
+      "decidedAt": "2026-06-24T13:42:42.073Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Doubles",
+      "value365": "Soto M./Zeballos F. / de Almeida G R./Kohlmann de Freitas E.",
+      "valueFlash": "Soto M. / Zeballos F. / Ribeiro de Almeida G. / Kohlmann E.",
+      "canonical": "Soto M./Zeballos F. / de Almeida G R./Kohlmann de Freitas E.",
+      "decidedAt": "2026-06-24T16:10:50.711Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger - Doubles",
+      "value365": "Piracicaba",
+      "valueFlash": "Piracicaba (Brazil), clay",
+      "canonical": "Piracicaba",
+      "decidedAt": "2026-06-24T16:10:50.712Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Belarus",
+      "value365": "Baranovichi / Slavia Mozyr",
+      "valueFlash": "Baranovici / Slavia Mozyr",
+      "canonical": "Baranovichi / Slavia Mozyr",
+      "decidedAt": "2026-06-24T16:52:20.618Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Ethiopia",
+      "value365": "Kedus Giorgis / Fasil Ketema",
+      "valueFlash": "St. George / Fasil Kenema",
+      "canonical": "Kedus Giorgis / Fasil Ketema",
+      "decidedAt": "2026-06-24T16:52:20.619Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Ethiopia",
+      "value365": "Ethiopia Bunna / Mekelle Kenema",
+      "valueFlash": "Ethiopia Bunna / Mekelle 70 Enderta",
+      "canonical": "Ethiopia Bunna / Mekelle Kenema",
+      "decidedAt": "2026-06-24T16:52:20.620Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Ethiopia",
+      "value365": "Arba Minch Kenema / Welwalo Adigrat Uni",
+      "valueFlash": "Arba Menche / Welwalo Adigrat",
+      "canonical": "Arba Minch Kenema / Welwalo Adigrat Uni",
+      "decidedAt": "2026-06-24T16:52:20.621Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Georgia",
+      "value365": "Torpedo Kutaisi Ii / Margveti",
+      "valueFlash": "Torpedo Kutaisi 2 / Margveti 2006",
+      "canonical": "Torpedo Kutaisi Ii / Margveti",
+      "decidedAt": "2026-06-24T16:52:20.621Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Georgia",
+      "value365": "Merani Martvili Ii / FC Iberia 1999 II",
+      "valueFlash": "Merani Martvili 2 / Iberia 1999 2",
+      "canonical": "Merani Martvili Ii / FC Iberia 1999 II",
+      "decidedAt": "2026-06-24T16:52:20.623Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Turkiye / USA",
+      "valueFlash": "Turkey / USA",
+      "canonical": "Turkiye / USA",
+      "decidedAt": "2026-06-24T16:52:20.623Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Kuwait",
+      "value365": "Al Nasr / Jahra FC",
+      "valueFlash": "Al Naser / Al Jahra",
+      "canonical": "Al Nasr / Jahra FC",
+      "decidedAt": "2026-06-24T16:52:20.624Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Kuwait",
+      "value365": "Premier Division",
+      "valueFlash": "Premier League - Relegation Group",
+      "canonical": "Premier Division",
+      "decidedAt": "2026-06-24T16:52:20.624Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Latvia",
+      "value365": "FK Liepaja / Rigas FS",
+      "valueFlash": "FK Liepaja / RFS",
+      "canonical": "FK Liepaja / Rigas FS",
+      "decidedAt": "2026-06-24T16:52:20.625Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Peru",
+      "value365": "UTC / FC Cajamarca",
+      "valueFlash": "Cajamarca / FC Cajamarca",
+      "canonical": "UTC / FC Cajamarca",
+      "decidedAt": "2026-06-24T16:52:20.625Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Peru",
+      "value365": "League Cup",
+      "valueFlash": "Copa de la Liga",
+      "canonical": "League Cup",
+      "decidedAt": "2026-06-24T16:52:20.626Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Peru",
+      "value365": "Alianza Universidad / Unión Minas",
+      "valueFlash": "Alianza Huanuco / Minas",
+      "canonical": "Alianza Universidad / Unión Minas",
+      "decidedAt": "2026-06-24T16:52:20.627Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Tajikistan",
+      "value365": "CSKA Pomir / Fk Khosilot Farkhor",
+      "valueFlash": "CSKA Pomir Dushanbe / Khosilot Parkhar",
+      "canonical": "CSKA Pomir / Fk Khosilot Farkhor",
+      "decidedAt": "2026-06-24T16:52:20.627Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Yemen",
+      "value365": "Al Tadamun Hadramaut / Mukallah FC",
+      "valueFlash": "Tadamone Hadramout / Mukallah",
+      "canonical": "Al Tadamun Hadramaut / Mukallah FC",
+      "decidedAt": "2026-06-24T16:52:20.628Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "WTA - Doubles",
+      "value365": "Eastbourne Doubles (W)",
+      "valueFlash": "Eastbourne (United Kingdom), grass",
+      "canonical": "Eastbourne Doubles (W)",
+      "decidedAt": "2026-06-25T14:28:50.253Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Doubles",
+      "value365": "Sutjiadi A./Zvonareva V. / Su-Wei Hsieh/Xinyu Wang",
+      "valueFlash": "Sutjiadi A. / Zvonareva V. / Hsieh S-W. / Wang Xin.",
+      "canonical": "Sutjiadi A./Zvonareva V. / Su-Wei Hsieh/Xinyu Wang",
+      "decidedAt": "2026-06-25T14:28:50.256Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Singles",
+      "value365": "Xin-Yu Wang / Naomi Osaka",
+      "valueFlash": "Wang Xin. / Osaka N.",
+      "canonical": "Xin-Yu Wang / Naomi Osaka",
+      "decidedAt": "2026-06-25T14:28:50.266Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "Audax/Sp Youth / Cfa De Porto Ferreira U20",
+      "valueFlash": "Osasco Audax U20 / Porto Football U20",
+      "canonical": "Audax/Sp Youth / Cfa De Porto Ferreira U20",
+      "decidedAt": "2026-06-25T15:39:07.607Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "name",
+      "scope": "Puerto Rico",
+      "value365": "Vaqueros De Bayamon / Guaynabo Mets",
+      "valueFlash": "Vaqueros de Bayamon / Mets de Guaynabo",
+      "canonical": "Vaqueros De Bayamon / Guaynabo Mets",
+      "decidedAt": "2026-06-25T15:43:41.867Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "competition",
+      "scope": "Asia",
+      "value365": "AVC Men's Cup",
+      "valueFlash": "AVC Nations Cup",
+      "canonical": "AVC Men's Cup",
+      "decidedAt": "2026-06-25T16:19:33.703Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Yemen",
+      "value365": "Wahda Sana'a / Sha'ab Hadramaut",
+      "valueFlash": "Al Wahda / Shab Hadramaut",
+      "canonical": "Wahda Sana'a / Sha'ab Hadramaut",
+      "decidedAt": "2026-06-25T19:01:43.952Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Belarus",
+      "value365": "Bate Borisov II Reserve / Energetik BGU",
+      "valueFlash": "BATE 2 / SKA-1938",
+      "canonical": "Bate Borisov II Reserve / Energetik BGU",
+      "decidedAt": "2026-06-25T19:01:43.953Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Argentina",
+      "value365": "Federal A",
+      "valueFlash": "Torneo Federal",
+      "canonical": "Federal A",
+      "decidedAt": "2026-06-25T19:01:43.954Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Ethiopia",
+      "value365": "Adama Kenema / Welayta Dicha",
+      "valueFlash": "Adama City / Welayta Dicha",
+      "canonical": "Adama Kenema / Welayta Dicha",
+      "decidedAt": "2026-06-26T12:53:02.542Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Finland",
+      "value365": "Gnistan / Vaasa PS",
+      "valueFlash": "Gnistan / VPS",
+      "canonical": "Gnistan / Vaasa PS",
+      "decidedAt": "2026-06-26T12:53:02.544Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Kazakhstan",
+      "value365": "Yelimay Semey / FC Qyzyljar",
+      "valueFlash": "Yelimay Semey / Kyzylzhar",
+      "canonical": "Yelimay Semey / FC Qyzyljar",
+      "decidedAt": "2026-06-26T12:53:02.545Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Kazakhstan",
+      "value365": "Kaspyi / FK Atyrau",
+      "valueFlash": "Kaspij Aktau / Atyrau",
+      "canonical": "Kaspyi / FK Atyrau",
+      "decidedAt": "2026-06-26T12:53:02.546Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Kazakhstan",
+      "value365": "Jetisu / Aktobe",
+      "valueFlash": "Zhetysu Taldykorgan / Aktobe",
+      "canonical": "Jetisu / Aktobe",
+      "decidedAt": "2026-06-26T12:53:02.547Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Morocco",
+      "value365": "Wydad Fes / JSM Laayoune",
+      "valueFlash": "Wydad Fes / Jeunesse Massira",
+      "canonical": "Wydad Fes / JSM Laayoune",
+      "decidedAt": "2026-06-26T12:53:02.547Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Peru",
+      "value365": "Universitario / Grau",
+      "valueFlash": "U. de Deportes / Grau",
+      "canonical": "Universitario / Grau",
+      "decidedAt": "2026-06-26T12:53:02.549Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Yemen",
+      "value365": "Al Orouba FC / Ittihad Hadramout FC",
+      "valueFlash": "Al Oruba Zabid / Ittihad Hadramout",
+      "canonical": "Al Orouba FC / Ittihad Hadramout FC",
+      "decidedAt": "2026-06-26T12:53:02.550Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Morocco",
+      "value365": "KAC Kenitra / Riadi Salmi",
+      "valueFlash": "KAC Kenitra / Jeunesse Sportive Soualem",
+      "canonical": "KAC Kenitra / Riadi Salmi",
+      "decidedAt": "2026-06-26T13:30:04.522Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Belarus",
+      "value365": "Uni Minsk / Niva Dolbizno",
+      "valueFlash": "Uni X Labs / Niva Dolbizno",
+      "canonical": "Uni Minsk / Niva Dolbizno",
+      "decidedAt": "2026-06-26T13:30:04.526Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "EUROPE",
+      "value365": "(ausente)",
+      "valueFlash": "All-Island Cup Women - Play Offs",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-26T15:50:34.486Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "LATVIA",
+      "value365": "(ausente)",
+      "valueFlash": "1. Liga Women",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-26T15:50:34.488Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "SIERRA LEONE",
+      "value365": "(ausente)",
+      "valueFlash": "Premier League",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-26T15:50:34.489Z"
+    },
+    {
+      "sport": "hockey",
+      "type": "missing_365",
+      "scope": "NEW ZEALAND",
+      "value365": "(ausente)",
+      "valueFlash": "NZIHL",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-26T16:26:50.074Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "SOMALIA",
+      "value365": "(ausente)",
+      "valueFlash": "National league",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-26T16:31:55.595Z"
+    },
+    {
+      "sport": "basketball_usa",
+      "type": "missing_365",
+      "scope": "USA",
+      "value365": "(ausente)",
+      "valueFlash": "BIG3 (3x3)",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-26T17:38:03.103Z"
+    },
+    {
+      "sport": "american_football_usa",
+      "type": "missing_365",
+      "scope": "USA",
+      "value365": "(ausente)",
+      "valueFlash": "AF1",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-26T17:38:03.104Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Brazil",
+      "value365": "(ausente)",
+      "valueFlash": "Carioca C",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-27T20:31:00.163Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Russia",
+      "value365": "(ausente)",
+      "valueFlash": "FNL 2 - Division B - Group 2",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-27T20:31:00.165Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Russia",
+      "value365": "(ausente)",
+      "valueFlash": "FNL 2 - Division B - Group 4",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-27T20:31:00.166Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "KAZAKHSTAN",
+      "value365": "(ausente)",
+      "valueFlash": "League Women",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-27T20:47:42.658Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Brazil",
+      "value365": "(ausente)",
+      "valueFlash": "Piauiense U20",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-27T21:05:27.464Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Brazil",
+      "value365": "(ausente)",
+      "valueFlash": "Brasileiro U17",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-27T21:05:27.466Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "RUSSIA",
+      "value365": "(ausente)",
+      "valueFlash": "FNL 2 - Division B - Group 3",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-28T15:07:16.239Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "RUSSIA",
+      "value365": "(ausente)",
+      "valueFlash": "FNL 2 - Division B - Group 4",
+      "canonical": "(ausente)",
+      "decidedAt": "2026-06-28T15:07:16.240Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Singles",
+      "value365": "Valerio Aboian / Felipe Meligeni",
+      "valueFlash": "Aboian V. / Meligeni Alves F.",
+      "canonical": "Valerio Aboian / Felipe Meligeni",
+      "decidedAt": "2026-07-01T12:53:08.830Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "International",
+      "value365": "Club Friendlies",
+      "valueFlash": "Club Friendly",
+      "canonical": "Club Friendlies",
+      "decidedAt": "2026-07-02T16:53:53.569Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "competition",
+      "scope": "Europe",
+      "value365": "FIBA World Cup Qualification",
+      "valueFlash": "World Cup - Qualification - First round",
+      "canonical": "FIBA World Cup Qualification",
+      "decidedAt": "2026-07-02T16:56:33.411Z"
+    }
+  ],
+  "rejected": [
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Simples",
+      "value365": "Max Hans Rehberg / Stefano Travaglia",
+      "valueFlash": "Rehberg M. H. / R. Carballes Baena",
+      "canonical": "",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Duplas",
+      "value365": "Jiang X./Xu Y. / Detiuc A./Khromacheva I.",
+      "valueFlash": "Jiang X. / Y. Hu / Detiuc A. / Khromacheva I.",
+      "canonical": "",
+      "decidedAt": "2026-06-08T09:01:07.708Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Singles",
+      "value365": "Juan Estevez / Samuel Alejandro Linde Palacios",
+      "valueFlash": "Estevez J. / Dickerson R.",
+      "canonical": "",
+      "decidedAt": "2026-06-14T13:53:43.307Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "WTA - Doubles",
+      "value365": "Maleckova J./Skoch M. / Kenin S./Ostapenko J.",
+      "valueFlash": "Maleckova J. / Skoch M. / Haverlag I. / Lumsden M.",
+      "canonical": "",
+      "decidedAt": "2026-06-25T14:28:50.212Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "name",
+      "scope": "Asia",
+      "value365": "India / Australia",
+      "valueFlash": "Australia / Bahrain",
+      "canonical": "",
+      "decidedAt": "2026-06-25T16:19:33.700Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "name",
+      "scope": "International",
+      "value365": "Ukraine / Italy",
+      "valueFlash": "Ukraine / Canada",
+      "canonical": "",
+      "decidedAt": "2026-06-25T16:19:33.704Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "name",
+      "scope": "International",
+      "value365": "China PR / Belgium",
+      "valueFlash": "China / Argentina",
+      "canonical": "",
+      "decidedAt": "2026-06-25T16:19:33.705Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "name",
+      "scope": "International",
+      "value365": "Iran / USA",
+      "valueFlash": "Iran / Japan",
+      "canonical": "",
+      "decidedAt": "2026-06-25T16:19:33.706Z"
+    },
+    {
+      "sport": "volleyball",
+      "type": "name",
+      "scope": "International",
+      "value365": "France / Cuba",
+      "valueFlash": "Serbia / Cuba",
+      "canonical": "",
+      "decidedAt": "2026-06-25T16:19:33.707Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Gabon",
+      "value365": "As Stade Mandji / Mangasport",
+      "valueFlash": "US Oyem / Mangasport",
+      "canonical": "",
+      "decidedAt": "2026-06-26T13:30:04.525Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "EUROPE",
+      "value365": "(ausente)",
+      "valueFlash": "Premier League (Crimea)",
+      "canonical": "",
+      "decidedAt": "2026-06-26T13:30:04.528Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "missing_365",
+      "scope": "Chile",
+      "value365": "(ausente)",
+      "valueFlash": "LNB 2 - Play Offs",
+      "canonical": "",
+      "decidedAt": "2026-06-26T15:23:46.525Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "missing_365",
+      "scope": "New Zealand",
+      "value365": "(ausente)",
+      "valueFlash": "NBL",
+      "canonical": "",
+      "decidedAt": "2026-06-26T15:23:46.526Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Lithuania",
+      "value365": "(ausente)",
+      "valueFlash": "I Lyga",
+      "canonical": "",
+      "decidedAt": "2026-06-26T15:50:34.487Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Iceland",
+      "value365": "(ausente)",
+      "valueFlash": "Division 2",
+      "canonical": "",
+      "decidedAt": "2026-06-26T15:50:34.488Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "ZIMBABWE",
+      "value365": "(ausente)",
+      "valueFlash": "Premier Soccer League",
+      "canonical": "",
+      "decidedAt": "2026-06-26T15:50:34.490Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "missing_365",
+      "scope": "International",
+      "value365": "(ausente)",
+      "valueFlash": "Friendly International",
+      "canonical": "",
+      "decidedAt": "2026-06-27T20:35:11.057Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "missing_365",
+      "scope": "ATP - Singles",
+      "value365": "(ausente)",
+      "valueFlash": "Eastbourne (United Kingdom), grass",
+      "canonical": "",
+      "decidedAt": "2026-06-27T20:44:50.904Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "LITHUANIA",
+      "value365": "(ausente)",
+      "valueFlash": "TOPLYGA",
+      "canonical": "",
+      "decidedAt": "2026-06-27T20:47:42.657Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "missing_365",
+      "scope": "AUSTRALASIA",
+      "value365": "(ausente)",
+      "valueFlash": "World Cup - Qualification - First round",
+      "canonical": "",
+      "decidedAt": "2026-06-27T20:51:00.409Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "missing_365",
+      "scope": "DOMINICAN REPUBLIC",
+      "value365": "(ausente)",
+      "valueFlash": "LNB - Play Offs",
+      "canonical": "",
+      "decidedAt": "2026-06-27T20:51:00.410Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "GEORGIA",
+      "value365": "(ausente)",
+      "valueFlash": "Super Cup",
+      "canonical": "",
+      "decidedAt": "2026-06-27T21:12:02.132Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "International",
+      "value365": "(ausente)",
+      "valueFlash": "Club Friendly",
+      "canonical": "",
+      "decidedAt": "2026-06-28T14:56:21.563Z"
+    },
+    {
+      "sport": "basketball",
+      "type": "missing_365",
+      "scope": "CHILE",
+      "value365": "(ausente)",
+      "valueFlash": "LNB 2 - Play Offs",
+      "canonical": "",
+      "decidedAt": "2026-06-28T15:01:02.830Z"
+    },
+    {
+      "sport": "football",
+      "type": "missing_365",
+      "scope": "Ecuador",
+      "value365": "(ausente)",
+      "valueFlash": "Liga Pro",
+      "canonical": "",
+      "decidedAt": "2026-06-28T15:07:16.238Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Syria",
+      "value365": "Omyyah Idlib / Al Shorta Damascus",
+      "valueFlash": "Al Karamah / Umayya",
+      "canonical": "",
+      "decidedAt": "2026-06-30T14:04:00.459Z"
+    }
+  ]
+}

@@ -1,0 +1,749 @@
+{
+  "football": [
+    {
+      "scope": "Brasil",
+      "competition365": "Copa Verde",
+      "competitionFlash": "Copa Verde"
+    },
+    {
+      "scope": "Brasil",
+      "competition365": "Copa FGF",
+      "competitionFlash": "Copa FGF"
+    },
+    {
+      "scope": "Chile",
+      "competition365": "Copa de la Liga",
+      "competitionFlash": "Copa de la Liga"
+    },
+    {
+      "scope": "Egito",
+      "competition365": "Copa da Liga do Egito",
+      "competitionFlash": "Copa da Liga - Playoffs"
+    },
+    {
+      "scope": "EUA",
+      "competition365": "MLS Next Pro",
+      "competitionFlash": "MLS Next Pro"
+    },
+    {
+      "scope": "Internacional",
+      "competition365": "Amistoso Internacional",
+      "competitionFlash": "Amistoso Internacional"
+    },
+    {
+      "scope": "Brasil",
+      "competition365": "Brasileirão - Série B",
+      "competitionFlash": "Brasileirão Série B"
+    },
+    {
+      "scope": "Brasil",
+      "competition365": "Brasileirão Sub-20",
+      "competitionFlash": "Brasileirão Sub-20"
+    },
+    {
+      "scope": "Equador",
+      "competition365": "Serie B",
+      "competitionFlash": "Série B"
+    },
+    {
+      "scope": "Europa",
+      "competition365": "Copa do Báltico",
+      "competitionFlash": "Copa do Báltico"
+    },
+    {
+      "scope": "Finlândia",
+      "competition365": "Copa da Finlândia",
+      "competitionFlash": "Copa da Finlândia"
+    },
+    {
+      "scope": "Suécia",
+      "competition365": "Copa da Suécia",
+      "competitionFlash": "Copa da Suécia - Qualificação"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Brasileiro U20",
+      "competitionFlash": "Brasileiro U20"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Catarinense - Serie B",
+      "competitionFlash": "Catarinense 2"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Copa Espirito Santo",
+      "competitionFlash": "Copa Espirito Santo - Play Offs"
+    },
+    {
+      "scope": "Estonia",
+      "competition365": "Esiliiga",
+      "competitionFlash": "Esiliiga"
+    },
+    {
+      "scope": "Finland",
+      "competition365": "Veikkausliiga",
+      "competitionFlash": "Veikkausliiga"
+    },
+    {
+      "scope": "Georgia",
+      "competition365": "Erovnuli Liga",
+      "competitionFlash": "Crystalbet Erovnuli Liga"
+    },
+    {
+      "scope": "Lithuania",
+      "competition365": "I Lyga",
+      "competitionFlash": "I Lyga"
+    },
+    {
+      "scope": "Mongolia",
+      "competition365": "Premier League",
+      "competitionFlash": "Premier League"
+    },
+    {
+      "scope": "Morocco",
+      "competition365": "Botola Pro",
+      "competitionFlash": "Botola Pro"
+    },
+    {
+      "scope": "Tanzania",
+      "competition365": "Ligi Kuu Bara",
+      "competitionFlash": "Ligi Kuu Bara"
+    },
+    {
+      "scope": "USA",
+      "competition365": "USL Championship",
+      "competitionFlash": "USL Championship"
+    },
+    {
+      "scope": "USA",
+      "competition365": "MLS Next Pro",
+      "competitionFlash": "MLS Next Pro"
+    },
+    {
+      "scope": "USA",
+      "competition365": "USL League One",
+      "competitionFlash": "USL League One"
+    },
+    {
+      "scope": "Argentina",
+      "competition365": "Primera Nacional",
+      "competitionFlash": "Primera Nacional"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Brasileirão - Série B",
+      "competitionFlash": "Serie B"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Copa Rio",
+      "competitionFlash": "Copa Rio"
+    },
+    {
+      "scope": "Lebanon",
+      "competition365": "Premier League",
+      "competitionFlash": "Premier League"
+    },
+    {
+      "scope": "Lithuania",
+      "competition365": "Lithuanian Cup",
+      "competitionFlash": "Lithuanian Cup"
+    },
+    {
+      "scope": "Syria",
+      "competition365": "Syrian Premier League",
+      "competitionFlash": "Premier League"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Paulista U20",
+      "competitionFlash": "Paulista U20"
+    },
+    {
+      "scope": "Finland",
+      "competition365": "Ykkonen",
+      "competitionFlash": "Ykkonen"
+    },
+    {
+      "scope": "Iceland",
+      "competition365": "Besta-deild karla",
+      "competitionFlash": "Besta deild karla"
+    },
+    {
+      "scope": "Latvia",
+      "competition365": "Virsliga",
+      "competitionFlash": "Virsliga"
+    },
+    {
+      "scope": "Venezuela",
+      "competition365": "Copa Venezuela",
+      "competitionFlash": "Copa Venezuela"
+    },
+    {
+      "scope": "Argentina",
+      "competition365": "Promocional Amateur",
+      "competitionFlash": "Torneo Promocional Amateur"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Serie C",
+      "competitionFlash": "Serie C - First stage"
+    },
+    {
+      "scope": "Sweden",
+      "competition365": "Svenska Cupen",
+      "competitionFlash": "Svenska Cupen - Qualification"
+    },
+    {
+      "scope": "Belarus",
+      "competition365": "Vysshaya Liga",
+      "competitionFlash": "Vysshaya Liga"
+    },
+    {
+      "scope": "Chile",
+      "competition365": "Segunda División",
+      "competitionFlash": "Segunda Division"
+    },
+    {
+      "scope": "China",
+      "competition365": "Super League",
+      "competitionFlash": "Super League"
+    },
+    {
+      "scope": "Estonia",
+      "competition365": "Meistriliiga",
+      "competitionFlash": "Meistriliiga"
+    },
+    {
+      "scope": "Ethiopia",
+      "competition365": "Premier League",
+      "competitionFlash": "Premier League"
+    },
+    {
+      "scope": "Finland",
+      "competition365": "Ykkosliiga",
+      "competitionFlash": "Ykkosliiga"
+    },
+    {
+      "scope": "Ireland",
+      "competition365": "Division 1",
+      "competitionFlash": "Division 1"
+    },
+    {
+      "scope": "Ireland",
+      "competition365": "Premier Division",
+      "competitionFlash": "Premier Division"
+    },
+    {
+      "scope": "Sweden",
+      "competition365": "Superettan",
+      "competitionFlash": "Superettan"
+    },
+    {
+      "scope": "Tajikistan",
+      "competition365": "Vysshaya Liga",
+      "competitionFlash": "Vysshaya Liga"
+    },
+    {
+      "scope": "Canada",
+      "competition365": "Canadian Premier League",
+      "competitionFlash": "Canadian Premier League"
+    },
+    {
+      "scope": "Ecuador",
+      "competition365": "Liga Pro",
+      "competitionFlash": "Liga Pro"
+    },
+    {
+      "scope": "Ecuador",
+      "competition365": "Serie B",
+      "competitionFlash": "Serie B"
+    },
+    {
+      "scope": "Europe",
+      "competition365": "Euro U19",
+      "competitionFlash": "Euro U19"
+    },
+    {
+      "scope": "Finland",
+      "competition365": "Suomen Cup",
+      "competitionFlash": "Suomen Cup"
+    },
+    {
+      "scope": "Georgia",
+      "competition365": "Super Cup",
+      "competitionFlash": "Super Cup"
+    },
+    {
+      "scope": "Mongolia",
+      "competition365": "Premier League",
+      "competitionFlash": "Premier League - Relegation Group"
+    },
+    {
+      "scope": "Paraguay",
+      "competition365": "Division Intermedia",
+      "competitionFlash": "Division Intermedia"
+    }
+  ],
+  "hockey": [
+    {
+      "scope": "Australia",
+      "competition365": "AIHL",
+      "competitionFlash": "AIHL"
+    }
+  ],
+  "volleyball": [
+    {
+      "scope": "Internacional",
+      "competition365": "Liga das Nações (F)",
+      "competitionFlash": "Liga das Nações - Feminina"
+    },
+    {
+      "scope": "Lebanon",
+      "competition365": "1st Division",
+      "competitionFlash": "1st Division - Play Offs"
+    },
+    {
+      "scope": "Europe",
+      "competition365": "European Championship U22",
+      "competitionFlash": "European Championship U22"
+    },
+    {
+      "scope": "Europe",
+      "competition365": "European League (M)",
+      "competitionFlash": "European League - Play Offs"
+    }
+  ],
+  "tennis": [
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Stuttgart",
+      "competitionFlash": "Stuttgart"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Hertogenbosch",
+      "competitionFlash": "Hertogenbosch"
+    },
+    {
+      "scope": "ATP - Duplas",
+      "competition365": "Hertogenbosch",
+      "competitionFlash": "Hertogenbosch"
+    },
+    {
+      "scope": "ATP - Duplas",
+      "competition365": "Stuttgart",
+      "competitionFlash": "Stuttgart"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Lyon",
+      "competitionFlash": "Lyon"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Bratislava",
+      "competitionFlash": "Bratislava"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Ilkley",
+      "competitionFlash": "Ilkley"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "San Miguel de Tucuman",
+      "competitionFlash": "San Miguel de Tucumán"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Hertogenbosch",
+      "competitionFlash": "Hertogenbosch"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Cattolica",
+      "competitionFlash": "Cattolica"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Cattolica",
+      "competitionFlash": "Cattolica"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Lyon",
+      "competitionFlash": "Lyon"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Bratislava",
+      "competitionFlash": "Bratislava"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Ilkley",
+      "competitionFlash": "Ilkley"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Hertogenbosch",
+      "competitionFlash": "S-Hertogenbosch"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Hertogenbosch",
+      "competitionFlash": "Hertogenbosch"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Halle",
+      "competitionFlash": "Halle"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Nottingham",
+      "competitionFlash": "Nottingham"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Parma",
+      "competitionFlash": "Parma"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Poznan",
+      "competitionFlash": "Poznan"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Asunción",
+      "competitionFlash": "Asuncion"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Royan",
+      "competitionFlash": "Royan"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Dublin",
+      "competitionFlash": "Dublin"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Berlin",
+      "competitionFlash": "Berlin"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Nottingham",
+      "competitionFlash": "Nottingham"
+    },
+    {
+      "scope": "ATP - Duplas",
+      "competition365": "Halle",
+      "competitionFlash": "Halle"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Nottingham",
+      "competitionFlash": "Nottingham"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Asuncion",
+      "competitionFlash": "Asuncion"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Poznan",
+      "competitionFlash": "Poznan"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Parma",
+      "competitionFlash": "Parma"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Dublin",
+      "competitionFlash": "Dublin"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Berlin",
+      "competitionFlash": "Berlin"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Nottingham",
+      "competitionFlash": "Nottingham"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Royan",
+      "competitionFlash": "Royan"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Eastbourne",
+      "competitionFlash": "Eastbourne"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Mallorca",
+      "competitionFlash": "Mallorca"
+    },
+    {
+      "scope": "ATP - Duplas",
+      "competition365": "Mallorca",
+      "competitionFlash": "Mallorca"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Piracicaba",
+      "competitionFlash": "Piracicaba"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Plovdiv",
+      "competitionFlash": "Plovdiv"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Targu Mures",
+      "competitionFlash": "Targu Mures"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Plovdiv",
+      "competitionFlash": "Plovdiv"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Bad Homburg",
+      "competitionFlash": "Bad Homburg"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Eastbourne",
+      "competitionFlash": "Eastbourne"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Bad Homburg",
+      "competitionFlash": "Bad Homburg"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Eastbourne",
+      "competitionFlash": "Eastbourne"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Wimbledon",
+      "competitionFlash": "Wimbledon"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Piracicaba",
+      "competitionFlash": "Piracicaba"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Wimbledon",
+      "competitionFlash": "Wimbledon"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Targu Mures",
+      "competitionFlash": "Targu Mures"
+    },
+    {
+      "scope": "ATP - Duplas",
+      "competition365": "Wimbledon",
+      "competitionFlash": "Wimbledon"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Brasov",
+      "competitionFlash": "Brasov"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Cary",
+      "competitionFlash": "Cary"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Milan",
+      "competitionFlash": "Milan"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Troyes",
+      "competitionFlash": "Troyes"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Brasov",
+      "competitionFlash": "Brasov"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Cary",
+      "competitionFlash": "Cary"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Milan",
+      "competitionFlash": "Milan"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Quito",
+      "competitionFlash": "Quito"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Troyes",
+      "competitionFlash": "Troyes"
+    }
+  ],
+  "basketball": [
+    {
+      "scope": "Chile",
+      "competition365": "LNB",
+      "competitionFlash": "LNB - Apertura - Playoffs"
+    },
+    {
+      "scope": "Colômbia",
+      "competition365": "LBP",
+      "competitionFlash": "LBP - Apertura - Playoffs"
+    },
+    {
+      "scope": "EUA",
+      "competition365": "WNBA",
+      "competitionFlash": "WNBA"
+    },
+    {
+      "scope": "França",
+      "competition365": "LNB Élite",
+      "competitionFlash": "LNB - Playoffs"
+    },
+    {
+      "scope": "Lituânia",
+      "competition365": "LKL League",
+      "competitionFlash": "LKL - Playoffs"
+    },
+    {
+      "scope": "México",
+      "competition365": "CIBACOPA",
+      "competitionFlash": "CIBACOPA - Playoffs"
+    },
+    {
+      "scope": "Porto Rico",
+      "competition365": "BSN",
+      "competitionFlash": "BSN"
+    },
+    {
+      "scope": "República Dominicana",
+      "competition365": "LNB",
+      "competitionFlash": "LNB - Nível Vencedores"
+    },
+    {
+      "scope": "República Tcheca",
+      "competition365": "NBL",
+      "competitionFlash": "NBL - Playoffs"
+    },
+    {
+      "scope": "Turquia",
+      "competition365": "Super Ligi",
+      "competitionFlash": "Superliga - Playoffs"
+    },
+    {
+      "scope": "Chile",
+      "competition365": "LNB",
+      "competitionFlash": "LNB 2 - Play-Out"
+    },
+    {
+      "scope": "EUA",
+      "competition365": "NBA",
+      "competitionFlash": "WNBA"
+    },
+    {
+      "scope": "Paraguai",
+      "competition365": "LNB",
+      "competitionFlash": "LNB - Apertura - Derrotados"
+    },
+    {
+      "scope": "Chile",
+      "competition365": "LNB",
+      "competitionFlash": "LNB - Apertura - Play Offs"
+    },
+    {
+      "scope": "Chile",
+      "competition365": "LNB 2",
+      "competitionFlash": "LNB 2 - Play Offs"
+    },
+    {
+      "scope": "Chile",
+      "competition365": "LNB 2",
+      "competitionFlash": "LNB 2 - Play Out"
+    },
+    {
+      "scope": "Rússia",
+      "competition365": "VTB United League",
+      "competitionFlash": "VTB United League - Play Offs"
+    },
+    {
+      "scope": "Canadá",
+      "competition365": "CEBL",
+      "competitionFlash": "CEBL"
+    },
+    {
+      "scope": "Venezuela",
+      "competition365": "Superliga",
+      "competitionFlash": "Superliga - Play Offs"
+    },
+    {
+      "scope": "México",
+      "competition365": "CIBACOPA",
+      "competitionFlash": "CIBACOPA - Play Offs"
+    },
+    {
+      "scope": "Puerto Rico",
+      "competition365": "BSN",
+      "competitionFlash": "BSN"
+    },
+    {
+      "scope": "USA",
+      "competition365": "WNBA",
+      "competitionFlash": "WNBA"
+    },
+    {
+      "scope": "Dominican Republic",
+      "competition365": "LNB",
+      "competitionFlash": "LNB - Play Offs"
+    },
+    {
+      "scope": "New Zealand",
+      "competition365": "NBL",
+      "competitionFlash": "NBL"
+    },
+    {
+      "scope": "Paraguay",
+      "competition365": "LNB",
+      "competitionFlash": "LNB - Apertura - Play Offs"
+    }
+  ],
+  "basketball_usa": [
+    {
+      "scope": "USA",
+      "competition365": "WNBA",
+      "competitionFlash": "WNBA"
+    }
+  ]
+}
