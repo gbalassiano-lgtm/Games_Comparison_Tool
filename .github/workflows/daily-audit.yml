@@ -1,0 +1,44 @@
+name: Daily Audit
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 11 * * *'
+
+jobs:
+  run-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+    steps:
+      - name: Baixar código
+        uses: actions/checkout@v5
+
+      - name: Instalar Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Instalar dependências
+        run: npm ci
+
+      - name: Instalar Chromium do Playwright
+        run: npx playwright install --with-deps chromium
+
+      - name: Rodar pipeline
+        run: node run-all.js
+
+      - name: Salvar artefatos
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: audit-output
+          path: |
+            output/
+            *.xlsx
+          if-no-files-found: warn
