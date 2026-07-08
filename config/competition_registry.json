@@ -8,9 +8,9 @@
       "scope": "Brazil",
       "competition": "Maranhense 2",
       "status": "ignored",
-      "count": 353,
+      "count": 357,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||brazil|||copa rio": {
       "key": "football|||flashscore|||brazil|||copa rio",
@@ -30,9 +30,9 @@
       "scope": "Brazil",
       "competition": "Catarinense U20",
       "status": "ignored",
-      "count": 353,
+      "count": 357,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||ecuador|||superliga femenina": {
       "key": "football|||365scores|||ecuador|||superliga femenina",
@@ -52,9 +52,9 @@
       "scope": "Faroe Islands",
       "competition": "1. Deild",
       "status": "ignored",
-      "count": 1579,
+      "count": 1583,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||faroe islands|||l gmanssteypid cup": {
       "key": "football|||365scores|||faroe islands|||l gmanssteypid cup",
@@ -85,9 +85,9 @@
       "scope": "International",
       "competition": "Club Friendly",
       "status": "recognized",
-      "count": 9458,
+      "count": 9459,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||new zealand|||national league": {
       "key": "football|||365scores|||new zealand|||national league",
@@ -96,9 +96,9 @@
       "scope": "New Zealand",
       "competition": "National League",
       "status": "recognized",
-      "count": 3461,
+      "count": 3462,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.837Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||sweden|||division 1 norra": {
       "key": "football|||flashscore|||sweden|||division 1 norra",
@@ -107,9 +107,9 @@
       "scope": "Sweden",
       "competition": "Division 1 - Norra",
       "status": "ignored",
-      "count": 1191,
+      "count": 1195,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||sweden|||division 2 norrland": {
       "key": "football|||flashscore|||sweden|||division 2 norrland",
@@ -118,9 +118,9 @@
       "scope": "Sweden",
       "competition": "Division 2 - Norrland",
       "status": "ignored",
-      "count": 1163,
+      "count": 1167,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||sweden|||division 2 norra gotaland": {
       "key": "football|||flashscore|||sweden|||division 2 norra gotaland",
@@ -129,9 +129,9 @@
       "scope": "Sweden",
       "competition": "Division 2 - Norra Götaland",
       "status": "ignored",
-      "count": 1098,
+      "count": 1102,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||sweden|||division 2 norra svealand": {
       "key": "football|||flashscore|||sweden|||division 2 norra svealand",
@@ -140,9 +140,9 @@
       "scope": "Sweden",
       "competition": "Division 2 - Norra Svealand",
       "status": "ignored",
-      "count": 1098,
+      "count": 1102,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||sweden|||division 2 sodra gotaland": {
       "key": "football|||flashscore|||sweden|||division 2 sodra gotaland",
@@ -151,9 +151,9 @@
       "scope": "Sweden",
       "competition": "Division 2 - Södra Götaland",
       "status": "ignored",
-      "count": 1191,
+      "count": 1195,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||sweden|||division 2 sodra svealand": {
       "key": "football|||flashscore|||sweden|||division 2 sodra svealand",
@@ -162,9 +162,9 @@
       "scope": "Sweden",
       "competition": "Division 2 - Södra Svealand",
       "status": "ignored",
-      "count": 837,
+      "count": 841,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||sweden|||division 2 vastra gotaland": {
       "key": "football|||flashscore|||sweden|||division 2 vastra gotaland",
@@ -173,9 +173,9 @@
       "scope": "Sweden",
       "competition": "Division 2 - Västra Götaland",
       "status": "ignored",
-      "count": 1098,
+      "count": 1102,
       "firstSeenAt": "2026-06-22T07:59:49.515Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||syria|||syrian premier league": {
       "key": "football|||365scores|||syria|||syrian premier league",
@@ -217,9 +217,9 @@
       "scope": "Australia",
       "competition": "NPL Northern NSW",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||northern nsw state league": {
       "key": "football|||flashscore|||australia|||northern nsw state league",
@@ -228,9 +228,9 @@
       "scope": "AUSTRALIA",
       "competition": "Northern NSW State League",
       "status": "ignored",
-      "count": 884,
+      "count": 888,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||bhutan|||premier league": {
       "key": "football|||flashscore|||bhutan|||premier league",
@@ -239,9 +239,9 @@
       "scope": "BHUTAN",
       "competition": "Premier League",
       "status": "ignored",
-      "count": 2958,
+      "count": 2962,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||finland|||kansallinen ykkonen women": {
       "key": "football|||flashscore|||finland|||kansallinen ykkonen women",
@@ -250,9 +250,9 @@
       "scope": "Finland",
       "competition": "Kansallinen Ykkonen Women",
       "status": "ignored",
-      "count": 837,
+      "count": 841,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||gabon|||championnat d1": {
       "key": "football|||flashscore|||gabon|||championnat d1",
@@ -261,9 +261,9 @@
       "scope": "Gabon",
       "competition": "Championnat D1",
       "status": "ignored",
-      "count": 2208,
+      "count": 2212,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||mozambique|||mocambola": {
       "key": "football|||flashscore|||mozambique|||mocambola",
@@ -272,9 +272,9 @@
       "scope": "MOZAMBIQUE",
       "competition": "Mocambola",
       "status": "ignored",
-      "count": 618,
+      "count": 622,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||norway|||division 3 group 1": {
       "key": "football|||flashscore|||norway|||division 3 group 1",
@@ -283,9 +283,9 @@
       "scope": "NORWAY",
       "competition": "Division 3 - Group 1",
       "status": "ignored",
-      "count": 837,
+      "count": 841,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||sierra leone|||premier league": {
       "key": "football|||flashscore|||sierra leone|||premier league",
@@ -294,9 +294,9 @@
       "scope": "SIERRA LEONE",
       "competition": "Premier League",
       "status": "ignored",
-      "count": 7028,
+      "count": 7032,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||somalia|||national league": {
       "key": "football|||flashscore|||somalia|||national league",
@@ -305,9 +305,9 @@
       "scope": "SOMALIA",
       "competition": "National league",
       "status": "ignored",
-      "count": 5714,
+      "count": 5718,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||vietnam|||national league women": {
       "key": "football|||flashscore|||vietnam|||national league women",
@@ -316,9 +316,9 @@
       "scope": "Vietnam",
       "competition": "National League Women",
       "status": "ignored",
-      "count": 1815,
+      "count": 1819,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||argentina|||primera nacional": {
       "key": "football|||365scores|||argentina|||primera nacional",
@@ -349,9 +349,9 @@
       "scope": "Brazil",
       "competition": "Brasileirão - Série B",
       "status": "recognized",
-      "count": 6079,
+      "count": 6080,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||serie b": {
       "key": "football|||flashscore|||brazil|||serie b",
@@ -360,9 +360,9 @@
       "scope": "Brazil",
       "competition": "Serie B",
       "status": "recognized",
-      "count": 5998,
+      "count": 5999,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||brazil|||brasileiro u20": {
       "key": "football|||365scores|||brazil|||brasileiro u20",
@@ -536,9 +536,9 @@
       "scope": "International",
       "competition": "FIFA World Cup",
       "status": "recognized",
-      "count": 9561,
+      "count": 9562,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||international|||world championship": {
       "key": "football|||flashscore|||international|||world championship",
@@ -558,9 +558,9 @@
       "scope": "Lebanon",
       "competition": "Premier League",
       "status": "recognized",
-      "count": 3972,
+      "count": 3973,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.833Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||lebanon|||premier league": {
       "key": "football|||flashscore|||lebanon|||premier league",
@@ -613,9 +613,9 @@
       "scope": "Lithuania",
       "competition": "I Lyga",
       "status": "ignored",
-      "count": 4402,
+      "count": 4406,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||mongolia|||premier league": {
       "key": "football|||365scores|||mongolia|||premier league",
@@ -690,9 +690,9 @@
       "scope": "Brazil",
       "competition": "Mineiro 2",
       "status": "ignored",
-      "count": 629,
+      "count": 633,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||brazil|||brasileiro u20 b play offs": {
       "key": "football|||flashscore|||brazil|||brasileiro u20 b play offs",
@@ -701,9 +701,9 @@
       "scope": "Brazil",
       "competition": "Brasileiro U20 B - Play Offs",
       "status": "ignored",
-      "count": 369,
+      "count": 373,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||amazonense u20": {
       "key": "football|||flashscore|||brazil|||amazonense u20",
@@ -712,9 +712,9 @@
       "scope": "Brazil",
       "competition": "Amazonense U20",
       "status": "ignored",
-      "count": 629,
+      "count": 633,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||brazil|||matogrossense u20": {
       "key": "football|||flashscore|||brazil|||matogrossense u20",
@@ -723,9 +723,9 @@
       "scope": "Brazil",
       "competition": "Matogrossense U20",
       "status": "ignored",
-      "count": 863,
+      "count": 867,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||estonia|||esiliiga": {
       "key": "football|||365scores|||estonia|||esiliiga",
@@ -767,9 +767,9 @@
       "scope": "Estonia",
       "competition": "Estonian Cup",
       "status": "recognized",
-      "count": 699,
+      "count": 700,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.815Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||estonia|||meistriliiga women": {
       "key": "football|||flashscore|||estonia|||meistriliiga women",
@@ -800,9 +800,9 @@
       "scope": "Sweden",
       "competition": "Division 1 - Södra",
       "status": "ignored",
-      "count": 687,
+      "count": 691,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||sweden|||elitettan women": {
       "key": "football|||flashscore|||sweden|||elitettan women",
@@ -822,9 +822,9 @@
       "scope": "USA",
       "competition": "USL League Two",
       "status": "ignored",
-      "count": 629,
+      "count": 633,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||usa|||mls next pro": {
       "key": "football|||365scores|||usa|||mls next pro",
@@ -844,9 +844,9 @@
       "scope": "Yemen",
       "competition": "Yemeni League",
       "status": "recognized",
-      "count": 7428,
+      "count": 7429,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||cameroon|||elite two relegation group": {
       "key": "football|||flashscore|||cameroon|||elite two relegation group",
@@ -866,9 +866,9 @@
       "scope": "CANADA",
       "competition": "NSL Women",
       "status": "ignored",
-      "count": 504,
+      "count": 508,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||iceland|||icelandic cup women": {
       "key": "football|||flashscore|||iceland|||icelandic cup women",
@@ -888,9 +888,9 @@
       "scope": "KAZAKHSTAN",
       "competition": "First League",
       "status": "ignored",
-      "count": 594,
+      "count": 598,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||niger|||super ligue": {
       "key": "football|||flashscore|||niger|||super ligue",
@@ -910,9 +910,9 @@
       "scope": "Argentina",
       "competition": "Liga Profesional - Reserva",
       "status": "recognized",
-      "count": 2826,
+      "count": 2827,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.838Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||argentina|||reserve league apertura": {
       "key": "football|||flashscore|||argentina|||reserve league apertura",
@@ -932,9 +932,9 @@
       "scope": "Finland",
       "competition": "Veikkausliiga",
       "status": "recognized",
-      "count": 2629,
+      "count": 2630,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.837Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||finland|||veikkausliiga": {
       "key": "football|||flashscore|||finland|||veikkausliiga",
@@ -943,9 +943,9 @@
       "scope": "Finland",
       "competition": "Veikkausliiga",
       "status": "recognized",
-      "count": 2477,
+      "count": 2478,
       "firstSeenAt": "2026-06-22T07:59:49.516Z",
-      "lastSeenAt": "2026-07-06T16:05:12.837Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||morocco|||botola pro": {
       "key": "football|||flashscore|||morocco|||botola pro",
@@ -1680,9 +1680,9 @@
       "scope": "PHILIPPINES",
       "competition": "MPBL",
       "status": "ignored",
-      "count": 609,
+      "count": 613,
       "firstSeenAt": "2026-06-22T07:59:49.518Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||puerto rico|||bsn": {
       "key": "basketball|||flashscore|||puerto rico|||bsn",
@@ -1713,9 +1713,9 @@
       "scope": "USA",
       "competition": "WNBA",
       "status": "recognized",
-      "count": 2667,
+      "count": 2670,
       "firstSeenAt": "2026-06-22T07:59:49.518Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||flashscore|||world|||americup u18 women play offs": {
       "key": "basketball|||flashscore|||world|||americup u18 women play offs",
@@ -1746,9 +1746,9 @@
       "scope": "Canada",
       "competition": "CEBL",
       "status": "recognized",
-      "count": 2228,
+      "count": 2231,
       "firstSeenAt": "2026-06-22T07:59:49.518Z",
-      "lastSeenAt": "2026-07-06T16:05:12.824Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||flashscore|||canada|||cebl": {
       "key": "basketball|||flashscore|||canada|||cebl",
@@ -1757,9 +1757,9 @@
       "scope": "Canada",
       "competition": "CEBL",
       "status": "recognized",
-      "count": 2005,
+      "count": 2008,
       "firstSeenAt": "2026-06-22T07:59:49.518Z",
-      "lastSeenAt": "2026-07-06T16:05:12.824Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||365scores|||israel|||winner league": {
       "key": "basketball|||365scores|||israel|||winner league",
@@ -2461,9 +2461,9 @@
       "scope": "CHINA",
       "competition": "League Two",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||china|||super league women": {
       "key": "football|||flashscore|||china|||super league women",
@@ -2472,9 +2472,9 @@
       "scope": "CHINA",
       "competition": "Super League Women",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||npl queensland women": {
       "key": "football|||flashscore|||australia|||npl queensland women",
@@ -2483,9 +2483,9 @@
       "scope": "AUSTRALIA",
       "competition": "NPL Queensland Women",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "tennis|||flashscore|||itf men singles|||": {
       "key": "tennis|||flashscore|||itf men singles|||",
@@ -2494,9 +2494,9 @@
       "scope": "ITF Men - Singles",
       "competition": "*",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "tennis|||flashscore|||itf men doubles|||": {
       "key": "tennis|||flashscore|||itf men doubles|||",
@@ -2505,9 +2505,9 @@
       "scope": "ITF Men - Doubles",
       "competition": "*",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "tennis|||flashscore|||itf women singles|||": {
       "key": "tennis|||flashscore|||itf women singles|||",
@@ -2516,9 +2516,9 @@
       "scope": "ITF Women - Singles",
       "competition": "*",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "tennis|||flashscore|||itf women doubles|||": {
       "key": "tennis|||flashscore|||itf women doubles|||",
@@ -2527,9 +2527,9 @@
       "scope": "ITF Women - Doubles",
       "competition": "*",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "tennis|||flashscore|||world|||billie jean king cup": {
       "key": "tennis|||flashscore|||world|||billie jean king cup",
@@ -2538,9 +2538,9 @@
       "scope": "(World)",
       "competition": "Billie Jean King Cup",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "tennis|||flashscore|||world|||davis cup group iv": {
       "key": "tennis|||flashscore|||world|||davis cup group iv",
@@ -2549,9 +2549,9 @@
       "scope": "World",
       "competition": "Davis Cup - Group IV",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T07:59:49.520Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||365scores|||basquete canada|||cebl": {
       "key": "basketball|||365scores|||basquete canada|||cebl",
@@ -2637,9 +2637,9 @@
       "scope": "Venezuela",
       "competition": "Copa Venezuela",
       "status": "ignored",
-      "count": 3251,
+      "count": 3255,
       "firstSeenAt": "2026-06-22T12:16:07.407Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||365scores|||new zealand|||nbl": {
       "key": "basketball|||365scores|||new zealand|||nbl",
@@ -2648,9 +2648,9 @@
       "scope": "New Zealand",
       "competition": "NBL",
       "status": "recognized",
-      "count": 2992,
+      "count": 2995,
       "firstSeenAt": "2026-06-22T13:57:47.200Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||365scores|||puerto rico|||bsn": {
       "key": "basketball|||365scores|||puerto rico|||bsn",
@@ -2659,9 +2659,9 @@
       "scope": "Puerto Rico",
       "competition": "BSN",
       "status": "recognized",
-      "count": 2727,
+      "count": 2730,
       "firstSeenAt": "2026-06-22T13:57:47.200Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||365scores|||uruguay|||liga de ascenso": {
       "key": "basketball|||365scores|||uruguay|||liga de ascenso",
@@ -2670,9 +2670,9 @@
       "scope": "Uruguay",
       "competition": "Liga de ascenso",
       "status": "recognized",
-      "count": 1450,
+      "count": 1453,
       "firstSeenAt": "2026-06-22T13:57:47.200Z",
-      "lastSeenAt": "2026-07-06T16:05:12.815Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||flashscore|||uruguay|||liga uruguaya play offs": {
       "key": "basketball|||flashscore|||uruguay|||liga uruguaya play offs",
@@ -2692,9 +2692,9 @@
       "scope": "USA",
       "competition": "WNBA",
       "status": "recognized",
-      "count": 2634,
+      "count": 2637,
       "firstSeenAt": "2026-06-22T13:57:47.200Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||flashscore|||france|||lnb play offs": {
       "key": "basketball|||flashscore|||france|||lnb play offs",
@@ -2725,9 +2725,9 @@
       "scope": "EUROPE",
       "competition": "Small Countries European Championship",
       "status": "ignored",
-      "count": 571,
+      "count": 575,
       "firstSeenAt": "2026-06-22T13:57:47.201Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||europe|||small countries european championship women": {
       "key": "basketball|||flashscore|||europe|||small countries european championship women",
@@ -2769,9 +2769,9 @@
       "scope": "Brazil",
       "competition": "Sul-Matogrossense 2",
       "status": "ignored",
-      "count": 351,
+      "count": 355,
       "firstSeenAt": "2026-06-22T16:25:40.184Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||argentina|||torneo promocional amateur": {
       "key": "football|||flashscore|||argentina|||torneo promocional amateur",
@@ -2780,9 +2780,9 @@
       "scope": "Argentina",
       "competition": "Torneo Promocional Amateur",
       "status": "ignored",
-      "count": 627,
+      "count": 631,
       "firstSeenAt": "2026-06-22T16:25:40.184Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||queensland premier league": {
       "key": "football|||flashscore|||australia|||queensland premier league",
@@ -2791,9 +2791,9 @@
       "scope": "AUSTRALIA",
       "competition": "Queensland Premier League",
       "status": "ignored",
-      "count": 351,
+      "count": 355,
       "firstSeenAt": "2026-06-22T16:25:40.184Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||brazil|||brasiliense u20": {
       "key": "football|||flashscore|||brazil|||brasiliense u20",
@@ -2802,9 +2802,9 @@
       "scope": "Brazil",
       "competition": "Brasiliense U20",
       "status": "ignored",
-      "count": 351,
+      "count": 355,
       "firstSeenAt": "2026-06-22T16:25:40.184Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||iceland|||besta deild women": {
       "key": "football|||flashscore|||iceland|||besta deild women",
@@ -2813,9 +2813,9 @@
       "scope": "ICELAND",
       "competition": "Besta deild Women",
       "status": "ignored",
-      "count": 351,
+      "count": 355,
       "firstSeenAt": "2026-06-22T16:25:40.184Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||argentina|||campeonato femenino": {
       "key": "football|||365scores|||argentina|||campeonato femenino",
@@ -2857,9 +2857,9 @@
       "scope": "Brazil",
       "competition": "Brasileiro U17",
       "status": "ignored",
-      "count": 2452,
+      "count": 2456,
       "firstSeenAt": "2026-06-22T16:25:40.184Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||uruguay|||reserve league": {
       "key": "football|||365scores|||uruguay|||reserve league",
@@ -2868,9 +2868,9 @@
       "scope": "Uruguay",
       "competition": "Reserve League",
       "status": "recognized",
-      "count": 2159,
+      "count": 2160,
       "firstSeenAt": "2026-06-22T16:25:40.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||kazakhstan|||league women": {
       "key": "football|||flashscore|||kazakhstan|||league women",
@@ -2879,9 +2879,9 @@
       "scope": "KAZAKHSTAN",
       "competition": "League Women",
       "status": "ignored",
-      "count": 368,
+      "count": 372,
       "firstSeenAt": "2026-06-22T16:25:40.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||kyrgyzstan|||premier liga": {
       "key": "football|||flashscore|||kyrgyzstan|||premier liga",
@@ -2901,9 +2901,9 @@
       "scope": "Russia",
       "competition": "FNL 2 - Division B - Group 2",
       "status": "ignored",
-      "count": 927,
+      "count": 931,
       "firstSeenAt": "2026-06-22T16:25:40.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||argentina|||federal a": {
       "key": "football|||365scores|||argentina|||federal a",
@@ -2923,9 +2923,9 @@
       "scope": "Argentina",
       "competition": "Torneo Federal",
       "status": "ignored",
-      "count": 2273,
+      "count": 2277,
       "firstSeenAt": "2026-06-22T16:25:40.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||brazil|||serie c": {
       "key": "football|||365scores|||brazil|||serie c",
@@ -2977,10 +2977,10 @@
       "source": "flashscore",
       "scope": "RUSSIA",
       "competition": "Youth League",
-      "status": "ignored",
-      "count": 1022,
+      "status": "recognized",
+      "count": 1027,
       "firstSeenAt": "2026-06-23T13:35:50.465Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball_usa|||365scores|||usa|||wnba": {
       "key": "basketball_usa|||365scores|||usa|||wnba",
@@ -3011,9 +3011,9 @@
       "scope": "Argentina",
       "competition": "Liga Federal",
       "status": "recognized",
-      "count": 2315,
+      "count": 2318,
       "firstSeenAt": "2026-06-23T17:40:40.303Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||365scores|||el salvador|||liga mayor": {
       "key": "basketball|||365scores|||el salvador|||liga mayor",
@@ -3085,12 +3085,12 @@
       "key": "basketball|||flashscore|||dominican republic|||lnb play offs",
       "sport": "basketball",
       "source": "flashscore",
-      "scope": "Dominican Republic",
+      "scope": "DOMINICAN REPUBLIC",
       "competition": "LNB - Play Offs",
       "status": "recognized",
-      "count": 3042,
+      "count": 3045,
       "firstSeenAt": "2026-06-23T17:40:40.303Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||365scores|||mexico|||cibacopa": {
       "key": "basketball|||365scores|||mexico|||cibacopa",
@@ -3110,9 +3110,9 @@
       "scope": "NORWAY",
       "competition": "Division 3 - Group 3",
       "status": "ignored",
-      "count": 333,
+      "count": 337,
       "firstSeenAt": "2026-06-24T12:36:24.763Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||norway|||division 3 group 4": {
       "key": "football|||flashscore|||norway|||division 3 group 4",
@@ -3121,9 +3121,9 @@
       "scope": "NORWAY",
       "competition": "Division 3 - Group 4",
       "status": "ignored",
-      "count": 333,
+      "count": 337,
       "firstSeenAt": "2026-06-24T12:36:24.763Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||norway|||division 3 group 6": {
       "key": "football|||flashscore|||norway|||division 3 group 6",
@@ -3132,9 +3132,9 @@
       "scope": "NORWAY",
       "competition": "Division 3 - Group 6",
       "status": "ignored",
-      "count": 333,
+      "count": 337,
       "firstSeenAt": "2026-06-24T12:36:24.763Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||norway|||division 3 group 2": {
       "key": "football|||flashscore|||norway|||division 3 group 2",
@@ -3143,9 +3143,9 @@
       "scope": "NORWAY",
       "competition": "Division 3 - Group 2",
       "status": "ignored",
-      "count": 333,
+      "count": 337,
       "firstSeenAt": "2026-06-24T12:36:24.763Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||iceland|||besta deild karla": {
       "key": "football|||365scores|||iceland|||besta deild karla",
@@ -3165,9 +3165,9 @@
       "scope": "Yemen",
       "competition": "Division 1",
       "status": "recognized",
-      "count": 7117,
+      "count": 7118,
       "firstSeenAt": "2026-06-24T12:36:24.763Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.185Z"
     },
     "football|||365scores|||brazil|||paulista u20": {
       "key": "football|||365scores|||brazil|||paulista u20",
@@ -3176,9 +3176,9 @@
       "scope": "Brazil",
       "competition": "Paulista U20",
       "status": "recognized",
-      "count": 7042,
+      "count": 7043,
       "firstSeenAt": "2026-06-24T12:36:24.763Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||paulista u20": {
       "key": "football|||flashscore|||brazil|||paulista u20",
@@ -3187,9 +3187,9 @@
       "scope": "Brazil",
       "competition": "Paulista U20",
       "status": "recognized",
-      "count": 4790,
+      "count": 4791,
       "firstSeenAt": "2026-06-24T12:36:24.763Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||finland|||ykkonen": {
       "key": "football|||365scores|||finland|||ykkonen",
@@ -3198,9 +3198,9 @@
       "scope": "Finland",
       "competition": "Ykkonen",
       "status": "recognized",
-      "count": 5490,
+      "count": 5491,
       "firstSeenAt": "2026-06-24T12:36:24.764Z",
-      "lastSeenAt": "2026-07-06T16:05:12.838Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||finland|||ykkonen": {
       "key": "football|||flashscore|||finland|||ykkonen",
@@ -3209,9 +3209,9 @@
       "scope": "Finland",
       "competition": "Ykkonen",
       "status": "recognized",
-      "count": 5338,
+      "count": 5339,
       "firstSeenAt": "2026-06-24T12:36:24.764Z",
-      "lastSeenAt": "2026-07-06T16:05:12.838Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||kuwait|||premier division": {
       "key": "football|||365scores|||kuwait|||premier division",
@@ -3341,9 +3341,9 @@
       "scope": "VIETNAM",
       "competition": "VBA",
       "status": "ignored",
-      "count": 911,
+      "count": 915,
       "firstSeenAt": "2026-06-24T13:31:33.288Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||new zealand|||nbl": {
       "key": "basketball|||flashscore|||new zealand|||nbl",
@@ -3352,9 +3352,9 @@
       "scope": "New Zealand",
       "competition": "NBL",
       "status": "recognized",
-      "count": 2769,
+      "count": 2772,
       "firstSeenAt": "2026-06-24T13:31:33.289Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "tennis|||flashscore|||atp singles|||wimbledon united kingdom qualification grass": {
       "key": "tennis|||flashscore|||atp singles|||wimbledon united kingdom qualification grass",
@@ -3550,9 +3550,9 @@
       "scope": "International",
       "competition": "Pan-American Cup U21",
       "status": "ignored",
-      "count": 1123,
+      "count": 1127,
       "firstSeenAt": "2026-06-24T13:42:42.138Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "volleyball|||365scores|||asia|||avc men s cup": {
       "key": "volleyball|||365scores|||asia|||avc men s cup",
@@ -3880,9 +3880,9 @@
       "scope": "USA",
       "competition": "IL - Second stage",
       "status": "ignored",
-      "count": 696,
+      "count": 700,
       "firstSeenAt": "2026-06-24T16:35:42.145Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "baseball_usa|||flashscore|||usa|||pcl second stage": {
       "key": "baseball_usa|||flashscore|||usa|||pcl second stage",
@@ -3891,9 +3891,9 @@
       "scope": "USA",
       "competition": "PCL - Second stage",
       "status": "ignored",
-      "count": 696,
+      "count": 700,
       "firstSeenAt": "2026-06-24T16:35:42.145Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "baseball_usa|||365scores|||usa|||mlb": {
       "key": "baseball_usa|||365scores|||usa|||mlb",
@@ -3924,9 +3924,9 @@
       "scope": "AUSTRALIA",
       "competition": "Tasmania Southern Championship",
       "status": "ignored",
-      "count": 243,
+      "count": 247,
       "firstSeenAt": "2026-06-24T16:52:25.969Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||brazil|||amapaense 2 play offs": {
       "key": "football|||flashscore|||brazil|||amapaense 2 play offs",
@@ -3935,9 +3935,9 @@
       "scope": "Brazil",
       "competition": "Amapaense 2 - Play Offs",
       "status": "ignored",
-      "count": 243,
+      "count": 247,
       "firstSeenAt": "2026-06-24T16:52:25.969Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||nsw league one": {
       "key": "football|||flashscore|||australia|||nsw league one",
@@ -3946,9 +3946,9 @@
       "scope": "AUSTRALIA",
       "competition": "NSW League One",
       "status": "ignored",
-      "count": 243,
+      "count": 247,
       "firstSeenAt": "2026-06-24T16:52:25.969Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||sa state league": {
       "key": "football|||flashscore|||australia|||sa state league",
@@ -3957,9 +3957,9 @@
       "scope": "AUSTRALIA",
       "competition": "SA State League",
       "status": "ignored",
-      "count": 243,
+      "count": 247,
       "firstSeenAt": "2026-06-24T16:52:25.970Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||brazil|||acreano u20": {
       "key": "football|||flashscore|||brazil|||acreano u20",
@@ -3968,9 +3968,9 @@
       "scope": "Brazil",
       "competition": "Acreano U20",
       "status": "ignored",
-      "count": 671,
+      "count": 675,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||365scores|||chile|||championship women": {
       "key": "football|||365scores|||chile|||championship women",
@@ -4012,9 +4012,9 @@
       "scope": "China",
       "competition": "Super League",
       "status": "recognized",
-      "count": 4951,
+      "count": 4952,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||ethiopia|||premier league": {
       "key": "football|||365scores|||ethiopia|||premier league",
@@ -4034,9 +4034,9 @@
       "scope": "Iceland",
       "competition": "Division 2",
       "status": "ignored",
-      "count": 4258,
+      "count": 4262,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||iran|||persian gulf pro league": {
       "key": "football|||365scores|||iran|||persian gulf pro league",
@@ -4056,9 +4056,9 @@
       "scope": "Ireland",
       "competition": "Division 1",
       "status": "recognized",
-      "count": 2386,
+      "count": 2387,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||peru|||league cup": {
       "key": "football|||365scores|||peru|||league cup",
@@ -4067,9 +4067,9 @@
       "scope": "Peru",
       "competition": "League Cup",
       "status": "recognized",
-      "count": 5565,
+      "count": 5566,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||tajikistan|||vysshaya liga": {
       "key": "football|||365scores|||tajikistan|||vysshaya liga",
@@ -4100,9 +4100,9 @@
       "scope": "Australia",
       "competition": "NPL NSW",
       "status": "ignored",
-      "count": 1943,
+      "count": 1947,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||npl south australia": {
       "key": "football|||flashscore|||australia|||npl south australia",
@@ -4111,9 +4111,9 @@
       "scope": "AUSTRALIA",
       "competition": "NPL South Australia",
       "status": "ignored",
-      "count": 671,
+      "count": 675,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||npl victoria": {
       "key": "football|||flashscore|||australia|||npl victoria",
@@ -4122,9 +4122,9 @@
       "scope": "AUSTRALIA",
       "competition": "NPL Victoria",
       "status": "ignored",
-      "count": 1101,
+      "count": 1105,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||npl western australia": {
       "key": "football|||flashscore|||australia|||npl western australia",
@@ -4133,9 +4133,9 @@
       "scope": "Australia",
       "competition": "NPL Western Australia",
       "status": "ignored",
-      "count": 1943,
+      "count": 1947,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||victoria premier league 2": {
       "key": "football|||flashscore|||australia|||victoria premier league 2",
@@ -4144,9 +4144,9 @@
       "scope": "Australia",
       "competition": "Victoria Premier League 2",
       "status": "ignored",
-      "count": 1943,
+      "count": 1947,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||australia|||npl victoria women": {
       "key": "football|||flashscore|||australia|||npl victoria women",
@@ -4166,9 +4166,9 @@
       "scope": "Australia",
       "competition": "NPL NSW U20",
       "status": "ignored",
-      "count": 1943,
+      "count": 1947,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||macao|||elite league": {
       "key": "football|||flashscore|||macao|||elite league",
@@ -4177,20 +4177,20 @@
       "scope": "MACAO",
       "competition": "Elite League",
       "status": "ignored",
-      "count": 671,
+      "count": 675,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||south korea|||wk league women": {
       "key": "football|||flashscore|||south korea|||wk league women",
       "sport": "football",
       "source": "flashscore",
-      "scope": "SOUTH KOREA",
+      "scope": "South Korea",
       "competition": "WK League Women",
       "status": "recognized",
-      "count": 1290,
+      "count": 1295,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||zimbabwe|||premier soccer league": {
       "key": "football|||flashscore|||zimbabwe|||premier soccer league",
@@ -4199,9 +4199,9 @@
       "scope": "ZIMBABWE",
       "competition": "Premier Soccer League",
       "status": "ignored",
-      "count": 4577,
+      "count": 4581,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||belarus|||vysshaya liga": {
       "key": "football|||365scores|||belarus|||vysshaya liga",
@@ -4210,9 +4210,9 @@
       "scope": "Belarus",
       "competition": "Vysshaya Liga",
       "status": "recognized",
-      "count": 5432,
+      "count": 5433,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||belarus|||vysshaya liga": {
       "key": "football|||flashscore|||belarus|||vysshaya liga",
@@ -4221,9 +4221,9 @@
       "scope": "Belarus",
       "competition": "Vysshaya Liga",
       "status": "recognized",
-      "count": 5382,
+      "count": 5383,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||estonia|||meistriliiga": {
       "key": "football|||365scores|||estonia|||meistriliiga",
@@ -4232,9 +4232,9 @@
       "scope": "Estonia",
       "competition": "Meistriliiga",
       "status": "recognized",
-      "count": 2958,
+      "count": 2959,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||estonia|||meistriliiga": {
       "key": "football|||flashscore|||estonia|||meistriliiga",
@@ -4243,9 +4243,9 @@
       "scope": "Estonia",
       "competition": "Meistriliiga",
       "status": "recognized",
-      "count": 3060,
+      "count": 3061,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||ethiopia|||premier league": {
       "key": "football|||flashscore|||ethiopia|||premier league",
@@ -4265,9 +4265,9 @@
       "scope": "Finland",
       "competition": "Ykkosliiga",
       "status": "recognized",
-      "count": 4951,
+      "count": 4952,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||finland|||ykkosliiga": {
       "key": "football|||flashscore|||finland|||ykkosliiga",
@@ -4276,9 +4276,9 @@
       "scope": "Finland",
       "competition": "Ykkosliiga",
       "status": "recognized",
-      "count": 4901,
+      "count": 4902,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||iceland|||inkasso deildin": {
       "key": "football|||365scores|||iceland|||inkasso deildin",
@@ -4287,9 +4287,9 @@
       "scope": "Iceland",
       "competition": "Inkasso Deildin",
       "status": "recognized",
-      "count": 5214,
+      "count": 5215,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||iceland|||division 1": {
       "key": "football|||flashscore|||iceland|||division 1",
@@ -4298,9 +4298,9 @@
       "scope": "Iceland",
       "competition": "Division 1",
       "status": "recognized",
-      "count": 4960,
+      "count": 4961,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||ireland|||premier division": {
       "key": "football|||365scores|||ireland|||premier division",
@@ -4309,9 +4309,9 @@
       "scope": "Ireland",
       "competition": "Premier Division",
       "status": "recognized",
-      "count": 4504,
+      "count": 4505,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||ireland|||premier division": {
       "key": "football|||flashscore|||ireland|||premier division",
@@ -4320,9 +4320,9 @@
       "scope": "Ireland",
       "competition": "Premier Division",
       "status": "recognized",
-      "count": 4352,
+      "count": 4353,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||kuwait|||premier league relegation group": {
       "key": "football|||flashscore|||kuwait|||premier league relegation group",
@@ -4342,9 +4342,9 @@
       "scope": "Peru",
       "competition": "Copa de la Liga",
       "status": "ignored",
-      "count": 5415,
+      "count": 5419,
       "firstSeenAt": "2026-06-24T16:52:25.971Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||sweden|||superettan": {
       "key": "football|||365scores|||sweden|||superettan",
@@ -4408,9 +4408,9 @@
       "scope": "Finland",
       "competition": "Kakkonen Group B",
       "status": "ignored",
-      "count": 1038,
+      "count": 1042,
       "firstSeenAt": "2026-06-25T15:39:12.650Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||australia|||npl queensland": {
       "key": "football|||flashscore|||australia|||npl queensland",
@@ -4419,9 +4419,9 @@
       "scope": "Australia",
       "competition": "NPL Queensland",
       "status": "ignored",
-      "count": 848,
+      "count": 852,
       "firstSeenAt": "2026-06-25T15:39:12.650Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||chile|||primera division women": {
       "key": "football|||flashscore|||chile|||primera division women",
@@ -4441,9 +4441,9 @@
       "scope": "China",
       "competition": "Super League",
       "status": "recognized",
-      "count": 3704,
+      "count": 3705,
       "firstSeenAt": "2026-06-25T15:39:12.650Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||ireland|||division 1": {
       "key": "football|||flashscore|||ireland|||division 1",
@@ -4452,9 +4452,9 @@
       "scope": "Ireland",
       "competition": "Division 1",
       "status": "recognized",
-      "count": 1291,
+      "count": 1292,
       "firstSeenAt": "2026-06-25T15:39:12.650Z",
-      "lastSeenAt": "2026-07-06T16:05:12.840Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 south": {
       "key": "basketball|||flashscore|||australia|||nbl1 south",
@@ -4463,9 +4463,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 South",
       "status": "ignored",
-      "count": 218,
+      "count": 222,
       "firstSeenAt": "2026-06-25T15:43:42.431Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 north women": {
       "key": "basketball|||flashscore|||australia|||nbl1 north women",
@@ -4474,9 +4474,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 North Women",
       "status": "ignored",
-      "count": 218,
+      "count": 222,
       "firstSeenAt": "2026-06-25T15:43:42.431Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||indonesia|||ibl play offs": {
       "key": "basketball|||flashscore|||indonesia|||ibl play offs",
@@ -4485,9 +4485,9 @@
       "scope": "INDONESIA",
       "competition": "IBL - Play Offs",
       "status": "ignored",
-      "count": 218,
+      "count": 222,
       "firstSeenAt": "2026-06-25T15:43:42.431Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 west women": {
       "key": "basketball|||flashscore|||australia|||nbl1 west women",
@@ -4496,9 +4496,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 West Women",
       "status": "ignored",
-      "count": 218,
+      "count": 222,
       "firstSeenAt": "2026-06-25T15:43:42.431Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 west": {
       "key": "basketball|||flashscore|||australia|||nbl1 west",
@@ -4507,9 +4507,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 West",
       "status": "ignored",
-      "count": 218,
+      "count": 222,
       "firstSeenAt": "2026-06-25T15:43:42.431Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 north": {
       "key": "basketball|||flashscore|||australia|||nbl1 north",
@@ -4518,9 +4518,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 North",
       "status": "ignored",
-      "count": 218,
+      "count": 222,
       "firstSeenAt": "2026-06-25T15:43:42.431Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||365scores|||international|||international friendlies": {
       "key": "basketball|||365scores|||international|||international friendlies",
@@ -4584,9 +4584,9 @@
       "scope": "NORWAY",
       "competition": "Division 3 - Group 5",
       "status": "ignored",
-      "count": 426,
+      "count": 430,
       "firstSeenAt": "2026-06-25T15:47:48.858Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||norway|||division 2 group 2": {
       "key": "football|||flashscore|||norway|||division 2 group 2",
@@ -4595,9 +4595,9 @@
       "scope": "NORWAY",
       "competition": "Division 2 - Group 2",
       "status": "ignored",
-      "count": 426,
+      "count": 430,
       "firstSeenAt": "2026-06-25T15:47:48.858Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||northern ireland|||premiership women": {
       "key": "football|||flashscore|||northern ireland|||premiership women",
@@ -4606,9 +4606,9 @@
       "scope": "NORTHERN IRELAND",
       "competition": "Premiership Women",
       "status": "ignored",
-      "count": 426,
+      "count": 430,
       "firstSeenAt": "2026-06-25T15:47:48.858Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||norway|||division 1 women": {
       "key": "football|||flashscore|||norway|||division 1 women",
@@ -4617,9 +4617,9 @@
       "scope": "NORWAY",
       "competition": "Division 1 Women",
       "status": "ignored",
-      "count": 1357,
+      "count": 1361,
       "firstSeenAt": "2026-06-25T15:47:48.860Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||russia|||fnl 2 division b group 1": {
       "key": "football|||flashscore|||russia|||fnl 2 division b group 1",
@@ -4628,9 +4628,9 @@
       "scope": "Russia",
       "competition": "FNL 2 - Division B - Group 1",
       "status": "ignored",
-      "count": 660,
+      "count": 664,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||russia|||fnl 2 division b group 3": {
       "key": "football|||flashscore|||russia|||fnl 2 division b group 3",
@@ -4639,9 +4639,9 @@
       "scope": "Russia",
       "competition": "FNL 2 - Division B - Group 3",
       "status": "ignored",
-      "count": 1284,
+      "count": 1288,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "football|||flashscore|||brazil|||mineiro u20": {
       "key": "football|||flashscore|||brazil|||mineiro u20",
@@ -4650,9 +4650,9 @@
       "scope": "Brazil",
       "competition": "Mineiro U20",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||ireland|||national league women": {
       "key": "football|||flashscore|||ireland|||national league women",
@@ -4661,9 +4661,9 @@
       "scope": "Ireland",
       "competition": "National League Women",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||australia|||wa state league": {
       "key": "football|||flashscore|||australia|||wa state league",
@@ -4672,9 +4672,9 @@
       "scope": "AUSTRALIA",
       "competition": "WA State League",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||australia|||npl tasmania": {
       "key": "football|||flashscore|||australia|||npl tasmania",
@@ -4683,9 +4683,9 @@
       "scope": "AUSTRALIA",
       "competition": "NPL Tasmania",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||australia|||npl act": {
       "key": "football|||flashscore|||australia|||npl act",
@@ -4694,9 +4694,9 @@
       "scope": "AUSTRALIA",
       "competition": "NPL ACT",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||baiano u20 play offs": {
       "key": "football|||flashscore|||brazil|||baiano u20 play offs",
@@ -4705,9 +4705,9 @@
       "scope": "Brazil",
       "competition": "Baiano U20 - Play Offs",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||tocantinense u20 play offs": {
       "key": "football|||flashscore|||brazil|||tocantinense u20 play offs",
@@ -4716,9 +4716,9 @@
       "scope": "Brazil",
       "competition": "Tocantinense U20 - Play Offs",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||paraense a2 play offs": {
       "key": "football|||flashscore|||brazil|||paraense a2 play offs",
@@ -4727,9 +4727,9 @@
       "scope": "Brazil",
       "competition": "Paraense A2 - Play Offs",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||norway|||norway cup women": {
       "key": "football|||flashscore|||norway|||norway cup women",
@@ -4738,9 +4738,9 @@
       "scope": "Norway",
       "competition": "Norway Cup Women",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||goiano u20 play offs": {
       "key": "football|||flashscore|||brazil|||goiano u20 play offs",
@@ -4749,9 +4749,9 @@
       "scope": "Brazil",
       "competition": "Goiano U20 - Play Offs",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||gaucho u20 play offs": {
       "key": "football|||flashscore|||brazil|||gaucho u20 play offs",
@@ -4760,9 +4760,9 @@
       "scope": "Brazil",
       "competition": "Gaucho U20 - Play Offs",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||rondoniense u20": {
       "key": "football|||flashscore|||brazil|||rondoniense u20",
@@ -4771,9 +4771,9 @@
       "scope": "Brazil",
       "competition": "Rondoniense U20",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||paraibano u20 play offs": {
       "key": "football|||flashscore|||brazil|||paraibano u20 play offs",
@@ -4782,9 +4782,9 @@
       "scope": "Brazil",
       "competition": "Paraibano U20 - Play Offs",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||europe|||euro u19 women": {
       "key": "football|||flashscore|||europe|||euro u19 women",
@@ -4793,9 +4793,9 @@
       "scope": "EUROPE",
       "competition": "Euro U19 Women",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||finland|||kansallinen liiga women": {
       "key": "football|||flashscore|||finland|||kansallinen liiga women",
@@ -4804,9 +4804,9 @@
       "scope": "Finland",
       "competition": "Kansallinen Liiga Women",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||finland|||kakkonen group c": {
       "key": "football|||flashscore|||finland|||kakkonen group c",
@@ -4815,9 +4815,9 @@
       "scope": "Finland",
       "competition": "Kakkonen Group C",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||south korea|||k4 league": {
       "key": "football|||flashscore|||south korea|||k4 league",
@@ -4826,9 +4826,9 @@
       "scope": "South Korea",
       "competition": "K4 League",
       "status": "ignored",
-      "count": 928,
+      "count": 932,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||australia|||tasmania northern championship": {
       "key": "football|||flashscore|||australia|||tasmania northern championship",
@@ -4837,9 +4837,9 @@
       "scope": "AUSTRALIA",
       "competition": "Tasmania Northern Championship",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||latvia|||nakotnes liga": {
       "key": "football|||flashscore|||latvia|||nakotnes liga",
@@ -4848,9 +4848,9 @@
       "scope": "LATVIA",
       "competition": "Nakotnes liga",
       "status": "ignored",
-      "count": 398,
+      "count": 402,
       "firstSeenAt": "2026-06-25T16:33:55.146Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||argentina|||primera c": {
       "key": "football|||flashscore|||argentina|||primera c",
@@ -4859,9 +4859,9 @@
       "scope": "Argentina",
       "competition": "Primera C",
       "status": "ignored",
-      "count": 3438,
+      "count": 3442,
       "firstSeenAt": "2026-06-25T16:33:55.149Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||argentina|||primera c": {
       "key": "football|||365scores|||argentina|||primera c",
@@ -4881,9 +4881,9 @@
       "scope": "Belarus",
       "competition": "Pershaya Liga",
       "status": "recognized",
-      "count": 2661,
+      "count": 2662,
       "firstSeenAt": "2026-06-25T16:33:55.149Z",
-      "lastSeenAt": "2026-07-06T16:05:12.837Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||belarus|||pershaya liga": {
       "key": "football|||flashscore|||belarus|||pershaya liga",
@@ -4892,9 +4892,9 @@
       "scope": "Belarus",
       "competition": "Pershaya Liga",
       "status": "recognized",
-      "count": 2611,
+      "count": 2612,
       "firstSeenAt": "2026-06-25T16:33:55.149Z",
-      "lastSeenAt": "2026-07-06T16:05:12.837Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||belarus|||vysshaya liga women": {
       "key": "football|||flashscore|||belarus|||vysshaya liga women",
@@ -4903,9 +4903,9 @@
       "scope": "Belarus",
       "competition": "Vysshaya Liga Women",
       "status": "ignored",
-      "count": 1075,
+      "count": 1079,
       "firstSeenAt": "2026-06-25T16:33:55.149Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||copa fgf play offs": {
       "key": "football|||flashscore|||brazil|||copa fgf play offs",
@@ -4925,9 +4925,9 @@
       "scope": "Finland",
       "competition": "Kakkonen Group A",
       "status": "ignored",
-      "count": 896,
+      "count": 900,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||gabon|||championnat d1": {
       "key": "football|||365scores|||gabon|||championnat d1",
@@ -5013,9 +5013,9 @@
       "scope": "Norway",
       "competition": "Division 2 - Group 1",
       "status": "ignored",
-      "count": 1075,
+      "count": 1079,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||paraguay|||apf primera c": {
       "key": "football|||365scores|||paraguay|||apf primera c",
@@ -5090,9 +5090,9 @@
       "scope": "Cape Verde",
       "competition": "Campeonato Nacional - Play Offs",
       "status": "ignored",
-      "count": 896,
+      "count": 900,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||europe|||premier league crimea": {
       "key": "football|||flashscore|||europe|||premier league crimea",
@@ -5101,9 +5101,9 @@
       "scope": "Europe",
       "competition": "Premier League (Crimea)",
       "status": "ignored",
-      "count": 2032,
+      "count": 2036,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||europe|||all island cup women play offs": {
       "key": "football|||flashscore|||europe|||all island cup women play offs",
@@ -5112,9 +5112,9 @@
       "scope": "EUROPE",
       "competition": "All-Island Cup Women - Play Offs",
       "status": "ignored",
-      "count": 1704,
+      "count": 1708,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||japan|||nadeshiko league women": {
       "key": "football|||flashscore|||japan|||nadeshiko league women",
@@ -5123,9 +5123,9 @@
       "scope": "Japan",
       "competition": "Nadeshiko League Women",
       "status": "ignored",
-      "count": 1075,
+      "count": 1079,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||latvia|||1 liga women": {
       "key": "football|||flashscore|||latvia|||1 liga women",
@@ -5134,9 +5134,9 @@
       "scope": "LATVIA",
       "competition": "1. Liga Women",
       "status": "ignored",
-      "count": 1883,
+      "count": 1887,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||argentina|||reserve league apertura play offs": {
       "key": "football|||flashscore|||argentina|||reserve league apertura play offs",
@@ -5145,9 +5145,9 @@
       "scope": "Argentina",
       "competition": "Reserve League - Apertura - Play Offs",
       "status": "recognized",
-      "count": 2515,
+      "count": 2516,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.838Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||argentina|||primera b metropolitana": {
       "key": "football|||365scores|||argentina|||primera b metropolitana",
@@ -5156,9 +5156,9 @@
       "scope": "Argentina",
       "competition": "Primera B Metropolitana",
       "status": "recognized",
-      "count": 2565,
+      "count": 2566,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.838Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||argentina|||primera b": {
       "key": "football|||flashscore|||argentina|||primera b",
@@ -5166,10 +5166,10 @@
       "source": "flashscore",
       "scope": "Argentina",
       "competition": "Primera B",
-      "status": "ignored",
-      "count": 2617,
+      "status": "recognized",
+      "count": 2622,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||brazil|||copa fgf": {
       "key": "football|||365scores|||brazil|||copa fgf",
@@ -5222,9 +5222,9 @@
       "scope": "Brazil",
       "competition": "Serie D - Play Offs",
       "status": "ignored",
-      "count": 3125,
+      "count": 3129,
       "firstSeenAt": "2026-06-25T16:33:55.150Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||cameroon|||premier division": {
       "key": "football|||365scores|||cameroon|||premier division",
@@ -5376,9 +5376,9 @@
       "scope": "Paraguay",
       "competition": "Division Intermedia",
       "status": "recognized",
-      "count": 3521,
+      "count": 3522,
       "firstSeenAt": "2026-06-25T16:33:55.151Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||paraguay|||division intermedia": {
       "key": "football|||flashscore|||paraguay|||division intermedia",
@@ -5387,9 +5387,9 @@
       "scope": "Paraguay",
       "competition": "Division Intermedia",
       "status": "recognized",
-      "count": 3095,
+      "count": 3100,
       "firstSeenAt": "2026-06-25T16:33:55.151Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||russia|||supreme division women": {
       "key": "football|||365scores|||russia|||supreme division women",
@@ -5420,9 +5420,9 @@
       "scope": "South Korea",
       "competition": "K League 3",
       "status": "recognized",
-      "count": 2565,
+      "count": 2566,
       "firstSeenAt": "2026-06-25T16:33:55.151Z",
-      "lastSeenAt": "2026-07-06T16:05:12.838Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||south korea|||k3 league": {
       "key": "football|||flashscore|||south korea|||k3 league",
@@ -5431,9 +5431,9 @@
       "scope": "South Korea",
       "competition": "K3 League",
       "status": "recognized",
-      "count": 2413,
+      "count": 2414,
       "firstSeenAt": "2026-06-25T16:33:55.151Z",
-      "lastSeenAt": "2026-07-06T16:05:12.838Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||uruguay|||segunda division": {
       "key": "football|||365scores|||uruguay|||segunda division",
@@ -5618,9 +5618,9 @@
       "scope": "Brazil",
       "competition": "Carioca C",
       "status": "ignored",
-      "count": 447,
+      "count": 451,
       "firstSeenAt": "2026-06-25T19:03:12.427Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||costa rica|||primera division women": {
       "key": "football|||365scores|||costa rica|||primera division women",
@@ -5640,9 +5640,9 @@
       "scope": "LITHUANIA",
       "competition": "TOPLYGA",
       "status": "ignored",
-      "count": 793,
+      "count": 797,
       "firstSeenAt": "2026-06-25T19:03:12.427Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||russia|||fnl 2 division b group 4": {
       "key": "football|||flashscore|||russia|||fnl 2 division b group 4",
@@ -5651,9 +5651,9 @@
       "scope": "Russia",
       "competition": "FNL 2 - Division B - Group 4",
       "status": "ignored",
-      "count": 1033,
+      "count": 1037,
       "firstSeenAt": "2026-06-25T19:03:12.427Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||luxembourg|||super cup": {
       "key": "football|||flashscore|||luxembourg|||super cup",
@@ -5684,9 +5684,9 @@
       "scope": "Europe",
       "competition": "Euro U19",
       "status": "ignored",
-      "count": 1640,
+      "count": 1644,
       "firstSeenAt": "2026-06-25T19:03:12.428Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||faroe islands|||formuladeildin": {
       "key": "football|||365scores|||faroe islands|||formuladeildin",
@@ -5750,9 +5750,9 @@
       "scope": "International",
       "competition": "World Championship - Play Offs",
       "status": "recognized",
-      "count": 2048,
+      "count": 2049,
       "firstSeenAt": "2026-06-25T19:03:12.428Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||mongolia|||premier league relegation group": {
       "key": "football|||flashscore|||mongolia|||premier league relegation group",
@@ -5783,9 +5783,9 @@
       "scope": "International",
       "competition": "World Tour Ulaanbaatar 3x3",
       "status": "ignored",
-      "count": 462,
+      "count": 466,
       "firstSeenAt": "2026-06-26T14:29:11.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||international|||world championship u17": {
       "key": "basketball|||flashscore|||international|||world championship u17",
@@ -5794,9 +5794,9 @@
       "scope": "International",
       "competition": "World Championship U17",
       "status": "ignored",
-      "count": 588,
+      "count": 592,
       "firstSeenAt": "2026-06-26T14:29:11.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 east": {
       "key": "basketball|||flashscore|||australia|||nbl1 east",
@@ -5805,9 +5805,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 East",
       "status": "ignored",
-      "count": 328,
+      "count": 332,
       "firstSeenAt": "2026-06-26T14:29:11.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 east women": {
       "key": "basketball|||flashscore|||australia|||nbl1 east women",
@@ -5816,9 +5816,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 East Women",
       "status": "ignored",
-      "count": 328,
+      "count": 332,
       "firstSeenAt": "2026-06-26T14:29:11.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 central": {
       "key": "basketball|||flashscore|||australia|||nbl1 central",
@@ -5827,9 +5827,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 Central",
       "status": "ignored",
-      "count": 328,
+      "count": 332,
       "firstSeenAt": "2026-06-26T14:29:11.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||australia|||nbl1 central women": {
       "key": "basketball|||flashscore|||australia|||nbl1 central women",
@@ -5838,9 +5838,9 @@
       "scope": "AUSTRALIA",
       "competition": "NBL1 Central Women",
       "status": "ignored",
-      "count": 328,
+      "count": 332,
       "firstSeenAt": "2026-06-26T14:29:11.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||usa|||big3 3x3": {
       "key": "basketball|||flashscore|||usa|||big3 3x3",
@@ -5849,9 +5849,9 @@
       "scope": "USA",
       "competition": "BIG3 (3x3)",
       "status": "ignored",
-      "count": 328,
+      "count": 332,
       "firstSeenAt": "2026-06-26T14:29:11.185Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||365scores|||chile|||lnb 2": {
       "key": "basketball|||365scores|||chile|||lnb 2",
@@ -5981,9 +5981,9 @@
       "scope": "NEW ZEALAND",
       "competition": "NZIHL",
       "status": "ignored",
-      "count": 144,
+      "count": 148,
       "firstSeenAt": "2026-06-26T16:26:50.710Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||international|||club friendly women": {
       "key": "football|||flashscore|||international|||club friendly women",
@@ -6014,9 +6014,9 @@
       "scope": "USA",
       "competition": "BIG3 (3x3)",
       "status": "ignored",
-      "count": 136,
+      "count": 140,
       "firstSeenAt": "2026-06-26T17:38:03.822Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "american_football_usa|||flashscore|||usa|||af1": {
       "key": "american_football_usa|||flashscore|||usa|||af1",
@@ -6025,9 +6025,9 @@
       "scope": "USA",
       "competition": "AF1",
       "status": "ignored",
-      "count": 136,
+      "count": 140,
       "firstSeenAt": "2026-06-26T17:38:03.822Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||international|||friendly international": {
       "key": "basketball|||flashscore|||international|||friendly international",
@@ -6069,9 +6069,9 @@
       "scope": "Malawi",
       "competition": "Super League",
       "status": "ignored",
-      "count": 255,
+      "count": 259,
       "firstSeenAt": "2026-06-27T20:31:45.952Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||quirguistao|||premier liga": {
       "key": "football|||flashscore|||quirguistao|||premier liga",
@@ -6080,9 +6080,9 @@
       "scope": "Quirguistão",
       "competition": "Premier Liga",
       "status": "ignored",
-      "count": 127,
+      "count": 131,
       "firstSeenAt": "2026-06-27T20:34:59.379Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||international|||world tour ulaanbaatar 3x3 play offs": {
       "key": "basketball|||flashscore|||international|||world tour ulaanbaatar 3x3 play offs",
@@ -6113,9 +6113,9 @@
       "scope": "Challenger - Singles",
       "competition": "Troyes (France) - Qualification, clay",
       "status": "ignored",
-      "count": 206,
+      "count": 210,
       "firstSeenAt": "2026-06-27T20:44:54.999Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "tennis|||365scores|||challenger singles|||brasov": {
       "key": "tennis|||365scores|||challenger singles|||brasov",
@@ -6201,9 +6201,9 @@
       "scope": "AUSTRALASIA",
       "competition": "World Cup - Qualification - First round",
       "status": "ignored",
-      "count": 210,
+      "count": 214,
       "firstSeenAt": "2026-06-27T20:51:01.153Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||finland|||suomen cup women": {
       "key": "football|||flashscore|||finland|||suomen cup women",
@@ -6212,9 +6212,9 @@
       "scope": "Finland",
       "competition": "Suomen Cup Women",
       "status": "ignored",
-      "count": 112,
+      "count": 116,
       "firstSeenAt": "2026-06-27T21:05:36.883Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||brazil|||piauiense u20": {
       "key": "football|||flashscore|||brazil|||piauiense u20",
@@ -6223,9 +6223,9 @@
       "scope": "Brazil",
       "competition": "Piauiense U20",
       "status": "ignored",
-      "count": 112,
+      "count": 116,
       "firstSeenAt": "2026-06-27T21:05:36.883Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||ecuador|||liga pro": {
       "key": "football|||365scores|||ecuador|||liga pro",
@@ -6234,9 +6234,9 @@
       "scope": "Ecuador",
       "competition": "Liga Pro",
       "status": "recognized",
-      "count": 509,
+      "count": 510,
       "firstSeenAt": "2026-06-27T21:05:36.883Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||ecuador|||liga pro": {
       "key": "football|||flashscore|||ecuador|||liga pro",
@@ -6245,9 +6245,9 @@
       "scope": "Ecuador",
       "competition": "Liga Pro",
       "status": "recognized",
-      "count": 567,
+      "count": 568,
       "firstSeenAt": "2026-06-27T21:05:36.883Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||estonia|||estonian cup": {
       "key": "football|||365scores|||estonia|||estonian cup",
@@ -6883,9 +6883,9 @@
       "scope": "USA",
       "competition": "NWSL Women",
       "status": "recognized",
-      "count": 96,
+      "count": 97,
       "firstSeenAt": "2026-07-02T14:11:26.233Z",
-      "lastSeenAt": "2026-07-06T16:05:12.807Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||australia|||victoria premier league": {
       "key": "football|||flashscore|||australia|||victoria premier league",
@@ -6894,9 +6894,9 @@
       "scope": "AUSTRALIA",
       "competition": "Victoria Premier League",
       "status": "recognized",
-      "count": 96,
+      "count": 97,
       "firstSeenAt": "2026-07-02T14:11:26.233Z",
-      "lastSeenAt": "2026-07-06T16:05:12.807Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||flashscore|||new zealand|||chatham cup": {
       "key": "football|||flashscore|||new zealand|||chatham cup",
@@ -6938,9 +6938,9 @@
       "scope": "Brasil",
       "competition": "Cearense U20",
       "status": "ignored",
-      "count": 28,
+      "count": 32,
       "firstSeenAt": "2026-07-02T16:38:55.336Z",
-      "lastSeenAt": "2026-07-06T16:05:12.842Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "football|||365scores|||usa|||nwsl": {
       "key": "football|||365scores|||usa|||nwsl",
@@ -6949,9 +6949,9 @@
       "scope": "USA",
       "competition": "NWSL",
       "status": "recognized",
-      "count": 36,
+      "count": 37,
       "firstSeenAt": "2026-07-02T16:54:19.801Z",
-      "lastSeenAt": "2026-07-06T16:05:12.806Z"
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     },
     "basketball|||flashscore|||world|||world championship u17 9th 16th places": {
       "key": "basketball|||flashscore|||world|||world championship u17 9th 16th places",
@@ -6971,9 +6971,9 @@
       "scope": "USA",
       "competition": "NBA Summer League",
       "status": "recognized",
-      "count": 75,
+      "count": 78,
       "firstSeenAt": "2026-07-02T16:56:35.642Z",
-      "lastSeenAt": "2026-07-06T16:05:12.806Z"
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
     },
     "basketball|||flashscore|||usa|||california classic": {
       "key": "basketball|||flashscore|||usa|||california classic",
@@ -7447,6 +7447,149 @@
       "count": 1,
       "firstSeenAt": "2026-07-06T16:05:12.842Z",
       "lastSeenAt": "2026-07-06T16:05:12.842Z"
+    },
+    "basketball|||365scores|||america|||americup": {
+      "key": "basketball|||365scores|||america|||americup",
+      "sport": "basketball",
+      "source": "365scores",
+      "scope": "America",
+      "competition": "AmeriCup",
+      "status": "recognized",
+      "count": 3,
+      "firstSeenAt": "2026-07-08T10:44:28.788Z",
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
+    },
+    "basketball|||flashscore|||europe|||eurobasket u20 b": {
+      "key": "basketball|||flashscore|||europe|||eurobasket u20 b",
+      "sport": "basketball",
+      "source": "flashscore",
+      "scope": "EUROPE",
+      "competition": "EuroBasket U20 B",
+      "status": "recognized",
+      "count": 3,
+      "firstSeenAt": "2026-07-08T10:44:28.788Z",
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
+    },
+    "basketball|||flashscore|||lebanon|||division 1 play offs": {
+      "key": "basketball|||flashscore|||lebanon|||division 1 play offs",
+      "sport": "basketball",
+      "source": "flashscore",
+      "scope": "LEBANON",
+      "competition": "Division 1 - Play Offs",
+      "status": "recognized",
+      "count": 3,
+      "firstSeenAt": "2026-07-08T10:44:28.788Z",
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
+    },
+    "basketball|||flashscore|||philippines|||pba governors cup": {
+      "key": "basketball|||flashscore|||philippines|||pba governors cup",
+      "sport": "basketball",
+      "source": "flashscore",
+      "scope": "PHILIPPINES",
+      "competition": "PBA Governors' Cup",
+      "status": "recognized",
+      "count": 3,
+      "firstSeenAt": "2026-07-08T10:44:28.788Z",
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
+    },
+    "basketball|||flashscore|||puerto rico|||bsn play offs": {
+      "key": "basketball|||flashscore|||puerto rico|||bsn play offs",
+      "sport": "basketball",
+      "source": "flashscore",
+      "scope": "Puerto Rico",
+      "competition": "BSN - Play Offs",
+      "status": "recognized",
+      "count": 3,
+      "firstSeenAt": "2026-07-08T10:44:28.788Z",
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
+    },
+    "basketball|||flashscore|||usa|||nba las vegas summer league": {
+      "key": "basketball|||flashscore|||usa|||nba las vegas summer league",
+      "sport": "basketball",
+      "source": "flashscore",
+      "scope": "USA",
+      "competition": "NBA Las Vegas Summer League",
+      "status": "recognized",
+      "count": 3,
+      "firstSeenAt": "2026-07-08T10:44:28.788Z",
+      "lastSeenAt": "2026-07-08T10:45:30.183Z"
+    },
+    "football|||flashscore|||latvia|||latvian cup": {
+      "key": "football|||flashscore|||latvia|||latvian cup",
+      "sport": "football",
+      "source": "flashscore",
+      "scope": "Latvia",
+      "competition": "Latvian Cup",
+      "status": "recognized",
+      "count": 1,
+      "firstSeenAt": "2026-07-08T10:45:30.184Z",
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
+    },
+    "football|||365scores|||latvia|||latvian cup": {
+      "key": "football|||365scores|||latvia|||latvian cup",
+      "sport": "football",
+      "source": "365scores",
+      "scope": "Latvia",
+      "competition": "Latvian Cup",
+      "status": "recognized",
+      "count": 1,
+      "firstSeenAt": "2026-07-08T10:45:30.184Z",
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
+    },
+    "football|||flashscore|||peru|||copa de la liga play offs": {
+      "key": "football|||flashscore|||peru|||copa de la liga play offs",
+      "sport": "football",
+      "source": "flashscore",
+      "scope": "Peru",
+      "competition": "Copa de la Liga - Play Offs",
+      "status": "recognized",
+      "count": 1,
+      "firstSeenAt": "2026-07-08T10:45:30.184Z",
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
+    },
+    "football|||365scores|||south korea|||k league 2": {
+      "key": "football|||365scores|||south korea|||k league 2",
+      "sport": "football",
+      "source": "365scores",
+      "scope": "South Korea",
+      "competition": "K League 2",
+      "status": "recognized",
+      "count": 1,
+      "firstSeenAt": "2026-07-08T10:45:30.184Z",
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
+    },
+    "football|||flashscore|||south korea|||k league 2": {
+      "key": "football|||flashscore|||south korea|||k league 2",
+      "sport": "football",
+      "source": "flashscore",
+      "scope": "South Korea",
+      "competition": "K League 2",
+      "status": "recognized",
+      "count": 1,
+      "firstSeenAt": "2026-07-08T10:45:30.184Z",
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
+    },
+    "football|||365scores|||uruguay|||uruguayan championship": {
+      "key": "football|||365scores|||uruguay|||uruguayan championship",
+      "sport": "football",
+      "source": "365scores",
+      "scope": "Uruguay",
+      "competition": "Uruguayan Championship",
+      "status": "recognized",
+      "count": 1,
+      "firstSeenAt": "2026-07-08T10:45:30.184Z",
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
+    },
+    "football|||flashscore|||uruguay|||liga auf uruguaya torneo intermedio": {
+      "key": "football|||flashscore|||uruguay|||liga auf uruguaya torneo intermedio",
+      "sport": "football",
+      "source": "flashscore",
+      "scope": "Uruguay",
+      "competition": "Liga AUF Uruguaya - Torneo Intermedio",
+      "status": "recognized",
+      "count": 1,
+      "firstSeenAt": "2026-07-08T10:45:30.184Z",
+      "lastSeenAt": "2026-07-08T10:45:30.184Z"
     }
   }
 }
