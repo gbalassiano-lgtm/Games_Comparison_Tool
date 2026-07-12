@@ -94,6 +94,12 @@ const i18n = {
     differentTerm: 'Not same',
     ignoreTerm: 'Ignore',
     dontIgnoreTerm: "Don't ignore",
+    ignoreCompetition: 'Ignore competition',
+    unignoreCompetition: "Don't ignore competition",
+    competitionIgnoredBadge: 'Ignored',
+    competitionIgnoreMenu: 'Competition actions',
+    competitionIgnoredFeedback: 'Competition ignored for future compares.',
+    competitionUnignoredFeedback: 'Competition ignore removed.',
     undecidedTerm: 'Undecided',
     missing365TermType: 'Missing on 365',
     missingFlashTermType: 'Missing on Flash',
@@ -307,6 +313,12 @@ const i18n = {
     differentTerm: 'Não é igual',
     ignoreTerm: 'Ignorar',
     dontIgnoreTerm: 'Não ignorar',
+    ignoreCompetition: 'Ignorar competição',
+    unignoreCompetition: 'Não ignorar competição',
+    competitionIgnoredBadge: 'Ignorada',
+    competitionIgnoreMenu: 'Ações da competição',
+    competitionIgnoredFeedback: 'Competição ignorada nas próximas comparações.',
+    competitionUnignoredFeedback: 'Ignorar removido da competição.',
     undecidedTerm: 'Pendente',
     missing365TermType: 'Ausente na 365',
     missingFlashTermType: 'Ausente no Flash',
@@ -1146,6 +1158,32 @@ function renderAsanaTaskStatus(task = {}) {
   return { statusClass, statusLabel };
 }
 
+function findReportForAsanaTask(task = {}) {
+  return state.history.find(record =>
+    record?.status === 'completed' && record?.result && (
+      (task.gid && String(record.asanaTaskGid || '') === String(task.gid)) ||
+      (task.sportKey && record.sport === task.sportKey && record.date === task.suggestedScanDate)
+    )
+  ) || null;
+}
+
+function renderAsanaReportButton(task = {}) {
+  const scan = findReportForAsanaTask(task);
+  if (!scan) return '';
+  return `<button type="button" class="secondary asana-report-button" data-asana-view-report="${scan.id}">${t('viewReport')}</button>`;
+}
+
+function renderAsanaTaskActions(task = {}, options = {}) {
+  const { showScanButton = true } = options;
+  const reportButton = renderAsanaReportButton(task);
+  const scanDisabled = task.completed || !task.mapped;
+  const scanButton = showScanButton
+    ? `<button type="button" class="primary asana-scan-button" data-asana-scan="${task.gid}" ${scanDisabled ? 'disabled' : ''}>${t('scanTask')}</button>`
+    : '';
+  if (!reportButton && !scanButton) return '';
+  return `<div class="asana-task-actions">${reportButton}${scanButton}</div>`;
+}
+
 function getScannableAsanaTasks(tasks = []) {
   return (tasks || []).filter(task => task.mapped && !task.completed);
 }
@@ -1221,13 +1259,10 @@ function renderAsanaTaskRow(task = {}, options = {}) {
   const { showScanButton = true } = options;
   const { statusClass, statusLabel } = renderAsanaTaskStatus(task);
   const scanDate = task.suggestedScanDate || '';
-  const scanDisabled = task.completed || !task.mapped;
   const asanaLink = task.permalink
     ? `<a class="asana-task-link" href="${task.permalink}" target="_blank" rel="noopener noreferrer">${t('openInAsana')}</a>`
     : '';
-  const scanButton = showScanButton
-    ? `<button type="button" class="primary asana-scan-button" data-asana-scan="${task.gid}" ${scanDisabled ? 'disabled' : ''}>${t('scanTask')}</button>`
-    : '';
+  const actions = renderAsanaTaskActions(task, { showScanButton });
 
   return `
     <div class="asana-task-row ${statusClass}" data-asana-task-gid="${task.gid}">
@@ -1240,7 +1275,7 @@ function renderAsanaTaskRow(task = {}, options = {}) {
           ${asanaLink}
         </div>
       </div>
-      ${scanButton}
+      ${actions}
     </div>
   `;
 }
@@ -1249,10 +1284,10 @@ function renderAsanaSingleTaskCard(task = {}) {
   const { statusClass, statusLabel } = renderAsanaTaskStatus(task);
   const assignee = renderAssignee(task);
   const scanDate = task.suggestedScanDate || '';
-  const scanDisabled = task.completed || !task.mapped;
   const asanaLink = task.permalink
     ? `<a class="asana-task-link" href="${task.permalink}" target="_blank" rel="noopener noreferrer">${t('openInAsana')}</a>`
     : '';
+  const actions = renderAsanaTaskActions(task);
 
   return `
     <article class="asana-task-card ${statusClass}" data-asana-task-gid="${task.gid}">
@@ -1266,7 +1301,7 @@ function renderAsanaSingleTaskCard(task = {}) {
         ${asanaUsSportsHintHtml(task)}
         ${asanaLink}
       </div>
-      <button type="button" class="primary asana-scan-button" data-asana-scan="${task.gid}" ${scanDisabled ? 'disabled' : ''}>${t('scanTask')}</button>
+      ${actions}
     </article>
   `;
 }
@@ -1560,6 +1595,13 @@ function setupAsanaPanel() {
   });
 
   $('asanaTasksList')?.addEventListener('click', event => {
+    const reportButton = event.target.closest('[data-asana-view-report]');
+    if (reportButton) {
+      const scanId = Number(reportButton.dataset.asanaViewReport);
+      if (scanId) selectHistory(scanId);
+      return;
+    }
+
     const groupButton = event.target.closest('[data-asana-scan-all]');
     if (groupButton && !groupButton.disabled) {
       const gids = String(groupButton.dataset.asanaScanAll || '').split(',').filter(Boolean);
@@ -2314,6 +2356,22 @@ async function refreshHistory() {
   const data = await api('/api/history');
   state.history = data.history || [];
   renderHistoryList();
+  renderAsanaTasks();
+}
+
+function openReportFromUrl() {
+  const scanId = Number(new URLSearchParams(location.search).get('scanId'));
+  if (!scanId) return;
+
+  const scan = state.history.find(item => item.id === scanId);
+  if (!scan?.result) return;
+
+  openReport(scan, { force: true });
+
+  const url = new URL(location.href);
+  url.searchParams.delete('scanId');
+  const next = `${url.pathname}${url.search}${url.hash}`;
+  history.replaceState({}, '', next || url.pathname);
 }
 
 async function load365CompetitionCatalogs() {
@@ -2392,8 +2450,8 @@ function currentReportRows(scan) {
 function metricCardsHtml(scan, summaryOverride = null) {
   const summary = { ...(summaryOverride || normalizedSummary(scan)) };
   const visibleRows = currentReportRows(scan);
-  const visibleProblematic = filterReportRows(visibleRows.problematic || [], scan);
-  const visibleMatched = filterReportRows(visibleRows.matched || [], scan);
+  const visibleProblematic = filterReportRows(visibleRows.problematic || [], scan, { includeIgnored: false });
+  const visibleMatched = filterReportRows(visibleRows.matched || [], scan, { includeIgnored: false });
   const visibleTimeDiff = visibleProblematic.filter(row => row.type === 'timeDiff');
   const totalTarget = isMultiSportReport(scan) ? 'all-sports' : '';
   summary.only365 = visibleProblematic.filter(row => row.type === 'only365').length;
@@ -2700,6 +2758,24 @@ function ruleCompetitionMatches(ruleCompetition = '', rowCompetition = '') {
   return rowKey.startsWith(`${ruleKey} `);
 }
 
+function reportIgnoreSideForTone(tone = '') {
+  if (tone === 'missing-365') return 'flash';
+  if (tone === 'missing-flash') return '365';
+  return '';
+}
+
+function findIgnoreRuleIndex(sport, side, scope, competition) {
+  const sportRules = state.competitionRules[sport] || {};
+  const rules = side === '365' ? (sportRules.ignore365Only || []) : (sportRules.ignoreFlashOnly || []);
+  const rowScope = normalizeRuleScope(scope || '');
+  const rowCompetition = competition || '';
+  return rules.findIndex(rule => {
+    const ruleScope = normalizeRuleScope(rule.scope || '');
+    const scopeMatches = ruleScope === '*' || ruleScope === rowScope;
+    return scopeMatches && ruleCompetitionMatches(rule.competition || '', rowCompetition);
+  });
+}
+
 function rowIgnoredByRule(row, scan) {
   const rowSport = row.sport || scan?.sport || '';
   const sportRules = state.competitionRules[rowSport] || {};
@@ -2904,15 +2980,16 @@ function reportSummaryForFilter(scan) {
   } : normalizedSummary(scan);
 }
 
-function filterReportRows(rows, scan) {
+function filterReportRows(rows, scan, options = {}) {
+  const includeIgnored = options.includeIgnored === true;
   let nextRows = rows || [];
   if (isMultiSportReport(scan) && state.reportSportFilter !== 'all') {
     nextRows = nextRows.filter(row => row.sport === state.reportSportFilter);
   }
   return nextRows.filter(row =>
     !rowHasPlaceholderTeams(row) &&
-    !rowIgnoredByRule(row, scan) &&
-    !isOutside365Catalog(row, scan)
+    !isOutside365Catalog(row, scan) &&
+    (includeIgnored || !rowIgnoredByRule(row, scan))
   );
 }
 
@@ -3010,6 +3087,38 @@ function renderSourceHeader(group, side, tone) {
   `;
 }
 
+function competitionIgnoreMenuHtml(group, tone = '', scan = null) {
+  const side = reportIgnoreSideForTone(tone);
+  if (!side) return '';
+  const sample = group?.rows?.[0];
+  if (!sample) return '';
+
+  const sport = sample.sport || scan?.sport || '';
+  if (!sport || sport === 'all' || sport === 'usa_all' || sport === 'latam_all' || sport === 'israel_all') {
+    return '';
+  }
+
+  const scope = cleanReportCountry(sample.country || group.country || '');
+  const competition = side === '365'
+    ? (group.competition365 || sample.competition365 || sample.competition || '')
+    : (group.competitionFlash || sample.competitionFlash || sample.competition || '');
+  if (!scope || !competition) return '';
+
+  return `
+    <span class="competition-action-menu" data-competition-menu>
+      <button type="button" class="competition-menu-toggle" data-competition-menu-toggle aria-label="${escapeHtml(t('competitionIgnoreMenu'))}" title="${escapeHtml(t('competitionIgnoreMenu'))}">⋯</button>
+      <span class="competition-menu-dropdown" hidden>
+        <button type="button"
+          data-competition-ignore-action="ignore"
+          data-sport="${escapeHtml(sport)}"
+          data-side="${side}"
+          data-scope="${escapeHtml(scope)}"
+          data-competition="${escapeHtml(competition)}">${escapeHtml(t('ignoreCompetition'))}</button>
+      </span>
+    </span>
+  `;
+}
+
 function groupedReportRowsHtml(rows, tone = 'neutral', scan = null) {
   const countries = new Map();
   for (const row of sortedReportRows(rows)) {
@@ -3061,7 +3170,10 @@ function groupedReportRowsHtml(rows, tone = 'neutral', scan = null) {
                     ${sourceText(group.competition)}
                     ${scan ? catalogBadgeHtml(group.rows[0], scan) : ''}
                   </span>
-                  <strong>${group.rows.length}</strong>
+                  <span class="competition-summary-meta">
+                    ${competitionIgnoreMenuHtml(group, tone, scan)}
+                    <strong>${group.rows.length}</strong>
+                  </span>
                 </summary>
                 <div class="comparison-table">
                   <div class="comparison-header">
@@ -3191,8 +3303,8 @@ function renderReport(scan) {
     if (!exists) state.reportSportFilter = 'all';
   }
   const { problematic, matched } = currentReportRows(scan);
-  const filteredProblematic = filterReportRows(problematic, scan);
-  const filteredMatched = filterReportRows(matched, scan);
+  const filteredProblematic = filterReportRows(problematic, scan, { includeIgnored: false });
+  const filteredMatched = filterReportRows(matched, scan, { includeIgnored: false });
   const missing365 = filteredProblematic.filter(row => row.type === 'onlyFlash');
   const missingFlash = filteredProblematic.filter(row => row.type === 'only365');
   const timeDiffRows = filteredProblematic.filter(row => row.type === 'timeDiff');
@@ -3633,6 +3745,87 @@ async function addIgnoredSuggestion(button) {
   }
 }
 
+function resetCompetitionMenuDropdown(dropdown) {
+  if (!dropdown) return;
+  dropdown.hidden = true;
+  dropdown.style.position = '';
+  dropdown.style.top = '';
+  dropdown.style.right = '';
+  dropdown.style.left = '';
+  dropdown.style.bottom = '';
+}
+
+function positionCompetitionMenuDropdown(toggle, dropdown) {
+  if (!toggle || !dropdown) return;
+  const rect = toggle.getBoundingClientRect();
+  const menuWidth = Math.max(dropdown.offsetWidth || 210, 210);
+  const gap = 4;
+  let left = rect.right - menuWidth;
+  left = Math.max(8, Math.min(left, window.innerWidth - menuWidth - 8));
+  let top = rect.bottom + gap;
+  dropdown.style.position = 'fixed';
+  dropdown.style.right = 'auto';
+  dropdown.style.left = `${Math.round(left)}px`;
+  dropdown.style.top = `${Math.round(top)}px`;
+  dropdown.style.bottom = 'auto';
+
+  const menuHeight = dropdown.offsetHeight || 40;
+  if (top + menuHeight > window.innerHeight - 8) {
+    top = Math.max(8, rect.top - menuHeight - gap);
+    dropdown.style.top = `${Math.round(top)}px`;
+  }
+}
+
+function closeCompetitionMenus(exceptMenu = null) {
+  document.querySelectorAll('[data-competition-menu]').forEach(menu => {
+    if (exceptMenu && menu === exceptMenu) return;
+    const dropdown = menu.querySelector('.competition-menu-dropdown');
+    resetCompetitionMenuDropdown(dropdown);
+    menu.classList.remove('open');
+  });
+}
+
+async function toggleReportCompetitionIgnore(button) {
+  const sport = button.dataset.sport;
+  const side = button.dataset.side;
+  const scope = button.dataset.scope;
+  const competition = button.dataset.competition;
+  const action = button.dataset.competitionIgnoreAction;
+  if (!sport || !side || !scope || !competition || !action) return;
+
+  try {
+    let rules;
+    if (action === 'unignore') {
+      const index = findIgnoreRuleIndex(sport, side, scope, competition);
+      if (index < 0) {
+        closeCompetitionMenus();
+        renderReport(state.currentScan);
+        return;
+      }
+      rules = await api('/api/rules', {
+        method: 'DELETE',
+        body: JSON.stringify({ sport, side, index, scope, competition }),
+      });
+    } else {
+      rules = await api('/api/rules', {
+        method: 'POST',
+        body: JSON.stringify({ sport, side, scope, competition }),
+      });
+    }
+
+    state.competitionRules = rules || {};
+    closeCompetitionMenus();
+    await renderRules();
+    renderReport(state.currentScan);
+    const feedback = action === 'unignore'
+      ? t('competitionUnignoredFeedback')
+      : t('competitionIgnoredFeedback');
+    setStatus('completed', feedback);
+  } catch (e) {
+    alert(e.message);
+  }
+}
+
 function reportGenStepIds(hasTermDecisions) {
   const steps = ['save', 'xlsx', 'finish'];
   if (hasTermDecisions) steps.splice(1, 0, 'compare');
@@ -3766,6 +3959,7 @@ async function generateReport() {
     state.dismissedTermsScanId = null;
     updateTermsTabVisibility();
     renderHistoryList();
+    renderAsanaTasks();
     renderScan(data.scan);
     openReport(data.scan, { force: true });
     updateFinishAsanaTaskButton(data.scan);
@@ -4228,7 +4422,42 @@ async function init() {
     if (!(details instanceof HTMLDetailsElement)) return;
     syncReportOpenKey(details);
   }, true);
+  $('reportContent').addEventListener('scroll', () => closeCompetitionMenus(), { passive: true });
+  $('reportOverlay')?.addEventListener('scroll', () => closeCompetitionMenus(), { passive: true });
+  window.addEventListener('resize', () => closeCompetitionMenus());
   $('reportContent').addEventListener('click', event => {
+    const menuToggle = event.target.closest('[data-competition-menu-toggle]');
+    if (menuToggle) {
+      event.preventDefault();
+      event.stopPropagation();
+      const menu = menuToggle.closest('[data-competition-menu]');
+      const dropdown = menu?.querySelector('.competition-menu-dropdown');
+      if (!menu || !dropdown) return;
+      const willOpen = dropdown.hidden;
+      closeCompetitionMenus(menu);
+      if (willOpen) {
+        dropdown.hidden = false;
+        menu.classList.add('open');
+        positionCompetitionMenuDropdown(menuToggle, dropdown);
+      } else {
+        resetCompetitionMenuDropdown(dropdown);
+        menu.classList.remove('open');
+      }
+      return;
+    }
+
+    const ignoreAction = event.target.closest('[data-competition-ignore-action]');
+    if (ignoreAction) {
+      event.preventDefault();
+      event.stopPropagation();
+      toggleReportCompetitionIgnore(ignoreAction).catch(e => alert(e.message));
+      return;
+    }
+
+    if (!event.target.closest('[data-competition-menu]')) {
+      closeCompetitionMenus();
+    }
+
     const metricCard = event.target.closest('[data-report-card-target]');
     if (metricCard) {
       const target = metricCard.dataset.reportCardTarget;
@@ -4282,6 +4511,7 @@ async function init() {
   await load365CompetitionCatalogs();
   await renderRules();
   await refreshHistory();
+  openReportFromUrl();
   await pollScan();
 }
 

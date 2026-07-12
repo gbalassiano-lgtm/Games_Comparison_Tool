@@ -343,6 +343,7 @@ async function scrapeFlashscoreTennisOnce(options = {}) {
     await optimizePageForScraping(page);
     await runFlashscorePipeline(page, targetDate, 'tennis', {
       url: 'https://www.flashscore.com/tennis/',
+      minMatchesAfterScroll: 15,
     });
 
     const totalMatchNodes = await page.locator('div.event__match').count();

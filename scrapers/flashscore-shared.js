@@ -404,10 +404,18 @@ async function ensureOnSportPage(page, expectedSlug, targetDate, options = {}) {
   return assertSportPage(page, expectedSlug);
 }
 
-async function recoverSportPageAfterScroll(page, expectedSlug, targetDate, label = 'page') {
-  if (isSportPageUrl(page.url(), expectedSlug)) return;
+async function recoverSportPageAfterScroll(page, expectedSlug, targetDate, label = 'page', options = {}) {
+  const minMatches = Number(options.minMatches || 0);
+  const visibleMatches = await countVisibleMatches(page);
+  const onWrongPage = !isSportPageUrl(page.url(), expectedSlug);
+  const tooFewMatches = minMatches > 0 && visibleMatches < minMatches;
 
-  logStep(`WARN: redirect após scroll (${page.url()}) — recuperando ${expectedSlug}...`);
+  if (!onWrongPage && !tooFewMatches) return;
+
+  const reason = onWrongPage
+    ? `redirect após scroll (${page.url()})`
+    : `apenas ${visibleMatches} jogos visíveis (mínimo ${minMatches})`;
+  logStep(`WARN: ${reason} — recuperando ${expectedSlug}...`);
   await openSportPage(page, expectedSlug, targetDate);
   if (!isSportPageUrl(page.url(), expectedSlug)) {
     throw new Error(`Flashscore redirecionou para esporte errado: ${page.url()} (esperado: ${expectedSlug})`);
@@ -981,7 +989,9 @@ async function runFlashscorePipeline(page, targetDate, label, steps = {}) {
     expandOptions: steps.expandOptions,
   });
   if (afterScroll) await afterScroll(page);
-  await recoverSportPageAfterScroll(page, sportSlug, targetDate, label);
+  await recoverSportPageAfterScroll(page, sportSlug, targetDate, label, {
+    minMatches: steps.minMatchesAfterScroll || 0,
+  });
   logStep('Extração da página concluída.');
 }
 

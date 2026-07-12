@@ -669,6 +669,7 @@ function scanHistoryName(scan) {
 }
 
 function saveScanHistory(scan) {
+  const startedAt = Date.now();
   const history = loadHistory();
   const record = sanitizeScanTerms({
     ...scan,
@@ -676,7 +677,12 @@ function saveScanHistory(scan) {
     logs: (scan.logs || []).slice(-120),
   });
   const next = [record, ...history.filter(item => item.id !== record.id)].slice(0, 100);
-  writeJson(HISTORY_FILE, next);
+  // Compact JSON: history can be multi-MB; pretty-print dominated finalize latency.
+  writeJson(HISTORY_FILE, next, { pretty: false });
+  if (scan?.logs) {
+    appendLog(scan, `History saved in ${Date.now() - startedAt}ms`);
+  }
+  return next;
 }
 
 function renameHistoryRecord(id, historyName) {
@@ -694,7 +700,7 @@ function renameHistoryRecord(id, historyName) {
   };
 
   if (lastScan?.id === history[index].id) lastScan = history[index];
-  writeJson(HISTORY_FILE, history);
+  writeJson(HISTORY_FILE, history, { pretty: false });
   return history;
 }
 
@@ -704,12 +710,12 @@ function deleteHistoryRecord(id) {
   if (next.length === history.length) throw new Error('History record was not found.');
 
   if (lastScan?.id === Number(id)) lastScan = next[0] || null;
-  writeJson(HISTORY_FILE, next);
+  writeJson(HISTORY_FILE, next, { pretty: false });
   return next;
 }
 
 function sendJson(res, status, data) {
-  const body = JSON.stringify(data, null, 2);
+  const body = JSON.stringify(data);
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
     'Content-Length': Buffer.byteLength(body),
@@ -744,9 +750,53 @@ function readJsonSafe(file, fallback) {
   }
 }
 
-function writeJson(file, data) {
-  fs.mkdirSync(path.dirname(file), { recursive: true });
-  fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf-8');
+function sleepSync(ms) {
+  const deadline = Date.now() + ms;
+  while (Date.now() < deadline) {}
+}
+
+function writeJson(file, data, options = {}) {
+  const dir = path.dirname(file);
+  fs.mkdirSync(dir, { recursive: true });
+  const pretty = options.pretty !== false;
+  const payload = pretty ? `${JSON.stringify(data, null, 2)}\n` : `${JSON.stringify(data)}\n`;
+  const tempFile = path.join(dir, `.${path.basename(file)}.${process.pid}.${Date.now()}.tmp`);
+  const maxAttempts = 5;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      fs.writeFileSync(tempFile, payload, 'utf-8');
+      if (process.platform === 'win32' && fs.existsSync(file)) {
+        const backup = `${file}.bak`;
+        try {
+          if (fs.existsSync(backup)) fs.unlinkSync(backup);
+        } catch {}
+        fs.renameSync(file, backup);
+        try {
+          fs.renameSync(tempFile, file);
+          try {
+            fs.unlinkSync(backup);
+          } catch {}
+        } catch (error) {
+          try {
+            fs.renameSync(backup, file);
+          } catch {}
+          throw error;
+        }
+      } else {
+        fs.renameSync(tempFile, file);
+      }
+      return;
+    } catch (error) {
+      try {
+        if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
+      } catch {}
+      if (attempt === maxAttempts) {
+        throw new Error(`Failed to save ${path.basename(file)}: ${error.message}`);
+      }
+      sleepSync(40 * attempt);
+    }
+  }
 }
 
 function countGames(nested) {
@@ -780,8 +830,8 @@ function summarizeResults(raw365, rawFlash, allResults) {
     nameDiff: 0,
   });
 
-  summary.total365 = summary.matched + summary.only365;
-  summary.totalFlash = summary.matched + summary.onlyFlash;
+  summary.total365 = countGames(raw365);
+  summary.totalFlash = countGames(rawFlash);
   return summary;
 }
 
@@ -1261,7 +1311,7 @@ function readCompetitionRegistry() {
 }
 
 function writeCompetitionRegistry(registry) {
-  writeJson(COMPETITION_REGISTRY_FILE, registry);
+  writeJson(COMPETITION_REGISTRY_FILE, registry, { pretty: false });
 }
 
 function upsertCompetitionRegistryEntry(registry, item, status = 'recognized') {
@@ -1351,9 +1401,30 @@ function seedCompetitionRegistryFromRules(registry) {
   return registry;
 }
 
-function computeUnrecognizedCompetitions(scan) {
-  const registry = seedCompetitionRegistryFromRules(seedCompetitionRegistryFromHistory(readCompetitionRegistry()));
+function cloneCompetitionRegistry(registry) {
+  return {
+    version: registry.version || 1,
+    competitions: { ...(registry.competitions || {}) },
+  };
+}
+
+function ensureCompetitionRegistryBootstrapped(registry) {
+  if (Object.keys(registry.competitions || {}).length > 0) return registry;
+  seedCompetitionRegistryFromHistory(registry);
+  seedCompetitionRegistryFromRules(registry);
   writeCompetitionRegistry(registry);
+  return registry;
+}
+
+function competitionRegistryView() {
+  const registry = ensureCompetitionRegistryBootstrapped(readCompetitionRegistry());
+  const view = cloneCompetitionRegistry(registry);
+  seedCompetitionRegistryFromRules(view);
+  return view;
+}
+
+function computeUnrecognizedCompetitions(scan) {
+  const registry = competitionRegistryView();
   const seen = new Set(Object.keys(registry.competitions || {}));
   const unknown = [];
   const emitted = new Set();
@@ -1379,7 +1450,7 @@ function recognizeCompetition({ sport, source, scope, competition, status }) {
   if (!['365scores', 'flashscore'].includes(normalizedSource)) throw new Error('Unknown competition source.');
   if (!String(competition || '').trim()) throw new Error('Competition is required.');
 
-  const registry = seedCompetitionRegistryFromRules(seedCompetitionRegistryFromHistory(readCompetitionRegistry()));
+  const registry = ensureCompetitionRegistryBootstrapped(readCompetitionRegistry());
   upsertCompetitionRegistryEntry(registry, {
     sport,
     source: normalizedSource,
@@ -1391,11 +1462,13 @@ function recognizeCompetition({ sport, source, scope, competition, status }) {
 }
 
 function registerScanCompetitions(scan) {
-  const registry = seedCompetitionRegistryFromRules(seedCompetitionRegistryFromHistory(readCompetitionRegistry()));
+  const startedAt = Date.now();
+  const registry = ensureCompetitionRegistryBootstrapped(readCompetitionRegistry());
   for (const item of competitionRowsFromDetails(scan)) {
     upsertCompetitionRegistryEntry(registry, item, 'recognized');
   }
-  writeCompetitionRegistry(registry);
+  writeJson(COMPETITION_REGISTRY_FILE, registry, { pretty: false });
+  if (scan) appendLog(scan, `Competition registry updated in ${Date.now() - startedAt}ms`);
 }
 
 function removeUnrecognizedCompetitionFromScan(scan, item) {
@@ -1970,6 +2043,7 @@ async function buildSportResult(sportKey, scan = null) {
 async function writeScanXlsxForSport(scan, allResults) {
   if (!allResults || !scan?.sport || scan.sport === 'all') return;
 
+  const startedAt = Date.now();
   try {
     delete require.cache[require.resolve('./compare.js')];
     const { writeSportXlsx, getLatamSportConfig, getIsraelSportConfig } = require('./compare.js');
@@ -2001,6 +2075,7 @@ async function writeScanXlsxForSport(scan, allResults) {
     } else {
       await writeSportXlsx(scan.sport, allResults);
     }
+    appendLog(scan, `XLSX write finished in ${Math.round((Date.now() - startedAt) / 1000)}s`);
   } catch (error) {
     appendLog(scan, `XLSX generation failed: ${error.message}`);
   }
@@ -2086,21 +2161,25 @@ async function finalizeScan(scan, decisions = {}, options = {}) {
   if (allResults && scan.sport !== 'all') {
     const needsXlsx = hasTermDecisions || !scanXlsxReady(scan);
     if (needsXlsx) {
+      const xlsxStartedAt = Date.now();
       await writeScanXlsxForSport(scan, allResults);
+      appendLog(scan, `Finalize XLSX in ${Math.round((Date.now() - xlsxStartedAt) / 1000)}s`);
     } else {
       appendLog(scan, 'XLSX already up to date (skipped rebuild).');
     }
   }
 
+  const registryStartedAt = Date.now();
   registerScanCompetitions(scan);
+  appendLog(scan, `Finalize registry in ${Date.now() - registryStartedAt}ms`);
   scan.unrecognizedCompetitions = [];
   scan.status = 'completed';
   scan.finalizedAt = new Date().toISOString();
 
-  saveScanHistory(scan);
+  const history = saveScanHistory(scan);
   lastScan = scan;
   appendLog(scan, `Report finalized in ${Math.round((Date.now() - startedAt) / 1000)}s`);
-  return scan;
+  return { scan, history };
 }
 
 async function completeAsanaLinkedScan(taskGid, scanId = null) {
@@ -2124,7 +2203,7 @@ async function completeAsanaLinkedScan(taskGid, scanId = null) {
   );
   if (index >= 0) {
     history[index] = updateScanRecord(history[index]);
-    writeJson(HISTORY_FILE, history);
+    writeJson(HISTORY_FILE, history, { pretty: false });
     if (lastScan?.id === history[index].id) lastScan = history[index];
   }
 
@@ -2262,6 +2341,12 @@ function runScript(script, label, scan, env = {}, args = []) {
   });
 }
 
+function runScriptsParallel(jobs, scan, env = {}) {
+  return Promise.all(
+    jobs.map(({ script, label, args = [] }) => runScript(script, label, scan, env, args))
+  );
+}
+
 function killProcessTree(child) {
   if (!child?.pid) return;
   if (process.platform === 'win32') {
@@ -2351,17 +2436,19 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
       for (const key of USA_SPORT_KEYS) {
         const usaSport = SPORTS[key];
         appendLog(scan, `\n▶ ${usaSport.label}`);
-        await runScript(usaSport.scraper365, `${usaSport.label} | 365`, scan, env);
-        await runScript(usaSport.scraperFlash, `${usaSport.label} | Flashscore`, scan, env);
+        await runScriptsParallel([
+          { script: usaSport.scraper365, label: `${usaSport.label} | 365` },
+          { script: usaSport.scraperFlash, label: `${usaSport.label} | Flashscore` },
+        ], scan, env);
       }
 
       appendLog(scan, '\n▶ Comparing all USA sports results');
       scan.result = await buildUsaAllSummary();
-      appendLog(scan, '\n▶ Generating Excel files');
-      await writeScanXlsxForSport(scan, scan.result.countries || []);
-      attachScanTerms(scan,scan.result.countries || [], 'usa_all');
+      attachScanTerms(scan, scan.result.countries || [], 'usa_all');
       scan.unrecognizedCompetitions = computeUnrecognizedCompetitions(scan);
       scan.status = 'terms_fix';
+      appendLog(scan, '\nTerms Fix ready. Generating Excel files...');
+      await writeScanXlsxForSport(scan, scan.result.countries || []);
       appendLog(scan, '\nAll USA sports scan completed');
       return;
     }
@@ -2370,19 +2457,21 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
       for (const coreKey of LATAM_CORE_SPORTS) {
         const core = SPORTS[coreKey];
         appendLog(scan, `\n▶ ${SPORTS[`latam_${coreKey}`].label}`);
-        await runScript(core.scraper365, `${core.label} | 365`, scan, env);
-        await runScript(core.scraperFlash, `${core.label} | Flashscore`, scan, env);
+        await runScriptsParallel([
+          { script: core.scraper365, label: `${core.label} | 365` },
+          { script: core.scraperFlash, label: `${core.label} | Flashscore` },
+        ], scan, env);
         appendLog(scan, `\n▶ Filtering LATAM countries (${core.label})`);
         await runScript('scrapers/filter-latam-sport.js', `LATAM filter | ${core.label}`, scan, env, [coreKey]);
       }
 
       appendLog(scan, '\n▶ Comparing all LATAM sports results');
       scan.result = await buildLatamAllSummary();
-      appendLog(scan, '\n▶ Generating Excel files');
-      await writeScanXlsxForSport(scan, scan.result.countries || []);
-      attachScanTerms(scan,scan.result.countries || [], 'latam_all');
+      attachScanTerms(scan, scan.result.countries || [], 'latam_all');
       scan.unrecognizedCompetitions = computeUnrecognizedCompetitions(scan);
       scan.status = 'terms_fix';
+      appendLog(scan, '\nTerms Fix ready. Generating Excel files...');
+      await writeScanXlsxForSport(scan, scan.result.countries || []);
       appendLog(scan, '\nAll LATAM sports scan completed');
       return;
     }
@@ -2391,19 +2480,21 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
       for (const coreKey of ISRAEL_CORE_SPORTS) {
         const core = SPORTS[coreKey];
         appendLog(scan, `\n▶ ${SPORTS[`israel_${coreKey}`].label}`);
-        await runScript(core.scraper365, `${core.label} | 365`, scan, env);
-        await runScript(core.scraperFlash, `${core.label} | Flashscore`, scan, env);
+        await runScriptsParallel([
+          { script: core.scraper365, label: `${core.label} | 365` },
+          { script: core.scraperFlash, label: `${core.label} | Flashscore` },
+        ], scan, env);
         appendLog(scan, `\n▶ Filtering Israel competitions (${core.label})`);
         await runScript('scrapers/filter-israel-sport.js', `Israel filter | ${core.label}`, scan, env, [coreKey]);
       }
 
       appendLog(scan, '\n▶ Comparing all Israel sports results');
       scan.result = await buildIsraelAllSummary();
-      appendLog(scan, '\n▶ Generating Excel files');
-      await writeScanXlsxForSport(scan, scan.result.countries || []);
-      attachScanTerms(scan,scan.result.countries || [], 'israel_all');
+      attachScanTerms(scan, scan.result.countries || [], 'israel_all');
       scan.unrecognizedCompetitions = computeUnrecognizedCompetitions(scan);
       scan.status = 'terms_fix';
+      appendLog(scan, '\nTerms Fix ready. Generating Excel files...');
+      await writeScanXlsxForSport(scan, scan.result.countries || []);
       appendLog(scan, '\nAll Israel sports scan completed');
       return;
     }
@@ -2411,8 +2502,10 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
     const latamCore = getLatamCoreSport(sportKey);
     if (latamCore) {
       const core = SPORTS[latamCore];
-      await runScript(core.scraper365, `${sport.label} | 365`, scan, env);
-      await runScript(core.scraperFlash, `${sport.label} | Flashscore`, scan, env);
+      await runScriptsParallel([
+        { script: core.scraper365, label: `${sport.label} | 365` },
+        { script: core.scraperFlash, label: `${sport.label} | Flashscore` },
+      ], scan, env);
 
       appendLog(scan, '\n▶ Filtering LATAM countries');
       await runScript('scrapers/filter-latam-sport.js', `LATAM filter | ${sport.label}`, scan, env, [latamCore]);
@@ -2420,12 +2513,12 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
       appendLog(scan, '\n▶ Comparing LATAM results');
       const built = await buildLatamSportResult(latamCore);
 
-      scan.status = 'terms_fix';
       scan.result = built.result;
-      appendLog(scan, '\n▶ Generating Excel file');
-      await writeScanXlsxForSport(scan, built.allResults);
-      attachScanTerms(scan,built.allResults, latamCore);
+      attachScanTerms(scan, built.allResults, latamCore);
       scan.unrecognizedCompetitions = computeUnrecognizedCompetitions(scan);
+      scan.status = 'terms_fix';
+      appendLog(scan, '\nTerms Fix ready. Generating Excel file...');
+      await writeScanXlsxForSport(scan, built.allResults);
       appendLog(scan, '\nLATAM scan completed. Waiting for Terms Fix.');
       return;
     }
@@ -2433,8 +2526,10 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
     const israelCore = getIsraelCoreSport(sportKey);
     if (israelCore) {
       const core = SPORTS[israelCore];
-      await runScript(core.scraper365, `${sport.label} | 365`, scan, env);
-      await runScript(core.scraperFlash, `${sport.label} | Flashscore`, scan, env);
+      await runScriptsParallel([
+        { script: core.scraper365, label: `${sport.label} | 365` },
+        { script: core.scraperFlash, label: `${sport.label} | Flashscore` },
+      ], scan, env);
 
       appendLog(scan, '\n▶ Filtering Israel competitions');
       await runScript('scrapers/filter-israel-sport.js', `Israel filter | ${sport.label}`, scan, env, [israelCore]);
@@ -2442,18 +2537,20 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
       appendLog(scan, '\n▶ Comparing Israel results');
       const built = await buildIsraelSportResult(israelCore);
 
-      scan.status = 'terms_fix';
       scan.result = built.result;
-      appendLog(scan, '\n▶ Generating Excel file');
-      await writeScanXlsxForSport(scan, built.allResults);
-      attachScanTerms(scan,built.allResults, israelCore);
+      attachScanTerms(scan, built.allResults, israelCore);
       scan.unrecognizedCompetitions = computeUnrecognizedCompetitions(scan);
+      scan.status = 'terms_fix';
+      appendLog(scan, '\nTerms Fix ready. Generating Excel file...');
+      await writeScanXlsxForSport(scan, built.allResults);
       appendLog(scan, '\nIsrael scan completed. Waiting for Terms Fix.');
       return;
     }
 
-    await runScript(sport.scraper365, `${sport.label} | 365`, scan, env);
-    await runScript(sport.scraperFlash, `${sport.label} | Flashscore`, scan, env);
+    await runScriptsParallel([
+      { script: sport.scraper365, label: `${sport.label} | 365` },
+      { script: sport.scraperFlash, label: `${sport.label} | Flashscore` },
+    ], scan, env);
 
     if (env.UI_SCAN_MODE === '1') {
       appendLog(scan, '\n▶ Competition memory skipped in UI scan (compare updates memory)');
@@ -2466,14 +2563,22 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
 
     appendLog(scan, '\n▶ Comparing results');
     appendLog(scan, 'Running comparison (this may take a minute)...');
+    const compareStartedAt = Date.now();
     const built = await buildSportResult(sportKey, scan);
+    appendLog(scan, `Comparison finished in ${Math.round((Date.now() - compareStartedAt) / 1000)}s`);
 
-    scan.status = 'terms_fix';
     scan.result = built.result;
-    appendLog(scan, '\n▶ Generating Excel file');
-    await writeScanXlsxForSport(scan, built.allResults);
-    attachScanTerms(scan,built.allResults, sportKey);
+    const termsStartedAt = Date.now();
+    attachScanTerms(scan, built.allResults, sportKey);
     scan.unrecognizedCompetitions = computeUnrecognizedCompetitions(scan);
+    appendLog(scan, `Terms prepared in ${Date.now() - termsStartedAt}ms`);
+
+    // Mark Terms Fix ready before XLSX so the UI can open while Excel finishes.
+    scan.status = 'terms_fix';
+    appendLog(scan, '\nTerms Fix ready. Generating Excel file...');
+    const xlsxStartedAt = Date.now();
+    await writeScanXlsxForSport(scan, built.allResults);
+    appendLog(scan, `Excel generated in ${Math.round((Date.now() - xlsxStartedAt) / 1000)}s`);
     appendLog(scan, '\nScan completed. Waiting for Terms Fix.');
   } catch (e) {
     if (!scan.cancelRequested) {
@@ -2649,12 +2754,22 @@ function addRule({ sport, side, scope, competition }) {
   return rules;
 }
 
-function deleteRule({ sport, side, index }) {
+function deleteRule({ sport, side, index, scope, competition }) {
   if (!SPORTS[sport]) throw new Error('Unknown sport.');
-  normalizeRuleSide(side);
+  const normalizedSide = normalizeRuleSide(side);
   const rules = listRules();
-  const bucket = side === '365' ? 'ignore365Only' : 'ignoreFlashOnly';
-  const idx = Number(index);
+  const bucket = normalizedSide === '365' ? 'ignore365Only' : 'ignoreFlashOnly';
+  let idx = Number(index);
+
+  if (!Number.isInteger(idx) || idx < 0 || idx >= rules[sport][bucket].length) {
+    const scopeKey = resolveScopeKey(String(scope || '').trim());
+    const competitionKey = String(competition || '').trim().toLowerCase();
+    idx = rules[sport][bucket].findIndex(rule =>
+      resolveScopeKey(rule.scope) === scopeKey &&
+      String(rule.competition || '').trim().toLowerCase() === competitionKey
+    );
+  }
+
   if (!Number.isInteger(idx) || idx < 0 || idx >= rules[sport][bucket].length) {
     throw new Error('Invalid rule index.');
   }
@@ -2989,7 +3104,11 @@ const server = http.createServer(async (req, res) => {
       const finalized = await finalizeScan(scan, body.decisions || {}, {
         acknowledgedSuggestions: body.acknowledgedSuggestions || [],
       });
-      return sendJson(res, 200, { scan: finalized, history: loadHistory(), rules: listRules() });
+      return sendJson(res, 200, {
+        scan: finalized.scan,
+        history: finalized.history,
+        rules: listRules(),
+      });
     }
 
     if (req.method === 'POST' && url.pathname === '/api/scan') {

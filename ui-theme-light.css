@@ -183,6 +183,32 @@ html[data-theme="light"] .comparison-cell strong {
   color: var(--nova-text) !important;
 }
 
+html[data-theme="light"] .competition-menu-toggle {
+  background: rgba(42, 106, 170, .08) !important;
+  border-color: rgba(42, 106, 170, .28) !important;
+  color: var(--nova-text) !important;
+}
+
+html[data-theme="light"] .competition-menu-toggle:hover,
+html[data-theme="light"] .competition-action-menu.open .competition-menu-toggle {
+  background: rgba(42, 106, 170, .16) !important;
+}
+
+html[data-theme="light"] .competition-menu-dropdown {
+  background: #FFFFFF !important;
+  border-color: var(--nova-border2) !important;
+  box-shadow: 0 12px 28px rgba(15, 19, 25, .14) !important;
+  color: var(--nova-text) !important;
+}
+
+html[data-theme="light"] .competition-menu-dropdown button {
+  color: var(--nova-text) !important;
+}
+
+html[data-theme="light"] .competition-menu-dropdown button:hover {
+  background: rgba(42, 106, 170, .1) !important;
+}
+
 html[data-theme="light"] .loading-overlay,
 html[data-theme="light"] .confirm-overlay {
   background: rgba(239, 244, 250, .92) !important;
