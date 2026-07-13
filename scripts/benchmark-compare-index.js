@@ -63,12 +63,10 @@ function runAllCountries() {
 
   for (const key of allKeys) {
     const countryName = by365[key]?.countryName || byFlash[key]?.countryName?.replace(/[:.]+$/, '').trim() || key;
-    const g365 = (by365[key]?.games || []).filter(game =>
-      !g.shouldIgnoreCompetitionByRule(sportKey, countryName, '365', game.competition || '')
-    );
-    const gFlash = (byFlash[key]?.games || []).filter(game =>
-      !g.shouldIgnoreCompetitionByRule(sportKey, countryName, 'flash', game.competition || '')
-    );
+    // Match production runCompare: ignored comps stay in the matching pool and are
+    // only suppressed in post-match so_no_* reporting inside compareCountry.
+    const g365 = by365[key]?.games || [];
+    const gFlash = byFlash[key]?.games || [];
     if (!g365.length && !gFlash.length) continue;
 
     const started = process.hrtime.bigint();

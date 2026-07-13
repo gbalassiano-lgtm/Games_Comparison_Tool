@@ -843,14 +843,19 @@ async function expandAllShowGames(page, maxRounds = 12, options = {}) {
     const roundClicks = await page.evaluate(limit => {
       const pattern = /^(Show matches|Show more matches|Show games|Display matches|Show more|Exibir jogos|Mostrar mais jogos|Mostrar jogos|Mostrar partidas|Exibir partidas|Afficher les matchs)(\s*\(\d+\))?$/i;
       const clean = text => String(text || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
-      const candidates = Array.from(document.querySelectorAll('button, a, div, span'))
-        .filter(el => {
-          const text = clean(el.textContent || '');
-          if (!pattern.test(text)) return false;
-          const rect = el.getBoundingClientRect();
-          return rect.width > 0 && rect.height > 0;
-        })
-        .slice(0, limit);
+      const candidates = [];
+      // Stop once we have this round's click budget — full-DOM scans get expensive on
+      // International-heavy days with many collapsed leagues.
+      for (const el of document.querySelectorAll('button, a, div, span')) {
+        const raw = el.textContent || '';
+        if (raw.length > 48) continue;
+        const text = clean(raw);
+        if (!pattern.test(text)) continue;
+        const rect = el.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) continue;
+        candidates.push(el);
+        if (candidates.length >= limit) break;
+      }
 
       for (const el of candidates) {
         el.scrollIntoView({ block: 'center', inline: 'center' });

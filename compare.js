@@ -1049,15 +1049,24 @@ function minimumTeamThreshold(g365, gFlash, sportKey, cs, td) {
 }
 
 function calculateMatchScore(g365, gFlash, sportKey) {
-  const ts = smartTeamSim(g365, gFlash, sportKey);
+  // Cheap checks first — International scopes can score thousands of candidates.
+  // Exact-team friendlies may still match across large TZ gaps (exactTeams bypasses
+  // allowedTimeDiff below); only reject distant pairs that are clearly different teams.
+  const td = timeDiff(g365.time, gFlash.time);
+  const exactTeamsEarly =
+    td !== null && td > 180 && sportKey !== 'tennis'
+      ? isExactTeamsMatch(g365, gFlash, sportKey)
+      : null;
+  if (exactTeamsEarly === false) return null;
+
   const tennisCompKey365 = sportKey === 'tennis' ? getCompetitionSummaryKey(g365.competition, 'Tênis') : '';
   const tennisCompKeyFlash = sportKey === 'tennis' ? getCompetitionSummaryKey(gFlash.competition, 'Tênis') : '';
   const sameTennisEvent = sportKey === 'tennis' && tennisCompKey365 && tennisCompKey365 === tennisCompKeyFlash;
   const knownEquiv = false;
   const cs = sameTennisEvent ? 1 : compSim(g365.competition, gFlash.competition, sportKey);
-  const td = timeDiff(g365.time, gFlash.time);
   const timeScore = getTimeScore(g365.time, gFlash.time, sportKey);
-  const exactTeams = isExactTeamsMatch(g365, gFlash, sportKey);
+  const ts = smartTeamSim(g365, gFlash, sportKey);
+  const exactTeams = exactTeamsEarly === true ? true : isExactTeamsMatch(g365, gFlash, sportKey);
   const allowedTimeDiff = sportKey === 'tennis'
     ? 30
     : (exactTeams || (ts >= 0.88 && cs >= 0.95) ? 180 : DIFF_TIME);
@@ -1250,10 +1259,66 @@ function teamPairLookupKeys(home = '', away = '') {
   return [`${h}|${a}`, `${a}|${h}`];
 }
 
+const TEAM_TOKEN_STOPWORDS = new Set([
+  'fc', 'cf', 'sc', 'ac', 'fk', 'sk', 'nk', 'afc', 'cfc', 'ssc', 'asd',
+  'united', 'city', 'club', 'real', 'sporting', 'athletic', 'atletico',
+  'deportivo', 'racing', 'olympic', 'olympique', 'youth', 'women', 'womens',
+  'the', 'and', 'de', 'da', 'do', 'la', 'el', 'team', 'calcio', 'football',
+]);
+
+function significantNameTokens(name = '') {
+  const tokens = new Set();
+  for (const token of normTeam(name).split(/\s+/)) {
+    if (token.length >= 3 && !TEAM_TOKEN_STOPWORDS.has(token) && !/^\d+$/.test(token)) {
+      tokens.add(token);
+    }
+  }
+  return tokens;
+}
+
+function significantTeamTokens(home = '', away = '') {
+  const tokens = new Set();
+  for (const name of [home, away]) {
+    for (const token of significantNameTokens(name)) tokens.add(token);
+  }
+  return tokens;
+}
+
+function teamsShareSignificantToken(gameA = {}, gameB = {}) {
+  const a = significantTeamTokens(gameA.home, gameA.away);
+  if (!a.size) return false;
+  const b = significantTeamTokens(gameB.home, gameB.away);
+  for (const token of a) {
+    if (b.has(token)) return true;
+  }
+  return false;
+}
+
+function teamsShareBothSides(gameA = {}, gameB = {}) {
+  const aHome = significantNameTokens(gameA.home);
+  const aAway = significantNameTokens(gameA.away);
+  const bHome = significantNameTokens(gameB.home);
+  const bAway = significantNameTokens(gameB.away);
+  if (!aHome.size || !aAway.size || !bHome.size || !bAway.size) return false;
+
+  const overlap = (left, right) => {
+    for (const token of left) {
+      if (right.has(token)) return true;
+    }
+    return false;
+  };
+
+  return (
+    (overlap(aHome, bHome) && overlap(aAway, bAway)) ||
+    (overlap(aHome, bAway) && overlap(aAway, bHome))
+  );
+}
+
 function buildFlashMatchIndex(gamesFlash, sportKey) {
   const byMinute = new Map();
   const byCompKey = new Map();
   const byTeamPair = new Map();
+  const byToken = new Map();
   const noTime = [];
 
   for (let j = 0; j < gamesFlash.length; j++) {
@@ -1278,9 +1343,14 @@ function buildFlashMatchIndex(gamesFlash, sportKey) {
       if (!byTeamPair.has(key)) byTeamPair.set(key, [j]);
       else byTeamPair.get(key).push(j);
     }
+
+    for (const token of significantTeamTokens(g.home, g.away)) {
+      if (!byToken.has(token)) byToken.set(token, [j]);
+      else byToken.get(token).push(j);
+    }
   }
 
-  return { byMinute, byCompKey, byTeamPair, noTime, total: gamesFlash.length };
+  return { byMinute, byCompKey, byTeamPair, byToken, noTime, total: gamesFlash.length };
 }
 
 function collectFlashCandidates(g365, gamesFlash, index, matchedFlash, sportKey) {
@@ -1293,8 +1363,41 @@ function collectFlashCandidates(g365, gamesFlash, index, matchedFlash, sportKey)
   const g365CompKey = getCompetitionSummaryKey(g365.competition || '', sportLabel, sportKey);
   const g365Minutes = parseMinutes(g365.time);
 
+  // High-precision hits first (covers exact normalized names even with large time gaps).
+  for (const key of teamPairLookupKeys(g365.home, g365.away)) {
+    for (const j of index.byTeamPair.get(key) || []) addIndex(j);
+  }
+
+  // Cross-competition / renamed reserves: require token hits on both sides (or flipped).
+  // Cheap via inverted token index — avoids full cartesian on International.
+  const tokenHits = new Set();
+  for (const token of significantTeamTokens(g365.home, g365.away)) {
+    for (const j of index.byToken.get(token) || []) tokenHits.add(j);
+  }
+  for (const j of tokenHits) {
+    if (teamsShareBothSides(g365, gamesFlash[j])) addIndex(j);
+  }
+
   if (g365CompKey) {
-    for (const j of index.byCompKey.get(g365CompKey) || []) addIndex(j);
+    const sameComp = index.byCompKey.get(g365CompKey) || [];
+    // Huge same-comp buckets (Club Friendly under International) must not score the
+    // entire cartesian product. Near kickoffs (±DIFF_TIME) stay; farther rows are
+    // kept only when team names share a significant token (covers TZ-shifted friendlies).
+    const largeSameComp = sportKey !== 'tennis' && sameComp.length > 40;
+    const tightWindow = sportKey === 'tennis' ? 30 : DIFF_TIME;
+
+    for (const j of sameComp) {
+      if (largeSameComp && g365Minutes !== null) {
+        const flashMinutes = parseMinutes(gamesFlash[j].time);
+        if (flashMinutes !== null) {
+          const delta = Math.abs(flashMinutes - g365Minutes);
+          if (delta > tightWindow && !teamsShareSignificantToken(g365, gamesFlash[j])) {
+            continue;
+          }
+        }
+      }
+      addIndex(j);
+    }
   }
 
   if (g365Minutes !== null) {
@@ -1305,13 +1408,14 @@ function collectFlashCandidates(g365, gamesFlash, index, matchedFlash, sportKey)
     for (const j of index.noTime) addIndex(j);
   }
 
-  for (const j of index.noTime) addIndex(j);
+  // Do NOT always inject every Flash game without a time — on International/friendlies
+  // that turns each 365 row into a near-full cartesian product. Same-comp no-time
+  // games are already included via byCompKey; team-pair hits cover renamed kickoffs.
 
-  for (const key of teamPairLookupKeys(g365.home, g365.away)) {
-    for (const j of index.byTeamPair.get(key) || []) addIndex(j);
-  }
-
-  if (!chosen.size) {
+  // Full Flash fallback only on small scopes. Large buckets (esp. International)
+  // must not degrade to O(n×m) scoring.
+  const FULL_FALLBACK_MAX = 60;
+  if (!chosen.size && index.total > 0 && index.total <= FULL_FALLBACK_MAX) {
     for (let j = 0; j < index.total; j++) addIndex(j);
   }
 
@@ -1355,6 +1459,9 @@ function compareCountry(countryName, games365, gamesFlash, sportKey) {
         bestScore = meta.score;
         bestJ = j;
         bestMeta = meta;
+        // Near-perfect hit — remaining candidates cannot improve matching quality enough
+        // to be worth the expensive team-similarity work on large scopes.
+        if (meta.exactTeams && meta.td === 0 && meta.cs >= 0.92) break;
       }
     }
 
@@ -2645,16 +2752,24 @@ async function runCompare(sportKey, configOverride = null, options = {}) {
       byFlash[key]?.countryName?.replace(/[:.]+$/, '').trim() ||
       key;
 
+    // Keep ignored competitions in the matching pool. ignoreFlashOnly / ignore365Only
+    // only suppress post-match "só Flash" / "só 365" reporting — removing them here
+    // broke cross-name matches (e.g. Argentina Primera B Metropolitana ↔ Primera B).
     const g365 = by365[key]?.games || [];
     const gFlash = byFlash[key]?.games || [];
 
     console.log(`  ▶ ${countryName} — 365: ${g365.length} | Flash: ${gFlash.length}`);
 
+    const startedAt = Date.now();
     const result = compareCountry(countryName, g365, gFlash, sportKey);
+    const elapsedMs = Date.now() - startedAt;
 
     console.log(
       `    Só 365: ${result.so_no_365.length} | Só Flash: ${result.so_no_flash.length} | Div.Horário: ${result.divergencias_horario.length} | Div.Status: ${result.divergencias_status.length} | Div.Nome: ${result.divergencias_nome.length}`
     );
+    if (elapsedMs >= 400) {
+      console.log(`    ⏱ ${countryName}: ${(elapsedMs / 1000).toFixed(1)}s`);
+    }
 
     allResults.push({ country: countryName, result });
   }
