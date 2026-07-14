@@ -64,6 +64,19 @@ const i18n = {
     compareTab: 'Comparison',
     historyTab: 'History',
     historyHint: 'Select a previous scan to view its comparison report.',
+    historyListView: 'Scans',
+    weeklyTab: 'Weekly',
+    weeklyHint: 'Content Team only · last 7 days · time, status, missing on 365 and Flash (no name/terms).',
+    weeklyLoading: 'Loading weekly analysis...',
+    weeklyEmpty: 'No Content Team mismatches in this window.',
+    weeklyRange: '{from} → {to} · {scans} scans · {total} issues',
+    weeklyCountries: 'Top countries',
+    weeklyLeagues: 'Top leagues',
+    weeklyTotal: 'Total issues',
+    weeklyMissing365: 'Missing on 365',
+    weeklyMissingFlash: 'Missing on Flash',
+    refreshWeekly: 'Refresh',
+    allSports: 'All sports',
     noHistory: 'No scan history yet.',
     sportFilter: 'Sport filter',
     chooseSportForPdf: 'Choose a sport filter before downloading the All sports PDF.',
@@ -283,6 +296,19 @@ const i18n = {
     compareTab: 'Comparação',
     historyTab: 'Histórico',
     historyHint: 'Selecione uma varredura anterior para ver o relatório de comparação.',
+    historyListView: 'Varreduras',
+    weeklyTab: 'Semanal',
+    weeklyHint: 'Somente Content Team · últimos 7 dias · horário, status, missing na 365 e Flash (sem nome/terms).',
+    weeklyLoading: 'Carregando análise semanal...',
+    weeklyEmpty: 'Nenhum mismatch do Content Team nesta janela.',
+    weeklyRange: '{from} → {to} · {scans} scans · {total} issues',
+    weeklyCountries: 'Países com mais issues',
+    weeklyLeagues: 'Ligas com mais issues',
+    weeklyTotal: 'Total de issues',
+    weeklyMissing365: 'Ausente na 365',
+    weeklyMissingFlash: 'Ausente no Flash',
+    refreshWeekly: 'Atualizar',
+    allSports: 'Todos os esportes',
     noHistory: 'Ainda não há histórico de varreduras.',
     sportFilter: 'Filtro por esporte',
     chooseSportForPdf: 'Escolha um filtro de esporte antes de baixar o PDF de todos os esportes.',
@@ -2779,19 +2805,27 @@ function findIgnoreRuleIndex(sport, side, scope, competition) {
 function rowIgnoredByRule(row, scan) {
   const rowSport = row.sport || scan?.sport || '';
   const sportRules = state.competitionRules[rowSport] || {};
-  const side = row.type === 'only365' ? '365' : row.type === 'onlyFlash' ? 'flash' : '';
-  if (!side) return false;
-
-  const rules = side === '365' ? (sportRules.ignore365Only || []) : (sportRules.ignoreFlashOnly || []);
-  if (!rules.length) return false;
-
   const rowScope = normalizeRuleScope(row.country || '');
-  const rowCompetition = row.competition || row.competition365 || row.competitionFlash || '';
+  const competitions = [
+    row.competition,
+    row.competition365,
+    row.competitionFlash,
+  ].map(value => String(value || '').trim()).filter(Boolean);
 
-  return rules.some(rule => {
+  if (!competitions.length) return false;
+
+  // Ignore rules are stored per side, but an ignored competition should leave the report entirely.
+  const lists = [
+    ...(sportRules.ignoreFlashOnly || []),
+    ...(sportRules.ignore365Only || []),
+  ];
+  if (!lists.length) return false;
+
+  return lists.some(rule => {
     const ruleScope = normalizeRuleScope(rule.scope || '');
     const scopeMatches = ruleScope === '*' || ruleScope === rowScope;
-    return scopeMatches && ruleCompetitionMatches(rule.competition || '', rowCompetition);
+    if (!scopeMatches) return false;
+    return competitions.some(competition => ruleCompetitionMatches(rule.competition || '', competition));
   });
 }
 

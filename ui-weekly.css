@@ -1,0 +1,161 @@
+/* Weekly analysis — nested under History only */
+.weekly-history-toggle {
+  margin: 0 0 14px;
+}
+
+.weekly-history-view {
+  display: grid;
+  gap: 14px;
+}
+
+.weekly-history-view.hidden,
+#historyListView.hidden {
+  display: none !important;
+}
+
+.weekly-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 12px;
+}
+
+.weekly-sport-field {
+  display: grid;
+  gap: 6px;
+  min-width: 180px;
+}
+
+.weekly-range {
+  margin: 0;
+}
+
+.weekly-summary {
+  margin: 0;
+}
+
+.weekly-body {
+  display: grid;
+  gap: 22px;
+}
+
+.weekly-sport-block {
+  display: grid;
+  gap: 12px;
+}
+
+.weekly-sport-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.weekly-sport-head h3 {
+  margin: 0;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-size: 1.15rem;
+}
+
+.weekly-sport-meta {
+  color: var(--nova-text3, #8b93a7);
+  font-size: .85rem;
+}
+
+.weekly-rank-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.weekly-rank-card {
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--nova-border, rgba(255,255,255,.08));
+  border-radius: 14px;
+  background: rgba(20, 25, 32, .35);
+}
+
+.weekly-rank-card h4 {
+  margin: 0;
+  font-size: .92rem;
+  font-weight: 650;
+}
+
+.weekly-table-wrap {
+  overflow-x: auto;
+}
+
+.weekly-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .9rem;
+}
+
+.weekly-table th,
+.weekly-table td {
+  padding: 8px 6px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--nova-border2, rgba(255,255,255,.06));
+}
+
+.weekly-table th {
+  color: var(--nova-text3, #8b93a7);
+  font-size: .75rem;
+  font-weight: 650;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.weekly-rank {
+  width: 28px;
+  color: var(--nova-text3, #8b93a7);
+}
+
+.weekly-count {
+  white-space: nowrap;
+}
+
+.weekly-breakdown {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  color: var(--nova-text2, #b7becd);
+  font-size: .82rem;
+}
+
+.weekly-breakdown span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.weekly-league-name {
+  display: grid;
+  gap: 2px;
+}
+
+.weekly-league-comp {
+  color: var(--nova-text2, #b7becd);
+  font-size: .86rem;
+}
+
+@media (max-width: 900px) {
+  .weekly-rank-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+html[data-theme="light"] .weekly-rank-card {
+  background: rgba(255, 255, 255, .88) !important;
+  border-color: var(--nova-border) !important;
+}
+
+html[data-theme="light"] .weekly-table th,
+html[data-theme="light"] .weekly-sport-meta,
+html[data-theme="light"] .weekly-rank {
+  color: var(--nova-text3) !important;
+}

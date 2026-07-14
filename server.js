@@ -654,6 +654,245 @@ function loadHistory() {
   return (Array.isArray(history) ? history : []).map(sanitizeScanTerms);
 }
 
+function scannerGroupForSportKey(sportKey = '') {
+  const key = String(sportKey || '');
+  if (key === 'usa_all' || key.endsWith('_usa')) return 'usa';
+  if (key === 'latam_all' || key.startsWith('latam_')) return 'latam';
+  if (key === 'israel_all' || key.startsWith('israel_')) return 'israel';
+  return 'content';
+}
+
+const WEEKLY_ISSUE_TYPES = new Set(['timeDiff', 'statusDiff', 'onlyFlash', 'only365']);
+
+function emptyWeeklyIssueCounts() {
+  return { total: 0, timeDiff: 0, statusDiff: 0, onlyFlash: 0, only365: 0 };
+}
+
+function bumpWeeklyIssueCounts(bucket, type) {
+  if (!WEEKLY_ISSUE_TYPES.has(type)) return;
+  bucket.total += 1;
+  bucket[type] += 1;
+}
+
+function weeklyRowCompetition(row = {}) {
+  return String(
+    row.competition || row.competition365 || row.competitionFlash || '-'
+  ).trim() || '-';
+}
+
+function weeklyRowCountry(row = {}) {
+  return String(row.country || '-').trim() || '-';
+}
+
+function weeklyRowSport(row = {}, scanSport = '') {
+  const fromRow = String(row.sport || '').trim();
+  if (fromRow && fromRow !== 'all') return fromRow;
+  const fromScan = String(scanSport || '').trim();
+  return fromScan && fromScan !== 'all' ? fromScan : fromRow || fromScan || '';
+}
+
+function isWeeklyCompetitionIgnored(sportKey = '', scope = '', competition = '') {
+  if (!sportKey || !competition || competition === '-') return false;
+  const sportRules = listRules()[sportKey];
+  if (!sportRules) return false;
+
+  const lists = [
+    ...(sportRules.ignoreFlashOnly || []),
+    ...(sportRules.ignore365Only || []),
+  ];
+  if (!lists.length) return false;
+
+  return lists.some(rule =>
+    ruleScopeMatches(rule.scope, scope) &&
+    ruleCompetitionMatches(rule.competition, competition)
+  );
+}
+
+function isWeeklyCompetitionIgnoredInRegistry(sportKey = '', scope = '', competition = '') {
+  if (!sportKey || !competition || competition === '-') return false;
+  try {
+    const registry = competitionRegistryView();
+    const rows = Object.values(registry.competitions || {});
+    return rows.some(entry => {
+      if (!entry || entry.status !== 'ignored') return false;
+      if (String(entry.sport || '') !== String(sportKey)) return false;
+      return ruleScopeMatches(entry.scope || '', scope) &&
+        ruleCompetitionMatches(entry.competition || '', competition);
+    });
+  } catch (_) {
+    return false;
+  }
+}
+
+function weeklyRowIsIgnored(row = {}, sportKey = '') {
+  const scope = weeklyRowCountry(row);
+  const names = [
+    row.competition,
+    row.competition365,
+    row.competitionFlash,
+  ].map(value => String(value || '').trim()).filter(Boolean);
+
+  if (!names.length) names.push(weeklyRowCompetition(row));
+
+  return names.some(name =>
+    isWeeklyCompetitionIgnored(sportKey, scope, name) ||
+    isWeeklyCompetitionIgnoredInRegistry(sportKey, scope, name)
+  );
+}
+
+function sortWeeklyRanking(entries = []) {
+  return [...entries].sort((left, right) => {
+    if (right.total !== left.total) return right.total - left.total;
+    return String(left.name || left.competition || '').localeCompare(
+      String(right.name || right.competition || ''),
+      'en',
+      { sensitivity: 'base' }
+    );
+  });
+}
+
+function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
+  const windowDays = Math.min(31, Math.max(1, Number(days) || 7));
+  const sportFilter = String(sport || '').trim();
+  const today = formatLocalDate(new Date());
+  // Content Team usually scans tomorrow's slate — include that game day in the window.
+  const toDate = (() => {
+    const date = new Date(`${today}T12:00:00`);
+    date.setDate(date.getDate() + 1);
+    return formatLocalDate(date);
+  })();
+  const fromDate = (() => {
+    const date = new Date(`${toDate}T12:00:00`);
+    date.setDate(date.getDate() - (windowDays - 1));
+    return formatLocalDate(date);
+  })();
+
+  const history = loadHistory();
+  const candidates = history.filter(scan => {
+    if (!scan || scan.status !== 'completed' || !scan.result) return false;
+    if (scannerGroupForSportKey(scan.sport) !== 'content') return false;
+    const scanDate = String(scan.date || '');
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(scanDate)) return false;
+    return scanDate >= fromDate && scanDate <= toDate;
+  });
+
+  // One snapshot per content sport + game date. Prefer dedicated sport scans over "all".
+  const latestBySportDate = new Map();
+  for (const scan of candidates) {
+    const stamp = `${String(scan.finalizedAt || scan.finishedAt || '')}|${scan.id}`;
+    const rowsBySport = new Map();
+
+    for (const row of scan.result?.details?.problematic || []) {
+      if (!WEEKLY_ISSUE_TYPES.has(row?.type)) continue;
+      const rowSport = weeklyRowSport(row, scan.sport);
+      if (!rowSport || rowSport === 'all') continue;
+      if (scannerGroupForSportKey(rowSport) !== 'content') continue;
+      if (sportFilter && sportFilter !== 'all' && rowSport !== sportFilter) continue;
+      if (weeklyRowIsIgnored(row, rowSport)) continue;
+      if (!rowsBySport.has(rowSport)) rowsBySport.set(rowSport, []);
+      rowsBySport.get(rowSport).push(row);
+    }
+
+    for (const [rowSport, rows] of rowsBySport) {
+      const key = `${rowSport}|${scan.date}`;
+      const dedicated = scan.sport === rowSport;
+      const prev = latestBySportDate.get(key);
+      if (!prev) {
+        latestBySportDate.set(key, { stamp, dedicated, rows, scanId: scan.id });
+        continue;
+      }
+      if (dedicated && !prev.dedicated) {
+        latestBySportDate.set(key, { stamp, dedicated, rows, scanId: scan.id });
+        continue;
+      }
+      if (dedicated === prev.dedicated && stamp > prev.stamp) {
+        latestBySportDate.set(key, { stamp, dedicated, rows, scanId: scan.id });
+      }
+    }
+  }
+
+  const bySport = new Map();
+  const ensureSport = (sportKey) => {
+    if (!bySport.has(sportKey)) {
+      bySport.set(sportKey, {
+        sport: sportKey,
+        label: SCAN_OPTIONS[sportKey]?.label || sportKey,
+        totals: emptyWeeklyIssueCounts(),
+        countries: new Map(),
+        leagues: new Map(),
+        scanIds: new Set(),
+      });
+    }
+    return bySport.get(sportKey);
+  };
+
+  for (const [key, entry] of latestBySportDate) {
+    const rowSport = key.split('|')[0];
+    const bucket = ensureSport(rowSport);
+    bucket.scanIds.add(entry.scanId);
+
+    for (const row of entry.rows) {
+      bumpWeeklyIssueCounts(bucket.totals, row.type);
+
+      const country = weeklyRowCountry(row);
+      const countryKey = country.toLowerCase();
+      if (!bucket.countries.has(countryKey)) {
+        bucket.countries.set(countryKey, {
+          name: country,
+          ...emptyWeeklyIssueCounts(),
+        });
+      }
+      bumpWeeklyIssueCounts(bucket.countries.get(countryKey), row.type);
+
+      const competition = weeklyRowCompetition(row);
+      const leagueKey = `${countryKey}|||${competition.toLowerCase()}`;
+      if (!bucket.leagues.has(leagueKey)) {
+        bucket.leagues.set(leagueKey, {
+          country,
+          competition,
+          ...emptyWeeklyIssueCounts(),
+        });
+      }
+      bumpWeeklyIssueCounts(bucket.leagues.get(leagueKey), row.type);
+    }
+  }
+
+  const sports = [...bySport.values()]
+    .map(entry => ({
+      sport: entry.sport,
+      label: entry.label,
+      scanCount: entry.scanIds.size,
+      totals: entry.totals,
+      countries: sortWeeklyRanking([...entry.countries.values()]).slice(0, 20),
+      leagues: sortWeeklyRanking([...entry.leagues.values()]).slice(0, 20),
+    }))
+    .sort((left, right) => {
+      if (right.totals.total !== left.totals.total) return right.totals.total - left.totals.total;
+      return String(left.label).localeCompare(String(right.label), 'en', { sensitivity: 'base' });
+    });
+
+  const totals = sports.reduce((acc, entry) => {
+    acc.total += entry.totals.total;
+    acc.timeDiff += entry.totals.timeDiff;
+    acc.statusDiff += entry.totals.statusDiff;
+    acc.onlyFlash += entry.totals.onlyFlash;
+    acc.only365 += entry.totals.only365;
+    return acc;
+  }, emptyWeeklyIssueCounts());
+
+  return {
+    from: fromDate,
+    to: toDate,
+    days: windowDays,
+    sport: sportFilter || 'all',
+    scannerGroup: 'content',
+    scanCount: latestBySportDate.size,
+    issueTypes: [...WEEKLY_ISSUE_TYPES],
+    totals,
+    sports,
+  };
+}
+
 function scanHistoryName(scan) {
   if (!scan?.date || !scan?.sport) return String(scan?.id || Date.now());
   const sport = scan.sport === 'all'
@@ -2958,8 +3197,12 @@ function serveStatic(req, res) {
     '/ui-latam.css': 'ui-latam.css',
     '/ui-israel.css': 'ui-israel.css',
     '/ui-theme-light.css': 'ui-theme-light.css',
+    '/ui-weekly.css': 'ui-weekly.css',
     '/ui.js': 'ui.js',
+    '/ui-weekly.js': 'ui-weekly.js',
     '/lib/country-flags.js': 'lib/country-flags.js',
+    '/lib/football-popularity.js': 'lib/football-popularity.js',
+    '/config/football_popularity_priority.json': 'config/football_popularity_priority.json',
   };
 
   const file = routes[url.pathname];
@@ -2975,6 +3218,7 @@ function serveStatic(req, res) {
   const ext = path.extname(file);
   const type = ext === '.html' ? 'text/html; charset=utf-8'
     : ext === '.css' ? 'text/css; charset=utf-8'
+    : ext === '.json' ? 'application/json; charset=utf-8'
     : 'application/javascript; charset=utf-8';
 
   res.writeHead(200, {
@@ -3081,6 +3325,12 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'GET' && url.pathname === '/api/history') {
       return sendJson(res, 200, { history: loadHistory() });
+    }
+
+    if (req.method === 'GET' && url.pathname === '/api/weekly-analysis') {
+      const days = Number(url.searchParams.get('days') || 7);
+      const sport = String(url.searchParams.get('sport') || '').trim();
+      return sendJson(res, 200, buildWeeklyAnalysis({ days, sport }));
     }
 
     if (req.method === 'PUT' && url.pathname === '/api/history') {
