@@ -378,9 +378,25 @@ function competitorsAreSame(pair = {}) {
   return sameOrderAthletes || reversedAthletes;
 }
 
+function isClubFriendlyCompetition(pair = {}) {
+  const text = [
+    pair.competition365,
+    pair.competitionFlash,
+    pair.competicao_365,
+    pair.competicao_flash,
+    pair.context,
+  ].map(value => String(value || '').toLowerCase()).join(' ');
+  return /club\s*friendl|friendl/.test(text);
+}
+
 function competitorNamesNeedReview(pair = {}) {
   if (competitorsAreSame(pair)) return false;
   const similarity = Number(pair.teamSimilarity || 0);
+
+  // Flash Club Friendlies often only differ by "(Ger)/(Ned)" (and short local forms).
+  // Once the matcher already linked the game with a high score, skip Terms Fix noise.
+  if (similarity >= 0.82 && isClubFriendlyCompetition(pair)) return false;
+
   if (similarity >= 0.78) {
     const homeMatch = teamNamesEquivalent(pair.home365 || '', pair.homeFlash || '') ||
       teamNamesEquivalent(pair.home365 || '', pair.awayFlash || '');
@@ -451,16 +467,25 @@ function candidateTimeDiff(left = {}, right = {}) {
 }
 
 function possibleUnmatchedGameCandidate(game365 = {}, gameFlash = {}) {
-  const timeDelta = candidateTimeDiff(game365, gameFlash);
-  const teamSimilarity = pairNameSimilarity(game365, gameFlash);
+  // Cheap competition check first — pairNameSimilarity is the heavy cost.
   const competitionSimilarity = diceSimilarity(
     normalizeCompTerm(game365.competicao || game365.competition || ''),
     normalizeCompTerm(gameFlash.competicao || gameFlash.competition || '')
   );
-  const timeIsClose = timeDelta !== null && (timeDelta <= 5 || isTimezoneBoundaryPair(game365.horario || game365.time, gameFlash.horario || gameFlash.time));
+  if (competitionSimilarity < 0.55) return null;
+
+  const timeDelta = candidateTimeDiff(game365, gameFlash);
+  const timeIsClose = timeDelta !== null && (
+    timeDelta <= 5 ||
+    isTimezoneBoundaryPair(game365.horario || game365.time, gameFlash.horario || gameFlash.time)
+  );
+
+  if (!timeIsClose && competitionSimilarity < 0.65) return null;
+
+  const teamSimilarity = pairNameSimilarity(game365, gameFlash);
   const teamIsClose = teamSimilarity >= 0.40;
 
-  if (timeIsClose && competitionSimilarity >= 0.55 && teamIsClose) {
+  if (timeIsClose && teamIsClose) {
     return { timeDelta, teamSimilarity, competitionSimilarity };
   }
 
@@ -474,14 +499,82 @@ function possibleUnmatchedGameCandidate(game365 = {}, gameFlash = {}) {
 function unmatchedGameCandidates(result = {}) {
   const only365 = Array.isArray(result?.so_no_365) ? result.so_no_365 : [];
   const onlyFlash = Array.isArray(result?.so_no_flash) ? result.so_no_flash : [];
+  if (!only365.length || !onlyFlash.length) return [];
+
+  const product = only365.length * onlyFlash.length;
+  // Small countries: full cartesian is fine after cheap early-exits above.
+  if (product <= 12000) {
+    const candidates = [];
+    for (let i = 0; i < only365.length; i++) {
+      for (let j = 0; j < onlyFlash.length; j++) {
+        const meta = possibleUnmatchedGameCandidate(only365[i], onlyFlash[j]);
+        if (!meta) continue;
+        candidates.push({
+          game365: only365[i],
+          gameFlash: onlyFlash[j],
+          index365: i,
+          indexFlash: j,
+          ...meta,
+          score: meta.teamSimilarity * 0.72 + meta.competitionSimilarity * 0.22 + (meta.timeDelta === 0 ? 0.06 : 0),
+        });
+      }
+    }
+    const used365 = new Set();
+    const usedFlash = new Set();
+    return candidates
+      .sort((a, b) => b.score - a.score)
+      .filter(candidate => {
+        if (used365.has(candidate.index365) || usedFlash.has(candidate.indexFlash)) return false;
+        used365.add(candidate.index365);
+        usedFlash.add(candidate.indexFlash);
+        return true;
+      });
+  }
+
+  // Large scopes: candidate shortlist by time window + competition key (not full O(n×m)).
+  const flashByMinute = new Map();
+  const flashByComp = new Map();
+  const flashNoTime = [];
+  for (let j = 0; j < onlyFlash.length; j++) {
+    const game = onlyFlash[j];
+    const minutes = parseGameMinutes(game.horario || game.time || '');
+    if (minutes === null) flashNoTime.push(j);
+    else {
+      if (!flashByMinute.has(minutes)) flashByMinute.set(minutes, []);
+      flashByMinute.get(minutes).push(j);
+    }
+    const compKey = normalizeCompTerm(game.competicao || game.competition || '');
+    if (compKey) {
+      if (!flashByComp.has(compKey)) flashByComp.set(compKey, []);
+      flashByComp.get(compKey).push(j);
+    }
+  }
+
   const candidates = [];
+  const windowMinutes = 45;
 
   for (let i = 0; i < only365.length; i++) {
-    for (let j = 0; j < onlyFlash.length; j++) {
-      const meta = possibleUnmatchedGameCandidate(only365[i], onlyFlash[j]);
+    const game365 = only365[i];
+    const flashIndexes = new Set(flashNoTime);
+    const minutes365 = parseGameMinutes(game365.horario || game365.time || '');
+    if (minutes365 === null) {
+      for (let j = 0; j < onlyFlash.length; j++) flashIndexes.add(j);
+    } else {
+      for (let delta = -windowMinutes; delta <= windowMinutes; delta += 1) {
+        const bucket = flashByMinute.get(minutes365 + delta);
+        if (bucket) for (const j of bucket) flashIndexes.add(j);
+      }
+    }
+    const compKey = normalizeCompTerm(game365.competicao || game365.competition || '');
+    if (compKey) {
+      for (const j of flashByComp.get(compKey) || []) flashIndexes.add(j);
+    }
+
+    for (const j of flashIndexes) {
+      const meta = possibleUnmatchedGameCandidate(game365, onlyFlash[j]);
       if (!meta) continue;
       candidates.push({
-        game365: only365[i],
+        game365,
         gameFlash: onlyFlash[j],
         index365: i,
         indexFlash: j,
@@ -649,9 +742,39 @@ function enrichCompareResults(allResults = [], defaultSportKey = '') {
   return applyApprovedTermMerges(allResults, defaultSportKey);
 }
 
+let historyCache = { mtimeMs: -1, history: null };
+let weeklyCollectCache = new Map();
+
+function invalidateHistoryCaches() {
+  historyCache = { mtimeMs: -1, history: null };
+  weeklyCollectCache = new Map();
+}
+
 function loadHistory() {
   const history = readJsonSafe(HISTORY_FILE, []);
   return (Array.isArray(history) ? history : []).map(sanitizeScanTerms);
+}
+
+function loadHistoryCached() {
+  try {
+    const stat = fs.statSync(HISTORY_FILE);
+    if (historyCache.history && historyCache.mtimeMs === Number(stat.mtimeMs)) {
+      return historyCache.history;
+    }
+    const history = loadHistory();
+    historyCache = { mtimeMs: Number(stat.mtimeMs), history };
+    return history;
+  } catch (_) {
+    return loadHistory();
+  }
+}
+
+function warmHistoryCache() {
+  try {
+    loadHistoryCached();
+  } catch (_) {
+    // Best-effort warm-up for first Weekly open.
+  }
 }
 
 function scannerGroupForSportKey(sportKey = '') {
@@ -663,6 +786,18 @@ function scannerGroupForSportKey(sportKey = '') {
 }
 
 const WEEKLY_ISSUE_TYPES = new Set(['timeDiff', 'statusDiff', 'onlyFlash', 'only365']);
+const WEEKLY_TEAM_GROUPS = new Set(['content', 'usa', 'latam', 'israel']);
+const WEEKLY_AGGREGATE_SPORTS = new Set(['all', 'usa_all', 'latam_all', 'israel_all']);
+
+function normalizeWeeklyTeamFilter(team = '') {
+  const value = String(team || '').trim().toLowerCase();
+  return WEEKLY_TEAM_GROUPS.has(value) ? value : 'content';
+}
+
+function isWeeklyConcreteSport(sportKey = '') {
+  const key = String(sportKey || '').trim();
+  return Boolean(key) && !WEEKLY_AGGREGATE_SPORTS.has(key);
+}
 
 function emptyWeeklyIssueCounts() {
   return { total: 0, timeDiff: 0, statusDiff: 0, onlyFlash: 0, only365: 0 };
@@ -691,40 +826,56 @@ function weeklyRowSport(row = {}, scanSport = '') {
   return fromScan && fromScan !== 'all' ? fromScan : fromRow || fromScan || '';
 }
 
-function isWeeklyCompetitionIgnored(sportKey = '', scope = '', competition = '') {
-  if (!sportKey || !competition || competition === '-') return false;
-  const sportRules = listRules()[sportKey];
-  if (!sportRules) return false;
+function buildWeeklyIgnoreIndex() {
+  const rules = listRules();
+  const rulesBySport = new Map();
+  for (const [sportKey, sportRules] of Object.entries(rules || {})) {
+    const lists = [
+      ...(sportRules?.ignoreFlashOnly || []),
+      ...(sportRules?.ignore365Only || []),
+    ];
+    if (lists.length) rulesBySport.set(sportKey, lists);
+  }
 
-  const lists = [
-    ...(sportRules.ignoreFlashOnly || []),
-    ...(sportRules.ignore365Only || []),
-  ];
-  if (!lists.length) return false;
+  let registryIgnored = [];
+  try {
+    const registry = competitionRegistryView();
+    registryIgnored = Object.values(registry.competitions || {}).filter(entry =>
+      entry && entry.status === 'ignored' && entry.sport && entry.competition
+    );
+  } catch (_) {
+    registryIgnored = [];
+  }
 
-  return lists.some(rule =>
+  const registryBySport = new Map();
+  for (const entry of registryIgnored) {
+    const sportKey = String(entry.sport || '');
+    if (!registryBySport.has(sportKey)) registryBySport.set(sportKey, []);
+    registryBySport.get(sportKey).push(entry);
+  }
+
+  return { rulesBySport, registryBySport };
+}
+
+function isWeeklyCompetitionIgnoredWithIndex(sportKey = '', scope = '', competition = '', ignoreIndex = null) {
+  if (!sportKey || !competition || competition === '-' || !ignoreIndex) return false;
+
+  const ruleLists = ignoreIndex.rulesBySport.get(sportKey) || [];
+  if (ruleLists.some(rule =>
     ruleScopeMatches(rule.scope, scope) &&
     ruleCompetitionMatches(rule.competition, competition)
+  )) {
+    return true;
+  }
+
+  const registryRows = ignoreIndex.registryBySport.get(sportKey) || [];
+  return registryRows.some(entry =>
+    ruleScopeMatches(entry.scope || '', scope) &&
+    ruleCompetitionMatches(entry.competition || '', competition)
   );
 }
 
-function isWeeklyCompetitionIgnoredInRegistry(sportKey = '', scope = '', competition = '') {
-  if (!sportKey || !competition || competition === '-') return false;
-  try {
-    const registry = competitionRegistryView();
-    const rows = Object.values(registry.competitions || {});
-    return rows.some(entry => {
-      if (!entry || entry.status !== 'ignored') return false;
-      if (String(entry.sport || '') !== String(sportKey)) return false;
-      return ruleScopeMatches(entry.scope || '', scope) &&
-        ruleCompetitionMatches(entry.competition || '', competition);
-    });
-  } catch (_) {
-    return false;
-  }
-}
-
-function weeklyRowIsIgnored(row = {}, sportKey = '') {
+function weeklyRowIsIgnored(row = {}, sportKey = '', ignoreIndex = null) {
   const scope = weeklyRowCountry(row);
   const names = [
     row.competition,
@@ -734,10 +885,8 @@ function weeklyRowIsIgnored(row = {}, sportKey = '') {
 
   if (!names.length) names.push(weeklyRowCompetition(row));
 
-  return names.some(name =>
-    isWeeklyCompetitionIgnored(sportKey, scope, name) ||
-    isWeeklyCompetitionIgnoredInRegistry(sportKey, scope, name)
-  );
+  const index = ignoreIndex || buildWeeklyIgnoreIndex();
+  return names.some(name => isWeeklyCompetitionIgnoredWithIndex(sportKey, scope, name, index));
 }
 
 function sortWeeklyRanking(entries = []) {
@@ -751,9 +900,63 @@ function sortWeeklyRanking(entries = []) {
   });
 }
 
-function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
+function normalizeWeeklyIssueFilter(issue = '') {
+  const value = String(issue || '').trim();
+  if (!value || value === 'all') return 'all';
+  return WEEKLY_ISSUE_TYPES.has(value) ? value : 'all';
+}
+
+const WEEKLY_ISSUES_LIMIT = 150;
+const WEEKLY_EMBEDDED_ISSUES_LIMIT = 100;
+
+function sortWeeklyIssues(issues = []) {
+  return [...issues].sort((left, right) => {
+    if (left.date !== right.date) return String(right.date).localeCompare(String(left.date));
+    if (left.type !== right.type) return String(left.type).localeCompare(String(right.type));
+    return `${left.home} ${left.away}`.localeCompare(`${right.home} ${right.away}`, 'en', { sensitivity: 'base' });
+  });
+}
+
+function buildWeeklyIssuesIndex(latestBySportDate = new Map()) {
+  const index = new Map();
+  const push = (key, issue) => {
+    if (!index.has(key)) index.set(key, []);
+    index.get(key).push(issue);
+  };
+
+  for (const entry of latestBySportDate.values()) {
+    const sport = entry.sport || '';
+    for (const row of entry.rows || []) {
+      const issue = compactWeeklyIssue(row, { sport, date: entry.date });
+      const countryKey = weeklyRowCountry(row).toLowerCase();
+      const competitionKey = weeklyRowCompetition(row).toLowerCase();
+      push(`${sport}|country|${countryKey}`, issue);
+      push(`${sport}|league|${countryKey}|${competitionKey}`, issue);
+    }
+  }
+
+  for (const [key, issues] of index) {
+    index.set(key, sortWeeklyIssues(issues));
+  }
+  return index;
+}
+
+function attachEmbeddedWeeklyIssues(entry = {}) {
+  const issues = entry._issues || [];
+  const total = issues.length;
+  const limit = WEEKLY_EMBEDDED_ISSUES_LIMIT;
+  const truncated = total > limit;
+  const { _issues, ...rest } = entry;
+  return {
+    ...rest,
+    issues: truncated ? issues.slice(0, limit) : issues,
+    issuesTotal: total,
+    issuesTruncated: truncated,
+  };
+}
+
+function weeklyAnalysisWindow(days = 7) {
   const windowDays = Math.min(31, Math.max(1, Number(days) || 7));
-  const sportFilter = String(sport || '').trim();
   const today = formatLocalDate(new Date());
   // Content Team usually scans tomorrow's slate — include that game day in the window.
   const toDate = (() => {
@@ -766,17 +969,33 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
     date.setDate(date.getDate() - (windowDays - 1));
     return formatLocalDate(date);
   })();
+  return { windowDays, fromDate, toDate };
+}
 
-  const history = loadHistory();
+const WEEKLY_COLLECT_TTL_MS = 60_000;
+
+function collectWeeklyLatestBySportDate({ days = 7, sport = '', issue = '', team = '' } = {}) {
+  const { windowDays, fromDate, toDate } = weeklyAnalysisWindow(days);
+  const teamFilter = normalizeWeeklyTeamFilter(team);
+  const sportFilter = String(sport || '').trim();
+  const issueFilter = normalizeWeeklyIssueFilter(issue);
+  const cacheKey = `${windowDays}|${fromDate}|${toDate}|${teamFilter}|${sportFilter || 'all'}|${issueFilter}`;
+  const cached = weeklyCollectCache.get(cacheKey);
+  if (cached && (Date.now() - cached.at) < WEEKLY_COLLECT_TTL_MS) {
+    return cached.result;
+  }
+
+  const history = loadHistoryCached();
+  const ignoreIndex = buildWeeklyIgnoreIndex();
   const candidates = history.filter(scan => {
     if (!scan || scan.status !== 'completed' || !scan.result) return false;
-    if (scannerGroupForSportKey(scan.sport) !== 'content') return false;
+    if (scannerGroupForSportKey(scan.sport) !== teamFilter) return false;
     const scanDate = String(scan.date || '');
     if (!/^\d{4}-\d{2}-\d{2}$/.test(scanDate)) return false;
     return scanDate >= fromDate && scanDate <= toDate;
   });
 
-  // One snapshot per content sport + game date. Prefer dedicated sport scans over "all".
+  // One snapshot per team sport + game date. Prefer dedicated sport scans over aggregate "all".
   const latestBySportDate = new Map();
   for (const scan of candidates) {
     const stamp = `${String(scan.finalizedAt || scan.finishedAt || '')}|${scan.id}`;
@@ -784,11 +1003,12 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
 
     for (const row of scan.result?.details?.problematic || []) {
       if (!WEEKLY_ISSUE_TYPES.has(row?.type)) continue;
+      if (issueFilter !== 'all' && row.type !== issueFilter) continue;
       const rowSport = weeklyRowSport(row, scan.sport);
-      if (!rowSport || rowSport === 'all') continue;
-      if (scannerGroupForSportKey(rowSport) !== 'content') continue;
+      if (!isWeeklyConcreteSport(rowSport)) continue;
+      if (scannerGroupForSportKey(rowSport) !== teamFilter) continue;
       if (sportFilter && sportFilter !== 'all' && rowSport !== sportFilter) continue;
-      if (weeklyRowIsIgnored(row, rowSport)) continue;
+      if (weeklyRowIsIgnored(row, rowSport, ignoreIndex)) continue;
       if (!rowsBySport.has(rowSport)) rowsBySport.set(rowSport, []);
       rowsBySport.get(rowSport).push(row);
     }
@@ -797,19 +1017,70 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
       const key = `${rowSport}|${scan.date}`;
       const dedicated = scan.sport === rowSport;
       const prev = latestBySportDate.get(key);
+      const next = {
+        stamp,
+        dedicated,
+        rows,
+        scanId: scan.id,
+        date: String(scan.date || ''),
+        sport: rowSport,
+      };
       if (!prev) {
-        latestBySportDate.set(key, { stamp, dedicated, rows, scanId: scan.id });
+        latestBySportDate.set(key, next);
         continue;
       }
       if (dedicated && !prev.dedicated) {
-        latestBySportDate.set(key, { stamp, dedicated, rows, scanId: scan.id });
+        latestBySportDate.set(key, next);
         continue;
       }
       if (dedicated === prev.dedicated && stamp > prev.stamp) {
-        latestBySportDate.set(key, { stamp, dedicated, rows, scanId: scan.id });
+        latestBySportDate.set(key, next);
       }
     }
   }
+
+  const result = {
+    windowDays,
+    fromDate,
+    toDate,
+    teamFilter,
+    sportFilter: sportFilter || 'all',
+    issueFilter,
+    latestBySportDate,
+    issuesIndex: buildWeeklyIssuesIndex(latestBySportDate),
+  };
+  weeklyCollectCache.set(cacheKey, { at: Date.now(), result });
+  return result;
+}
+
+function compactWeeklyIssue(row = {}, meta = {}) {
+  return {
+    type: row.type || '',
+    sport: meta.sport || row.sport || '',
+    date: meta.date || '',
+    country: weeklyRowCountry(row),
+    competition: weeklyRowCompetition(row),
+    home: String(row.home || row.home365 || row.homeFlash || '').trim(),
+    away: String(row.away || row.away365 || row.awayFlash || '').trim(),
+    time: String(row.time || '').trim(),
+    time365: String(row.time365 || '').trim(),
+    timeFlash: String(row.timeFlash || '').trim(),
+    status: String(row.status || '').trim(),
+    status365: String(row.status365 || '').trim(),
+    statusFlash: String(row.statusFlash || '').trim(),
+  };
+}
+
+function buildWeeklyAnalysis({ days = 7, sport = '', issue = '', team = '' } = {}) {
+  const {
+    windowDays,
+    fromDate,
+    toDate,
+    teamFilter,
+    sportFilter,
+    issueFilter,
+    latestBySportDate,
+  } = collectWeeklyLatestBySportDate({ days, sport, issue, team });
 
   const bySport = new Map();
   const ensureSport = (sportKey) => {
@@ -827,7 +1098,7 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
   };
 
   for (const [key, entry] of latestBySportDate) {
-    const rowSport = key.split('|')[0];
+    const rowSport = entry.sport || key.split('|')[0];
     const bucket = ensureSport(rowSport);
     bucket.scanIds.add(entry.scanId);
 
@@ -840,9 +1111,13 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
         bucket.countries.set(countryKey, {
           name: country,
           ...emptyWeeklyIssueCounts(),
+          _issues: [],
         });
       }
       bumpWeeklyIssueCounts(bucket.countries.get(countryKey), row.type);
+      bucket.countries.get(countryKey)._issues.push(
+        compactWeeklyIssue(row, { sport: rowSport, date: entry.date })
+      );
 
       const competition = weeklyRowCompetition(row);
       const leagueKey = `${countryKey}|||${competition.toLowerCase()}`;
@@ -851,9 +1126,13 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
           country,
           competition,
           ...emptyWeeklyIssueCounts(),
+          _issues: [],
         });
       }
       bumpWeeklyIssueCounts(bucket.leagues.get(leagueKey), row.type);
+      bucket.leagues.get(leagueKey)._issues.push(
+        compactWeeklyIssue(row, { sport: rowSport, date: entry.date })
+      );
     }
   }
 
@@ -863,8 +1142,12 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
       label: entry.label,
       scanCount: entry.scanIds.size,
       totals: entry.totals,
-      countries: sortWeeklyRanking([...entry.countries.values()]).slice(0, 20),
-      leagues: sortWeeklyRanking([...entry.leagues.values()]).slice(0, 20),
+      countries: sortWeeklyRanking([...entry.countries.values()])
+        .slice(0, 20)
+        .map(attachEmbeddedWeeklyIssues),
+      leagues: sortWeeklyRanking([...entry.leagues.values()])
+        .slice(0, 20)
+        .map(attachEmbeddedWeeklyIssues),
     }))
     .sort((left, right) => {
       if (right.totals.total !== left.totals.total) return right.totals.total - left.totals.total;
@@ -884,12 +1167,99 @@ function buildWeeklyAnalysis({ days = 7, sport = '' } = {}) {
     from: fromDate,
     to: toDate,
     days: windowDays,
+    team: teamFilter,
     sport: sportFilter || 'all',
-    scannerGroup: 'content',
+    issue: issueFilter,
+    scannerGroup: teamFilter,
     scanCount: latestBySportDate.size,
     issueTypes: [...WEEKLY_ISSUE_TYPES],
     totals,
     sports,
+  };
+}
+
+function buildWeeklyAnalysisIssues({
+  days = 7,
+  sport = '',
+  issue = '',
+  team = '',
+  country = '',
+  competition = '',
+  limit = WEEKLY_ISSUES_LIMIT,
+} = {}) {
+  const countryFilter = String(country || '').trim();
+  if (!countryFilter) {
+    throw new Error('country is required');
+  }
+
+  const competitionFilter = String(competition || '').trim();
+  const countryKey = countryFilter.toLowerCase();
+  const competitionKey = competitionFilter.toLowerCase();
+  const maxIssues = Math.min(500, Math.max(1, Number(limit) || WEEKLY_ISSUES_LIMIT));
+
+  const {
+    windowDays,
+    fromDate,
+    toDate,
+    teamFilter,
+    sportFilter,
+    issueFilter,
+    latestBySportDate,
+    issuesIndex,
+  } = collectWeeklyLatestBySportDate({ days, sport, issue, team });
+
+  const resolvedSport = sportFilter && sportFilter !== 'all' ? sportFilter : '';
+
+  if (resolvedSport && issuesIndex) {
+    const indexKey = competitionFilter
+      ? `${resolvedSport}|league|${countryKey}|${competitionKey}`
+      : `${resolvedSport}|country|${countryKey}`;
+    const indexed = issuesIndex.get(indexKey) || [];
+    const total = indexed.length;
+    const truncated = total > maxIssues;
+    return {
+      from: fromDate,
+      to: toDate,
+      days: windowDays,
+      team: teamFilter,
+      sport: sportFilter || 'all',
+      issue: issueFilter,
+      country: countryFilter,
+      competition: competitionFilter || '',
+      total,
+      truncated,
+      limit: maxIssues,
+      issues: truncated ? indexed.slice(0, maxIssues) : indexed,
+    };
+  }
+
+  const issues = [];
+  for (const entry of latestBySportDate.values()) {
+    if (sportFilter && sportFilter !== 'all' && entry.sport !== sportFilter) continue;
+    for (const row of entry.rows) {
+      if (weeklyRowCountry(row).toLowerCase() !== countryKey) continue;
+      if (competitionFilter && weeklyRowCompetition(row).toLowerCase() !== competitionKey) continue;
+      issues.push(compactWeeklyIssue(row, { sport: entry.sport, date: entry.date }));
+    }
+  }
+
+  issues.sort(sortWeeklyIssues);
+  const total = issues.length;
+  const truncated = total > maxIssues;
+
+  return {
+    from: fromDate,
+    to: toDate,
+    days: windowDays,
+    team: teamFilter,
+    sport: sportFilter || 'all',
+    issue: issueFilter,
+    country: countryFilter,
+    competition: competitionFilter || '',
+    total,
+    truncated,
+    limit: maxIssues,
+    issues: truncated ? issues.slice(0, maxIssues) : issues,
   };
 }
 
@@ -909,7 +1279,7 @@ function scanHistoryName(scan) {
 
 function saveScanHistory(scan) {
   const startedAt = Date.now();
-  const history = loadHistory();
+  const history = loadHistoryCached();
   const record = sanitizeScanTerms({
     ...scan,
     historyName: scan.historyName || scanHistoryName(scan),
@@ -918,6 +1288,13 @@ function saveScanHistory(scan) {
   const next = [record, ...history.filter(item => item.id !== record.id)].slice(0, 100);
   // Compact JSON: history can be multi-MB; pretty-print dominated finalize latency.
   writeJson(HISTORY_FILE, next, { pretty: false });
+  invalidateHistoryCaches();
+  historyCache = {
+    mtimeMs: (() => {
+      try { return Number(fs.statSync(HISTORY_FILE).mtimeMs); } catch (_) { return Date.now(); }
+    })(),
+    history: next,
+  };
   if (scan?.logs) {
     appendLog(scan, `History saved in ${Date.now() - startedAt}ms`);
   }
@@ -940,6 +1317,7 @@ function renameHistoryRecord(id, historyName) {
 
   if (lastScan?.id === history[index].id) lastScan = history[index];
   writeJson(HISTORY_FILE, history, { pretty: false });
+  invalidateHistoryCaches();
   return history;
 }
 
@@ -950,6 +1328,7 @@ function deleteHistoryRecord(id) {
 
   if (lastScan?.id === Number(id)) lastScan = next[0] || null;
   writeJson(HISTORY_FILE, next, { pretty: false });
+  invalidateHistoryCaches();
   return next;
 }
 
@@ -1112,9 +1491,15 @@ async function getCompareResultsForSport(sportKey, scan = null) {
       process.env.SCAN_DATE = scan.date;
     }
 
+    // Keep compare.js warm — full reload was one of the largest UI compare costs.
+    // Rules / aliases are cleared so edits to those files still take effect.
     clearTermAliasesCache();
-    delete require.cache[require.resolve('./lib/scan-timezone')];
-    delete require.cache[require.resolve('./compare.js')];
+    try {
+      const { clearCompetitionRulesCache } = require('./compare.js');
+      if (typeof clearCompetitionRulesCache === 'function') clearCompetitionRulesCache();
+    } catch (_) {
+      // Module not loaded yet; first require below is enough.
+    }
     const { runCompare } = require('./compare.js');
 
     const originalLog = console.log;
@@ -1155,10 +1540,14 @@ async function getCompareResultsForSport(sportKey, scan = null) {
   });
 }
 
-async function buildAllSportsSummary() {
+async function buildAllSportsSummary(options = {}) {
   const allDetails = { problematic: [], matched: [] };
   const countries = [];
   const sports = [];
+  const forceSportKeys = Array.isArray(options.forceRecompareSports)
+    ? new Set(options.forceRecompareSports.map(String))
+    : null;
+  const forceAll = Boolean(options.forceRecompare) && !forceSportKeys;
 
   for (const sport of Object.values(SPORTS)) {
     if (sport.usaOnly || sport.latamOnly || sport.israelOnly) continue;
@@ -1171,7 +1560,11 @@ async function buildAllSportsSummary() {
     };
 
     try {
-      const allResults = await getCompareResultsForSport(sport.key);
+      const mustRecompare = forceAll || (forceSportKeys && forceSportKeys.has(sport.key));
+      const snapshot = !mustRecompare && loadCompareSnapshot(sport.key);
+      const allResults = snapshot
+        ? enrichCompareResults(snapshot, sport.key)
+        : await getCompareResultsForSport(sport.key);
       const summary = summarizeResults(raw365, rawFlash, allResults);
       const details = prefixDetailRows(buildDetails(allResults, sport.key), sport);
 
@@ -2368,7 +2761,22 @@ async function finalizeScan(scan, decisions = {}, options = {}) {
   const hasTermDecisions = Object.values(decisions || {}).some(value => value === 'same' || value === 'different');
   if (hasTermDecisions) {
     if (scan.sport === 'all') {
-      scan.result = await buildAllSportsSummary();
+      const termsById = new Map((scan.terms || []).map(term => [String(term.id), term]));
+      const sportsWithDecisions = [...new Set(
+        Object.entries(decisions || {})
+          .filter(([, decision]) => decision === 'same' || decision === 'different')
+          .map(([id]) => {
+            const sportKey = String(termsById.get(String(id))?.sport || '').trim();
+            if (!sportKey || sportKey === 'all') return null;
+            return getLatamCoreSport(sportKey) || getIsraelCoreSport(sportKey) || sportKey.replace(/_usa$/, '') || sportKey;
+          })
+          .filter(Boolean)
+      )];
+      scan.result = await buildAllSportsSummary(
+        sportsWithDecisions.length
+          ? { forceRecompareSports: sportsWithDecisions }
+          : { forceRecompare: true }
+      );
       allResults = scan.result?.countries || allResults;
     } else if (isUsaAllSportKey(scan.sport)) {
       scan.result = await buildUsaAllSummary();
@@ -3203,6 +3611,9 @@ function serveStatic(req, res) {
     '/lib/country-flags.js': 'lib/country-flags.js',
     '/lib/football-popularity.js': 'lib/football-popularity.js',
     '/config/football_popularity_priority.json': 'config/football_popularity_priority.json',
+    '/vendor/flatpickr/flatpickr.min.css': 'vendor/flatpickr/flatpickr.min.css',
+    '/vendor/flatpickr/flatpickr.min.js': 'vendor/flatpickr/flatpickr.min.js',
+    '/vendor/flatpickr/l10n/pt.js': 'vendor/flatpickr/l10n/pt.js',
   };
 
   const file = routes[url.pathname];
@@ -3329,8 +3740,31 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'GET' && url.pathname === '/api/weekly-analysis') {
       const days = Number(url.searchParams.get('days') || 7);
+      const team = String(url.searchParams.get('team') || '').trim();
       const sport = String(url.searchParams.get('sport') || '').trim();
-      return sendJson(res, 200, buildWeeklyAnalysis({ days, sport }));
+      const issue = String(url.searchParams.get('issue') || '').trim();
+      return sendJson(res, 200, buildWeeklyAnalysis({ days, team, sport, issue }));
+    }
+
+    if (req.method === 'GET' && url.pathname === '/api/weekly-analysis/issues') {
+      try {
+        const days = Number(url.searchParams.get('days') || 7);
+        const team = String(url.searchParams.get('team') || '').trim();
+        const sport = String(url.searchParams.get('sport') || '').trim();
+        const issue = String(url.searchParams.get('issue') || '').trim();
+        const country = String(url.searchParams.get('country') || '').trim();
+        const competition = String(url.searchParams.get('competition') || '').trim();
+        return sendJson(res, 200, buildWeeklyAnalysisIssues({
+          days,
+          team,
+          sport,
+          issue,
+          country,
+          competition,
+        }));
+      } catch (error) {
+        return sendJson(res, 400, { error: error.message || String(error) });
+      }
     }
 
     if (req.method === 'PUT' && url.pathname === '/api/history') {
@@ -3444,6 +3878,8 @@ if (require.main === module) {
     const sportKeys = Object.keys(SPORTS).join(', ');
     console.log(`UI running at http://localhost:${PORT}`);
     console.log(`Sports: ${sportKeys} | Modes: all, usa_all, latam_all, israel_all, usa_*, latam_*, israel_*`);
+
+    warmHistoryCache();
 
     if (asana.isConfigured()) {
       const today = todayIsoInTimezone(DEFAULT_SCAN_TIMEZONE);

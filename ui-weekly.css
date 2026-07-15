@@ -67,11 +67,13 @@
   display: grid;
   gap: 14px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
 }
 
 .weekly-rank-card {
   display: grid;
-  gap: 10px;
+  gap: 8px;
+  align-content: start;
   padding: 14px;
   border: 1px solid var(--nova-border, rgba(255,255,255,.08));
   border-radius: 14px;
@@ -82,10 +84,49 @@
   margin: 0;
   font-size: .92rem;
   font-weight: 650;
+  line-height: 1.25;
+}
+
+.weekly-rank-card .empty-state {
+  margin: 0;
+  padding: 12px 10px;
 }
 
 .weekly-table-wrap {
   overflow-x: auto;
+  min-height: 0;
+}
+
+/* Weekly-only issue dots — distinct from shared report issue-dot theme overrides */
+.weekly-issue-dot {
+  background: var(--accent, #4a9ee8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+  color: var(--accent, #4a9ee8);
+  display: inline-block;
+  flex: 0 0 auto;
+  height: 10px;
+  width: 10px;
+}
+
+.weekly-issue-dot.time {
+  background: #f59e0b;
+  color: #f59e0b;
+}
+
+.weekly-issue-dot.status {
+  background: #6366f1;
+  color: #6366f1;
+}
+
+.weekly-issue-dot.missing-365 {
+  background: #ef4444;
+  color: #ef4444;
+}
+
+.weekly-issue-dot.missing-flash {
+  background: #14b8a6;
+  color: #14b8a6;
 }
 
 .weekly-table {
@@ -143,6 +184,125 @@
   font-size: .86rem;
 }
 
+.weekly-rank-row {
+  cursor: pointer;
+  transition: background .12s ease;
+}
+
+.weekly-rank-row:hover,
+.weekly-rank-row:focus-visible {
+  background: rgba(255, 255, 255, .04);
+  outline: none;
+}
+
+.weekly-rank-row.is-open {
+  background: rgba(74, 158, 232, .08);
+}
+
+.weekly-row-label {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.weekly-expand-icon {
+  display: inline-block;
+  flex: 0 0 auto;
+  width: .45rem;
+  height: .45rem;
+  margin-top: .35rem;
+  border-right: 1.5px solid var(--nova-text3, #8b93a7);
+  border-bottom: 1.5px solid var(--nova-text3, #8b93a7);
+  transform: rotate(-45deg);
+  transition: transform .15s ease;
+}
+
+.weekly-rank-row.is-open .weekly-expand-icon {
+  margin-top: .2rem;
+  transform: rotate(45deg);
+}
+
+.weekly-issues-row td {
+  padding: 0 6px 12px;
+  border-bottom: 1px solid var(--nova-border2, rgba(255,255,255,.06));
+  vertical-align: top;
+}
+
+.weekly-issues-panel {
+  display: grid;
+  gap: 8px;
+  padding: 10px 12px;
+  border: 1px solid var(--nova-border, rgba(255,255,255,.08));
+  border-radius: 12px;
+  background: rgba(0, 0, 0, .18);
+}
+
+.weekly-issues-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--nova-text2, #b7becd);
+  font-size: .82rem;
+}
+
+.weekly-issues-head strong {
+  color: var(--nova-text, #e8ecf4);
+  font-size: .88rem;
+}
+
+.weekly-issues-truncated {
+  margin: 0;
+}
+
+.weekly-issues-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 320px;
+  overflow: auto;
+}
+
+.weekly-issue-item {
+  display: grid;
+  gap: 4px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, .03);
+}
+
+.weekly-issue-main,
+.weekly-issue-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.weekly-issue-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .82rem;
+  font-weight: 650;
+}
+
+.weekly-issue-date,
+.weekly-issue-meta,
+.weekly-issue-detail {
+  color: var(--nova-text3, #8b93a7);
+  font-size: .78rem;
+}
+
+.weekly-issue-teams {
+  font-size: .9rem;
+  font-weight: 600;
+}
+
 @media (max-width: 900px) {
   .weekly-rank-grid {
     grid-template-columns: 1fr;
@@ -156,6 +316,32 @@ html[data-theme="light"] .weekly-rank-card {
 
 html[data-theme="light"] .weekly-table th,
 html[data-theme="light"] .weekly-sport-meta,
-html[data-theme="light"] .weekly-rank {
+html[data-theme="light"] .weekly-rank,
+html[data-theme="light"] .weekly-issue-date,
+html[data-theme="light"] .weekly-issue-meta,
+html[data-theme="light"] .weekly-issue-detail {
   color: var(--nova-text3) !important;
+}
+
+html[data-theme="light"] .weekly-rank-row:hover,
+html[data-theme="light"] .weekly-rank-row:focus-visible {
+  background: rgba(15, 23, 42, .04) !important;
+}
+
+html[data-theme="light"] .weekly-rank-row.is-open {
+  background: rgba(74, 158, 232, .1) !important;
+}
+
+html[data-theme="light"] .weekly-issues-panel {
+  background: rgba(15, 23, 42, .04) !important;
+  border-color: var(--nova-border) !important;
+}
+
+html[data-theme="light"] .weekly-issue-item {
+  background: rgba(15, 23, 42, .03) !important;
+}
+
+html[data-theme="light"] .weekly-issues-head strong,
+html[data-theme="light"] .weekly-issue-teams {
+  color: var(--nova-text) !important;
 }

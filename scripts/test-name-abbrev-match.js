@@ -42,4 +42,27 @@ assert.ok(
   'Inter ↔ Internacional should match via abbreviation map'
 );
 
+// Flash Club Friendlies: country codes in parentheses + local short forms.
+assertMatch('Hoffenheim II', 'Hoffenheim II (Ger)', 0.99);
+assertMatch('Vitesse', 'Vitesse (Ned)', 0.99);
+assertMatch('Sonnenhof Großaspach', 'Grossaspach (Ger)', 0.9);
+assertMatch('PSV Eindhoven', 'PSV (Ned)', 0.9);
+assertMatch('Union St. Gilloise', 'Royale Union SG (Bel)', 0.9);
+assertMatch('Jazira Abu Dhabi', 'Al Jazira (Uae)', 0.9);
+assertMatch('HB Køge', 'Koge (Den)', 0.9);
+assertMatch('FC VSS Kosice', 'Kosice (Svk)', 0.9);
+assertMatch('Diosgyori VTK', 'DVTK (Hun)', 0.9);
+assertMatch('STVV', 'St. Truiden (Bel)', 0.9);
+assertMatch('Frome Town', 'Frome (Eng)', 0.9);
+assertMatch('Worthing United', 'Worthing (Eng)', 0.9);
+assertMatch('Moreirense', 'Moreirense (Por)', 0.99);
+assertMatch('AVS', 'AFS (Por)', 0.9);
+assertMatch('Graffin Vlasim', 'Vlasim (Cze)', 0.9);
+
+// Do not collapse distinct clubs that only look similar.
+assert.ok(
+  flexibleNameSimilarity('Domzale', 'Domazlice (Cze)') < 0.88,
+  'Domzale ↔ Domazlice should remain distinct'
+);
+
 console.log('test-name-abbrev-match: ok');

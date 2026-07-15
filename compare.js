@@ -9,6 +9,12 @@ const { timeDiffMinutes, isTimezoneBoundaryPair, resolveScanTargetDate, isStaleF
 const { normalizeTeamNameCore, flexibleNameSimilarity } = require('./lib/flexible-names');
 const { isNonFootballFlashMatch } = require('./lib/football-flash-filter');
 const { resolveScopeKey } = require('./lib/country-flags');
+const {
+  isFootballSportKey,
+  loadPriorityListSync,
+  reportRowPopularityRank,
+  competitionPopularityRank,
+} = require('./lib/football-popularity');
 
 const SPORT_CONFIGS = {
   football: {
@@ -1066,7 +1072,23 @@ function calculateMatchScore(g365, gFlash, sportKey) {
   const cs = sameTennisEvent ? 1 : compSim(g365.competition, gFlash.competition, sportKey);
   const timeScore = getTimeScore(g365.time, gFlash.time, sportKey);
   const ts = smartTeamSim(g365, gFlash, sportKey);
-  const exactTeams = exactTeamsEarly === true ? true : isExactTeamsMatch(g365, gFlash, sportKey);
+
+  let exactTeams;
+  if (exactTeamsEarly !== null) {
+    exactTeams = exactTeamsEarly;
+  } else {
+    // Skip another expensive isExactTeamsMatch when team similarity already settles it
+    // and we don't need the exact-team time-window bypass.
+    const timeNeedsExact =
+      sportKey !== 'tennis' &&
+      td !== null &&
+      td > DIFF_TIME &&
+      !(ts >= 0.88 && cs >= 0.95);
+    if (!timeNeedsExact && ts >= 0.97) exactTeams = true;
+    else if (!timeNeedsExact && ts < 0.72) exactTeams = false;
+    else exactTeams = isExactTeamsMatch(g365, gFlash, sportKey);
+  }
+
   const allowedTimeDiff = sportKey === 'tennis'
     ? 30
     : (exactTeams || (ts >= 0.88 && cs >= 0.95) ? 180 : DIFF_TIME);
@@ -1449,6 +1471,17 @@ function compareCountry(countryName, games365, gamesFlash, sportKey) {
     let bestMeta = null;
 
     const candidateIndexes = collectFlashCandidates(g365, gamesFlash, flashIndex, matchedFlash, sportKey);
+
+    // Same-time candidates first so near-perfect early-exit triggers sooner on large scopes.
+    if (candidateIndexes.length > 12) {
+      candidateIndexes.sort((left, right) => {
+        const diffLeft = timeDiff(g365.time, gamesFlash[left].time);
+        const diffRight = timeDiff(g365.time, gamesFlash[right].time);
+        const absLeft = diffLeft === null ? 9999 : Math.abs(diffLeft);
+        const absRight = diffRight === null ? 9999 : Math.abs(diffRight);
+        return absLeft - absRight;
+      });
+    }
 
     for (const j of candidateIndexes) {
       const gF = gamesFlash[j];
@@ -1833,6 +1866,7 @@ function loadJsonSafe(filePath, fallback = {}) {
 }
 
 const SHARED_COMPETITIONS_CACHE = {};
+const SHARED_COMPETITIONS_INDEX = {};
 
 function normalizeSharedCompetitionRecord(entry = {}, sportKey = '') {
   const scope = String(entry.scope || entry.country || entry.circuit || entry.group || '').trim();
@@ -1850,6 +1884,27 @@ function normalizeSharedCompetitionRecord(entry = {}, sportKey = '') {
   };
 }
 
+function buildSharedCompetitionsIndex(pairs = []) {
+  const by365 = new Map();
+  const byFlash = new Map();
+  const byEither = new Map();
+
+  const push = (map, key, pair) => {
+    if (!key) return;
+    if (!map.has(key)) map.set(key, []);
+    map.get(key).push(pair);
+  };
+
+  for (const pair of pairs) {
+    push(by365, pair.key365, pair);
+    push(byFlash, pair.keyFlash, pair);
+    push(byEither, pair.key365, pair);
+    if (pair.keyFlash !== pair.key365) push(byEither, pair.keyFlash, pair);
+  }
+
+  return { by365, byFlash, byEither };
+}
+
 function getSharedCompetitions(sportKey = '') {
   if (!sportKey) return [];
   if (SHARED_COMPETITIONS_CACHE[sportKey]) return SHARED_COMPETITIONS_CACHE[sportKey];
@@ -1864,15 +1919,28 @@ function getSharedCompetitions(sportKey = '') {
   }
 
   SHARED_COMPETITIONS_CACHE[sportKey] = normalized;
+  SHARED_COMPETITIONS_INDEX[sportKey] = buildSharedCompetitionsIndex(normalized);
   return normalized;
 }
 
+function getSharedCompetitionsIndex(sportKey = '') {
+  if (!sportKey) return buildSharedCompetitionsIndex([]);
+  if (!SHARED_COMPETITIONS_INDEX[sportKey]) getSharedCompetitions(sportKey);
+  return SHARED_COMPETITIONS_INDEX[sportKey] || buildSharedCompetitionsIndex([]);
+}
+
 function isCompKnownShared(sportKey, compName, side = 'flash', scope = '') {
-  const pairs = getSharedCompetitions(sportKey);
   const key = String(getCompetitionSummaryKey(compName || '', sportKey === 'tennis' ? 'Tênis' : '') || '').trim();
   if (!key) return false;
 
   const scopeKey = sportKey === 'tennis' ? getScopeKey(scope || '', 'tennis') : normCountry(scope || '');
+  const index = getSharedCompetitionsIndex(sportKey);
+  const bucket = side === '365'
+    ? (index.by365.get(key) || [])
+    : side === 'flash'
+      ? (index.byFlash.get(key) || [])
+      : (index.byEither.get(key) || []);
+  const pairs = bucket.length ? bucket : (index.byEither.get(key) || []);
 
   for (const pair of pairs) {
     const scopeMatch = !pair.scope || !scopeKey || pair.scope === scopeKey;
@@ -2122,6 +2190,71 @@ function shouldIgnoreCompetitionByRule(sportKey = '', scopeName = '', side = 'fl
   return hasMatchingCompetitionRule(sideRules, scopeKey, compKey);
 }
 
+function xlsxGamePopularityRank(game = {}, country = '', sportKey = '') {
+  return reportRowPopularityRank({
+    sport: sportKey,
+    country,
+    competition: game.competicao || game.competition || '',
+    competition365: game.competicao_365 || game.competition365 || game.competicao || '',
+    competitionFlash: game.competicao_flash || game.competitionFlash || game.competicao || '',
+  }, sportKey);
+}
+
+function sortXlsxGamesByPopularity(games, country, sportKey) {
+  if (!isFootballSportKey(sportKey) || !Array.isArray(games) || games.length < 2) return games || [];
+  return [...games].sort((a, b) => {
+    const rankDiff = xlsxGamePopularityRank(a, country, sportKey) - xlsxGamePopularityRank(b, country, sportKey);
+    if (rankDiff !== 0) return rankDiff;
+    return String(a.horario || a.time || '').localeCompare(String(b.horario || b.time || ''));
+  });
+}
+
+function countryPopularityRankForXlsx(item = {}, sportKey = '') {
+  if (!isFootballSportKey(sportKey)) return Number.POSITIVE_INFINITY;
+  const country = item.country || '';
+  const result = item.result || {};
+  const pools = [
+    ...(result.so_no_flash || []),
+    ...(result.so_no_365 || []),
+    ...(result.divergencias_horario || []),
+    ...(result.divergencias_status || []),
+    ...(result.divergencias_nome || []),
+  ];
+  if (!pools.length) return Number.POSITIVE_INFINITY;
+  let best = Number.POSITIVE_INFINITY;
+  for (const game of pools) {
+    const rank = xlsxGamePopularityRank(game, country, sportKey);
+    if (rank < best) best = rank;
+  }
+  return best;
+}
+
+function prioritizeFootballResultsForReport(allResults = [], sportKey = '') {
+  if (!isFootballSportKey(sportKey)) return allResults || [];
+  loadPriorityListSync();
+
+  return [...(allResults || [])]
+    .map(item => {
+      const result = item?.result || {};
+      return {
+        ...item,
+        result: {
+          ...result,
+          so_no_flash: sortXlsxGamesByPopularity(result.so_no_flash || [], item.country, sportKey),
+          so_no_365: sortXlsxGamesByPopularity(result.so_no_365 || [], item.country, sportKey),
+          divergencias_horario: sortXlsxGamesByPopularity(result.divergencias_horario || [], item.country, sportKey),
+          divergencias_status: sortXlsxGamesByPopularity(result.divergencias_status || [], item.country, sportKey),
+          divergencias_nome: sortXlsxGamesByPopularity(result.divergencias_nome || [], item.country, sportKey),
+        },
+      };
+    })
+    .sort((a, b) => {
+      const rankDiff = countryPopularityRankForXlsx(a, sportKey) - countryPopularityRankForXlsx(b, sportKey);
+      if (rankDiff !== 0) return rankDiff;
+      return String(a.country || '').localeCompare(String(b.country || ''));
+    });
+}
+
 // ──────────────────────────────────────────────────────────────────────────────
 // XLSX
 // ──────────────────────────────────────────────────────────────────────────────
@@ -2129,6 +2262,7 @@ function shouldIgnoreCompetitionByRule(sportKey = '', scopeName = '', side = 'fl
 
 async function buildXlsx(allResults, xlsxOut, sportLabel, data365ByCountry, byFlash) {
   const sportKey = getSportKeyFromLabel(sportLabel);
+  const orderedResults = prioritizeFootballResultsForReport(allResults, sportKey);
   const wb = new ExcelJS.Workbook();
   wb.creator = 'Compare365';
   wb.created = new Date();
@@ -2182,7 +2316,7 @@ async function buildXlsx(allResults, xlsxOut, sportLabel, data365ByCountry, byFl
     styleHeader(ws.getRow(1));
     let ri = 2;
 
-    for (const { country, result } of allResults) {
+    for (const { country, result } of orderedResults) {
       const bridge = getCurrentBridge(result, sportLabel);
       const onlyFlashRows = filterOnlyByCurrentMatchedLeagues(result.so_no_flash || [], 'flash', sportLabel, bridge);
       if (!onlyFlashRows.length) continue;
@@ -2225,7 +2359,7 @@ async function buildXlsx(allResults, xlsxOut, sportLabel, data365ByCountry, byFl
     styleHeader(ws.getRow(1));
     let ri = 2;
 
-    for (const { country, result } of allResults) {
+    for (const { country, result } of orderedResults) {
       const hasAny = (result.divergencias_horario?.length || 0) + (result.divergencias_status?.length || 0);
       if (!hasAny) continue;
 
@@ -2284,7 +2418,7 @@ async function buildXlsx(allResults, xlsxOut, sportLabel, data365ByCountry, byFl
     styleHeader(ws.getRow(1));
     let ri = 2;
 
-    for (const { country, result } of allResults) {
+    for (const { country, result } of orderedResults) {
       if (!result.divergencias_nome?.length) continue;
 
       const cr = ws.addRow({});
@@ -2335,7 +2469,7 @@ async function buildXlsx(allResults, xlsxOut, sportLabel, data365ByCountry, byFl
     let tJ365 = 0;
     let tJFlash = 0;
 
-    for (const item of (allResults || [])) {
+    for (const item of (orderedResults || [])) {
       if (!item || !item.result) continue;
 
       const country = item.country || 'Sem grupo';
@@ -2508,7 +2642,14 @@ async function buildXlsx(allResults, xlsxOut, sportLabel, data365ByCountry, byFl
       cr.height = 20;
       ri++;
 
-      for (const compKey of compOrder) {
+      for (const compKey of (isFootballSportKey(sportKey)
+        ? [...compOrder].sort((a, b) => {
+          const rankA = competitionPopularityRank(compStats[a]?.label || '', country, sportKey);
+          const rankB = competitionPopularityRank(compStats[b]?.label || '', country, sportKey);
+          if (rankA !== rankB) return rankA - rankB;
+          return String(compStats[a]?.label || a).localeCompare(String(compStats[b]?.label || b));
+        })
+        : compOrder)) {
         const stat = compStats[compKey];
         const compLabel = stat.label || compKey || 'Sem competição';
         const totalDivComp = stat.so365 + stat.soFlash + stat.divHor + stat.divStatus + stat.divNome;

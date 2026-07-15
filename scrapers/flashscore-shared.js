@@ -6,6 +6,7 @@ function logStep(message = '') {
 
 // #region agent log
 function debugLog(location, message, data = {}, hypothesisId = '') {
+  if (process.env.DEBUG_FLASH_LOG !== '1') return;
   fetch('http://127.0.0.1:7430/ingest/c8d358be-4a2a-4b6d-97fd-c259b0f5f7cc', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json', 'X-Debug-Session-Id': '5ecd08' },

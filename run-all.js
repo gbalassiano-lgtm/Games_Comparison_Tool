@@ -62,6 +62,11 @@ function buildMemory(sportKey, label) {
 }
 
 async function sendResumoPipeline(stats) {
+  // UI scans set UI_SCAN_MODE=1 so compare.js skips Telegram; this must too.
+  if (process.env.UI_SCAN_MODE === '1') {
+    console.log('\n📤 Telegram resumo ignorado (modo UI).');
+    return;
+  }
   if (!BOT_TOKEN || !CHAT_ID) return;
 
   const tomorrow = new Date();
@@ -125,8 +130,12 @@ async function processSport(sport, JSON_PATHS) {
     ]);
     console.log(`\n✅ Scrapers de ${sport.label} concluídos`);
 
-    // 2️⃣ Atualiza memória de competições compartilhadas
-    await buildMemory(sport.key, sport.label);
+    // 2️⃣ Atualiza memória de competições compartilhadas (UI já atualiza no compare)
+    if (process.env.UI_SCAN_MODE !== '1') {
+      await buildMemory(sport.key, sport.label);
+    } else {
+      console.log(`\n🧠 Memória de ${sport.label} ignorada (modo UI).`);
+    }
 
     // 3️⃣ Compare
     console.log(`\n🔍 Rodando compare de ${sport.label}...\n`);

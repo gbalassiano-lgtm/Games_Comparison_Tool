@@ -2,10 +2,30 @@
 (function () {
   const WEEKLY = {
     view: 'list',
+    team: 'content',
     sport: 'all',
+    issue: 'all',
     data: null,
     loading: false,
+    openKey: '',
+    issuesCache: Object.create(null),
+    issuesLoading: Object.create(null),
   };
+
+  const TEAM_OPTIONS = [
+    { value: 'content', labelKey: 'contentTeam' },
+    { value: 'usa', labelKey: 'weeklyTeamUs' },
+    { value: 'latam', labelKey: 'latamTab' },
+    { value: 'israel', labelKey: 'israelTeamTitle' },
+  ];
+
+  const ISSUE_OPTIONS = [
+    { value: 'all', labelKey: 'allIssues' },
+    { value: 'timeDiff', labelKey: 'timeDiff' },
+    { value: 'statusDiff', labelKey: 'statusDiff' },
+    { value: 'onlyFlash', labelKey: 'weeklyMissing365' },
+    { value: 'only365', labelKey: 'weeklyMissingFlash' },
+  ];
 
   function el(id) {
     return document.getElementById(id);
@@ -25,15 +45,26 @@
       .replace(/"/g, '&quot;');
   }
 
-  function contentSports() {
-    const sports = (typeof state !== 'undefined' && Array.isArray(state.sports)) ? state.sports : [];
-    return sports.filter(sport =>
-      sport.key !== 'all' &&
-      sport.key !== 'usa_all' &&
-      !String(sport.key).endsWith('_usa') &&
-      !String(sport.key).startsWith('latam_') &&
-      !String(sport.key).startsWith('israel_')
-    );
+  function groupForSportKey(sportKey = '') {
+    if (typeof scannerGroupForSportKey === 'function') return scannerGroupForSportKey(sportKey);
+    const key = String(sportKey || '');
+    if (key === 'usa_all' || key.endsWith('_usa')) return 'usa';
+    if (key === 'latam_all' || key.startsWith('latam_')) return 'latam';
+    if (key === 'israel_all' || key.startsWith('israel_')) return 'israel';
+    return 'content';
+  }
+
+  function sportsForTeam(team = 'content') {
+    const teamKey = TEAM_OPTIONS.some(option => option.value === team) ? team : 'content';
+    const appState = (typeof state !== 'undefined' && state) ? state : window.state;
+    const sports = (appState && Array.isArray(appState.sports)) ? appState.sports : [];
+    return sports.filter(sport => {
+      const key = String(sport.key || '');
+      if (!key || key === 'all' || key === 'usa_all' || key === 'latam_all' || key === 'israel_all') {
+        return false;
+      }
+      return groupForSportKey(key) === teamKey;
+    });
   }
 
   function labelForSport(sportKey) {
@@ -41,10 +72,21 @@
     return sportKey;
   }
 
+  function fillTeamSelect() {
+    const select = el('weeklyTeamSelect');
+    if (!select) return;
+    const current = WEEKLY.team || 'content';
+    select.innerHTML = TEAM_OPTIONS.map(option => (
+      `<option value="${option.value}">${safeEscape(text(option.labelKey))}</option>`
+    )).join('');
+    select.value = TEAM_OPTIONS.some(option => option.value === current) ? current : 'content';
+    WEEKLY.team = select.value;
+  }
+
   function fillSportSelect() {
     const select = el('weeklySportSelect');
     if (!select) return;
-    const sports = contentSports();
+    const sports = sportsForTeam(WEEKLY.team || 'content');
     const current = WEEKLY.sport || 'all';
     select.innerHTML = [
       `<option value="all">${safeEscape(text('allSports'))}</option>`,
@@ -52,6 +94,17 @@
     ].join('');
     select.value = sports.some(s => s.key === current) || current === 'all' ? current : 'all';
     WEEKLY.sport = select.value;
+  }
+
+  function fillIssueSelect() {
+    const select = el('weeklyIssueSelect');
+    if (!select) return;
+    const current = WEEKLY.issue || 'all';
+    select.innerHTML = ISSUE_OPTIONS.map(option => (
+      `<option value="${option.value}">${safeEscape(text(option.labelKey))}</option>`
+    )).join('');
+    select.value = ISSUE_OPTIONS.some(option => option.value === current) ? current : 'all';
+    WEEKLY.issue = select.value;
   }
 
   function syncView() {
@@ -74,12 +127,19 @@
   }
 
   function breakdownHtml(counts = {}) {
+    const issue = WEEKLY.issue || 'all';
+    const parts = [
+      { key: 'timeDiff', label: 'timeDiff', className: 'time', value: counts.timeDiff || 0 },
+      { key: 'statusDiff', label: 'statusDiff', className: 'status', value: counts.statusDiff || 0 },
+      { key: 'onlyFlash', label: 'weeklyMissing365', className: 'missing-365', value: counts.onlyFlash || 0 },
+      { key: 'only365', label: 'weeklyMissingFlash', className: 'missing-flash', value: counts.only365 || 0 },
+    ].filter(part => issue === 'all' || part.key === issue);
+
     return `
       <span class="weekly-breakdown">
-        <span title="${safeEscape(text('timeDiff'))}"><i class="issue-dot time"></i>${counts.timeDiff || 0}</span>
-        <span title="${safeEscape(text('statusDiff'))}"><i class="issue-dot status"></i>${counts.statusDiff || 0}</span>
-        <span title="${safeEscape(text('weeklyMissing365'))}"><i class="issue-dot missing-365"></i>${counts.onlyFlash || 0}</span>
-        <span title="${safeEscape(text('weeklyMissingFlash'))}"><i class="issue-dot missing-flash"></i>${counts.only365 || 0}</span>
+        ${parts.map(part => `
+          <span title="${safeEscape(text(part.label))}"><i class="weekly-issue-dot ${part.className}"></i>${part.value}</span>
+        `).join('')}
       </span>
     `;
   }
@@ -90,19 +150,141 @@
     return safeEscape(cleaned);
   }
 
-  function rankingTable(rows = [], mode = 'country') {
+  function issueTypeLabel(type) {
+    const map = {
+      timeDiff: 'timeDiff',
+      statusDiff: 'statusDiff',
+      onlyFlash: 'weeklyMissing365',
+      only365: 'weeklyMissingFlash',
+    };
+    return text(map[type] || type || '-');
+  }
+
+  function issueTypeClass(type) {
+    if (type === 'timeDiff') return 'time';
+    if (type === 'statusDiff') return 'status';
+    if (type === 'onlyFlash') return 'missing-365';
+    if (type === 'only365') return 'missing-flash';
+    return '';
+  }
+
+  function rowCacheKey({ sport, mode, country, competition }) {
+    return [
+      WEEKLY.team || 'content',
+      sport || 'all',
+      WEEKLY.issue || 'all',
+      mode || 'country',
+      String(country || '').toLowerCase(),
+      mode === 'league' ? String(competition || '').toLowerCase() : '',
+    ].join('|');
+  }
+
+  function issueDetailHtml(issue = {}) {
+    const teams = [issue.home, issue.away].filter(Boolean).join(' / ') || '-';
+    let detail = '';
+    if (issue.type === 'timeDiff') {
+      detail = `${text('weeklyTime365')}: ${issue.time365 || '-'} · ${text('weeklyTimeFlash')}: ${issue.timeFlash || '-'}`;
+    } else if (issue.type === 'statusDiff') {
+      detail = `${text('weeklyStatus365')}: ${issue.status365 || issue.status || '-'} · ${text('weeklyStatusFlash')}: ${issue.statusFlash || '-'}`;
+    } else if (issue.time || issue.status) {
+      detail = [issue.time, issue.status].filter(Boolean).join(' · ');
+    }
+
+    return `
+      <li class="weekly-issue-item">
+        <div class="weekly-issue-main">
+          <span class="weekly-issue-type">
+            <i class="weekly-issue-dot ${issueTypeClass(issue.type)}"></i>
+            ${safeEscape(issueTypeLabel(issue.type))}
+          </span>
+          ${issue.date ? `<span class="weekly-issue-date">${safeEscape(issue.date)}</span>` : ''}
+        </div>
+        <div class="weekly-issue-meta">
+          <span>${countryLabel(issue.country || '-')}</span>
+          <span>${safeEscape(issue.competition || '-')}</span>
+        </div>
+        <div class="weekly-issue-teams">${safeEscape(teams)}</div>
+        ${detail ? `<div class="weekly-issue-detail">${safeEscape(detail)}</div>` : ''}
+      </li>
+    `;
+  }
+
+  function issuesPanelHtml(cacheKey) {
+    if (WEEKLY.issuesLoading[cacheKey]) {
+      return `<div class="weekly-issues-panel"><p class="empty-state">${safeEscape(text('weeklyIssuesLoading'))}</p></div>`;
+    }
+    const payload = WEEKLY.issuesCache[cacheKey];
+    if (!payload) {
+      return `<div class="weekly-issues-panel"><p class="empty-state">${safeEscape(text('weeklyIssuesLoading'))}</p></div>`;
+    }
+    if (payload.error) {
+      return `<div class="weekly-issues-panel"><p class="empty-state">${safeEscape(payload.error)}</p></div>`;
+    }
+    const issues = payload.issues || [];
+    if (!issues.length) {
+      return `<div class="weekly-issues-panel"><p class="empty-state">${safeEscape(text('weeklyIssuesEmpty'))}</p></div>`;
+    }
+    const truncatedNote = payload.truncated
+      ? `<p class="hint weekly-issues-truncated">${safeEscape(
+        text('weeklyIssuesTruncated')
+          .replace('{shown}', String(issues.length))
+          .replace('{total}', String(payload.total ?? issues.length))
+      )}</p>`
+      : '';
+    return `
+      <div class="weekly-issues-panel">
+        <div class="weekly-issues-head">
+          <strong>${safeEscape(text('weeklyIssuesTitle'))}</strong>
+          <span>${issues.length}${payload.truncated ? ` / ${payload.total}` : ''}</span>
+        </div>
+        ${truncatedNote}
+        <ul class="weekly-issues-list">
+          ${issues.map(issueDetailHtml).join('')}
+        </ul>
+      </div>
+    `;
+  }
+
+  function rankingTable(rows = [], mode = 'country', sportKey = '') {
     if (!rows.length) return `<p class="empty-state">${safeEscape(text('weeklyEmpty'))}</p>`;
     const body = rows.map((row, index) => {
+      const country = mode === 'country' ? (row.name || '-') : (row.country || '-');
+      const competition = mode === 'league' ? (row.competition || '-') : '';
+      const cacheKey = rowCacheKey({
+        sport: sportKey,
+        mode,
+        country,
+        competition,
+      });
+      const isOpen = WEEKLY.openKey === cacheKey;
       const label = mode === 'country'
-        ? countryLabel(row.name || '-')
-        : `<span class="weekly-league-name">${countryLabel(row.country || '-')}<span class="weekly-league-comp">${safeEscape(row.competition || '-')}</span></span>`;
+        ? countryLabel(country)
+        : `<span class="weekly-league-name">${countryLabel(country)}<span class="weekly-league-comp">${safeEscape(competition)}</span></span>`;
       return `
-        <tr>
+        <tr class="weekly-rank-row${isOpen ? ' is-open' : ''}"
+            tabindex="0"
+            role="button"
+            aria-expanded="${isOpen ? 'true' : 'false'}"
+            data-weekly-expand="1"
+            data-weekly-sport="${safeEscape(sportKey)}"
+            data-weekly-mode="${safeEscape(mode)}"
+            data-weekly-country="${safeEscape(country)}"
+            data-weekly-competition="${safeEscape(competition)}">
           <td class="weekly-rank">${index + 1}</td>
-          <td>${label}</td>
+          <td>
+            <span class="weekly-row-label">
+              <span class="weekly-expand-icon" aria-hidden="true"></span>
+              ${label}
+            </span>
+          </td>
           <td class="weekly-count"><strong>${row.total || 0}</strong></td>
           <td>${breakdownHtml(row)}</td>
         </tr>
+        ${isOpen ? `
+          <tr class="weekly-issues-row">
+            <td colspan="4">${issuesPanelHtml(cacheKey)}</td>
+          </tr>
+        ` : ''}
       `;
     }).join('');
     return `
@@ -123,8 +305,9 @@
   }
 
   function sportBlock(entry) {
+    const sportKey = entry.sport || '';
     return `
-      <section class="weekly-sport-block">
+      <section class="weekly-sport-block" data-weekly-sport-block="${safeEscape(sportKey)}">
         <div class="weekly-sport-head">
           <h3>${safeEscape(labelForSport(entry.sport) || entry.label || entry.sport)}</h3>
           <span class="weekly-sport-meta">${entry.scanCount || 0} scans · ${entry.totals?.total || 0} issues</span>
@@ -132,11 +315,11 @@
         <div class="weekly-rank-grid">
           <div class="weekly-rank-card">
             <h4>${safeEscape(text('weeklyCountries'))}</h4>
-            ${rankingTable(entry.countries || [], 'country')}
+            ${rankingTable(entry.countries || [], 'country', sportKey)}
           </div>
           <div class="weekly-rank-card">
             <h4>${safeEscape(text('weeklyLeagues'))}</h4>
-            ${rankingTable(entry.leagues || [], 'league')}
+            ${rankingTable(entry.leagues || [], 'league', sportKey)}
           </div>
         </div>
       </section>
@@ -148,18 +331,22 @@
     const range = el('weeklyRangeLabel');
     if (!cards || !range) return;
     const totals = data?.totals || {};
+    const issue = WEEKLY.issue || data?.issue || 'all';
     range.textContent = text('weeklyRange')
       .replace('{from}', data?.from || '—')
       .replace('{to}', data?.to || '—')
       .replace('{scans}', String(data?.scanCount ?? 0))
       .replace('{total}', String(totals.total ?? 0));
-    cards.innerHTML = `
-      <article class="metric"><span>${safeEscape(text('weeklyTotal'))}</span><strong>${totals.total ?? 0}</strong></article>
-      <article class="metric"><span><i class="issue-dot time"></i>${safeEscape(text('timeDiff'))}</span><strong>${totals.timeDiff ?? 0}</strong></article>
-      <article class="metric"><span><i class="issue-dot status"></i>${safeEscape(text('statusDiff'))}</span><strong>${totals.statusDiff ?? 0}</strong></article>
-      <article class="metric"><span><i class="issue-dot missing-365"></i>${safeEscape(text('weeklyMissing365'))}</span><strong>${totals.onlyFlash ?? 0}</strong></article>
-      <article class="metric"><span><i class="issue-dot missing-flash"></i>${safeEscape(text('weeklyMissingFlash'))}</span><strong>${totals.only365 ?? 0}</strong></article>
-    `;
+
+    const metricCards = [
+      { key: 'all', html: `<article class="metric"><span>${safeEscape(text('weeklyTotal'))}</span><strong>${totals.total ?? 0}</strong></article>` },
+      { key: 'timeDiff', html: `<article class="metric"><span><i class="weekly-issue-dot time"></i>${safeEscape(text('timeDiff'))}</span><strong>${totals.timeDiff ?? 0}</strong></article>` },
+      { key: 'statusDiff', html: `<article class="metric"><span><i class="weekly-issue-dot status"></i>${safeEscape(text('statusDiff'))}</span><strong>${totals.statusDiff ?? 0}</strong></article>` },
+      { key: 'onlyFlash', html: `<article class="metric"><span><i class="weekly-issue-dot missing-365"></i>${safeEscape(text('weeklyMissing365'))}</span><strong>${totals.onlyFlash ?? 0}</strong></article>` },
+      { key: 'only365', html: `<article class="metric"><span><i class="weekly-issue-dot missing-flash"></i>${safeEscape(text('weeklyMissingFlash'))}</span><strong>${totals.only365 ?? 0}</strong></article>` },
+    ].filter(card => issue === 'all' || card.key === 'all' || card.key === issue);
+
+    cards.innerHTML = metricCards.map(card => card.html).join('');
   }
 
   function renderAnalysis(data) {
@@ -182,20 +369,197 @@
     return data;
   }
 
+  function closeOpenRankRow() {
+    const openRow = document.querySelector('tr.weekly-rank-row.is-open[data-weekly-expand="1"]');
+    if (!openRow) return;
+    openRow.classList.remove('is-open');
+    openRow.setAttribute('aria-expanded', 'false');
+    const panelRow = openRow.nextElementSibling;
+    if (panelRow?.classList.contains('weekly-issues-row')) panelRow.remove();
+  }
+
+  function openRankRow(target, cacheKey) {
+    closeOpenRankRow();
+    target.classList.add('is-open');
+    target.setAttribute('aria-expanded', 'true');
+    const panelRow = document.createElement('tr');
+    panelRow.className = 'weekly-issues-row';
+    panelRow.innerHTML = `<td colspan="4">${issuesPanelHtml(cacheKey)}</td>`;
+    target.insertAdjacentElement('afterend', panelRow);
+  }
+
+  function seedEmbeddedIssues(data) {
+    for (const entry of data?.sports || []) {
+      const sportKey = entry.sport || '';
+      for (const row of entry.countries || []) {
+        if (!Array.isArray(row.issues)) continue;
+        const cacheKey = rowCacheKey({
+          sport: sportKey,
+          mode: 'country',
+          country: row.name || '-',
+          competition: '',
+        });
+        WEEKLY.issuesCache[cacheKey] = {
+          issues: row.issues,
+          total: row.issuesTotal ?? row.issues.length,
+          truncated: !!row.issuesTruncated,
+        };
+      }
+      for (const row of entry.leagues || []) {
+        if (!Array.isArray(row.issues)) continue;
+        const cacheKey = rowCacheKey({
+          sport: sportKey,
+          mode: 'league',
+          country: row.country || '-',
+          competition: row.competition || '-',
+        });
+        WEEKLY.issuesCache[cacheKey] = {
+          issues: row.issues,
+          total: row.issuesTotal ?? row.issues.length,
+          truncated: !!row.issuesTruncated,
+        };
+      }
+    }
+  }
+
+  function refreshWeeklyLanguage() {
+    fillTeamSelect();
+    fillSportSelect();
+    fillIssueSelect();
+    if (WEEKLY.data) renderSummary(WEEKLY.data);
+    if (WEEKLY.view === 'weekly' && WEEKLY.data) {
+      renderAnalysis(WEEKLY.data);
+      if (WEEKLY.openKey) patchOpenIssuesPanel(WEEKLY.openKey);
+    }
+  }
+  window.refreshWeeklyLanguage = refreshWeeklyLanguage;
+
+  function patchOpenIssuesPanel(cacheKey) {
+    if (WEEKLY.openKey !== cacheKey) return;
+    const openRow = document.querySelector('tr.weekly-rank-row.is-open[data-weekly-expand="1"]');
+    const panelRow = openRow?.nextElementSibling;
+    if (!panelRow?.classList.contains('weekly-issues-row')) return;
+    const cell = panelRow.querySelector('td');
+    if (cell) cell.innerHTML = issuesPanelHtml(cacheKey);
+  }
+
+  async function loadRowIssues({ sport, mode, country, competition, cacheKey, silent = false } = {}) {
+    if (WEEKLY.issuesCache[cacheKey] || WEEKLY.issuesLoading[cacheKey]) return WEEKLY.issuesCache[cacheKey];
+    WEEKLY.issuesLoading[cacheKey] = true;
+    if (!silent && WEEKLY.openKey === cacheKey) patchOpenIssuesPanel(cacheKey);
+    try {
+      const params = new URLSearchParams({
+        days: '7',
+        team: WEEKLY.team || 'content',
+        sport: sport || 'all',
+        issue: WEEKLY.issue || 'all',
+        country: country || '',
+      });
+      if (mode === 'league' && competition) {
+        params.set('competition', competition);
+      }
+      const data = await fetchJson(`/api/weekly-analysis/issues?${params.toString()}`);
+      WEEKLY.issuesCache[cacheKey] = data;
+      return data;
+    } catch (error) {
+      WEEKLY.issuesCache[cacheKey] = { error: error.message || String(error), issues: [] };
+      return WEEKLY.issuesCache[cacheKey];
+    } finally {
+      delete WEEKLY.issuesLoading[cacheKey];
+      if (!silent && WEEKLY.openKey === cacheKey) patchOpenIssuesPanel(cacheKey);
+    }
+  }
+
+  function prefetchTopIssues(data) {
+    const jobs = [];
+    for (const entry of data?.sports || []) {
+      const sportKey = entry.sport || '';
+      for (const row of (entry.countries || []).slice(0, 8)) {
+        const job = {
+          sport: sportKey,
+          mode: 'country',
+          country: row.name || '-',
+          competition: '',
+        };
+        const cacheKey = rowCacheKey(job);
+        if (WEEKLY.issuesCache[cacheKey] || Array.isArray(row.issues)) continue;
+        jobs.push({ ...job, cacheKey });
+      }
+      for (const row of (entry.leagues || []).slice(0, 8)) {
+        const job = {
+          sport: sportKey,
+          mode: 'league',
+          country: row.country || '-',
+          competition: row.competition || '-',
+        };
+        const cacheKey = rowCacheKey(job);
+        if (WEEKLY.issuesCache[cacheKey] || Array.isArray(row.issues)) continue;
+        jobs.push({ ...job, cacheKey });
+      }
+    }
+
+    if (!jobs.length) return;
+
+    let index = 0;
+    const workers = Math.min(2, jobs.length);
+    async function runWorker() {
+      while (index < jobs.length) {
+        const job = jobs[index++];
+        try {
+          await loadRowIssues({ ...job, silent: true });
+        } catch (_) {
+          // Prefetch is best-effort.
+        }
+      }
+    }
+    for (let i = 0; i < workers; i += 1) runWorker();
+  }
+
+  function toggleRankRow(target) {
+    const sport = target.dataset.weeklySport || '';
+    const mode = target.dataset.weeklyMode || 'country';
+    const country = target.dataset.weeklyCountry || '';
+    const competition = target.dataset.weeklyCompetition || '';
+    const cacheKey = rowCacheKey({ sport, mode, country, competition });
+
+    if (WEEKLY.openKey === cacheKey) {
+      WEEKLY.openKey = '';
+      closeOpenRankRow();
+      return;
+    }
+
+    WEEKLY.openKey = cacheKey;
+    openRankRow(target, cacheKey);
+    if (!WEEKLY.issuesCache[cacheKey] && !WEEKLY.issuesLoading[cacheKey]) {
+      loadRowIssues({ sport, mode, country, competition, cacheKey }).catch(() => {});
+    }
+  }
+
   async function loadAnalysis({ force = false } = {}) {
     const body = el('weeklyAnalysisBody');
     if (!body) return null;
     if (WEEKLY.loading && !force) return WEEKLY.data;
 
+    fillTeamSelect();
     fillSportSelect();
+    fillIssueSelect();
     WEEKLY.loading = true;
+    WEEKLY.openKey = '';
+    WEEKLY.issuesCache = Object.create(null);
+    WEEKLY.issuesLoading = Object.create(null);
     body.innerHTML = `<p class="empty-state">${safeEscape(text('weeklyLoading'))}</p>`;
 
     try {
+      const team = WEEKLY.team || 'content';
       const sport = WEEKLY.sport || 'all';
-      const data = await fetchJson(`/api/weekly-analysis?days=7&sport=${encodeURIComponent(sport)}`);
+      const issue = WEEKLY.issue || 'all';
+      const data = await fetchJson(
+        `/api/weekly-analysis?days=7&team=${encodeURIComponent(team)}&sport=${encodeURIComponent(sport)}&issue=${encodeURIComponent(issue)}`
+      );
       WEEKLY.data = data;
+      seedEmbeddedIssues(data);
       renderAnalysis(data);
+      prefetchTopIssues(data);
       return data;
     } catch (error) {
       body.innerHTML = `<p class="empty-state">${safeEscape(error.message || String(error))}</p>`;
@@ -206,10 +570,17 @@
   }
 
   function setup() {
-    if (!el('weeklyHistoryView') || !el('weeklySportSelect')) return;
+    if (!el('weeklyHistoryView') || !el('weeklySportSelect') || !el('weeklyTeamSelect')) return;
 
     document.querySelectorAll('[data-history-view]').forEach(button => {
       button.addEventListener('click', () => setView(button.dataset.historyView));
+    });
+
+    el('weeklyTeamSelect').addEventListener('change', event => {
+      WEEKLY.team = event.target.value || 'content';
+      WEEKLY.sport = 'all';
+      fillSportSelect();
+      if (WEEKLY.view === 'weekly') loadAnalysis({ force: true }).catch(() => {});
     });
 
     el('weeklySportSelect').addEventListener('change', event => {
@@ -217,15 +588,33 @@
       if (WEEKLY.view === 'weekly') loadAnalysis({ force: true }).catch(() => {});
     });
 
+    el('weeklyIssueSelect')?.addEventListener('change', event => {
+      WEEKLY.issue = event.target.value || 'all';
+      if (WEEKLY.view === 'weekly') loadAnalysis({ force: true }).catch(() => {});
+    });
+
     el('refreshWeeklyAnalysis')?.addEventListener('click', () => {
       loadAnalysis({ force: true }).catch(error => alert(error.message));
     });
 
-    document.getElementById('languageSelect')?.addEventListener('change', () => {
-      fillSportSelect();
-      if (WEEKLY.view === 'weekly' && WEEKLY.data) renderAnalysis(WEEKLY.data);
+    el('weeklyAnalysisBody')?.addEventListener('click', event => {
+      const row = event.target.closest('[data-weekly-expand]');
+      if (!row || !el('weeklyAnalysisBody').contains(row)) return;
+      event.preventDefault();
+      toggleRankRow(row);
     });
 
+    el('weeklyAnalysisBody')?.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const row = event.target.closest('[data-weekly-expand]');
+      if (!row || !el('weeklyAnalysisBody').contains(row)) return;
+      event.preventDefault();
+      toggleRankRow(row);
+    });
+
+    fillTeamSelect();
+    fillSportSelect();
+    fillIssueSelect();
     syncView();
   }
 

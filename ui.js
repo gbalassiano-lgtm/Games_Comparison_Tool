@@ -66,15 +66,26 @@ const i18n = {
     historyHint: 'Select a previous scan to view its comparison report.',
     historyListView: 'Scans',
     weeklyTab: 'Weekly',
-    weeklyHint: 'Content Team only · last 7 days · time, status, missing on 365 and Flash (no name/terms).',
+    weeklyHint: 'Last 7 days · time, status, missing on 365 and Flash (no name/terms).',
     weeklyLoading: 'Loading weekly analysis...',
-    weeklyEmpty: 'No Content Team mismatches in this window.',
+    weeklyEmpty: 'No mismatches in this window for the selected team.',
     weeklyRange: '{from} → {to} · {scans} scans · {total} issues',
     weeklyCountries: 'Top countries',
     weeklyLeagues: 'Top leagues',
     weeklyTotal: 'Total issues',
+    weeklyTeamFilter: 'Team',
+    weeklyTeamUs: 'US',
+    weeklyIssueFilter: 'Issue type',
     weeklyMissing365: 'Missing on 365',
     weeklyMissingFlash: 'Missing on Flash',
+    weeklyIssuesTitle: 'Issues in this row',
+    weeklyIssuesLoading: 'Loading issues...',
+    weeklyIssuesEmpty: 'No issues for this row with the current filters.',
+    weeklyIssuesTruncated: 'Showing {shown} of {total} issues.',
+    weeklyTime365: '365 time',
+    weeklyTimeFlash: 'Flash time',
+    weeklyStatus365: '365 status',
+    weeklyStatusFlash: 'Flash status',
     refreshWeekly: 'Refresh',
     allSports: 'All sports',
     noHistory: 'No scan history yet.',
@@ -244,7 +255,7 @@ const i18n = {
     homeStartScan: 'Iniciar varredura',
     scannerReady: 'Pronto',
     runComparison: 'Executar comparação',
-    contentTeam: 'Content Team',
+    contentTeam: 'Equipe de Conteúdo',
     scanTab: 'Scanner',
     tasksTab: 'Tarefas',
     operatorEmail: 'E-mail do operador',
@@ -288,7 +299,7 @@ const i18n = {
     latamHint: 'Compare 365Scores e Flashscore para países da América Latina e Caribe, um esporte por vez.',
     latamServerRestart: 'O modo LATAM precisa reiniciar o servidor. Pare o servidor em execução (Ctrl+C no terminal) e rode npm run dev novamente.',
     latamAllServerRestart: 'A opção "Futebol + Basquete" precisa reiniciar o servidor. Pare o servidor em execução (Ctrl+C no terminal) e rode npm run dev novamente.',
-    israelTeamTitle: 'Israel Team',
+    israelTeamTitle: 'Equipe Israel',
     israelTeamHint: 'Compare competições israelenses de futebol e basquete entre 365Scores e Flashscore.',
     israelServerRestart: 'O modo Israel Team precisa reiniciar o servidor. Pare o servidor em execução (Ctrl+C no terminal) e rode npm run dev novamente.',
     israelAllServerRestart: 'A opção "Futebol + Basquete" precisa reiniciar o servidor. Pare o servidor em execução (Ctrl+C no terminal) e rode npm run dev novamente.',
@@ -298,15 +309,26 @@ const i18n = {
     historyHint: 'Selecione uma varredura anterior para ver o relatório de comparação.',
     historyListView: 'Varreduras',
     weeklyTab: 'Semanal',
-    weeklyHint: 'Somente Content Team · últimos 7 dias · horário, status, missing na 365 e Flash (sem nome/terms).',
+    weeklyHint: 'Últimos 7 dias · horário, status, missing na 365 e Flash (sem nome/terms).',
     weeklyLoading: 'Carregando análise semanal...',
-    weeklyEmpty: 'Nenhum mismatch do Content Team nesta janela.',
+    weeklyEmpty: 'Nenhum mismatch nesta janela para a equipe selecionada.',
     weeklyRange: '{from} → {to} · {scans} scans · {total} issues',
     weeklyCountries: 'Países com mais issues',
     weeklyLeagues: 'Ligas com mais issues',
     weeklyTotal: 'Total de issues',
+    weeklyTeamFilter: 'Equipe',
+    weeklyTeamUs: 'US',
+    weeklyIssueFilter: 'Tipo de issue',
     weeklyMissing365: 'Ausente na 365',
     weeklyMissingFlash: 'Ausente no Flash',
+    weeklyIssuesTitle: 'Issues desta linha',
+    weeklyIssuesLoading: 'Carregando issues...',
+    weeklyIssuesEmpty: 'Nenhuma issue nesta linha com os filtros atuais.',
+    weeklyIssuesTruncated: 'Mostrando {shown} de {total} issues.',
+    weeklyTime365: 'Horário 365',
+    weeklyTimeFlash: 'Horário Flash',
+    weeklyStatus365: 'Status 365',
+    weeklyStatusFlash: 'Status Flash',
     refreshWeekly: 'Atualizar',
     allSports: 'Todos os esportes',
     noHistory: 'Ainda não há histórico de varreduras.',
@@ -527,6 +549,8 @@ const state = {
 
 const $ = (id) => document.getElementById(id);
 const t = (key) => i18n[state.language][key] || i18n.en[key] || key;
+window.t = t;
+window.state = state;
 
 function setLatestReportButtonVisible(isVisible) {
   const button = $('openLatestReport');
@@ -955,6 +979,81 @@ function toggleTheme() {
   applyTheme();
 }
 
+const LOCALIZED_DATE_INPUT_IDS = [
+  'scanDate',
+  'usaSportsScanDate',
+  'latamScanDate',
+  'israelScanDate',
+  'asanaViewDate',
+];
+
+function flatpickrLocaleConfig() {
+  if (state.language === 'pt' && typeof flatpickr !== 'undefined' && flatpickr.l10ns?.pt) {
+    return flatpickr.l10ns.pt;
+  }
+  return 'default';
+}
+
+function setDateInputValue(inputOrId, value = '') {
+  const input = typeof inputOrId === 'string' ? $(inputOrId) : inputOrId;
+  if (!input) return;
+  const next = String(value || '').trim();
+  if (input._flatpickr) {
+    if (next) input._flatpickr.setDate(next, false);
+    else input._flatpickr.clear(false);
+    return;
+  }
+  input.value = next;
+}
+
+function ensureDateInputTrigger(input) {
+  if (!input || input.dataset.dateTriggerBound === '1') return;
+  input.dataset.dateTriggerBound = '1';
+  const openPicker = event => {
+    const instance = input._flatpickr;
+    if (!instance) return;
+    // Keep typing; just make sure a click/focus always can open the popup.
+    if (event?.type === 'keydown' && event.key !== 'ArrowDown' && event.key !== 'Enter') return;
+    if (event?.type === 'keydown') event.preventDefault();
+    instance.open();
+  };
+  input.addEventListener('click', openPicker);
+  input.addEventListener('keydown', openPicker);
+}
+
+function initLocalizedDatePickers() {
+  const picker = typeof window !== 'undefined' ? window.flatpickr : null;
+  if (typeof picker !== 'function') {
+    console.warn('Flatpickr is not loaded; date calendars stay typing-only.');
+    return;
+  }
+  const locale = flatpickrLocaleConfig();
+  for (const id of LOCALIZED_DATE_INPUT_IDS) {
+    const input = $(id);
+    if (!input) continue;
+    if (input._flatpickr) {
+      input._flatpickr.set('locale', locale);
+      ensureDateInputTrigger(input);
+      continue;
+    }
+    picker(input, {
+      locale,
+      dateFormat: 'Y-m-d',
+      allowInput: true,
+      clickOpens: true,
+      // Keep our localized calendar instead of the OS/browser native picker.
+      disableMobile: true,
+      monthSelectorType: 'static',
+      // Scanner cards use overflow:hidden — append to body or the popup is clipped.
+      appendTo: document.body,
+      onReady(_selectedDates, _dateStr, instance) {
+        instance.calendarContainer?.classList.add('comp-date-calendar');
+      },
+    });
+    ensureDateInputTrigger(input);
+  }
+}
+
 function applyLanguage() {
   document.documentElement.lang = state.language;
   $('languageSelect').value = state.language;
@@ -979,6 +1078,7 @@ function applyLanguage() {
   });
 
   applyTheme();
+  initLocalizedDatePickers();
   rerenderSportSelects();
   renderHistoryList();
   renderScan(state.currentScan);
@@ -988,6 +1088,7 @@ function applyLanguage() {
   renderRules().catch(console.error);
   updateHistoryReportBanner();
   renderAsanaTasks();
+  if (typeof refreshWeeklyLanguage === 'function') refreshWeeklyLanguage();
 }
 
 function shouldPinReport(scan) {
@@ -1098,8 +1199,7 @@ function setAsanaViewDate(isoDate) {
 function syncAsanaViewDateInput() {
   const input = $('asanaViewDate');
   if (!input) return;
-  const value = resolveAsanaViewDate();
-  input.value = value;
+  setDateInputValue(input, resolveAsanaViewDate());
 }
 
 function formatAsanaViewDateLabel(isoDate = '') {
@@ -1534,25 +1634,25 @@ function applyAsanaTaskToScanner(task = {}) {
 
   if (group === 'usa') {
     if ($('usaSportSelect')) $('usaSportSelect').value = sportKey;
-    if ($('usaSportsScanDate') && suggestedScanDate) $('usaSportsScanDate').value = suggestedScanDate;
+    if ($('usaSportsScanDate') && suggestedScanDate) setDateInputValue('usaSportsScanDate', suggestedScanDate);
     $('usaSportsControls')?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     return;
   }
 
   if (scannerGroup === 'latam') {
     if ($('latamSportSelect')) $('latamSportSelect').value = sportKey;
-    if ($('latamScanDate') && suggestedScanDate) $('latamScanDate').value = suggestedScanDate;
+    if ($('latamScanDate') && suggestedScanDate) setDateInputValue('latamScanDate', suggestedScanDate);
     return;
   }
 
   if (scannerGroup === 'israel') {
     if ($('israelSportSelect')) $('israelSportSelect').value = sportKey;
-    if ($('israelScanDate') && suggestedScanDate) $('israelScanDate').value = suggestedScanDate;
+    if ($('israelScanDate') && suggestedScanDate) setDateInputValue('israelScanDate', suggestedScanDate);
     return;
   }
 
   if ($('sportSelect')) $('sportSelect').value = sportKey;
-  if ($('scanDate') && suggestedScanDate) $('scanDate').value = suggestedScanDate;
+  if ($('scanDate') && suggestedScanDate) setDateInputValue('scanDate', suggestedScanDate);
 }
 
 async function startScanFromAsanaTask(queueRef, { fromQueue = false } = {}) {
@@ -4398,10 +4498,11 @@ async function init() {
   fillLatamSportSelect($('latamSportSelect'), sports);
   fillIsraelSportSelect($('israelSportSelect'), sports);
   const dates = defaultDates || {};
-  $('scanDate').value = dates.content || defaultDate;
-  if ($('usaSportsScanDate')) $('usaSportsScanDate').value = dates.usa || defaultDate;
-  if ($('latamScanDate')) $('latamScanDate').value = dates.latam || defaultDate;
-  if ($('israelScanDate')) $('israelScanDate').value = dates.israel || defaultDate;
+  setDateInputValue('scanDate', dates.content || defaultDate);
+  setDateInputValue('usaSportsScanDate', dates.usa || defaultDate);
+  setDateInputValue('latamScanDate', dates.latam || defaultDate);
+  setDateInputValue('israelScanDate', dates.israel || defaultDate);
+  initLocalizedDatePickers();
 
   $('languageSelect').addEventListener('change', event => {
     const nextLanguage = i18n[event.target.value] ? event.target.value : 'en';
