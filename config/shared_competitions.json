@@ -284,6 +284,36 @@
       "scope": "Paraguay",
       "competition365": "Division Intermedia",
       "competitionFlash": "Division Intermedia"
+    },
+    {
+      "scope": "Australia",
+      "competition365": "Australia Cup",
+      "competitionFlash": "Australia Cup"
+    },
+    {
+      "scope": "Bolivia",
+      "competition365": "División Profesional",
+      "competitionFlash": "Division Profesional"
+    },
+    {
+      "scope": "Brazil",
+      "competition365": "Brasileiro U20",
+      "competitionFlash": "Brasileiro U20 - Play Offs"
+    },
+    {
+      "scope": "Europe",
+      "competition365": "UEFA Champions League Qualifiers",
+      "competitionFlash": "Champions League - Qualification"
+    },
+    {
+      "scope": "Europe",
+      "competition365": "UEFA Conference League",
+      "competitionFlash": "Conference League - Qualification"
+    },
+    {
+      "scope": "Kazakhstan",
+      "competition365": "Kazakhstan Cup",
+      "competitionFlash": "Kazakhstan Cup"
     }
   ],
   "hockey": [
@@ -610,6 +640,101 @@
       "scope": "Challenger - Duplas",
       "competition365": "Troyes",
       "competitionFlash": "Troyes"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Bastad",
+      "competitionFlash": "Bastad"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Gstaad",
+      "competitionFlash": "Gstaad"
+    },
+    {
+      "scope": "ATP - Simples",
+      "competition365": "Umag",
+      "competitionFlash": "Umag"
+    },
+    {
+      "scope": "ATP - Duplas",
+      "competition365": "Bastad",
+      "competitionFlash": "Bastad"
+    },
+    {
+      "scope": "ATP - Duplas",
+      "competition365": "Gstaad",
+      "competitionFlash": "Gstaad"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Bunschoten",
+      "competitionFlash": "Bunschoten"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Cordenons",
+      "competitionFlash": "Cordenons"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Granby",
+      "competitionFlash": "Granby"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Lincoln",
+      "competitionFlash": "Lincoln"
+    },
+    {
+      "scope": "Challenger - Simples",
+      "competition365": "Pozoblanco",
+      "competitionFlash": "Pozoblanco"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Bunschoten",
+      "competitionFlash": "Bunschoten"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Cordenons",
+      "competitionFlash": "Cordenons"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Granby",
+      "competitionFlash": "Granby"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Lincoln",
+      "competitionFlash": "Lincoln"
+    },
+    {
+      "scope": "Challenger - Duplas",
+      "competition365": "Pozoblanco",
+      "competitionFlash": "Pozoblanco"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Athens",
+      "competitionFlash": "Athens"
+    },
+    {
+      "scope": "WTA - Simples",
+      "competition365": "Iasi",
+      "competitionFlash": "Iasi"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Athens",
+      "competitionFlash": "Athens"
+    },
+    {
+      "scope": "WTA - Duplas",
+      "competition365": "Iasi",
+      "competitionFlash": "Iasi"
     }
   ],
   "basketball": [
@@ -737,6 +862,26 @@
       "scope": "Paraguay",
       "competition365": "LNB",
       "competitionFlash": "LNB - Apertura - Play Offs"
+    },
+    {
+      "scope": "Chile",
+      "competition365": "LNB",
+      "competitionFlash": "LNB - Clausura"
+    },
+    {
+      "scope": "Europe",
+      "competition365": "EuroBasket U20",
+      "competitionFlash": "EuroBasket U20 - Play Offs"
+    },
+    {
+      "scope": "Puerto Rico",
+      "competition365": "BSN",
+      "competitionFlash": "BSN - Play Offs"
+    },
+    {
+      "scope": "USA",
+      "competition365": "NBA Summer League",
+      "competitionFlash": "NBA Las Vegas Summer League"
     }
   ],
   "basketball_usa": [

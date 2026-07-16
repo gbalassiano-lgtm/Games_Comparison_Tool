@@ -117,13 +117,26 @@ function canonicalizeCompYouthMarkers(text = '') {
 }
 
 function normComp(text = '') {
-  return canonicalizeCompYouthMarkers(norm(text))
-    .replace(/\b(playoffs?|qualifying|qualifica\w*|segunda fase|final phase|relegation|promotion)\b/g, ' ')
-    .replace(/\b(semifinal|quarterfinal|group stage|fase de grupos)\b/g, ' ')
+  let n = canonicalizeCompYouthMarkers(norm(text))
+    .replace(/\b(play\s*offs?|playoffs?|play\s*outs?|play\s*out|playoff)\b/g, ' ')
+    .replace(/\b\d+(?:st|nd|rd|th)?(?:\s*-\s*|\s+)\d+(?:st|nd|rd|th)?\s+places?\b/g, ' ')
+    .replace(/\b\d+(?:st|nd|rd|th)?\s+places?\b/g, ' ')
+    .replace(/\b(classification|placement|classificacao)\s*(rounds?|phases?|stages?)?\b/g, ' ')
+    .replace(/\b(qualifying|qualifica\w*|segunda fase|final phase|relegation|promotion)\b/g, ' ')
+    .replace(/\b(semifinals?|semi\s*finals?|quarterfinals?|quarter\s*finals?|group stage|fase de grupos)\b/g, ' ')
     .replace(/\b(da|de|do|del|la|el|the)\b/g, ' ')
     .replace(/[:.!\-]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+
+  if (/\b(eurobasket|fiba|centrobasket|afrobasket|americup|asiacup|asia cup)\b/.test(n)) {
+    n = n
+      .replace(/\b(groups?|grupos?)\s+[a-h]\b/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  return n;
 }
 
 function extractTennisScopeFrom365Country(country = '') {

@@ -31,11 +31,25 @@ assert.strictEqual(
   false
 );
 
-const { gameBelongsToScanTarget, isStaleFinishedGameStatus } = require('../lib/scan-timezone');
+const { gameBelongsToScanTarget, isStaleFinishedGameStatus, isUpcomingKickoff, shouldDropStaleFinishedGame } = require('../lib/scan-timezone');
 assert.strictEqual(gameBelongsToScanTarget('2026-06-28', '2026-06-28'), true);
 assert.strictEqual(gameBelongsToScanTarget('2026-06-27', '2026-06-28'), false);
 assert.strictEqual(isStaleFinishedGameStatus('live'), true);
 assert.strictEqual(isStaleFinishedGameStatus('scheduled'), false);
+assert.strictEqual(
+  isUpcomingKickoff('2026-07-16', '18:00', {
+    now: new Date('2026-07-16T12:00:00-03:00'),
+    timezone: 'America/Sao_Paulo',
+  }),
+  true
+);
+assert.strictEqual(
+  shouldDropStaleFinishedGame('ended', '2026-07-16', '18:00', {
+    now: new Date('2026-07-16T12:00:00-03:00'),
+    timezone: 'America/Sao_Paulo',
+  }),
+  false
+);
 
 const tomorrow = tomorrowIsoInTimezone('America/Sao_Paulo');
 assert.match(tomorrow, /^\d{4}-\d{2}-\d{2}$/);

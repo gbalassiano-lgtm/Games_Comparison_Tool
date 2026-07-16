@@ -11,6 +11,7 @@ const {
   tomorrowIsoInTimezone,
   resolveScanTargetDate,
   isStaleFinishedGameStatus,
+  shouldDropStaleFinishedGame,
   gameBelongsToScanTarget,
   localDateTimeInZoneToUtc,
   formatLocalDateTimeFromUtc,
@@ -315,10 +316,11 @@ function apiFetchWindow(targetDate) {
   return { startDate: targetDate, endDate: addDaysIso(targetDate, 1) };
 }
 
-function parseGames(json, { sportKey, targetDate }) {
+function parseGames(json, { sportKey, targetDate, now } = {}) {
   const countriesById = new Map((json?.countries || []).map(country => [country.id, country]));
   const competitionsById = new Map((json?.competitions || []).map(competition => [competition.id, competition]));
   const rows = [];
+  const staleOptions = now ? { now } : {};
 
   for (const game of json?.games || []) {
     const gameDateKey = game.mobileDateKey || formatDateKey(game.startTime);
@@ -328,8 +330,10 @@ function parseGames(json, { sportKey, targetDate }) {
     const { home, away } = competitorPair(game);
     if (!home || !away) continue;
 
-    const status = normalizeStatus(game.statusText || game.shortStatusText);
-    if (isStaleFinishedGameStatus(status)) continue;
+    let status = normalizeStatus(game.statusText || game.shortStatusText);
+    if (shouldDropStaleFinishedGame(status, gameDateKey, time, staleOptions)) continue;
+    // 365Scores sometimes flags future exhibition/UTS kickoffs as finished.
+    if (isStaleFinishedGameStatus(status)) status = 'scheduled';
 
     const competitionInfo = competitionsById.get(game.competitionId);
     const countryInfo = countriesById.get(competitionInfo?.countryId);

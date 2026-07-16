@@ -26,6 +26,20 @@
   min-width: 180px;
 }
 
+.weekly-date-field {
+  min-width: 150px;
+}
+
+.weekly-date-field input.date-input {
+  min-height: 38px;
+  min-width: 148px;
+}
+
+.weekly-range-cap {
+  margin: 0;
+  opacity: 0.85;
+}
+
 .weekly-range {
   margin: 0;
 }

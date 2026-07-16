@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="/ui-latam.css?v=20260625-latam-map">
     <link rel="stylesheet" href="/ui-israel.css?v=20260625-israel">
     <link rel="stylesheet" href="/ui-theme-light.css?v=20260714-restore1">
-    <link rel="stylesheet" href="/ui-weekly.css?v=20260715-weekly-i18n-perf">
+    <link rel="stylesheet" href="/ui-weekly.css?v=20260716-weekly-range">
     <link rel="stylesheet" href="/vendor/flatpickr/flatpickr.min.css?v=20260715-datepicker3">
   </head>
   <body>
@@ -231,7 +231,7 @@
             <div class="history-strip" id="historyList"></div>
           </div>
           <div id="weeklyHistoryView" class="weekly-history-view hidden">
-            <p class="hint" data-i18n="weeklyHint">Last 7 days · time, status, missing on 365 and Flash (no name/terms).</p>
+            <p class="hint" data-i18n="weeklyHint">Pick a date range (max 7 days) · time, status, missing on 365 and Flash (no name/terms).</p>
             <div class="weekly-toolbar">
               <label class="weekly-sport-field">
                 <span data-i18n="weeklyTeamFilter">Team</span>
@@ -256,8 +256,17 @@
                   <option value="only365" data-i18n="weeklyMissingFlash">Missing on Flash</option>
                 </select>
               </label>
+              <label class="weekly-sport-field weekly-date-field">
+                <span data-i18n="weeklyFrom">From</span>
+                <input type="text" class="date-input" id="weeklyFromDate" inputmode="numeric" autocomplete="off" placeholder="YYYY-MM-DD">
+              </label>
+              <label class="weekly-sport-field weekly-date-field">
+                <span data-i18n="weeklyTo">To</span>
+                <input type="text" class="date-input" id="weeklyToDate" inputmode="numeric" autocomplete="off" placeholder="YYYY-MM-DD">
+              </label>
               <button type="button" class="secondary" id="refreshWeeklyAnalysis" data-i18n="refreshWeekly">Refresh</button>
             </div>
+            <p class="hint weekly-range-cap" data-i18n="weeklyRangeMaxHint">Maximum range: 7 days.</p>
             <p class="hint weekly-range" id="weeklyRangeLabel"></p>
             <div class="grid results weekly-summary" id="weeklySummaryCards"></div>
             <div id="weeklyAnalysisBody" class="weekly-body">
@@ -390,7 +399,7 @@
     <script src="/vendor/flatpickr/flatpickr.min.js?v=20260715-datepicker"></script>
     <script src="/vendor/flatpickr/l10n/pt.js?v=20260715-datepicker"></script>
     <script src="/lib/country-flags.js?v=20260624-theme"></script>
-    <script src="/ui.js?v=20260715-datepicker3"></script>
-    <script src="/ui-weekly.js?v=20260715-weekly-i18n-perf"></script>
+    <script src="/ui.js?v=20260716-weekly-range"></script>
+    <script src="/ui-weekly.js?v=20260716-weekly-range"></script>
   </body>
 </html>

@@ -66,7 +66,7 @@ const i18n = {
     historyHint: 'Select a previous scan to view its comparison report.',
     historyListView: 'Scans',
     weeklyTab: 'Weekly',
-    weeklyHint: 'Last 7 days · time, status, missing on 365 and Flash (no name/terms).',
+    weeklyHint: 'Pick a date range (max 7 days) · time, status, missing on 365 and Flash (no name/terms).',
     weeklyLoading: 'Loading weekly analysis...',
     weeklyEmpty: 'No mismatches in this window for the selected team.',
     weeklyRange: '{from} → {to} · {scans} scans · {total} issues',
@@ -76,6 +76,10 @@ const i18n = {
     weeklyTeamFilter: 'Team',
     weeklyTeamUs: 'US',
     weeklyIssueFilter: 'Issue type',
+    weeklyFrom: 'From',
+    weeklyTo: 'To',
+    weeklyRangeMaxHint: 'Maximum range: 7 days.',
+    weeklyRangeTooLong: 'Range cannot exceed 7 days.',
     weeklyMissing365: 'Missing on 365',
     weeklyMissingFlash: 'Missing on Flash',
     weeklyIssuesTitle: 'Issues in this row',
@@ -309,7 +313,7 @@ const i18n = {
     historyHint: 'Selecione uma varredura anterior para ver o relatório de comparação.',
     historyListView: 'Varreduras',
     weeklyTab: 'Semanal',
-    weeklyHint: 'Últimos 7 dias · horário, status, missing na 365 e Flash (sem nome/terms).',
+    weeklyHint: 'Escolha um período (máx. 7 dias) · horário, status, missing na 365 e Flash (sem nome/terms).',
     weeklyLoading: 'Carregando análise semanal...',
     weeklyEmpty: 'Nenhum mismatch nesta janela para a equipe selecionada.',
     weeklyRange: '{from} → {to} · {scans} scans · {total} issues',
@@ -319,6 +323,10 @@ const i18n = {
     weeklyTeamFilter: 'Equipe',
     weeklyTeamUs: 'US',
     weeklyIssueFilter: 'Tipo de issue',
+    weeklyFrom: 'De',
+    weeklyTo: 'Até',
+    weeklyRangeMaxHint: 'Período máximo: 7 dias.',
+    weeklyRangeTooLong: 'O período não pode passar de 7 dias.',
     weeklyMissing365: 'Ausente na 365',
     weeklyMissingFlash: 'Ausente no Flash',
     weeklyIssuesTitle: 'Issues desta linha',
@@ -985,6 +993,8 @@ const LOCALIZED_DATE_INPUT_IDS = [
   'latamScanDate',
   'israelScanDate',
   'asanaViewDate',
+  'weeklyFromDate',
+  'weeklyToDate',
 ];
 
 function flatpickrLocaleConfig() {
@@ -2925,7 +2935,11 @@ function rowIgnoredByRule(row, scan) {
     const ruleScope = normalizeRuleScope(rule.scope || '');
     const scopeMatches = ruleScope === '*' || ruleScope === rowScope;
     if (!scopeMatches) return false;
-    return competitions.some(competition => ruleCompetitionMatches(rule.competition || '', competition));
+    // `aliases` covers the other side's name for the same competition (e.g. Flash
+    // "Catarinense 2" <-> 365 "Catarinense - Serie B"), added by the server via
+    // shared_competitions.json/term_aliases.json so ignoring one side hides both.
+    const ruleNames = [rule.competition, ...(Array.isArray(rule.aliases) ? rule.aliases : [])];
+    return competitions.some(competition => ruleNames.some(name => ruleCompetitionMatches(name || '', competition)));
   });
 }
 

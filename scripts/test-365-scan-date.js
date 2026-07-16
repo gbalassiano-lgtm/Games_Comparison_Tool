@@ -81,4 +81,27 @@ assert.strictEqual(isStaleFinishedGameStatus('scheduled'), false);
 assert.strictEqual(gameBelongsToScanTarget(targetDate, targetDate), true);
 assert.strictEqual(gameBelongsToScanTarget(previousDate, targetDate), false);
 
+const finishedOnTarget = parseGames({
+  games: [
+    {
+      id: 10,
+      mobileDateKey: targetDate,
+      mobileTime: '18:00',
+      statusText: 'ended',
+      homeCompetitor: { name: 'Home E' },
+      awayCompetitor: { name: 'Away E' },
+      competitionDisplayName: 'UTS',
+      countryName: 'International',
+    },
+  ],
+  countries: [],
+  competitions: [],
+}, {
+  sportKey: 'tennis',
+  targetDate,
+  now: new Date(`${targetDate}T12:00:00-03:00`),
+});
+assert.strictEqual(finishedOnTarget.length, 1);
+assert.strictEqual(finishedOnTarget[0].status, 'scheduled');
+
 console.log('test-365-scan-date: ok');

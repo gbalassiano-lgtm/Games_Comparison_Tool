@@ -21,6 +21,7 @@ assert.strictEqual(resolveCatalogSportKey('tennis'), 'tennis');
 assert.strictEqual(resolveCatalogSportKey('volleyball'), null);
 
 assert.strictEqual(catalogScopeKey('International'), 'international');
+assert.strictEqual(catalogScopeKey('Exhibition Men'), 'international');
 assert.strictEqual(catalogScopeKey('Brazil'), 'brazil');
 assert.strictEqual(catalogScopeKey('Africa'), 'africa');
 

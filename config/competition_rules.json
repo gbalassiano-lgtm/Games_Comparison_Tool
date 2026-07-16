@@ -443,8 +443,32 @@
         "competition": "Euro U19"
       },
       {
-        "scope": "Brasil",
+        "scope": "Brazil",
         "competition": "Cearense U20"
+      },
+      {
+        "scope": "AUSTRALIA & OCEANIA",
+        "competition": "OFC Championship U16"
+      },
+      {
+        "scope": "Ásia",
+        "competition": "ASEAN Championship Women - Qualification"
+      },
+      {
+        "scope": "China",
+        "competition": "League One Women"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Capixaba 2"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Alagoano U20"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Catarinense 2"
       }
     ],
     "acknowledgedFlashOnly": [
@@ -602,6 +626,14 @@
       {
         "scope": "AUSTRALASIA",
         "competition": "World Cup - Qualification - First round"
+      },
+      {
+        "scope": "ASIA",
+        "competition": "Asia Cup U18 B Women"
+      },
+      {
+        "scope": "Europe",
+        "competition": "EuroBasket U20 B"
       }
     ],
     "acknowledgedFlashOnly": [
@@ -633,6 +665,18 @@
       {
         "scope": "International",
         "competition": "Pan-American Cup U21"
+      },
+      {
+        "scope": "Europa",
+        "competition": "European Championships U18"
+      },
+      {
+        "scope": "Ásia",
+        "competition": "Asian Championship U18 - Play Offs"
+      },
+      {
+        "scope": "Ásia",
+        "competition": "Asian Championship U18 - 9th-16th places"
       }
     ],
     "acknowledgedFlashOnly": [],

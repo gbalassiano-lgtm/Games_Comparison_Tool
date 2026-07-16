@@ -1340,6 +1340,177 @@
       "valueFlash": "Champions League - Qualification",
       "canonical": "UEFA Champions League Qualifiers",
       "decidedAt": "2026-07-06T16:05:00.190Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Bolivia",
+      "value365": "Real Potosi / San Antonio",
+      "valueFlash": "Real Potosi / SA Bulo Bulo",
+      "canonical": "Real Potosi / San Antonio",
+      "decidedAt": "2026-07-14T16:12:02.516Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Real Oviedo / Qadisiya",
+      "valueFlash": "Oviedo (Esp) / Al Qadsiah (Sau)",
+      "canonical": "Real Oviedo / Qadisiya",
+      "decidedAt": "2026-07-14T16:12:02.517Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "South Korea",
+      "value365": "Paju Citizen / Gangneung City",
+      "valueFlash": "Paju ntier / Gangneung",
+      "canonical": "Paju Citizen / Gangneung City",
+      "decidedAt": "2026-07-14T16:12:02.518Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "South Korea",
+      "value365": "FA Cup",
+      "valueFlash": "Korean Cup",
+      "canonical": "FA Cup",
+      "decidedAt": "2026-07-14T16:12:02.519Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Doubles",
+      "value365": "de Jonge D./Opitz J. / Alves M./Gutierrez O J.",
+      "valueFlash": "De Jonge D. / Opitz J. / Tabacco F. / Tabacco G.",
+      "canonical": "de Jonge D./Opitz J. / Alves M./Gutierrez O J.",
+      "decidedAt": "2026-07-14T16:17:18.984Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "KV Zelzate / K.S.C. Lokeren-Temse",
+      "valueFlash": "Zelzate (Bel) / Sporting Lokeren (Bel)",
+      "canonical": "KV Zelzate / K.S.C. Lokeren-Temse",
+      "decidedAt": "2026-07-15T15:44:27.020Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Oudenaarde / Club NXT",
+      "valueFlash": "Oudenaarde (Bel) / Club Brugge KV U23 (Bel)",
+      "canonical": "Oudenaarde / Club NXT",
+      "decidedAt": "2026-07-15T15:44:27.021Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Uzbekistan",
+      "value365": "Navbahor / AGMK",
+      "valueFlash": "Navbahor Namangan / OKMK",
+      "canonical": "Navbahor / AGMK",
+      "decidedAt": "2026-07-15T15:44:27.022Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Estonia",
+      "value365": "Tartu JK Welko Electer / Tallinn CF",
+      "valueFlash": "Tartu Welco / FC Tallinn",
+      "canonical": "Tartu JK Welko Electer / Tallinn CF",
+      "decidedAt": "2026-07-15T16:07:52.958Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Sonnenhof Großaspach / Hoffenheim II",
+      "valueFlash": "Grossaspach (Ger) / Hoffenheim II (Ger)",
+      "canonical": "Sonnenhof Großaspach / Hoffenheim II",
+      "decidedAt": "2026-07-15T16:07:52.960Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "PSV Eindhoven / Union St. Gilloise",
+      "valueFlash": "PSV (Ned) / Royale Union SG (Bel)",
+      "canonical": "PSV Eindhoven / Union St. Gilloise",
+      "decidedAt": "2026-07-15T16:07:52.962Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Jazira Abu Dhabi / Vitesse",
+      "valueFlash": "Vitesse (Ned) / Al Jazira (Uae)",
+      "canonical": "Jazira Abu Dhabi / Vitesse",
+      "decidedAt": "2026-07-15T16:07:52.965Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Naestved / HB Køge",
+      "valueFlash": "Naestved (Den) / Koge (Den)",
+      "canonical": "Naestved / HB Køge",
+      "decidedAt": "2026-07-15T16:07:52.966Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "FC VSS Kosice / Diosgyori VTK",
+      "valueFlash": "Kosice (Svk) / DVTK (Hun)",
+      "canonical": "FC VSS Kosice / Diosgyori VTK",
+      "decidedAt": "2026-07-15T16:07:52.968Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Luzern / STVV",
+      "valueFlash": "Luzern (Sui) / St. Truiden (Bel)",
+      "canonical": "Luzern / STVV",
+      "decidedAt": "2026-07-15T16:07:52.969Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Frome Town / Worthing United",
+      "valueFlash": "me (Eng) / Worthing (Eng)",
+      "canonical": "Frome Town / Worthing United",
+      "decidedAt": "2026-07-15T16:07:52.971Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Domzale / Graffin Vlasim",
+      "valueFlash": "Domazlice (Cze) / Vlasim (Cze)",
+      "canonical": "Domzale / Graffin Vlasim",
+      "decidedAt": "2026-07-15T16:07:52.973Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Moreirense / AVS",
+      "valueFlash": "Moreirense (Por) / AFS (Por)",
+      "canonical": "Moreirense / AVS",
+      "decidedAt": "2026-07-15T16:07:52.974Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Uzbekistan",
+      "value365": "Qyzylqum / Dinamo Samarkand",
+      "valueFlash": "Qizilqum / Din. Samarkand",
+      "canonical": "Qyzylqum / Dinamo Samarkand",
+      "decidedAt": "2026-07-15T16:07:52.975Z"
     }
   ],
   "rejected": [

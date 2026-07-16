@@ -5,6 +5,9 @@
     team: 'content',
     sport: 'all',
     issue: 'all',
+    from: '',
+    to: '',
+    maxDays: 7,
     data: null,
     loading: false,
     openKey: '',
@@ -65,6 +68,108 @@
       }
       return groupForSportKey(key) === teamKey;
     });
+  }
+
+  function isIsoDate(value = '') {
+    return /^\d{4}-\d{2}-\d{2}$/.test(String(value || '').trim());
+  }
+
+  function shiftIsoDate(isoDate = '', deltaDays = 0) {
+    const date = new Date(`${String(isoDate).trim()}T12:00:00`);
+    date.setDate(date.getDate() + Number(deltaDays || 0));
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  function inclusiveDaySpan(fromDate = '', toDate = '') {
+    const fromMs = new Date(`${fromDate}T12:00:00`).getTime();
+    const toMs = new Date(`${toDate}T12:00:00`).getTime();
+    if (!Number.isFinite(fromMs) || !Number.isFinite(toMs)) return 1;
+    return Math.max(1, Math.floor((toMs - fromMs) / 86400000) + 1);
+  }
+
+  function defaultWeeklyWindow(maxDays = WEEKLY.maxDays || 7) {
+    const now = new Date();
+    const localToday = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+    const to = shiftIsoDate(localToday, 1);
+    const from = shiftIsoDate(to, -(Math.min(7, Math.max(1, maxDays)) - 1));
+    return { from, to };
+  }
+
+  function setWeeklyDateInput(id, value) {
+    if (typeof setDateInputValue === 'function') {
+      setDateInputValue(id, value);
+      return;
+    }
+    const input = el(id);
+    if (input) input.value = value || '';
+  }
+
+  function readWeeklyDateInput(id) {
+    const input = el(id);
+    return String(input?.value || '').trim();
+  }
+
+  function syncWeeklyDateInputs() {
+    if (!WEEKLY.from || !WEEKLY.to) {
+      const defaults = defaultWeeklyWindow(WEEKLY.maxDays || 7);
+      WEEKLY.from = WEEKLY.from || defaults.from;
+      WEEKLY.to = WEEKLY.to || defaults.to;
+    }
+    setWeeklyDateInput('weeklyFromDate', WEEKLY.from);
+    setWeeklyDateInput('weeklyToDate', WEEKLY.to);
+    if (typeof initLocalizedDatePickers === 'function') {
+      initLocalizedDatePickers();
+    }
+  }
+
+  function clampWeeklyRange({ from = '', to = '', changed = '' } = {}) {
+    const maxDays = WEEKLY.maxDays || 7;
+    let nextFrom = isIsoDate(from) ? from : WEEKLY.from;
+    let nextTo = isIsoDate(to) ? to : WEEKLY.to;
+    if (!isIsoDate(nextFrom) || !isIsoDate(nextTo)) {
+      const defaults = defaultWeeklyWindow(maxDays);
+      nextFrom = defaults.from;
+      nextTo = defaults.to;
+    }
+    if (nextFrom > nextTo) {
+      if (changed === 'from') nextTo = nextFrom;
+      else nextFrom = nextTo;
+    }
+    if (inclusiveDaySpan(nextFrom, nextTo) > maxDays) {
+      if (changed === 'from') nextTo = shiftIsoDate(nextFrom, maxDays - 1);
+      else nextFrom = shiftIsoDate(nextTo, -(maxDays - 1));
+    }
+    return { from: nextFrom, to: nextTo };
+  }
+
+  function applyWeeklyRangeFromInputs({ changed = '', reload = true } = {}) {
+    const clamped = clampWeeklyRange({
+      from: readWeeklyDateInput('weeklyFromDate'),
+      to: readWeeklyDateInput('weeklyToDate'),
+      changed,
+    });
+    const changedRange = clamped.from !== WEEKLY.from || clamped.to !== WEEKLY.to;
+    WEEKLY.from = clamped.from;
+    WEEKLY.to = clamped.to;
+    syncWeeklyDateInputs();
+    if (reload && WEEKLY.view === 'weekly' && changedRange) {
+      loadAnalysis({ force: true }).catch(() => {});
+    }
+    return clamped;
+  }
+
+  function weeklyQueryParams(extra = {}) {
+    return {
+      from: WEEKLY.from || '',
+      to: WEEKLY.to || '',
+      team: WEEKLY.team || 'content',
+      sport: WEEKLY.sport || 'all',
+      issue: WEEKLY.issue || 'all',
+      ...extra,
+    };
   }
 
   function labelForSport(sportKey) {
@@ -170,6 +275,8 @@
 
   function rowCacheKey({ sport, mode, country, competition }) {
     return [
+      WEEKLY.from || '',
+      WEEKLY.to || '',
       WEEKLY.team || 'content',
       sport || 'all',
       WEEKLY.issue || 'all',
@@ -448,13 +555,10 @@
     WEEKLY.issuesLoading[cacheKey] = true;
     if (!silent && WEEKLY.openKey === cacheKey) patchOpenIssuesPanel(cacheKey);
     try {
-      const params = new URLSearchParams({
-        days: '7',
-        team: WEEKLY.team || 'content',
+      const params = new URLSearchParams(weeklyQueryParams({
         sport: sport || 'all',
-        issue: WEEKLY.issue || 'all',
         country: country || '',
-      });
+      }));
       if (mode === 'league' && competition) {
         params.set('competition', competition);
       }
@@ -543,6 +647,7 @@
     fillTeamSelect();
     fillSportSelect();
     fillIssueSelect();
+    applyWeeklyRangeFromInputs({ reload: false });
     WEEKLY.loading = true;
     WEEKLY.openKey = '';
     WEEKLY.issuesCache = Object.create(null);
@@ -550,13 +655,15 @@
     body.innerHTML = `<p class="empty-state">${safeEscape(text('weeklyLoading'))}</p>`;
 
     try {
-      const team = WEEKLY.team || 'content';
-      const sport = WEEKLY.sport || 'all';
-      const issue = WEEKLY.issue || 'all';
-      const data = await fetchJson(
-        `/api/weekly-analysis?days=7&team=${encodeURIComponent(team)}&sport=${encodeURIComponent(sport)}&issue=${encodeURIComponent(issue)}`
-      );
+      const params = new URLSearchParams(weeklyQueryParams());
+      const data = await fetchJson(`/api/weekly-analysis?${params.toString()}`);
       WEEKLY.data = data;
+      if (data?.from && data?.to) {
+        WEEKLY.from = data.from;
+        WEEKLY.to = data.to;
+      }
+      if (data?.maxDays) WEEKLY.maxDays = Number(data.maxDays) || 7;
+      syncWeeklyDateInputs();
       seedEmbeddedIssues(data);
       renderAnalysis(data);
       prefetchTopIssues(data);
@@ -593,7 +700,15 @@
       if (WEEKLY.view === 'weekly') loadAnalysis({ force: true }).catch(() => {});
     });
 
+    el('weeklyFromDate')?.addEventListener('change', () => {
+      applyWeeklyRangeFromInputs({ changed: 'from', reload: true });
+    });
+    el('weeklyToDate')?.addEventListener('change', () => {
+      applyWeeklyRangeFromInputs({ changed: 'to', reload: true });
+    });
+
     el('refreshWeeklyAnalysis')?.addEventListener('click', () => {
+      applyWeeklyRangeFromInputs({ reload: false });
       loadAnalysis({ force: true }).catch(error => alert(error.message));
     });
 
@@ -615,6 +730,7 @@
     fillTeamSelect();
     fillSportSelect();
     fillIssueSelect();
+    syncWeeklyDateInputs();
     syncView();
   }
 

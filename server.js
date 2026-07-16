@@ -30,6 +30,23 @@ function invalidateCompareRulesCache() {
   } catch (_) {}
 }
 
+// Flash and 365 sometimes name the same competition differently (e.g. Flash
+// "Catarinense 2" vs 365 "Catarinense - Serie B"), linked via shared_competitions.json
+// and config/term_aliases.json. Rules stored using one side's name must also match the
+// other side's name — expand via compare.js's helper so the ignore checks stay in sync.
+function expandCompetitionNamesForScope(sportKey = '', competitionName = '') {
+  const seed = String(competitionName || '').trim();
+  if (!seed) return [];
+  try {
+    const compare = require('./compare.js');
+    if (typeof compare.expandCompetitionNamesForIgnore === 'function') {
+      const expanded = compare.expandCompetitionNamesForIgnore(sportKey, seed);
+      if (Array.isArray(expanded) && expanded.length) return expanded;
+    }
+  } catch (_) {}
+  return [seed];
+}
+
 const BRAND_ASSETS = {
   '/favicon.ico': {
     file: path.join(ROOT, 'brand', 'logo-dark.png'),
@@ -244,8 +261,16 @@ function normalizeCompTerm(text = '', sportKey = '') {
   ));
   value = value
     .replace(/\b(play offs?|playoffs?|play outs?|play out|playoff)\b/g, ' ')
+    .replace(/\b\d+(?:st|nd|rd|th)?(?:\s*-\s*|\s+)\d+(?:st|nd|rd|th)?\s+places?\b/g, ' ')
+    .replace(/\b\d+(?:st|nd|rd|th)?\s+places?\b/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+  if (/\b(eurobasket|fiba|centrobasket|afrobasket|americup|asiacup|asia cup)\b/.test(value)) {
+    value = value
+      .replace(/\b(groups?|grupos?)\s+[a-h]\b/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
   if (/\bk\s*3\b|\bk3\b/.test(value) && value.includes('league')) {
     return 'k league 3';
   }
@@ -877,16 +902,23 @@ function isWeeklyCompetitionIgnoredWithIndex(sportKey = '', scope = '', competit
 
 function weeklyRowIsIgnored(row = {}, sportKey = '', ignoreIndex = null) {
   const scope = weeklyRowCountry(row);
-  const names = [
+  const baseNames = [
     row.competition,
     row.competition365,
     row.competitionFlash,
   ].map(value => String(value || '').trim()).filter(Boolean);
 
-  if (!names.length) names.push(weeklyRowCompetition(row));
+  if (!baseNames.length) baseNames.push(weeklyRowCompetition(row));
+
+  const names = new Set(baseNames);
+  for (const name of baseNames) {
+    for (const expanded of expandCompetitionNamesForScope(sportKey, name)) {
+      names.add(expanded);
+    }
+  }
 
   const index = ignoreIndex || buildWeeklyIgnoreIndex();
-  return names.some(name => isWeeklyCompetitionIgnoredWithIndex(sportKey, scope, name, index));
+  return [...names].some(name => isWeeklyCompetitionIgnoredWithIndex(sportKey, scope, name, index));
 }
 
 function sortWeeklyRanking(entries = []) {
@@ -955,31 +987,71 @@ function attachEmbeddedWeeklyIssues(entry = {}) {
   };
 }
 
-function weeklyAnalysisWindow(days = 7) {
-  const windowDays = Math.min(31, Math.max(1, Number(days) || 7));
+const WEEKLY_MAX_DAYS = 7;
+
+function isWeeklyIsoDate(value = '') {
+  return /^\d{4}-\d{2}-\d{2}$/.test(String(value || '').trim());
+}
+
+function shiftWeeklyIsoDate(isoDate = '', deltaDays = 0) {
+  const date = new Date(`${String(isoDate).trim()}T12:00:00`);
+  date.setDate(date.getDate() + Number(deltaDays || 0));
+  return formatLocalDate(date);
+}
+
+function weeklyInclusiveDaySpan(fromDate = '', toDate = '') {
+  const fromMs = new Date(`${fromDate}T12:00:00`).getTime();
+  const toMs = new Date(`${toDate}T12:00:00`).getTime();
+  if (!Number.isFinite(fromMs) || !Number.isFinite(toMs)) return 1;
+  return Math.max(1, Math.floor((toMs - fromMs) / 86400000) + 1);
+}
+
+function weeklyAnalysisWindow({ days = 7, from = '', to = '' } = {}) {
   const today = formatLocalDate(new Date());
-  // Content Team usually scans tomorrow's slate — include that game day in the window.
-  const toDate = (() => {
-    const date = new Date(`${today}T12:00:00`);
-    date.setDate(date.getDate() + 1);
-    return formatLocalDate(date);
-  })();
-  const fromDate = (() => {
-    const date = new Date(`${toDate}T12:00:00`);
-    date.setDate(date.getDate() - (windowDays - 1));
-    return formatLocalDate(date);
-  })();
-  return { windowDays, fromDate, toDate };
+  // Content Team usually scans tomorrow's slate — default window ends there.
+  const defaultTo = shiftWeeklyIsoDate(today, 1);
+  let toDate = isWeeklyIsoDate(to) ? String(to).trim() : defaultTo;
+  let fromDate = isWeeklyIsoDate(from) ? String(from).trim() : '';
+
+  if (!fromDate) {
+    const windowDays = Math.min(WEEKLY_MAX_DAYS, Math.max(1, Number(days) || WEEKLY_MAX_DAYS));
+    fromDate = shiftWeeklyIsoDate(toDate, -(windowDays - 1));
+  }
+
+  if (fromDate > toDate) {
+    const swap = fromDate;
+    fromDate = toDate;
+    toDate = swap;
+  }
+
+  // Hard cap: analysis window cannot exceed one week (inclusive).
+  if (weeklyInclusiveDaySpan(fromDate, toDate) > WEEKLY_MAX_DAYS) {
+    fromDate = shiftWeeklyIsoDate(toDate, -(WEEKLY_MAX_DAYS - 1));
+  }
+
+  return {
+    windowDays: weeklyInclusiveDaySpan(fromDate, toDate),
+    fromDate,
+    toDate,
+    maxDays: WEEKLY_MAX_DAYS,
+  };
 }
 
 const WEEKLY_COLLECT_TTL_MS = 60_000;
 
-function collectWeeklyLatestBySportDate({ days = 7, sport = '', issue = '', team = '' } = {}) {
-  const { windowDays, fromDate, toDate } = weeklyAnalysisWindow(days);
+function shouldReplaceWeeklySnapshot(prev, next) {
+  if (!prev) return true;
+  if (next.stamp > prev.stamp) return true;
+  if (next.stamp === prev.stamp && next.dedicated && !prev.dedicated) return true;
+  return false;
+}
+
+function collectWeeklyLatestBySportDate({ days = 7, from = '', to = '', sport = '', issue = '', team = '' } = {}) {
+  const { windowDays, fromDate, toDate, maxDays } = weeklyAnalysisWindow({ days, from, to });
   const teamFilter = normalizeWeeklyTeamFilter(team);
   const sportFilter = String(sport || '').trim();
   const issueFilter = normalizeWeeklyIssueFilter(issue);
-  const cacheKey = `${windowDays}|${fromDate}|${toDate}|${teamFilter}|${sportFilter || 'all'}|${issueFilter}`;
+  const cacheKey = `${fromDate}|${toDate}|${teamFilter}|${sportFilter || 'all'}|${issueFilter}`;
   const cached = weeklyCollectCache.get(cacheKey);
   if (cached && (Date.now() - cached.at) < WEEKLY_COLLECT_TTL_MS) {
     return cached.result;
@@ -995,7 +1067,9 @@ function collectWeeklyLatestBySportDate({ days = 7, sport = '', issue = '', team
     return scanDate >= fromDate && scanDate <= toDate;
   });
 
-  // One snapshot per team sport + game date. Prefer dedicated sport scans over aggregate "all".
+  // One snapshot per team sport + game date.
+  // Prefer the newest finalize stamp so a later "all" rescan can replace a stale
+  // dedicated sport scan after matcher fixes. Dedicated wins only on equal stamps.
   const latestBySportDate = new Map();
   for (const scan of candidates) {
     const stamp = `${String(scan.finalizedAt || scan.finishedAt || '')}|${scan.id}`;
@@ -1016,7 +1090,6 @@ function collectWeeklyLatestBySportDate({ days = 7, sport = '', issue = '', team
     for (const [rowSport, rows] of rowsBySport) {
       const key = `${rowSport}|${scan.date}`;
       const dedicated = scan.sport === rowSport;
-      const prev = latestBySportDate.get(key);
       const next = {
         stamp,
         dedicated,
@@ -1025,15 +1098,8 @@ function collectWeeklyLatestBySportDate({ days = 7, sport = '', issue = '', team
         date: String(scan.date || ''),
         sport: rowSport,
       };
-      if (!prev) {
-        latestBySportDate.set(key, next);
-        continue;
-      }
-      if (dedicated && !prev.dedicated) {
-        latestBySportDate.set(key, next);
-        continue;
-      }
-      if (dedicated === prev.dedicated && stamp > prev.stamp) {
+      const prev = latestBySportDate.get(key);
+      if (shouldReplaceWeeklySnapshot(prev, next)) {
         latestBySportDate.set(key, next);
       }
     }
@@ -1043,6 +1109,7 @@ function collectWeeklyLatestBySportDate({ days = 7, sport = '', issue = '', team
     windowDays,
     fromDate,
     toDate,
+    maxDays,
     teamFilter,
     sportFilter: sportFilter || 'all',
     issueFilter,
@@ -1071,16 +1138,17 @@ function compactWeeklyIssue(row = {}, meta = {}) {
   };
 }
 
-function buildWeeklyAnalysis({ days = 7, sport = '', issue = '', team = '' } = {}) {
+function buildWeeklyAnalysis({ days = 7, from = '', to = '', sport = '', issue = '', team = '' } = {}) {
   const {
     windowDays,
     fromDate,
     toDate,
+    maxDays,
     teamFilter,
     sportFilter,
     issueFilter,
     latestBySportDate,
-  } = collectWeeklyLatestBySportDate({ days, sport, issue, team });
+  } = collectWeeklyLatestBySportDate({ days, from, to, sport, issue, team });
 
   const bySport = new Map();
   const ensureSport = (sportKey) => {
@@ -1167,6 +1235,7 @@ function buildWeeklyAnalysis({ days = 7, sport = '', issue = '', team = '' } = {
     from: fromDate,
     to: toDate,
     days: windowDays,
+    maxDays,
     team: teamFilter,
     sport: sportFilter || 'all',
     issue: issueFilter,
@@ -1180,6 +1249,8 @@ function buildWeeklyAnalysis({ days = 7, sport = '', issue = '', team = '' } = {
 
 function buildWeeklyAnalysisIssues({
   days = 7,
+  from = '',
+  to = '',
   sport = '',
   issue = '',
   team = '',
@@ -1201,12 +1272,13 @@ function buildWeeklyAnalysisIssues({
     windowDays,
     fromDate,
     toDate,
+    maxDays,
     teamFilter,
     sportFilter,
     issueFilter,
     latestBySportDate,
     issuesIndex,
-  } = collectWeeklyLatestBySportDate({ days, sport, issue, team });
+  } = collectWeeklyLatestBySportDate({ days, from, to, sport, issue, team });
 
   const resolvedSport = sportFilter && sportFilter !== 'all' ? sportFilter : '';
 
@@ -1221,6 +1293,7 @@ function buildWeeklyAnalysisIssues({
       from: fromDate,
       to: toDate,
       days: windowDays,
+      maxDays,
       team: teamFilter,
       sport: sportFilter || 'all',
       issue: issueFilter,
@@ -1251,6 +1324,7 @@ function buildWeeklyAnalysisIssues({
     from: fromDate,
     to: toDate,
     days: windowDays,
+    maxDays,
     team: teamFilter,
     sport: sportFilter || 'all',
     issue: issueFilter,
@@ -3255,6 +3329,28 @@ function listRules() {
   return raw;
 }
 
+// Adds an `aliases` hint (Flash <-> 365 equivalent names) to ignore rules before they are
+// sent to the UI, so a rule stored with one side's competition name (e.g. Flash's
+// "Catarinense 2") can also be recognized against the other side's name (365's
+// "Catarinense - Serie B") when hiding already-rendered report rows client-side.
+// Purely additive for the response — never written back to competition_rules.json.
+function decorateRulesWithAliases(rules = {}) {
+  const output = {};
+  for (const [sport, sportRules] of Object.entries(rules || {})) {
+    output[sport] = { ...sportRules };
+    for (const bucket of ['ignoreFlashOnly', 'ignore365Only']) {
+      const list = Array.isArray(sportRules?.[bucket]) ? sportRules[bucket] : [];
+      output[sport][bucket] = list.map(rule => {
+        if (!rule || rule.competition === '*') return rule;
+        const aliases = expandCompetitionNamesForScope(sport, rule.competition)
+          .filter(name => name && name !== rule.competition);
+        return aliases.length ? { ...rule, aliases } : rule;
+      });
+    }
+  }
+  return output;
+}
+
 function ignoreFlashOnlySuggestions(items = []) {
   if (!Array.isArray(items) || !items.length) return listRules();
 
@@ -3740,15 +3836,19 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'GET' && url.pathname === '/api/weekly-analysis') {
       const days = Number(url.searchParams.get('days') || 7);
+      const from = String(url.searchParams.get('from') || '').trim();
+      const to = String(url.searchParams.get('to') || '').trim();
       const team = String(url.searchParams.get('team') || '').trim();
       const sport = String(url.searchParams.get('sport') || '').trim();
       const issue = String(url.searchParams.get('issue') || '').trim();
-      return sendJson(res, 200, buildWeeklyAnalysis({ days, team, sport, issue }));
+      return sendJson(res, 200, buildWeeklyAnalysis({ days, from, to, team, sport, issue }));
     }
 
     if (req.method === 'GET' && url.pathname === '/api/weekly-analysis/issues') {
       try {
         const days = Number(url.searchParams.get('days') || 7);
+        const from = String(url.searchParams.get('from') || '').trim();
+        const to = String(url.searchParams.get('to') || '').trim();
         const team = String(url.searchParams.get('team') || '').trim();
         const sport = String(url.searchParams.get('sport') || '').trim();
         const issue = String(url.searchParams.get('issue') || '').trim();
@@ -3756,6 +3856,8 @@ const server = http.createServer(async (req, res) => {
         const competition = String(url.searchParams.get('competition') || '').trim();
         return sendJson(res, 200, buildWeeklyAnalysisIssues({
           days,
+          from,
+          to,
           team,
           sport,
           issue,
@@ -3791,7 +3893,7 @@ const server = http.createServer(async (req, res) => {
       return sendJson(res, 200, {
         scan: finalized.scan,
         history: finalized.history,
-        rules: listRules(),
+        rules: decorateRulesWithAliases(listRules()),
       });
     }
 
@@ -3816,7 +3918,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (req.method === 'GET' && url.pathname === '/api/rules') {
-      return sendJson(res, 200, listRules());
+      return sendJson(res, 200, decorateRulesWithAliases(listRules()));
     }
 
     if (req.method === 'POST' && url.pathname === '/api/competition-registry/recognize') {
@@ -3836,17 +3938,17 @@ const server = http.createServer(async (req, res) => {
 
     if (req.method === 'POST' && url.pathname === '/api/rules') {
       const body = await readBody(req);
-      return sendJson(res, 200, addRule(body));
+      return sendJson(res, 200, decorateRulesWithAliases(addRule(body)));
     }
 
     if (req.method === 'PUT' && url.pathname === '/api/rules') {
       const body = await readBody(req);
-      return sendJson(res, 200, updateRule(body));
+      return sendJson(res, 200, decorateRulesWithAliases(updateRule(body)));
     }
 
     if (req.method === 'DELETE' && url.pathname === '/api/rules') {
       const body = await readBody(req);
-      return sendJson(res, 200, deleteRule(body));
+      return sendJson(res, 200, decorateRulesWithAliases(deleteRule(body)));
     }
 
     sendJson(res, 404, { error: 'Not found' });
@@ -3871,6 +3973,11 @@ module.exports = {
   buildTermSuggestions,
   normalizeCompTerm,
   flashOnlyCompetitionGroups,
+  shouldReplaceWeeklySnapshot,
+  expandCompetitionNamesForScope,
+  decorateRulesWithAliases,
+  weeklyRowIsIgnored,
+  listRules,
 };
 
 if (require.main === module) {

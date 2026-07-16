@@ -388,9 +388,17 @@ function teamNameSim(a = '', b = '', sportKey = '', compA = '', compB = '') {
 }
 
 const COUNTRY_ALIASES = {
-  'america do norte e central': 'america do norte',
-  'america central': 'america do norte',
-  'concacaf': 'america do norte',
+  // 365 often uses "America"; Flashscore uses "NORTH & CENTRAL AMERICA" / "AMERICA"
+  'america': 'america',
+  'north central america': 'america',
+  'north and central america': 'america',
+  'north america': 'america',
+  'central america': 'america',
+  'america do norte': 'america',
+  'america do norte e central': 'america',
+  'america central': 'america',
+  'norte e centro america': 'america',
+  'concacaf': 'america',
   'paises baixos': 'holanda',
   'netherlands': 'holanda',
   'holland': 'holanda',
@@ -411,7 +419,12 @@ function isBasketballSport(sportKey = '') {
 }
 
 function normCountry(text = '') {
-  const n = norm(text).replace(/[:.!?]+/g, '').replace(/\s+/g, ' ').trim();
+  const n = norm(text)
+    .replace(/[:.!?]+/g, '')
+    .replace(/&/g, ' ')
+    .replace(/\band\b/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
   return COUNTRY_ALIASES[n] || n;
 }
 
@@ -446,6 +459,9 @@ const COMP_ALIASES = {
   'david kipiani': 'david kipiani',
   'k3 league': 'k league 3',
   'k league 3': 'k league 3',
+  'centrobasket women': 'centrobasket women',
+  "centrobasket women's": 'centrobasket women',
+  'centrobasket womens': 'centrobasket women',
 };
 
 
@@ -461,19 +477,41 @@ const COMP_BASE_ALIASES = {
   'campeonato da concacaf sub 17': 'concacaf sub 17',
 };
 
+function isFibaStyleCompetitionBase(n = '') {
+  return /\b(eurobasket|fiba|centrobasket|afrobasket|americup|asiacup|asia cup)\b/.test(n || '');
+}
+
 function stripCompetitionStage(text = '') {
-  return normCompetitionBase(text || '')
-    .replace(/\b(playoffs?|playoff|qualifying|qualification|qualificacao|qualifica\w*|segunda fase|second phase|fase 2|fase final|final phase|relegation|promotion|promocao|rebaixamento)\b/g, ' ')
-    .replace(/\b(semifinal|semi final|quarterfinal|quarter final|final|group stage|fase de grupos|grupos?)\b/g, ' ')
+  let n = normCompetitionBase(text || '')
+    // Flash often uses spaced forms: "Play Offs", "Play Out", "Semi Finals".
+    .replace(/\b(play\s*offs?|playoffs?|play\s*outs?|play\s*out|playoff)\b/g, ' ')
+    // Placement brackets: "9th-16th places", "5th 7th places".
+    .replace(/\b\d+(?:st|nd|rd|th)?(?:\s*-\s*|\s+)\d+(?:st|nd|rd|th)?\s+places?\b/g, ' ')
+    .replace(/\b\d+(?:st|nd|rd|th)?\s+places?\b/g, ' ')
+    .replace(/\b(classification|placement|classificacao)\s*(rounds?|phases?|stages?)?\b/g, ' ')
+    .replace(/\b(qualifying|qualification|qualificacao|qualifica\w*|segunda fase|second phase|fase 2|fase final|final phase|relegation|promotion|promocao|rebaixamento)\b/g, ' ')
+    .replace(/\b(semifinals?|semi\s*finals?|quarterfinals?|quarter\s*finals?|finals?|group stage|fase de grupos|grupos?)\b/g, ' ')
     .replace(/\b(da|de|do|del|la|el|the)\b/g, ' ')
     .replace(/\b(copa|cup|campeonato|championship|torneio|tournament)\b/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
+
+  // FIBA-style tournaments append "Group A/B" as a stage of one competition.
+  // Do not strip "Group A" from club leagues like "Kakkonen Group A".
+  if (isFibaStyleCompetitionBase(n)) {
+    n = n
+      .replace(/\b(groups?|grupos?)\s+[a-h]\b/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  return n;
 }
 
 function normComp(text = '', sportKey = '') {
   const resolved = resolveTermAlias(String(text || '').trim(), 'competition', sportKey);
   const n = canonicalizeCompYouthMarkers(stripCompetitionStage(resolved))
+    .replace(/['’`]/g, '')
     .replace(/[:.!?\-]+/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
@@ -553,6 +591,7 @@ function extractTennisScopeFromFlashCompetition(comp = '') {
 
 function normalizeTennisScope(text = '') {
   const n = norm(text).replace(/\s+/g, ' ').trim();
+  const compact = n.replace(/\s*-\s*/g, ' ').trim();
 
   const map = {
     'atp': 'atp-simples',
@@ -598,9 +637,16 @@ function normalizeTennisScope(text = '') {
     'itf women doubles': 'itf-feminino-duplas',
     'tf women doubles': 'itf-feminino-duplas',
     'tf women singles': 'itf-feminino-simples',
+    // Flash exhibition buckets ↔ 365Scores International (UTS, invitationals, …)
+    'international': 'international',
+    'exhibition': 'international',
+    'exhibition men': 'international',
+    'exhibition women': 'international',
+    'exhibition man': 'international',
+    'exhibition woman': 'international',
   };
 
-  return map[n] || n;
+  return map[compact] || map[n] || n;
 }
 
 function getTennisDisplayScope(scopeKey = '') {
@@ -617,6 +663,7 @@ function getTennisDisplayScope(scopeKey = '') {
     'itf-masculino-duplas': 'ITF Men - Doubles',
     'itf-feminino-simples': 'ITF Women - Singles',
     'itf-feminino-duplas': 'ITF Women - Doubles',
+    'international': 'International',
   };
 
   return map[scopeKey] || scopeKey;
@@ -1632,9 +1679,9 @@ function compareCountry(countryName, games365, gamesFlash, sportKey) {
     }));
 
   return {
-    divergencias_horario,
-    divergencias_status,
-    divergencias_nome,
+    divergencias_horario: divergencias_horario.filter(g => !shouldIgnoreCompareIssue(sportKey, countryName, g)),
+    divergencias_status: divergencias_status.filter(g => !shouldIgnoreCompareIssue(sportKey, countryName, g)),
+    divergencias_nome: divergencias_nome.filter(g => !shouldIgnoreCompareIssue(sportKey, countryName, g)),
     so_no_flash,
     so_no_365,
     matched_pairs,
@@ -2178,16 +2225,89 @@ function hasMatchingCompetitionRule(ruleSet, scopeKey = '', compKey = '') {
   return false;
 }
 
+function expandCompetitionNamesForIgnore(sportKey = '', competitionName = '') {
+  const seed = String(competitionName || '').trim();
+  if (!seed) return [];
+
+  const names = new Set([seed]);
+  const seedKey = String(getCompetitionSummaryKey(seed, sportKey === 'tennis' ? 'Tênis' : '', sportKey) || '').trim();
+  if (!seedKey) return [...names];
+
+  try {
+    for (const pair of getSharedCompetitions(resolveCompareSportKey(sportKey))) {
+      const key365 = String(pair.key365 || '').trim();
+      const keyFlash = String(pair.keyFlash || '').trim();
+      if (seedKey !== key365 && seedKey !== keyFlash) continue;
+      if (pair.competition365) names.add(String(pair.competition365).trim());
+      if (pair.competitionFlash) names.add(String(pair.competitionFlash).trim());
+    }
+  } catch (_) {
+    // Shared memory is optional for ignore matching.
+  }
+
+  // Term aliases also link Flash/365 competition labels (e.g. Catarinense 2 ↔ Serie B).
+  try {
+    const aliases = loadTermAliases();
+    for (const alias of aliases || []) {
+      if (alias?.type && alias.type !== 'competition') continue;
+      const value365 = String(alias.value365 || '').trim();
+      const valueFlash = String(alias.valueFlash || '').trim();
+      const key365 = value365
+        ? String(getCompetitionSummaryKey(value365, sportKey === 'tennis' ? 'Tênis' : '', sportKey) || '').trim()
+        : '';
+      const keyFlash = valueFlash
+        ? String(getCompetitionSummaryKey(valueFlash, sportKey === 'tennis' ? 'Tênis' : '', sportKey) || '').trim()
+        : '';
+      if (seedKey !== key365 && seedKey !== keyFlash) continue;
+      if (value365) names.add(value365);
+      if (valueFlash) names.add(valueFlash);
+    }
+  } catch (_) {
+    // Aliases optional.
+  }
+
+  return [...names].filter(Boolean);
+}
+
 function shouldIgnoreCompetitionByRule(sportKey = '', scopeName = '', side = 'flash', competitionName = '') {
   if (!sportKey || !scopeName || !competitionName) return false;
 
   const rules = getCompetitionRules(sportKey);
-  const scopeKey = sportKey === 'tennis' ? getScopeKey(scopeName, 'tennis') : normCountry(scopeName);
-  const compKey = String(getCompetitionSummaryKey(competitionName, sportKey === 'tennis' ? 'Tênis' : '') || '').trim();
-  if (!compKey) return false;
+  const scopeKey = sportKey === 'tennis'
+    ? getScopeKey(scopeName, 'tennis')
+    : resolveScopeKey(scopeName);
+  if (!scopeKey) return false;
 
   const sideRules = side === '365' ? rules.ignore365Only : rules.ignoreFlashOnly;
-  return hasMatchingCompetitionRule(sideRules, scopeKey, compKey);
+  const otherRules = side === '365' ? rules.ignoreFlashOnly : rules.ignore365Only;
+  const names = expandCompetitionNamesForIgnore(sportKey, competitionName);
+
+  for (const name of names) {
+    const compKey = String(getCompetitionSummaryKey(name, sportKey === 'tennis' ? 'Tênis' : '', sportKey) || '').trim();
+    if (!compKey) continue;
+    // Match the requested side first, then the other side via shared/alias names so
+    // ignoring "Catarinense 2" also hides "Catarinense - Serie B" (and the reverse).
+    if (hasMatchingCompetitionRule(sideRules, scopeKey, compKey)) return true;
+    if (hasMatchingCompetitionRule(otherRules, scopeKey, compKey)) return true;
+  }
+
+  return false;
+}
+
+function shouldIgnoreCompareIssue(sportKey = '', countryName = '', payload = {}) {
+  const competitions = [
+    payload.competicao,
+    payload.competicao_365,
+    payload.competicao_flash,
+    payload.competition,
+    payload.competition365,
+    payload.competitionFlash,
+  ].map(value => String(value || '').trim()).filter(Boolean);
+
+  return competitions.some(competition =>
+    shouldIgnoreCompetitionByRule(sportKey, countryName, 'flash', competition) ||
+    shouldIgnoreCompetitionByRule(sportKey, countryName, '365', competition)
+  );
 }
 
 function xlsxGamePopularityRank(game = {}, country = '', sportKey = '') {
@@ -3019,6 +3139,8 @@ module.exports = {
   getIsraelSportConfig,
   runCompareIsrael,
   clearCompetitionRulesCache,
+  expandCompetitionNamesForIgnore,
+  shouldIgnoreCompetitionByRule,
   getCurrentBridge,
   isCompetitionMatchedInCurrentScan,
   isCompKnownShared,
@@ -3026,6 +3148,11 @@ module.exports = {
   buildTermFixSuppressedKeys,
   termFixSuppressionKey,
   resolveCompareSportKey,
+  normCountry,
+  normalizeTennisScope,
+  getScopeKey,
+  groupByScope,
+  compareCountry,
   LATAM_CORE_SPORTS: ['football', 'basketball'],
   ISRAEL_CORE_SPORTS: ['football', 'basketball'],
 };
