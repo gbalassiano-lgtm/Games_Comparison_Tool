@@ -3902,9 +3902,8 @@ const server = http.createServer(async (req, res) => {
       const body = await readBody(req);
       const sport = String(body.sport || '');
       const date = String(body.date || tomorrowIso(sport));
-      const scraperSource = String(body.scraperSource || 'flashscore');
+      const scraperSource = 'flashscore';
       if (!SCAN_OPTIONS[sport]) return sendJson(res, 400, { error: 'Choose a valid sport.' });
-      if (!['flashscore', 'sofascore'].includes(scraperSource)) return sendJson(res, 400, { error: 'Choose a valid scraper.' });
       validateDate(date);
       const operatorEmail = String(body.operatorEmail || '').trim() || null;
       const asanaTaskGid = String(body.asanaTaskGid || '').trim() || null;

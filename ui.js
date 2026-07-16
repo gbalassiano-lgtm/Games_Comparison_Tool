@@ -138,8 +138,6 @@ const i18n = {
     termsPending: 'Terms Fix needed',
     rulesTab: 'Ignored Competitions',
     sport: 'Sport',
-    scraperSource: 'Scraper',
-    sofascoreUnavailable: 'Sofascore is not connected yet. Please choose Flashscore for now.',
     date: 'Date',
     scanButton: 'Scan',
     dateHint: 'Choose the scan date you want to compare.',
@@ -385,8 +383,6 @@ const i18n = {
     termsPending: 'Correção de termos necessária',
     rulesTab: 'Competições Ignoradas',
     sport: 'Esporte',
-    scraperSource: 'Scraper',
-    sofascoreUnavailable: 'Sofascore ainda não está conectado. Escolha Flashscore por enquanto.',
     date: 'Data',
     scanButton: 'Escanear',
     dateHint: 'Escolha a data da varredura que deseja comparar.',
@@ -936,9 +932,7 @@ function escapeHtml(value) {
     .replace(/"/g, '&quot;');
 }
 
-function formatScraperSource(value) {
-  const key = String(value || 'flashscore').toLowerCase();
-  if (key === 'sofascore') return 'Sofascore';
+function formatScraperSource() {
   return 'Flashscore';
 }
 
@@ -948,7 +942,7 @@ function reportDetailsHtml(scan) {
     ? `<span><b>${escapeHtml(asanaQueueProgressLabel())}</b></span>`
     : '';
   return `
-    <span><b>${t('reportDetailScanner')}:</b> ${escapeHtml(formatScraperSource(scan?.scraperSource))}</span>
+    <span><b>${t('reportDetailScanner')}:</b> ${escapeHtml(formatScraperSource())}</span>
     <span><b>${t('reportDetailDate')}:</b> ${escapeHtml(scan?.date || '-')}</span>
     <span><b>${t('reportDetailSport')}:</b> ${escapeHtml(sportLabel)}</span>
     ${queueLine}
@@ -4251,7 +4245,6 @@ async function startScanForSport({ sport, date, asanaTaskGid = null, operatorEma
   if (!asanaTaskGid && isAsanaScanQueueActive()) {
     clearAsanaScanQueue();
   }
-  const scraperSource = 'flashscore';
   const resolvedOperatorEmail = operatorEmail || null;
   state.autoOpenDetails = true;
   state.scanStartedByUser = true;
@@ -4271,7 +4264,6 @@ async function startScanForSport({ sport, date, asanaTaskGid = null, operatorEma
     body: JSON.stringify({
       sport,
       date,
-      scraperSource,
       asanaTaskGid,
       operatorEmail: resolvedOperatorEmail,
     }),
