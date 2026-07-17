@@ -1245,11 +1245,11 @@
     {
       "sport": "football",
       "type": "missing_365",
-      "scope": "Russia",
+      "scope": "RUSSIA",
       "value365": "(ausente)",
       "valueFlash": "FNL 2 - Division B - Group 4",
       "canonical": "(ausente)",
-      "decidedAt": "2026-06-27T20:31:00.166Z"
+      "decidedAt": "2026-06-28T15:07:16.240Z"
     },
     {
       "sport": "football",
@@ -1286,15 +1286,6 @@
       "valueFlash": "FNL 2 - Division B - Group 3",
       "canonical": "(ausente)",
       "decidedAt": "2026-06-28T15:07:16.239Z"
-    },
-    {
-      "sport": "football",
-      "type": "missing_365",
-      "scope": "RUSSIA",
-      "value365": "(ausente)",
-      "valueFlash": "FNL 2 - Division B - Group 4",
-      "canonical": "(ausente)",
-      "decidedAt": "2026-06-28T15:07:16.240Z"
     },
     {
       "sport": "tennis",
@@ -1511,6 +1502,60 @@
       "valueFlash": "Qizilqum / Din. Samarkand",
       "canonical": "Qyzylqum / Dinamo Samarkand",
       "decidedAt": "2026-07-15T16:07:52.975Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Estonia",
+      "value365": "Harju Jalgpallikool / Trans Narva",
+      "valueFlash": "Harju JK Laagri / Narva",
+      "canonical": "Harju Jalgpallikool / Trans Narva",
+      "decidedAt": "2026-07-09T15:18:35.356Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Estonia",
+      "value365": "FC Maardu / Tartu JK Welko Electer",
+      "valueFlash": "Maardu / Tartu Welco",
+      "canonical": "FC Maardu / Tartu JK Welko Electer",
+      "decidedAt": "2026-07-12T12:03:57.816Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Maritimo / AVS",
+      "valueFlash": "Maritimo (Por) / AFS (Por)",
+      "canonical": "Maritimo / AVS",
+      "decidedAt": "2026-07-13T12:53:40.202Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "B93 Copenhagen / Holbaek",
+      "valueFlash": "B.93 (Den) / Holbaek (Den)",
+      "canonical": "B93 Copenhagen / Holbaek",
+      "decidedAt": "2026-07-13T12:53:40.203Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Dinamo Zagreb / LNZ",
+      "valueFlash": "Din. Zagreb (Cro) / LNZ Cherkasy (Ukr)",
+      "canonical": "Dinamo Zagreb / LNZ",
+      "decidedAt": "2026-07-13T13:36:40.400Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Cambridge United / Southend",
+      "valueFlash": "Southend (Eng) / Cambridge Utd (Eng)",
+      "canonical": "Cambridge United / Southend",
+      "decidedAt": "2026-07-13T13:36:40.401Z"
     }
   ],
   "rejected": [
@@ -1616,11 +1661,11 @@
     {
       "sport": "basketball",
       "type": "missing_365",
-      "scope": "Chile",
+      "scope": "CHILE",
       "value365": "(ausente)",
       "valueFlash": "LNB 2 - Play Offs",
       "canonical": "",
-      "decidedAt": "2026-06-26T15:23:46.525Z"
+      "decidedAt": "2026-06-28T15:01:02.830Z"
     },
     {
       "sport": "basketball",
@@ -1720,15 +1765,6 @@
       "valueFlash": "Club Friendly",
       "canonical": "",
       "decidedAt": "2026-06-28T14:56:21.563Z"
-    },
-    {
-      "sport": "basketball",
-      "type": "missing_365",
-      "scope": "CHILE",
-      "value365": "(ausente)",
-      "valueFlash": "LNB 2 - Play Offs",
-      "canonical": "",
-      "decidedAt": "2026-06-28T15:01:02.830Z"
     },
     {
       "sport": "football",

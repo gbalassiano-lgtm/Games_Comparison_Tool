@@ -469,6 +469,10 @@
       {
         "scope": "Brazil",
         "competition": "Catarinense 2"
+      },
+      {
+        "scope": "Brasil",
+        "competition": "Cearense U20"
       }
     ],
     "acknowledgedFlashOnly": [
@@ -634,6 +638,30 @@
       {
         "scope": "Europe",
         "competition": "EuroBasket U20 B"
+      },
+      {
+        "scope": "Europe",
+        "competition": "EuroBasket U16 C - 5th-9th places"
+      },
+      {
+        "scope": "Europe",
+        "competition": "EuroBasket U16 C Women - 5th-7th places"
+      },
+      {
+        "scope": "Europe",
+        "competition": "EuroBasket U16 C Women - Play Offs"
+      },
+      {
+        "scope": "Europe",
+        "competition": "EuroBasket U16 C - Play Offs"
+      },
+      {
+        "scope": "Europe",
+        "competition": "EuroBasket U20 Women - 9th-16th places"
+      },
+      {
+        "scope": "Europe",
+        "competition": "EuroBasket U20 Women - Play Offs"
       }
     ],
     "acknowledgedFlashOnly": [
@@ -677,6 +705,10 @@
       {
         "scope": "Ásia",
         "competition": "Asian Championship U18 - 9th-16th places"
+      },
+      {
+        "scope": "ASIA",
+        "competition": "Asian Championship U18"
       }
     ],
     "acknowledgedFlashOnly": [],
