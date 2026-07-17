@@ -1556,6 +1556,24 @@
       "valueFlash": "Southend (Eng) / Cambridge Utd (Eng)",
       "canonical": "Cambridge United / Southend",
       "decidedAt": "2026-07-13T13:36:40.401Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Hashtag United / Dagenham and Redbridge",
+      "valueFlash": "Hashtag (Eng) / Dag & Red (Eng)",
+      "canonical": "Hashtag United / Dagenham and Redbridge",
+      "decidedAt": "2026-07-17T11:56:55.975Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Aindling / 1860 München",
+      "valueFlash": "TSV Aindling (Ger) / Munich 1860 (Ger)",
+      "canonical": "Aindling / 1860 München",
+      "decidedAt": "2026-07-17T14:35:17.827Z"
     }
   ],
   "rejected": [
@@ -1783,6 +1801,15 @@
       "valueFlash": "Al Karamah / Umayya",
       "canonical": "",
       "decidedAt": "2026-06-30T14:04:00.459Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Flenu / Francs Borains",
+      "valueFlash": "Francs Borains (Bel) / Gent U23 (Bel)",
+      "canonical": "",
+      "decidedAt": "2026-07-17T11:56:55.976Z"
     }
   ]
 }

@@ -139,11 +139,17 @@ async function processSport(sport, JSON_PATHS) {
 
     // 3️⃣ Compare
     console.log(`\n🔍 Rodando compare de ${sport.label}...\n`);
+    const targetDate = String(process.env.TARGET_DATE || process.env.SCAN_DATE || '').trim();
+    console.log(`📅 TARGET_DATE=${targetDate || '(default tomorrow)'}`);
     const { runCompare } = require('./compare.js');
     const allResults = await runCompare(sport.key);
 
     const snapshotPath = path.join(__dirname, 'output', sport.key, 'compare_snapshot.json');
-    fs.writeFileSync(snapshotPath, JSON.stringify(allResults));
+    fs.writeFileSync(snapshotPath, JSON.stringify({
+      targetDate: /^\d{4}-\d{2}-\d{2}$/.test(targetDate) ? targetDate : '',
+      savedAt: new Date().toISOString(),
+      results: allResults,
+    }));
 
     const divStatus = allResults.reduce(
       (s, r) => s + (r.result.divergencias_status?.length || 0), 0

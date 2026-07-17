@@ -141,6 +141,7 @@ const SPORTS = {
 };
 
 const USA_SPORT_KEYS = ['american_football_usa', 'baseball_usa', 'basketball_usa'];
+const CONTENT_CORE_SPORTS = ['football', 'basketball', 'hockey', 'volleyball', 'tennis'];
 const LATAM_CORE_SPORTS = ['football', 'basketball'];
 const ISRAEL_CORE_SPORTS = ['football', 'basketball'];
 
@@ -1545,9 +1546,39 @@ function compareSnapshotPath(sportKey) {
   return path.join(ROOT, 'output', sportKey, 'compare_snapshot.json');
 }
 
-function loadCompareSnapshot(sportKey) {
+function writeCompareSnapshot(sportKey, allResults, targetDate = '') {
+  const stamp = String(targetDate || process.env.TARGET_DATE || process.env.SCAN_DATE || '').trim();
+  const payload = {
+    targetDate: /^\d{4}-\d{2}-\d{2}$/.test(stamp) ? stamp : '',
+    savedAt: new Date().toISOString(),
+    results: Array.isArray(allResults) ? allResults : [],
+  };
+  fs.writeFileSync(compareSnapshotPath(sportKey), JSON.stringify(payload));
+  return payload;
+}
+
+function loadCompareSnapshot(sportKey, expectedDate = '') {
   const snapshot = readJsonSafe(compareSnapshotPath(sportKey), null);
-  return Array.isArray(snapshot) ? snapshot : null;
+  const expected = String(expectedDate || '').trim();
+
+  // Legacy bare-array snapshots have no targetDate stamp. When the caller knows the
+  // scan date, refuse them so we never reuse a compare that filtered the wrong day
+  // (e.g. "all" summary falling back to tomorrow while scrapers used the scan date).
+  if (Array.isArray(snapshot)) {
+    if (expected) return null;
+    return snapshot;
+  }
+
+  if (!snapshot || typeof snapshot !== 'object' || !Array.isArray(snapshot.results)) {
+    return null;
+  }
+
+  const stamped = String(snapshot.targetDate || '').trim();
+  if (expected) {
+    if (!stamped || stamped !== expected) return null;
+  }
+
+  return snapshot.results;
 }
 
 function clearCompareSnapshot(sportKey) {
@@ -1560,9 +1591,10 @@ async function getCompareResultsForSport(sportKey, scan = null) {
   return withSportTimezone(sportKey, async () => {
     const previousTargetDate = process.env.TARGET_DATE;
     const previousScanDate = process.env.SCAN_DATE;
-    if (scan?.date) {
-      process.env.TARGET_DATE = scan.date;
-      process.env.SCAN_DATE = scan.date;
+    const scanDate = String(scan?.date || '').trim();
+    if (scanDate) {
+      process.env.TARGET_DATE = scanDate;
+      process.env.SCAN_DATE = scanDate;
     }
 
     // Keep compare.js warm — full reload was one of the largest UI compare costs.
@@ -1580,31 +1612,37 @@ async function getCompareResultsForSport(sportKey, scan = null) {
     const originalError = console.error;
     console.log = (...args) => {
       const msg = args.map(value => (typeof value === 'string' ? value : String(value))).join(' ');
-      if (scan) appendLog(scan, msg);
+      if (scan?.logs) appendLog(scan, msg);
       originalLog(...args);
     };
     console.error = (...args) => {
       const msg = args.map(value => (typeof value === 'string' ? value : String(value))).join(' ');
-      if (scan) appendLog(scan, msg);
+      if (scan?.logs) appendLog(scan, msg);
       originalError(...args);
     };
 
     let heartbeat = null;
-    if (scan) {
+    if (scan?.logs) {
       heartbeat = setInterval(() => {
         if (!scan.cancelRequested) appendLog(scan, '⏳ Comparison still running...');
       }, 5000);
     }
 
     try {
+      if (scanDate && scan?.logs) {
+        appendLog(scan, `Compare target date: ${scanDate}`);
+      }
       const result = await runCompare(sportKey, null, { skipTelegram: true, skipXlsx: true });
-      if (scan) appendLog(scan, '✅ Comparison finished');
+      if (scanDate) {
+        writeCompareSnapshot(sportKey, result, scanDate);
+      }
+      if (scan?.logs) appendLog(scan, '✅ Comparison finished');
       return enrichCompareResults(result, sportKey);
     } finally {
       if (heartbeat) clearInterval(heartbeat);
       console.log = originalLog;
       console.error = originalError;
-      if (scan?.date) {
+      if (scanDate) {
         if (previousTargetDate === undefined) delete process.env.TARGET_DATE;
         else process.env.TARGET_DATE = previousTargetDate;
         if (previousScanDate === undefined) delete process.env.SCAN_DATE;
@@ -1618,6 +1656,8 @@ async function buildAllSportsSummary(options = {}) {
   const allDetails = { problematic: [], matched: [] };
   const countries = [];
   const sports = [];
+  const scan = options.scan || null;
+  const scanDate = String(scan?.date || options.targetDate || process.env.TARGET_DATE || process.env.SCAN_DATE || '').trim();
   const forceSportKeys = Array.isArray(options.forceRecompareSports)
     ? new Set(options.forceRecompareSports.map(String))
     : null;
@@ -1635,10 +1675,10 @@ async function buildAllSportsSummary(options = {}) {
 
     try {
       const mustRecompare = forceAll || (forceSportKeys && forceSportKeys.has(sport.key));
-      const snapshot = !mustRecompare && loadCompareSnapshot(sport.key);
+      const snapshot = !mustRecompare && loadCompareSnapshot(sport.key, scanDate);
       const allResults = snapshot
         ? enrichCompareResults(snapshot, sport.key)
-        : await getCompareResultsForSport(sport.key);
+        : await getCompareResultsForSport(sport.key, scan || (scanDate ? { date: scanDate } : null));
       const summary = summarizeResults(raw365, rawFlash, allResults);
       const details = prefixDetailRows(buildDetails(allResults, sport.key), sport);
 
@@ -2830,7 +2870,7 @@ async function finalizeScan(scan, decisions = {}, options = {}) {
     acknowledgeFlashOnlySuggestions(dontIgnoreFlashAcknowledgements);
   }
 
-  let allResults = loadCompareSnapshot(scan.sport) || scan.result?.countries || null;
+  let allResults = loadCompareSnapshot(scan.sport, scan.date) || scan.result?.countries || null;
 
   const hasTermDecisions = Object.values(decisions || {}).some(value => value === 'same' || value === 'different');
   if (hasTermDecisions) {
@@ -2848,8 +2888,8 @@ async function finalizeScan(scan, decisions = {}, options = {}) {
       )];
       scan.result = await buildAllSportsSummary(
         sportsWithDecisions.length
-          ? { forceRecompareSports: sportsWithDecisions }
-          : { forceRecompare: true }
+          ? { scan, forceRecompareSports: sportsWithDecisions }
+          : { scan, forceRecompare: true }
       );
       allResults = scan.result?.countries || allResults;
     } else if (isUsaAllSportKey(scan.sport)) {
@@ -3139,13 +3179,15 @@ async function runScan(sportKey, date, scraperSource = 'flashscore', options = {
       for (const key of LATAM_CORE_SPORTS) clearCompareSnapshot(`latam_${key}`);
     } else if (isIsraelAllSportKey(sportKey)) {
       for (const key of ISRAEL_CORE_SPORTS) clearCompareSnapshot(`israel_${key}`);
-    } else if (sportKey !== 'all' && !getLatamCoreSport(sportKey) && !getIsraelCoreSport(sportKey)) {
+    } else if (sportKey === 'all') {
+      for (const key of CONTENT_CORE_SPORTS) clearCompareSnapshot(key);
+    } else if (!getLatamCoreSport(sportKey) && !getIsraelCoreSport(sportKey)) {
       clearCompareSnapshot(sportKey);
     }
 
     if (sportKey === 'all') {
       await runScript('run-all.js', 'All sports', scan, env);
-      scan.result = await buildAllSportsSummary();
+      scan.result = await buildAllSportsSummary({ scan });
       attachScanTerms(scan,scan.result.countries || [], 'all');
       scan.unrecognizedCompetitions = computeUnrecognizedCompetitions(scan);
       scan.status = 'terms_fix';
