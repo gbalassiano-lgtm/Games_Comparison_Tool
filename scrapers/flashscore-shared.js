@@ -292,11 +292,32 @@ function flashscoreDatePrefix(targetDate) {
   return `${day}/${month}`;
 }
 
-function matchesFlashscoreDateOption(text = '', targetDate = '') {
+function matchesFlashscoreDateOption(text = '', targetDate = '', ariaLabel = '') {
   const cleaned = cleanText(text);
-  if (!cleaned) return false;
-  if (cleaned.startsWith(flashscoreDatePrefix(targetDate))) return true;
-  if (targetDate === todayIsoInTimezone(scanTimezone()) && /^(today|hoje|oggi|aujourd)/i.test(cleaned)) return true;
+  const aria = cleanText(ariaLabel);
+  if (!targetDate) return false;
+
+  const prefix = flashscoreDatePrefix(targetDate);
+  if (cleaned && cleaned.toLowerCase().startsWith(prefix.toLowerCase())) return true;
+
+  const tz = scanTimezone();
+  const today = todayIsoInTimezone(tz);
+  const tomorrow = tomorrowIsoInTimezone(tz);
+
+  if (targetDate === today && /^(today|hoje|oggi|aujourd)/i.test(cleaned)) return true;
+  if (targetDate === tomorrow && /^(tomorrow|amanh[ãa]|domani|demain)/i.test(cleaned)) return true;
+
+  // Flashscore option aria-labels look like "Tuesday, July 28, 2026".
+  if (aria) {
+    try {
+      const parsed = new Date(aria);
+      if (!Number.isNaN(parsed.getTime())) {
+        const key = formatDateKeyInTimezone(parsed, tz);
+        if (key === targetDate) return true;
+      }
+    } catch {}
+  }
+
   return false;
 }
 
@@ -306,18 +327,26 @@ function urlHasTargetDate(url = '', targetDate = '') {
   return value.includes(`date=${targetDate}`);
 }
 
-async function readPickerDateText(page) {
+async function readPickerDateMeta(page) {
   return page.evaluate(() => {
     const button =
       document.querySelector('[data-testid="wcl-dayPickerButton"]') ||
       document.querySelector('button[role="combobox"]');
-    return button?.innerText || '';
-  }).catch(() => '');
+    return {
+      text: button?.innerText || '',
+      aria: button?.getAttribute('aria-label') || '',
+    };
+  }).catch(() => ({ text: '', aria: '' }));
+}
+
+async function readPickerDateText(page) {
+  const meta = await readPickerDateMeta(page);
+  return meta.text || '';
 }
 
 async function isDateAlreadySelected(page, targetDate) {
-  const pickerText = await readPickerDateText(page);
-  return matchesFlashscoreDateOption(pickerText, targetDate);
+  const meta = await readPickerDateMeta(page);
+  return matchesFlashscoreDateOption(meta.text, targetDate, meta.aria);
 }
 
 async function closeDatePickerIfOpen(page) {
@@ -355,7 +384,13 @@ function buildFlashscoreSportUrl(sportOrUrl, targetDate) {
   const slug = String(sportOrUrl).includes('flashscore.com')
     ? sportSlugFromUrl(sportOrUrl)
     : String(sportOrUrl).replace(/^\/+|\/+$/g, '');
-  return `https://www.flashscore.com/${slug}/?date=${targetDate}`;
+  const base = `https://www.flashscore.com/${slug}/`;
+  // ?date= is unreliable on Flashscore (often ignored / breaks the day picker).
+  // Prefer a clean sport URL and select the day via ensureTargetDate.
+  if (targetDate && process.env.FLASH_USE_DATE_URL === '1') {
+    return `${base}?date=${targetDate}`;
+  }
+  return base;
 }
 
 function isSportPageUrl(href = '', expectedSlug = '') {
@@ -434,49 +469,98 @@ async function recoverSportPageAfterScroll(page, expectedSlug, targetDate, label
   });
 }
 
+async function dismissFlashscoreDialogs(page) {
+  // Age / gaming-ads gate blocks day-picker clicks if left open.
+  const agePatterns = [
+    /I[’']?M\s+YOUNGER\s+THAN\s+18/i,
+    /I[’']?M\s+24\s+AND\s+OLDER/i,
+    /I\s+am\s+18/i,
+    /Enter/i,
+    /Continue/i,
+  ];
+
+  for (const pattern of agePatterns) {
+    const ageButton = page.getByRole('button', { name: pattern }).first();
+    if (await ageButton.isVisible({ timeout: 400 }).catch(() => false)) {
+      await ageButton.click({ timeout: 2000 }).catch(() => {});
+      await page.waitForTimeout(300);
+      break;
+    }
+  }
+
+  const closeButton = page.locator(
+    '[data-testid="wcl-dialog-close"], button[aria-label="Close"], button[aria-label="Fechar"]'
+  ).first();
+  if (await closeButton.isVisible({ timeout: 250 }).catch(() => false)) {
+    await closeButton.click({ timeout: 1500 }).catch(() => {});
+    await page.waitForTimeout(150);
+  }
+
+  const overlayOpen = await page
+    .locator('[data-testid="wcl-dialog-overlay"][data-state="open"]')
+    .count()
+    .catch(() => 0);
+  if (overlayOpen > 0) {
+    await page.evaluate(() => {
+      document.querySelectorAll('[data-testid="wcl-dialog-overlay"]').forEach(node => node.remove());
+      document.querySelectorAll('[data-testid="wcl-dialog-wrapper"]').forEach(node => node.remove());
+    }).catch(() => {});
+    await page.waitForTimeout(150);
+  }
+}
+
 async function acceptCookiesIfPresent(page) {
   const cookieButtonPattern = /^(Accept|Accept all|I agree|OK|Got it|Aceitar|Entendi)$/i;
+  let accepted = false;
 
   try {
     const button = page.getByRole('button', { name: cookieButtonPattern }).first();
     if (await button.isVisible({ timeout: 800 }).catch(() => false)) {
       await button.click({ timeout: 1200 });
       await page.waitForTimeout(150);
-      return true;
+      accepted = true;
     }
   } catch {}
 
-  const selectors = [
-    '#onetrust-accept-btn-handler',
-    'button[id*="accept" i]',
-    'button[class*="accept" i]',
-  ];
+  if (!accepted) {
+    const selectors = [
+      '#onetrust-accept-btn-handler',
+      'button[id*="accept" i]',
+      'button[class*="accept" i]',
+    ];
 
-  for (const selector of selectors) {
-    const button = page.locator(selector).first();
-    if (await button.isVisible({ timeout: 250 }).catch(() => false)) {
-      await button.click({ timeout: 1200 }).catch(() => {});
-      await page.waitForTimeout(150);
-      return true;
+    for (const selector of selectors) {
+      const button = page.locator(selector).first();
+      if (await button.isVisible({ timeout: 250 }).catch(() => false)) {
+        await button.click({ timeout: 1200 }).catch(() => {});
+        await page.waitForTimeout(150);
+        accepted = true;
+        break;
+      }
     }
   }
 
-  for (const txt of ['Aceitar', 'Accept', 'OK', 'Entendi']) {
-    try {
-      const btn = page.getByText(txt, { exact: false });
-      if (await btn.count()) {
-        await btn.first().click({ timeout: 1500 });
-        await page.waitForTimeout(1500);
-        return true;
-      }
-    } catch {}
+  if (!accepted) {
+    for (const txt of ['Aceitar', 'Accept', 'OK', 'Entendi']) {
+      try {
+        const btn = page.getByText(txt, { exact: false });
+        if (await btn.count()) {
+          await btn.first().click({ timeout: 1500 });
+          await page.waitForTimeout(500);
+          accepted = true;
+          break;
+        }
+      } catch {}
+    }
   }
 
-  return false;
+  await dismissFlashscoreDialogs(page);
+  return accepted;
 }
 
 async function selectDateViaPicker(page, targetDate) {
   const targetPrefix = flashscoreDatePrefix(targetDate);
+  await dismissFlashscoreDialogs(page);
   const picker = page.getByTestId('wcl-dayPickerButton');
 
   try {
@@ -486,30 +570,62 @@ async function selectDateViaPicker(page, targetDate) {
   }
   await page.waitForTimeout(500);
 
-  const options = page.getByRole('option');
-  const optionCount = await options.count();
+  const options = page.locator('[data-testid="wcl-selectListItem"]');
+  await options.first().waitFor({ state: 'visible', timeout: 6000 }).catch(() => {});
+  let optionLocator = (await options.count()) > 0 ? options : page.locator('[role="option"]');
+  let total = await optionLocator.count();
 
-  for (let i = 0; i < optionCount; i++) {
-    const option = options.nth(i);
-    const text = cleanText(await option.innerText().catch(() => ''));
-    if (matchesFlashscoreDateOption(text, targetDate)) {
-      try {
-        await option.click({ timeout: 3000, force: true });
-      } catch {
-        try {
-          await option.hover({ timeout: 2500, force: true });
-          await page.keyboard.press('Enter');
-        } catch {
-          await option.evaluate(el => {
-            el.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
-            el.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
-            el.click();
-          });
-        }
-      }
-      logStep(`DATA SELECIONADA: ${text}`);
-      return text;
+  if (!total) {
+    await closeDatePickerIfOpen(page);
+    await dismissFlashscoreDialogs(page);
+    try {
+      await picker.click({ timeout: 5000, force: true });
+    } catch {
+      await picker.evaluate(el => el.click());
     }
+    await page.waitForTimeout(700);
+    await options.first().waitFor({ state: 'visible', timeout: 6000 }).catch(() => {});
+    optionLocator = (await options.count()) > 0 ? options : page.locator('[role="option"]');
+    total = await optionLocator.count();
+  }
+
+  for (let i = 0; i < total; i++) {
+    const option = optionLocator.nth(i);
+    const text = cleanText(await option.innerText().catch(() => ''));
+    const aria = cleanText(await option.getAttribute('aria-label').catch(() => ''));
+    if (!matchesFlashscoreDateOption(text, targetDate, aria)) continue;
+
+    try {
+      await option.click({ timeout: 3000, force: true });
+    } catch {
+      try {
+        await option.hover({ timeout: 2500, force: true });
+        await page.keyboard.press('Enter');
+      } catch {
+        await option.evaluate(el => {
+          el.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+          el.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+          el.click();
+        });
+      }
+    }
+
+    for (let attempt = 0; attempt < 24; attempt++) {
+      if (await isDateAlreadySelected(page, targetDate)) {
+        await closeDatePickerIfOpen(page);
+        logStep(`DATA SELECIONADA: ${text || aria}`);
+        return text || aria;
+      }
+      // List usually closes itself after a real selection.
+      const listOpen = await page.locator('[data-testid="wcl-selectListItem"]').count().catch(() => 0);
+      if (!listOpen && attempt > 4) break;
+      await page.waitForTimeout(250);
+    }
+
+    await closeDatePickerIfOpen(page);
+    throw new Error(
+      `Clicou em "${text || aria}", mas o picker não confirmou ${targetPrefix}.`
+    );
   }
 
   throw new Error(`A data ${targetPrefix} não aparece no seletor de datas do Flashscore.`);
@@ -545,7 +661,11 @@ function buildFlashDateSelectionError(targetDate, pickerText = '', context = '')
 }
 
 async function clickPickerNextDay(page) {
+  await dismissFlashscoreDialogs(page);
+  const before = cleanText(await readPickerDateText(page));
   const selectors = [
+    'button[data-day-picker-arrow="next"]',
+    'button[aria-label="Next day"]',
     '.calendarnavigation--tomorrow',
     '[class*="calendarnavigation"][class*="tomorrow"]',
     'button[data-testid*="next"]',
@@ -556,16 +676,25 @@ async function clickPickerNextDay(page) {
 
   for (const selector of selectors) {
     const button = page.locator(selector).first();
-    if (await button.isVisible({ timeout: 400 }).catch(() => false)) {
-      await button.click({ timeout: 2000, force: true }).catch(() => {});
-      await page.waitForTimeout(450);
-      return true;
+    if (!(await button.isVisible({ timeout: 400 }).catch(() => false))) continue;
+
+    try {
+      await button.click({ timeout: 2000, force: true });
+    } catch {
+      await button.evaluate(el => {
+        el.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
+        el.dispatchEvent(new MouseEvent('mouseup', { bubbles: true }));
+        el.click();
+      }).catch(() => {});
     }
+    await page.waitForTimeout(450);
+    const after = cleanText(await readPickerDateText(page));
+    if (after && after !== before) return true;
   }
 
-  return page.evaluate(() => {
+  const advanced = await page.evaluate(() => {
     const button = document.querySelector(
-      '.calendarnavigation--tomorrow, [class*="calendarnavigation--tomorrow"]'
+      'button[data-day-picker-arrow="next"], button[aria-label="Next day"], .calendarnavigation--tomorrow, [class*="calendarnavigation--tomorrow"]'
     );
     if (!button) return false;
     button.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }));
@@ -573,6 +702,11 @@ async function clickPickerNextDay(page) {
     button.click();
     return true;
   }).catch(() => false);
+
+  if (!advanced) return false;
+  await page.waitForTimeout(450);
+  const after = cleanText(await readPickerDateText(page));
+  return Boolean(after && after !== before);
 }
 
 async function advancePickerToTargetDate(page, targetDate) {
@@ -581,6 +715,8 @@ async function advancePickerToTargetDate(page, targetDate) {
   const yearHint = String(targetDate).split('-')[0];
   const stepsNeeded = Math.max(daysBetweenIso(today, targetDate), 0);
   const maxSteps = Math.min(Math.max(stepsNeeded + 2, 1), 14);
+
+  await dismissFlashscoreDialogs(page);
 
   for (let step = 0; step < maxSteps; step++) {
     if (await isDateAlreadySelected(page, targetDate)) {
@@ -596,7 +732,7 @@ async function advancePickerToTargetDate(page, targetDate) {
 
     const clicked = await clickPickerNextDay(page);
     if (!clicked) {
-      logStep(`WARN: botão "próximo dia" indisponível após ${step} passo(s)`);
+      logStep(`WARN: botão "próximo dia" indisponível ou sem efeito após ${step} passo(s)`);
       break;
     }
 
@@ -624,8 +760,7 @@ async function waitForSelectedDateInPicker(page, targetDate, options = {}) {
   const allowUrlFallback = options.allowUrlFallback !== false;
 
   for (let attempt = 0; attempt < 40; attempt++) {
-    const pickerText = await readPickerDateText(page);
-    if (matchesFlashscoreDateOption(pickerText, targetDate)) return;
+    if (await isDateAlreadySelected(page, targetDate)) return;
     if (allowUrlFallback && urlHasTargetDate(page.url(), targetDate)) return;
     await page.waitForTimeout(500);
   }
@@ -694,6 +829,20 @@ async function assertTargetDateOnPage(page, targetDate, context = '') {
 async function ensureTargetDate(page, targetDate, sportSlug) {
   const targetPrefix = flashscoreDatePrefix(targetDate);
   const slug = String(sportSlug || sportSlugFromUrl(page.url()) || '').replace(/^\/+|\/+$/g, '');
+  await dismissFlashscoreDialogs(page);
+
+  // Flashscore often keeps showing "today" even when ?date= is present. A clean
+  // sport URL makes the day picker / next-day arrows reliable again.
+  if (
+    slug &&
+    urlHasTargetDate(page.url(), targetDate) &&
+    !(await isDateAlreadySelected(page, targetDate))
+  ) {
+    logStep(`WARN: URL tem date=${targetDate}, mas o picker não — reabrindo /${slug}/`);
+    await openSportPage(page, slug, targetDate);
+    await dismissFlashscoreDialogs(page);
+  }
+
   const pickerTextInitial = await readPickerDateText(page);
   const urlInitial = page.url();
 
@@ -709,28 +858,46 @@ async function ensureTargetDate(page, targetDate, sportSlug) {
   }, 'A');
   // #endregion
 
+  const finalize = async (context) => {
+    if (slug) {
+      await ensureOnSportPage(page, slug, targetDate);
+      await dismissFlashscoreDialogs(page);
+      if (!(await isDateAlreadySelected(page, targetDate))) {
+        if (!(await advancePickerToTargetDate(page, targetDate))) {
+          throw new Error(buildFlashDateSelectionError(
+            targetDate,
+            await readPickerDateText(page),
+            `${context}: após corrigir esporte`
+          ));
+        }
+      }
+    }
+    await assertTargetDateOnPage(page, targetDate, context);
+  };
+
   if (await isDateAlreadySelected(page, targetDate)) {
-    await assertTargetDateOnPage(page, targetDate, 'picker-already-selected');
+    await finalize('picker-already-selected');
     return;
   }
 
   try {
     await selectDateViaPicker(page, targetDate);
     await waitForSelectedDateInPicker(page, targetDate, { allowUrlFallback: false });
-    await assertTargetDateOnPage(page, targetDate, 'picker-selected');
+    await finalize('picker-selected');
     return;
   } catch (pickerError) {
     await closeDatePickerIfOpen(page);
+    await dismissFlashscoreDialogs(page);
 
     if (slug) {
       logStep(`WARN: ${pickerError.message} — tentando avançar no calendário...`);
       if (await advancePickerToTargetDate(page, targetDate)) {
-        await assertTargetDateOnPage(page, targetDate, 'calendar-advance');
+        await finalize('calendar-advance');
         return;
       }
 
       if (await navigateToTargetDateViaCalendar(page, slug, targetDate)) {
-        await assertTargetDateOnPage(page, targetDate, 'calendar-reset-advance');
+        await finalize('calendar-reset-advance');
         return;
       }
 
@@ -1065,4 +1232,6 @@ module.exports = {
   parsePickerDateKey,
   assertSportPage,
   runWithRetry,
+  readPickerDateText,
+  dismissFlashscoreDialogs,
 };
