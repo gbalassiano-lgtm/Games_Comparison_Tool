@@ -94,6 +94,10 @@
   background: rgba(20, 25, 32, .35);
 }
 
+.weekly-rank-card--full {
+  grid-column: 1 / -1;
+}
+
 .weekly-rank-card h4 {
   margin: 0;
   font-size: .92rem;

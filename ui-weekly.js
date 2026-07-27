@@ -413,6 +413,31 @@
 
   function sportBlock(entry) {
     const sportKey = entry.sport || '';
+    const countries = entry.countries || [];
+    const leagues = entry.leagues || [];
+    const hasCountries = countries.length > 0;
+    const hasLeagues = leagues.length > 0;
+    // Show both columns side by side only when both have data; otherwise let the
+    // single populated list take the full width instead of leaving a blank column.
+    const showBoth = hasCountries === hasLeagues;
+    const fullClass = showBoth ? '' : ' weekly-rank-card--full';
+    const cards = [];
+    if (showBoth || hasCountries) {
+      cards.push(`
+        <div class="weekly-rank-card${fullClass}">
+          <h4>${safeEscape(text('weeklyCountries'))}</h4>
+          ${rankingTable(countries, 'country', sportKey)}
+        </div>
+      `);
+    }
+    if (showBoth || hasLeagues) {
+      cards.push(`
+        <div class="weekly-rank-card${fullClass}">
+          <h4>${safeEscape(text('weeklyLeagues'))}</h4>
+          ${rankingTable(leagues, 'league', sportKey)}
+        </div>
+      `);
+    }
     return `
       <section class="weekly-sport-block" data-weekly-sport-block="${safeEscape(sportKey)}">
         <div class="weekly-sport-head">
@@ -420,14 +445,7 @@
           <span class="weekly-sport-meta">${entry.scanCount || 0} scans · ${entry.totals?.total || 0} issues</span>
         </div>
         <div class="weekly-rank-grid">
-          <div class="weekly-rank-card">
-            <h4>${safeEscape(text('weeklyCountries'))}</h4>
-            ${rankingTable(entry.countries || [], 'country', sportKey)}
-          </div>
-          <div class="weekly-rank-card">
-            <h4>${safeEscape(text('weeklyLeagues'))}</h4>
-            ${rankingTable(entry.leagues || [], 'league', sportKey)}
-          </div>
+          ${cards.join('')}
         </div>
       </section>
     `;

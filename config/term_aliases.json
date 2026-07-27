@@ -1574,6 +1574,69 @@
       "valueFlash": "TSV Aindling (Ger) / Munich 1860 (Ger)",
       "canonical": "Aindling / 1860 München",
       "decidedAt": "2026-07-17T14:35:17.827Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Russia",
+      "value365": "Anzhi / Neftyanik Izberbash",
+      "valueFlash": "FK Anzi Makhackala / Izberbash",
+      "canonical": "Anzhi / Neftyanik Izberbash",
+      "decidedAt": "2026-07-27T13:17:38.785Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "South America",
+      "value365": "Santos / UCV FC",
+      "valueFlash": "Santos (Bra) / Universidad Central (Ven)",
+      "canonical": "Santos / UCV FC",
+      "decidedAt": "2026-07-27T13:17:38.786Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "South America",
+      "value365": "CONMEBOL Sudamericana",
+      "valueFlash": "Copa Sudamericana - Play Offs",
+      "canonical": "CONMEBOL Sudamericana",
+      "decidedAt": "2026-07-27T13:17:38.788Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Singles",
+      "value365": "Max Houkes / Roberto Carballes",
+      "valueFlash": "Houkes M. / Carballes Baena R.",
+      "canonical": "Max Houkes / Roberto Carballes",
+      "decidedAt": "2026-07-27T13:38:13.240Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Brazil",
+      "value365": "Gaucho A2",
+      "valueFlash": "Gaucho 2",
+      "canonical": "Gaucho A2",
+      "decidedAt": "2026-07-27T15:50:00.027Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Honduras",
+      "value365": "CD Olimpia / Lobos UPN",
+      "valueFlash": "Olimpia / UPNFM",
+      "canonical": "CD Olimpia / Lobos UPN",
+      "decidedAt": "2026-07-27T15:50:00.032Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Slovakia",
+      "value365": "FC ViOn Zlaté Moravce / Baník Lehota P.Vtáčnikom",
+      "valueFlash": "Z. Moravce-Vrable / Lehota p. V.",
+      "canonical": "FC ViOn Zlaté Moravce / Baník Lehota P.Vtáčnikom",
+      "decidedAt": "2026-07-27T15:50:00.039Z"
     }
   ],
   "rejected": [
@@ -1810,6 +1873,60 @@
       "valueFlash": "Francs Borains (Bel) / Gent U23 (Bel)",
       "canonical": "",
       "decidedAt": "2026-07-17T11:56:55.976Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Russia",
+      "value365": "BoMiK / FK Fankom",
+      "valueFlash": "Bomik / Broke Boys",
+      "canonical": "",
+      "decidedAt": "2026-07-27T13:38:13.239Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "Goiânia EC / Crixás",
+      "valueFlash": "Goiania / Sao Luis",
+      "canonical": "",
+      "decidedAt": "2026-07-27T15:50:00.029Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Czechia",
+      "value365": "Hradec Kralove / Trutnov",
+      "valueFlash": "Slavia HK / Trutnov",
+      "canonical": "",
+      "decidedAt": "2026-07-27T15:50:00.031Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Linares Deportivo / Real Jaen",
+      "valueFlash": "Athletic Bilbao W (Esp) / Dep. A Coruna W (Esp)",
+      "canonical": "",
+      "decidedAt": "2026-07-27T15:50:00.035Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Serbia",
+      "value365": "Vozdovac / Dinamo Vranje",
+      "valueFlash": "Vozdovac / Dubocica",
+      "canonical": "",
+      "decidedAt": "2026-07-27T15:50:00.037Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Serbia",
+      "value365": "Javor Matis / FK Zemun",
+      "valueFlash": "Javor / Teleoptik",
+      "canonical": "",
+      "decidedAt": "2026-07-27T15:50:00.038Z"
     }
   ]
 }

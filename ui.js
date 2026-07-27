@@ -828,6 +828,18 @@ function localizeCountryName(value = '') {
   return localized || text;
 }
 
+function countrySortLocale() {
+  return state.language === 'pt' ? 'pt' : 'en';
+}
+
+function compareLocalizedCountryNames(left = '', right = '') {
+  return localizeCountryName(left).localeCompare(
+    localizeCountryName(right),
+    countrySortLocale(),
+    { sensitivity: 'base' }
+  );
+}
+
 function renderCountryHeading(countryName = '') {
   const flag = countryFlagHtml(countryName, 40);
   return `<span class="country-heading">${flag}<span>${escapeHtml(localizeCountryName(countryName))}</span></span>`;
@@ -3290,9 +3302,15 @@ function groupedReportRowsHtml(rows, tone = 'neutral', scan = null) {
     country.competitions.get(competitionKey).rows.push(row);
   }
 
+  const orderedCountries = [...countries.values()].sort((a, b) => {
+    const sportDiff = reportSportIndex(a.rows[0] || {}) - reportSportIndex(b.rows[0] || {});
+    if (sportDiff !== 0) return sportDiff;
+    return compareLocalizedCountryNames(a.country, b.country);
+  });
+
   return `
     <div class="competition-groups">
-      ${[...countries.values()].map(country => {
+      ${orderedCountries.map(country => {
         const countryKey = `${country.rows[0]?.sport || ''}|||${String(country.country).toLowerCase()}`;
         const countryOpenKey = reportOpenKey('section', tone, 'country', countryKey);
         return `
