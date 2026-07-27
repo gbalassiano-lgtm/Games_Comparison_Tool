@@ -1,13 +1,15 @@
 /* Weekly analysis UI — isolated from core ui.js so Tasks/Scanner stay safe. */
 (function () {
   const WEEKLY = {
-    view: 'list',
+    view: 'list', // 'list' | 'weekly' | 'monthly' — top-level History tab
+    mode: 'weekly', // 'weekly' | 'monthly' — mirrors view when view !== 'list'
     team: 'content',
     sport: 'all',
     issue: 'all',
     from: '',
     to: '',
     maxDays: 7,
+    month: '', // 'YYYY-MM', used only when mode === 'monthly'
     data: null,
     loading: false,
     openKey: '',
@@ -98,6 +100,21 @@
     return { from, to };
   }
 
+  function isMonthValue(value = '') {
+    return /^\d{4}-\d{2}$/.test(String(value || '').trim());
+  }
+
+  function currentMonthValue() {
+    const now = new Date();
+    return `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+  }
+
+  function clampMonthValue(value = '') {
+    const max = currentMonthValue();
+    if (!isMonthValue(value)) return max;
+    return value > max ? max : value;
+  }
+
   function setWeeklyDateInput(id, value) {
     if (typeof setDateInputValue === 'function') {
       setDateInputValue(id, value);
@@ -161,15 +178,54 @@
     return clamped;
   }
 
+  function syncWeeklyMonthInput() {
+    if (!isMonthValue(WEEKLY.month)) WEEKLY.month = currentMonthValue();
+    const input = el('weeklyMonthInput');
+    if (input) {
+      input.max = currentMonthValue();
+      input.value = WEEKLY.month;
+    }
+  }
+
+  function applyWeeklyMonthFromInput({ reload = true } = {}) {
+    const input = el('weeklyMonthInput');
+    const clamped = clampMonthValue(input?.value || WEEKLY.month);
+    const changed = clamped !== WEEKLY.month;
+    WEEKLY.month = clamped;
+    syncWeeklyMonthInput();
+    if (reload && WEEKLY.view === 'monthly' && changed) {
+      loadAnalysis({ force: true }).catch(() => {});
+    }
+    return clamped;
+  }
+
+  function syncModeUI() {
+    const isMonthly = WEEKLY.mode === 'monthly';
+    el('weeklyFromField')?.classList.toggle('hidden', isMonthly);
+    el('weeklyToField')?.classList.toggle('hidden', isMonthly);
+    el('weeklyMonthField')?.classList.toggle('hidden', !isMonthly);
+    el('weeklyRangeCapHint')?.classList.toggle('hidden', isMonthly);
+    el('weeklyMonthHint')?.classList.toggle('hidden', !isMonthly);
+    el('weeklyHintWeekly')?.classList.toggle('hidden', isMonthly);
+    el('weeklyHintMonthly')?.classList.toggle('hidden', !isMonthly);
+  }
+
   function weeklyQueryParams(extra = {}) {
-    return {
-      from: WEEKLY.from || '',
-      to: WEEKLY.to || '',
+    const base = {
       team: WEEKLY.team || 'content',
       sport: WEEKLY.sport || 'all',
       issue: WEEKLY.issue || 'all',
-      ...extra,
+      mode: WEEKLY.mode || 'weekly',
     };
+    if (WEEKLY.mode === 'monthly') {
+      const [year, month] = String(WEEKLY.month || currentMonthValue()).split('-');
+      base.year = year;
+      base.month = month;
+    } else {
+      base.from = WEEKLY.from || '';
+      base.to = WEEKLY.to || '';
+    }
+    return { ...base, ...extra };
   }
 
   function labelForSport(sportKey) {
@@ -212,21 +268,32 @@
     WEEKLY.issue = select.value;
   }
 
+  function isAnalysisView(view = WEEKLY.view) {
+    return view === 'weekly' || view === 'monthly';
+  }
+
   function syncView() {
     const listView = el('historyListView');
-    const weeklyView = el('weeklyHistoryView');
-    const isWeekly = WEEKLY.view === 'weekly';
-    if (listView) listView.classList.toggle('hidden', isWeekly);
-    if (weeklyView) weeklyView.classList.toggle('hidden', !isWeekly);
+    const analysisView = el('weeklyHistoryView');
+    const isAnalysis = isAnalysisView();
+    if (listView) listView.classList.toggle('hidden', isAnalysis);
+    if (analysisView) analysisView.classList.toggle('hidden', !isAnalysis);
     document.querySelectorAll('[data-history-view]').forEach(button => {
       button.classList.toggle('active', button.dataset.historyView === WEEKLY.view);
     });
   }
 
   function setView(view) {
-    WEEKLY.view = view === 'weekly' ? 'weekly' : 'list';
+    const next = isAnalysisView(view) ? view : 'list';
+    WEEKLY.view = next;
+    if (isAnalysisView(next)) {
+      WEEKLY.mode = next;
+      syncModeUI();
+      if (next === 'monthly') syncWeeklyMonthInput();
+      else syncWeeklyDateInputs();
+    }
     syncView();
-    if (WEEKLY.view === 'weekly') {
+    if (isAnalysisView(next)) {
       loadAnalysis({ force: true }).catch(() => {});
     }
   }
@@ -275,8 +342,8 @@
 
   function rowCacheKey({ sport, mode, country, competition }) {
     return [
-      WEEKLY.from || '',
-      WEEKLY.to || '',
+      WEEKLY.mode || 'weekly',
+      WEEKLY.mode === 'monthly' ? (WEEKLY.month || '') : `${WEEKLY.from || ''}..${WEEKLY.to || ''}`,
       WEEKLY.team || 'content',
       sport || 'all',
       WEEKLY.issue || 'all',
@@ -552,7 +619,7 @@
     fillSportSelect();
     fillIssueSelect();
     if (WEEKLY.data) renderSummary(WEEKLY.data);
-    if (WEEKLY.view === 'weekly' && WEEKLY.data) {
+    if (isAnalysisView() && WEEKLY.data) {
       renderAnalysis(WEEKLY.data);
       if (WEEKLY.openKey) patchOpenIssuesPanel(WEEKLY.openKey);
     }
@@ -665,7 +732,8 @@
     fillTeamSelect();
     fillSportSelect();
     fillIssueSelect();
-    applyWeeklyRangeFromInputs({ reload: false });
+    if (WEEKLY.mode === 'monthly') applyWeeklyMonthFromInput({ reload: false });
+    else applyWeeklyRangeFromInputs({ reload: false });
     WEEKLY.loading = true;
     WEEKLY.openKey = '';
     WEEKLY.issuesCache = Object.create(null);
@@ -676,12 +744,19 @@
       const params = new URLSearchParams(weeklyQueryParams());
       const data = await fetchJson(`/api/weekly-analysis?${params.toString()}`);
       WEEKLY.data = data;
-      if (data?.from && data?.to) {
-        WEEKLY.from = data.from;
-        WEEKLY.to = data.to;
+      if (WEEKLY.mode === 'monthly') {
+        if (data?.year && data?.month) {
+          WEEKLY.month = `${data.year}-${String(data.month).padStart(2, '0')}`;
+        }
+        syncWeeklyMonthInput();
+      } else {
+        if (data?.from && data?.to) {
+          WEEKLY.from = data.from;
+          WEEKLY.to = data.to;
+        }
+        if (data?.maxDays) WEEKLY.maxDays = Number(data.maxDays) || 7;
+        syncWeeklyDateInputs();
       }
-      if (data?.maxDays) WEEKLY.maxDays = Number(data.maxDays) || 7;
-      syncWeeklyDateInputs();
       seedEmbeddedIssues(data);
       renderAnalysis(data);
       prefetchTopIssues(data);
@@ -705,17 +780,17 @@
       WEEKLY.team = event.target.value || 'content';
       WEEKLY.sport = 'all';
       fillSportSelect();
-      if (WEEKLY.view === 'weekly') loadAnalysis({ force: true }).catch(() => {});
+      if (isAnalysisView()) loadAnalysis({ force: true }).catch(() => {});
     });
 
     el('weeklySportSelect').addEventListener('change', event => {
       WEEKLY.sport = event.target.value || 'all';
-      if (WEEKLY.view === 'weekly') loadAnalysis({ force: true }).catch(() => {});
+      if (isAnalysisView()) loadAnalysis({ force: true }).catch(() => {});
     });
 
     el('weeklyIssueSelect')?.addEventListener('change', event => {
       WEEKLY.issue = event.target.value || 'all';
-      if (WEEKLY.view === 'weekly') loadAnalysis({ force: true }).catch(() => {});
+      if (isAnalysisView()) loadAnalysis({ force: true }).catch(() => {});
     });
 
     el('weeklyFromDate')?.addEventListener('change', () => {
@@ -725,8 +800,13 @@
       applyWeeklyRangeFromInputs({ changed: 'to', reload: true });
     });
 
+    el('weeklyMonthInput')?.addEventListener('change', () => {
+      applyWeeklyMonthFromInput({ reload: true });
+    });
+
     el('refreshWeeklyAnalysis')?.addEventListener('click', () => {
-      applyWeeklyRangeFromInputs({ reload: false });
+      if (WEEKLY.mode === 'monthly') applyWeeklyMonthFromInput({ reload: false });
+      else applyWeeklyRangeFromInputs({ reload: false });
       loadAnalysis({ force: true }).catch(error => alert(error.message));
     });
 
@@ -749,6 +829,8 @@
     fillSportSelect();
     fillIssueSelect();
     syncWeeklyDateInputs();
+    syncWeeklyMonthInput();
+    syncModeUI();
     syncView();
   }
 

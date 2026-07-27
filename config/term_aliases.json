@@ -1637,6 +1637,51 @@
       "valueFlash": "Z. Moravce-Vrable / Lehota p. V.",
       "canonical": "FC ViOn Zlaté Moravce / Baník Lehota P.Vtáčnikom",
       "decidedAt": "2026-07-27T15:50:00.039Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Indonesia",
+      "value365": "Thai Port FC / Persija Jakarta",
+      "valueFlash": "Port MTI FC / Persija Jakarta",
+      "canonical": "Thai Port FC / Persija Jakarta",
+      "decidedAt": "2026-07-27T16:47:10.108Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Indonesia",
+      "value365": "Persebaya Surabaya / PSM Makassar",
+      "valueFlash": "Persebaya / PSMS Medan",
+      "canonical": "Persebaya Surabaya / PSM Makassar",
+      "decidedAt": "2026-07-27T16:47:10.109Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Paraguay",
+      "value365": "Club Nacional / Olimpia",
+      "valueFlash": "Nacional Asuncion / Olimpia Asuncion",
+      "canonical": "Club Nacional / Olimpia",
+      "decidedAt": "2026-07-27T16:47:10.111Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Africa",
+      "value365": "Gor Mahia / CF GR/SIAF",
+      "valueFlash": "Gor Mahia / Garde Republicaine",
+      "canonical": "Gor Mahia / CF GR/SIAF",
+      "decidedAt": "2026-07-27T16:52:29.653Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Europe",
+      "value365": "UEFA Conference League",
+      "valueFlash": "Conference League - Qualification",
+      "canonical": "UEFA Conference League",
+      "decidedAt": "2026-07-27T16:52:29.655Z"
     }
   ],
   "rejected": [
@@ -1927,6 +1972,42 @@
       "valueFlash": "Javor / Teleoptik",
       "canonical": "",
       "decidedAt": "2026-07-27T15:50:00.038Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Brazil",
+      "value365": "Goianesia / Crixás",
+      "valueFlash": "Goianesia / Sao Luis",
+      "canonical": "",
+      "decidedAt": "2026-07-27T16:47:10.107Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Celta Vigo / Academia del Balompie",
+      "valueFlash": "Celta Vigo (Esp) / Academico Viseu (Por)",
+      "canonical": "",
+      "decidedAt": "2026-07-27T16:47:10.110Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "South Korea",
+      "value365": "Jeonnam Dragons / Siheung Citizen",
+      "valueFlash": "Asan / Siheung Citizen",
+      "canonical": "",
+      "decidedAt": "2026-07-27T16:47:10.112Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Russia",
+      "value365": "Desyat / Kosmos Dolgoprudnij",
+      "valueFlash": "FC 10 / Kosmos",
+      "canonical": "",
+      "decidedAt": "2026-07-27T16:52:29.660Z"
     }
   ]
 }

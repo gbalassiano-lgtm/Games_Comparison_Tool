@@ -78,10 +78,10 @@
 }
 
 .weekly-rank-grid {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: 14px;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: start;
+  align-items: flex-start;
 }
 
 .weekly-rank-card {
@@ -92,10 +92,15 @@
   border: 1px solid var(--nova-border, rgba(255,255,255,.08));
   border-radius: 14px;
   background: rgba(20, 25, 32, .35);
+  /* Flex (not grid) on purpose: a grid row stretches to the tallest sibling,
+     which left a big blank gap under whichever list (countries/leagues) had
+     fewer rows. Flex items only take the height their own content needs. */
+  flex: 1 1 320px;
+  min-width: 280px;
 }
 
 .weekly-rank-card--full {
-  grid-column: 1 / -1;
+  flex-basis: 100%;
 }
 
 .weekly-rank-card h4 {
@@ -323,7 +328,12 @@
 
 @media (max-width: 900px) {
   .weekly-rank-grid {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+  }
+
+  .weekly-rank-card,
+  .weekly-rank-card--full {
+    flex-basis: auto;
   }
 }
 

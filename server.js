@@ -1038,6 +1038,66 @@ function weeklyAnalysisWindow({ days = 7, from = '', to = '' } = {}) {
   };
 }
 
+function daysInMonth(year, month) {
+  // Day 0 of the next month rolls back to the last day of the requested month.
+  return new Date(year, month, 0).getDate();
+}
+
+// Monthly windows are not capped like weekly ones — they always span the full
+// calendar month (or up to "tomorrow" for the current month, matching the
+// weekly "scan tomorrow's slate" bias). Future months are clamped to the
+// current month so users cannot request data that cannot exist yet.
+function monthlyAnalysisWindow({ year = '', month = '' } = {}) {
+  const today = new Date();
+  const todayIso = formatLocalDate(today);
+  const currentYear = today.getFullYear();
+  const currentMonth = today.getMonth() + 1;
+
+  let y = Number.parseInt(year, 10);
+  let m = Number.parseInt(month, 10);
+  if (!Number.isFinite(y) || y < 2000 || y > 3000) y = currentYear;
+  if (!Number.isFinite(m) || m < 1 || m > 12) m = currentMonth;
+
+  if (y > currentYear || (y === currentYear && m > currentMonth)) {
+    y = currentYear;
+    m = currentMonth;
+  }
+
+  const pad = (n) => String(n).padStart(2, '0');
+  const fromDate = `${y}-${pad(m)}-01`;
+  const lastDay = daysInMonth(y, m);
+  let toDate = `${y}-${pad(m)}-${pad(lastDay)}`;
+
+  const isCurrentMonth = y === currentYear && m === currentMonth;
+  if (isCurrentMonth) {
+    const tomorrow = shiftWeeklyIsoDate(todayIso, 1);
+    if (tomorrow >= fromDate && tomorrow < toDate) toDate = tomorrow;
+  }
+
+  return {
+    windowDays: weeklyInclusiveDaySpan(fromDate, toDate),
+    fromDate,
+    toDate,
+    year: y,
+    month: m,
+    maxDays: null,
+  };
+}
+
+function normalizeWeeklyReportMode(mode = '') {
+  return String(mode || '').trim().toLowerCase() === 'monthly' ? 'monthly' : 'weekly';
+}
+
+function resolveAnalysisWindow({ mode = 'weekly', days = 7, from = '', to = '', year = '', month = '' } = {}) {
+  const resolvedMode = normalizeWeeklyReportMode(mode);
+  if (resolvedMode === 'monthly') {
+    const monthly = monthlyAnalysisWindow({ year, month });
+    return { ...monthly, mode: 'monthly' };
+  }
+  const weekly = weeklyAnalysisWindow({ days, from, to });
+  return { ...weekly, mode: 'weekly', year: null, month: null };
+}
+
 const WEEKLY_COLLECT_TTL_MS = 60_000;
 
 function shouldReplaceWeeklySnapshot(prev, next) {
@@ -1047,12 +1107,20 @@ function shouldReplaceWeeklySnapshot(prev, next) {
   return false;
 }
 
-function collectWeeklyLatestBySportDate({ days = 7, from = '', to = '', sport = '', issue = '', team = '' } = {}) {
-  const { windowDays, fromDate, toDate, maxDays } = weeklyAnalysisWindow({ days, from, to });
+function collectWeeklyLatestBySportDate({ days = 7, from = '', to = '', sport = '', issue = '', team = '', mode = 'weekly', year = '', month = '' } = {}) {
+  const {
+    windowDays,
+    fromDate,
+    toDate,
+    maxDays,
+    mode: resolvedMode,
+    year: resolvedYear,
+    month: resolvedMonth,
+  } = resolveAnalysisWindow({ mode, days, from, to, year, month });
   const teamFilter = normalizeWeeklyTeamFilter(team);
   const sportFilter = String(sport || '').trim();
   const issueFilter = normalizeWeeklyIssueFilter(issue);
-  const cacheKey = `${fromDate}|${toDate}|${teamFilter}|${sportFilter || 'all'}|${issueFilter}`;
+  const cacheKey = `${resolvedMode}|${fromDate}|${toDate}|${teamFilter}|${sportFilter || 'all'}|${issueFilter}`;
   const cached = weeklyCollectCache.get(cacheKey);
   if (cached && (Date.now() - cached.at) < WEEKLY_COLLECT_TTL_MS) {
     return cached.result;
@@ -1111,6 +1179,9 @@ function collectWeeklyLatestBySportDate({ days = 7, from = '', to = '', sport = 
     fromDate,
     toDate,
     maxDays,
+    mode: resolvedMode,
+    year: resolvedYear,
+    month: resolvedMonth,
     teamFilter,
     sportFilter: sportFilter || 'all',
     issueFilter,
@@ -1139,17 +1210,20 @@ function compactWeeklyIssue(row = {}, meta = {}) {
   };
 }
 
-function buildWeeklyAnalysis({ days = 7, from = '', to = '', sport = '', issue = '', team = '' } = {}) {
+function buildWeeklyAnalysis({ days = 7, from = '', to = '', sport = '', issue = '', team = '', mode = 'weekly', year = '', month = '' } = {}) {
   const {
     windowDays,
     fromDate,
     toDate,
     maxDays,
+    mode: resolvedMode,
+    year: resolvedYear,
+    month: resolvedMonth,
     teamFilter,
     sportFilter,
     issueFilter,
     latestBySportDate,
-  } = collectWeeklyLatestBySportDate({ days, from, to, sport, issue, team });
+  } = collectWeeklyLatestBySportDate({ days, from, to, sport, issue, team, mode, year, month });
 
   const bySport = new Map();
   const ensureSport = (sportKey) => {
@@ -1237,6 +1311,9 @@ function buildWeeklyAnalysis({ days = 7, from = '', to = '', sport = '', issue =
     to: toDate,
     days: windowDays,
     maxDays,
+    mode: resolvedMode,
+    year: resolvedYear,
+    month: resolvedMonth,
     team: teamFilter,
     sport: sportFilter || 'all',
     issue: issueFilter,
@@ -1255,6 +1332,9 @@ function buildWeeklyAnalysisIssues({
   sport = '',
   issue = '',
   team = '',
+  mode = 'weekly',
+  year = '',
+  month = '',
   country = '',
   competition = '',
   limit = WEEKLY_ISSUES_LIMIT,
@@ -1274,12 +1354,15 @@ function buildWeeklyAnalysisIssues({
     fromDate,
     toDate,
     maxDays,
+    mode: resolvedMode,
+    year: resolvedYear,
+    month: resolvedMonth,
     teamFilter,
     sportFilter,
     issueFilter,
     latestBySportDate,
     issuesIndex,
-  } = collectWeeklyLatestBySportDate({ days, from, to, sport, issue, team });
+  } = collectWeeklyLatestBySportDate({ days, from, to, sport, issue, team, mode, year, month });
 
   const resolvedSport = sportFilter && sportFilter !== 'all' ? sportFilter : '';
 
@@ -1295,6 +1378,9 @@ function buildWeeklyAnalysisIssues({
       to: toDate,
       days: windowDays,
       maxDays,
+      mode: resolvedMode,
+      year: resolvedYear,
+      month: resolvedMonth,
       team: teamFilter,
       sport: sportFilter || 'all',
       issue: issueFilter,
@@ -1326,6 +1412,9 @@ function buildWeeklyAnalysisIssues({
     to: toDate,
     days: windowDays,
     maxDays,
+    mode: resolvedMode,
+    year: resolvedYear,
+    month: resolvedMonth,
     team: teamFilter,
     sport: sportFilter || 'all',
     issue: issueFilter,
@@ -3883,7 +3972,10 @@ const server = http.createServer(async (req, res) => {
       const team = String(url.searchParams.get('team') || '').trim();
       const sport = String(url.searchParams.get('sport') || '').trim();
       const issue = String(url.searchParams.get('issue') || '').trim();
-      return sendJson(res, 200, buildWeeklyAnalysis({ days, from, to, team, sport, issue }));
+      const mode = String(url.searchParams.get('mode') || '').trim();
+      const year = String(url.searchParams.get('year') || '').trim();
+      const month = String(url.searchParams.get('month') || '').trim();
+      return sendJson(res, 200, buildWeeklyAnalysis({ days, from, to, team, sport, issue, mode, year, month }));
     }
 
     if (req.method === 'GET' && url.pathname === '/api/weekly-analysis/issues') {
@@ -3894,6 +3986,9 @@ const server = http.createServer(async (req, res) => {
         const team = String(url.searchParams.get('team') || '').trim();
         const sport = String(url.searchParams.get('sport') || '').trim();
         const issue = String(url.searchParams.get('issue') || '').trim();
+        const mode = String(url.searchParams.get('mode') || '').trim();
+        const year = String(url.searchParams.get('year') || '').trim();
+        const month = String(url.searchParams.get('month') || '').trim();
         const country = String(url.searchParams.get('country') || '').trim();
         const competition = String(url.searchParams.get('competition') || '').trim();
         return sendJson(res, 200, buildWeeklyAnalysisIssues({
@@ -3903,6 +3998,9 @@ const server = http.createServer(async (req, res) => {
           team,
           sport,
           issue,
+          mode,
+          year,
+          month,
           country,
           competition,
         }));
