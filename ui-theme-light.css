@@ -354,6 +354,15 @@ html[data-theme="light"] .home-anchor {
   gap: 8px;
 }
 
+html[data-theme="light"] .asana-task-assignee-sep {
+  color: var(--nova-text2) !important;
+}
+
+html[data-theme="light"] .asana-task-assignee-name {
+  color: var(--nova-text) !important;
+  font-weight: 700 !important;
+}
+
 html[data-theme="light"] .asana-task-card {
   background: rgba(255, 255, 255, .92);
 }
@@ -371,4 +380,17 @@ html[data-theme="light"] .asana-task-badge.completed {
 html[data-theme="light"] .asana-task-badge.unmapped {
   background: rgba(245, 158, 11, .14);
   color: #9a6700;
+}
+
+
+html[data-theme="light"] .report-feedback-banner.ok {
+  background: rgba(46, 160, 110, .12) !important;
+  border-color: rgba(46, 160, 110, .32) !important;
+  color: var(--nova-text) !important;
+}
+
+html[data-theme="light"] .report-feedback-banner.error {
+  background: rgba(200, 60, 60, .1) !important;
+  border-color: rgba(200, 60, 60, .28) !important;
+  color: var(--nova-text) !important;
 }

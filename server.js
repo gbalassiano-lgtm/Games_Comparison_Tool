@@ -232,7 +232,7 @@ let activeScan = null;
 let lastScan = null;
 const scanChildren = new Map();
 
-const { stripTeamYouthMarkers, canonicalizeCompYouthMarkers, canonicalizeRomanNumerals } = require('./lib/youth-markers');
+const { stripTeamYouthMarkers, canonicalizeCompYouthMarkers, canonicalizeRomanNumerals, fixturesCategoryCompatible } = require('./lib/youth-markers');
 const { normalizeTeamNameCore, flexibleNameSimilarity } = require('./lib/flexible-names');
 const { resolveTermAlias, clearTermAliasesCache } = require('./lib/term-aliases');
 
@@ -472,11 +472,13 @@ function pairNameSimilarity(left = {}, right = {}) {
     flexibleNameSimilarity(left.away, right.away)
   );
   const sameOrder = (homeScore + awayScore) / 2;
-  const reversed = (
-    Math.max(diceSimilarity(left.home, right.away), flexibleNameSimilarity(left.home, right.away)) +
-    Math.max(diceSimilarity(left.away, right.home), flexibleNameSimilarity(left.away, right.home))
-  ) / 2;
-  return Math.max(sameOrder, reversed);
+  const reversedHome = Math.max(diceSimilarity(left.home, right.away), flexibleNameSimilarity(left.home, right.away));
+  const reversedAway = Math.max(diceSimilarity(left.away, right.home), flexibleNameSimilarity(left.away, right.home));
+  const reversed = (reversedHome + reversedAway) / 2;
+  if (sameOrder >= reversed) {
+    return { score: sameOrder, minSide: Math.min(homeScore, awayScore), orientation: 'same' };
+  }
+  return { score: reversed, minSide: Math.min(reversedHome, reversedAway), orientation: 'reversed' };
 }
 
 function parseGameMinutes(value = '') {
@@ -492,7 +494,26 @@ function candidateTimeDiff(left = {}, right = {}) {
   return timeDiffMinutes(leftTime, rightTime);
 }
 
+function gamesCategoryCompatible(game365 = {}, gameFlash = {}) {
+  const texts365 = [
+    game365.home,
+    game365.away,
+    game365.competicao || game365.competition || '',
+  ];
+  const textsFlash = [
+    gameFlash.home,
+    gameFlash.away,
+    gameFlash.competicao || gameFlash.competition || '',
+  ];
+  // Aggregate markers per fixture so "America" in Liga Feminino still pairs
+  // with "America W", while men↔women and W↔U23 stay rejected.
+  return fixturesCategoryCompatible(texts365, textsFlash);
+}
+
 function possibleUnmatchedGameCandidate(game365 = {}, gameFlash = {}) {
+  // Reject men's/women's or senior/U23 collisions before fuzzy name scoring.
+  if (!gamesCategoryCompatible(game365, gameFlash)) return null;
+
   // Cheap competition check first — pairNameSimilarity is the heavy cost.
   const competitionSimilarity = diceSimilarity(
     normalizeCompTerm(game365.competicao || game365.competition || ''),
@@ -508,14 +529,17 @@ function possibleUnmatchedGameCandidate(game365 = {}, gameFlash = {}) {
 
   if (!timeIsClose && competitionSimilarity < 0.65) return null;
 
-  const teamSimilarity = pairNameSimilarity(game365, gameFlash);
-  const teamIsClose = teamSimilarity >= 0.40;
+  const teamMeta = pairNameSimilarity(game365, gameFlash);
+  const teamSimilarity = teamMeta.score;
+  // One shared club/country token is not enough (Atlante↔Atlante W, Colombia↔Colombia U23).
+  if (teamMeta.minSide < 0.34) return null;
+  const teamIsClose = teamSimilarity >= 0.45;
 
   if (timeIsClose && teamIsClose) {
     return { timeDelta, teamSimilarity, competitionSimilarity };
   }
 
-  if (competitionSimilarity >= 0.65 && teamSimilarity >= 0.55) {
+  if (competitionSimilarity >= 0.72 && teamSimilarity >= 0.60) {
     return { timeDelta, teamSimilarity, competitionSimilarity };
   }
 
@@ -3117,6 +3141,16 @@ function appendLog(scan, line) {
   }
 }
 
+function scriptRuntimeLimitMs(script = '') {
+  const name = String(script || '').replace(/\\/g, '/');
+  // Full multi-sport pipelines need far longer than a single scraper.
+  if (/(^|\/)run-all\.js$/i.test(name) || /(^|\/)run-latam-all\.js$/i.test(name)) {
+    return 45 * 60 * 1000;
+  }
+  if (/flashscore|365-/i.test(name)) return 10 * 60 * 1000;
+  return 5 * 60 * 1000;
+}
+
 function lastScriptErrorFromLogs(scan) {
   const skipPatterns = [
     /still running/i,
@@ -3129,7 +3163,11 @@ function lastScriptErrorFromLogs(scan) {
   for (let i = scan.logs.length - 1; i >= 0; i--) {
     const line = scan.logs[i];
     if (skipPatterns.some(pattern => pattern.test(line))) continue;
+    if (/timed out — killing hung process/i.test(line)) {
+      return line.replace(/^⚠️\s*/u, '').trim();
+    }
     if (/^ERROR:\s*/i.test(line)) return line.replace(/^ERROR:\s*/i, '').trim();
+    if (/saiu com c[oó]digo\s+\d+/i.test(line)) return line.trim();
     if (/Flashscore não mudou/i.test(line)) return line.trim();
     if (/365Scores API (returned|request failed|timed out|returned invalid JSON)/i.test(line)) {
       return line.trim();
@@ -3163,9 +3201,11 @@ function runScript(script, label, scan, env = {}, args = []) {
       }
     }, 5000);
 
-    const maxRuntimeMs = /flashscore|365-/.test(script) ? 10 * 60 * 1000 : 5 * 60 * 1000;
+    let timedOut = false;
+    const maxRuntimeMs = scriptRuntimeLimitMs(script);
     const runtimeTimer = setTimeout(() => {
-      appendLog(scan, `⚠️ ${label} timed out — killing hung process`);
+      timedOut = true;
+      appendLog(scan, `⚠️ ${label} timed out after ${Math.round(maxRuntimeMs / 60000)} min — killing hung process`);
       killProcessTree(child);
     }, maxRuntimeMs);
 
@@ -3184,6 +3224,11 @@ function runScript(script, label, scan, env = {}, args = []) {
       if (code === 0) {
         appendLog(scan, `✅ ${label} finished`);
         resolve();
+      } else if (timedOut) {
+        reject(new Error(
+          lastScriptErrorFromLogs(scan)
+          || `${label} timed out after ${Math.round(maxRuntimeMs / 60000)} min`
+        ));
       } else {
         reject(new Error(lastScriptErrorFromLogs(scan) || `${script} exited with code ${code}`));
       }
@@ -4092,7 +4137,8 @@ const server = http.createServer(async (req, res) => {
 
     sendJson(res, 404, { error: 'Not found' });
   } catch (e) {
-    sendJson(res, 400, { error: e.message });
+    const message = (e && e.message) || String(e || '').trim() || 'Request failed';
+    sendJson(res, 400, { error: message });
   }
 });
 
@@ -4117,6 +4163,10 @@ module.exports = {
   decorateRulesWithAliases,
   weeklyRowIsIgnored,
   listRules,
+  possibleUnmatchedGameCandidate,
+  termsAreEquivalent,
+  unmatchedGameCandidates,
+  pairNameSimilarity,
 };
 
 if (require.main === module) {

@@ -473,6 +473,10 @@
       {
         "scope": "Brasil",
         "competition": "Cearense U20"
+      },
+      {
+        "scope": "Brasil",
+        "competition": "Amazonense 2"
       }
     ],
     "acknowledgedFlashOnly": [
@@ -662,6 +666,10 @@
       {
         "scope": "Europe",
         "competition": "EuroBasket U20 Women - Play Offs"
+      },
+      {
+        "scope": "EUROPE",
+        "competition": "EuroBasket U18 B Women"
       }
     ],
     "acknowledgedFlashOnly": [

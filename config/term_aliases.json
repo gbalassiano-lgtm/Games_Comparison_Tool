@@ -1682,6 +1682,24 @@
       "valueFlash": "Conference League - Qualification",
       "canonical": "UEFA Conference League",
       "decidedAt": "2026-07-27T16:52:29.655Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Den Bosch / Al Feiha",
+      "valueFlash": "Den Bosch (Ned) / Al Fayha (Sau)",
+      "canonical": "Den Bosch / Al Feiha",
+      "decidedAt": "2026-07-28T14:24:54.725Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Costa Rica",
+      "value365": "AD Rosario / Jicaral Sercoba",
+      "valueFlash": "AD Rosario / ADR Jicaral",
+      "canonical": "AD Rosario / Jicaral Sercoba",
+      "decidedAt": "2026-07-28T16:17:33.167Z"
     }
   ],
   "rejected": [
@@ -2008,6 +2026,51 @@
       "valueFlash": "FC 10 / Kosmos",
       "canonical": "",
       "decidedAt": "2026-07-27T16:52:29.660Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Ub Lebrijana / Weiz",
+      "valueFlash": "Lebring (Aut) / SC Weiz (Aut)",
+      "canonical": "",
+      "decidedAt": "2026-07-28T14:24:54.723Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Hungary",
+      "value365": "Kazincbarcikai / MOL Fehervar",
+      "valueFlash": "Kazincbarcika / Videoton",
+      "canonical": "",
+      "decidedAt": "2026-07-28T15:46:45.083Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Mexico",
+      "value365": "Cruz Azul / Atlante",
+      "valueFlash": "Atlante W / Necaxa W",
+      "canonical": "",
+      "decidedAt": "2026-07-28T15:58:31.987Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "North America",
+      "value365": "Puerto Rico (W) / Colombia (W)",
+      "valueFlash": "Costa Rica U23 / Colombia U23",
+      "canonical": "",
+      "decidedAt": "2026-07-28T15:58:31.990Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "North America",
+      "value365": "Jamaica (W) / Mexico (W)",
+      "valueFlash": "Mexico U23 / Guatemala U23",
+      "canonical": "",
+      "decidedAt": "2026-07-28T15:58:31.992Z"
     }
   ]
 }

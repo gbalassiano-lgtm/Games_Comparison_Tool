@@ -384,6 +384,7 @@ function formatFlashscoreToNestedJson(flatGames) {
       away: game.away,
       time: game.time,
       status: game.status,
+      ...(game.dateKey ? { dateKey: game.dateKey } : {}),
     });
   }
 

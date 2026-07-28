@@ -4,6 +4,8 @@ const {
   normalizeFlashGameForScanTarget,
   assessPageDateContent,
   buildFlashDateSelectionError,
+  assertExtractedFlashDatesMatchTarget,
+  summarizeFlashGameDateKeys,
 } = require('../scrapers/flashscore-shared');
 const { addDaysIso, todayIsoInTimezone } = require('../lib/scan-timezone');
 
@@ -96,5 +98,62 @@ assert.strictEqual(
   true,
   'far-future dates should mention Flashscore range'
 );
+
+// Wrong-day scrape (e.g. Aug 3 content while targeting Aug 2) must hard-fail
+// instead of assignTimeOnlyDate stamping the target onto HH:MM rows.
+const wrongDayTarget = '2026-08-02';
+const wrongDayGames = [
+  {
+    home: 'Kenya W',
+    away: 'Algeria W',
+    time: '17:00',
+    status: 'scheduled',
+    startTime: `${Math.floor(new Date('2026-08-03T17:00:00-03:00').getTime() / 1000)}`,
+  },
+  {
+    home: 'Athletico-PR',
+    away: 'Vitoria',
+    time: '21:00',
+    status: 'scheduled',
+    startTime: `${Math.floor(new Date('2026-08-03T21:00:00-03:00').getTime() / 1000)}`,
+  },
+  {
+    home: 'Senegal W',
+    away: 'Morocco W',
+    time: '17:00',
+    status: 'scheduled',
+    startTime: `${Math.floor(new Date('2026-08-03T17:00:00-03:00').getTime() / 1000)}`,
+  },
+  {
+    home: 'Sarmiento Junin',
+    away: 'Ind. Rivadavia',
+    time: '16:45',
+    status: 'scheduled',
+    startTime: `${Math.floor(new Date('2026-08-03T16:45:00-03:00').getTime() / 1000)}`,
+  },
+  {
+    home: 'Platense',
+    away: 'Talleres Cordoba',
+    time: '19:00',
+    status: 'scheduled',
+    startTime: `${Math.floor(new Date('2026-08-03T19:00:00-03:00').getTime() / 1000)}`,
+  },
+];
+
+const wrongDaySummary = summarizeFlashGameDateKeys(wrongDayGames, wrongDayTarget);
+assert.strictEqual(wrongDaySummary.majorityDate, '2026-08-03');
+assert.strictEqual(wrongDaySummary.targetCount, 0);
+
+assert.throws(
+  () => assertExtractedFlashDatesMatchTarget(wrongDayGames, wrongDayTarget, 'test'),
+  /page content is not 2026-08-02/
+);
+
+const sameDayGames = wrongDayGames.map(game => ({
+  ...game,
+  startTime: String(Math.floor((Number(game.startTime) * 1000 - 86400000) / 1000)),
+}));
+const sameDaySummary = assertExtractedFlashDatesMatchTarget(sameDayGames, wrongDayTarget, 'ok');
+assert.strictEqual(sameDaySummary.majorityDate, wrongDayTarget);
 
 console.log('test-flashscore-date-filter: ok');

@@ -614,6 +614,90 @@
     }
   }
 
+  function currentWeeklyTeamLabel() {
+    const option = TEAM_OPTIONS.find(o => o.value === (WEEKLY.team || 'content'));
+    return text(option ? option.labelKey : 'contentTeam');
+  }
+
+  function currentWeeklySportLabel() {
+    if (!WEEKLY.sport || WEEKLY.sport === 'all') return text('allSports');
+    const match = sportsForTeam(WEEKLY.team || 'content').find(s => s.key === WEEKLY.sport);
+    return labelForSport(match || WEEKLY.sport);
+  }
+
+  function currentWeeklyIssueLabel() {
+    const option = ISSUE_OPTIONS.find(o => o.value === (WEEKLY.issue || 'all'));
+    return text(option ? option.labelKey : 'allIssues');
+  }
+
+  function currentWeeklyRangeLabel() {
+    if (WEEKLY.mode === 'monthly') {
+      return WEEKLY.month || (WEEKLY.data?.year && WEEKLY.data?.month
+        ? `${WEEKLY.data.year}-${String(WEEKLY.data.month).padStart(2, '0')}`
+        : '-');
+    }
+    return `${WEEKLY.data?.from || WEEKLY.from || '-'} \u2192 ${WEEKLY.data?.to || WEEKLY.to || '-'}`;
+  }
+
+  function weeklyPrintSubtitleHtml() {
+    const rangeLabel = WEEKLY.mode === 'monthly' ? text('weeklyMonthLabel') : `${text('weeklyFrom')}/${text('weeklyTo')}`;
+    return `
+      <span><b>${safeEscape(text('weeklyTeamFilter'))}:</b> ${safeEscape(currentWeeklyTeamLabel())}</span>
+      <span><b>${safeEscape(text('sport'))}:</b> ${safeEscape(currentWeeklySportLabel())}</span>
+      <span><b>${safeEscape(text('weeklyIssueFilter'))}:</b> ${safeEscape(currentWeeklyIssueLabel())}</span>
+      <span><b>${safeEscape(rangeLabel)}:</b> ${safeEscape(currentWeeklyRangeLabel())}</span>
+    `;
+  }
+
+  // PDF export reuses the report overlay's print pipeline (see ui.js `printReport`):
+  // that overlay already has a battle-tested @media print stylesheet, so we borrow
+  // it instead of building a second print pipeline for weekly/monthly.
+  function printWeeklyAnalysis() {
+    const overlay = el('reportOverlay');
+    const titleEl = el('reportTitle');
+    const subtitleEl = el('reportSubtitle');
+    const contentEl = el('reportContent');
+    const summaryEl = el('weeklySummaryCards');
+    const bodyEl = el('weeklyAnalysisBody');
+    if (!overlay || !titleEl || !subtitleEl || !contentEl || !bodyEl) return;
+    if (!WEEKLY.data) {
+      alert(text('weeklyEmpty'));
+      return;
+    }
+
+    const prevTitle = titleEl.textContent;
+    const prevSubtitle = subtitleEl.innerHTML;
+    const prevContent = contentEl.innerHTML;
+
+    titleEl.textContent = text(WEEKLY.mode === 'monthly' ? 'monthlyTab' : 'weeklyTab');
+    subtitleEl.innerHTML = weeklyPrintSubtitleHtml();
+    contentEl.innerHTML = `
+      <div class="report-metrics weekly-print-summary">${summaryEl ? summaryEl.innerHTML : ''}</div>
+      ${bodyEl.innerHTML}
+    `;
+
+    let restored = false;
+    const restore = () => {
+      if (restored) return;
+      restored = true;
+      titleEl.textContent = prevTitle;
+      subtitleEl.innerHTML = prevSubtitle;
+      contentEl.innerHTML = prevContent;
+      window.removeEventListener('afterprint', restore);
+    };
+    window.addEventListener('afterprint', restore);
+
+    // Chrome/Edge block script execution until the print dialog closes, so the
+    // restore() right after window.print() only runs once the user is done there.
+    // The 'afterprint' listener above covers browsers where print() is async.
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        window.print();
+        restore();
+      }, 150);
+    });
+  }
+
   function refreshWeeklyLanguage() {
     fillTeamSelect();
     fillSportSelect();
@@ -809,6 +893,8 @@
       else applyWeeklyRangeFromInputs({ reload: false });
       loadAnalysis({ force: true }).catch(error => alert(error.message));
     });
+
+    el('downloadWeeklyPdf')?.addEventListener('click', printWeeklyAnalysis);
 
     el('weeklyAnalysisBody')?.addEventListener('click', event => {
       const row = event.target.closest('[data-weekly-expand]');

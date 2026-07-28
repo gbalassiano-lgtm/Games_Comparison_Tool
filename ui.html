@@ -21,12 +21,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/ui.css?v=20260715-datepicker3">
+    <link rel="stylesheet" href="/ui.css?v=20260728-assigneebold2">
     <link rel="stylesheet" href="/ui-usa-sports.css?v=20260625-scanners">
     <link rel="stylesheet" href="/ui-latam.css?v=20260625-latam-map">
     <link rel="stylesheet" href="/ui-israel.css?v=20260625-israel">
-    <link rel="stylesheet" href="/ui-theme-light.css?v=20260714-restore1">
-    <link rel="stylesheet" href="/ui-weekly.css?v=20260727-monthlytab">
+    <link rel="stylesheet" href="/ui-theme-light.css?v=20260728-assigneebold2">
+    <link rel="stylesheet" href="/ui-weekly.css?v=20260728-ignorefix1">
     <link rel="stylesheet" href="/vendor/flatpickr/flatpickr.min.css?v=20260715-datepicker3">
   </head>
   <body>
@@ -271,6 +271,7 @@
                 <input type="month" class="date-input" id="weeklyMonthInput">
               </label>
               <button type="button" class="secondary" id="refreshWeeklyAnalysis" data-i18n="refreshWeekly">Refresh</button>
+              <button type="button" class="secondary" id="downloadWeeklyPdf" data-i18n="downloadPdf">Export PDF</button>
             </div>
             <p class="hint weekly-range-cap" id="weeklyRangeCapHint" data-i18n="weeklyRangeMaxHint">Maximum range: 7 days.</p>
             <p class="hint weekly-range-cap hidden" id="weeklyMonthHint" data-i18n="weeklyMonthHint">Full month · no day limit. Future months are not available.</p>
@@ -381,6 +382,7 @@
           </div>
           <div class="report-header-actions">
             <button type="button" class="primary hidden" id="finishAsanaTask" data-i18n="finishAsanaTask">Finish task</button>
+            <button type="button" class="secondary" id="downloadPdf" data-i18n="downloadPdf">Export PDF</button>
             <button type="button" class="report-close-button" id="closeReportButton" data-i18n-title="closeReport" title="Close report" aria-label="Close report">×</button>
           </div>
         </header>
@@ -406,7 +408,7 @@
     <script src="/vendor/flatpickr/flatpickr.min.js?v=20260715-datepicker"></script>
     <script src="/vendor/flatpickr/l10n/pt.js?v=20260715-datepicker"></script>
     <script src="/lib/country-flags.js?v=20260624-theme"></script>
-    <script src="/ui.js?v=20260727-monthlytab"></script>
-    <script src="/ui-weekly.js?v=20260727-monthlytab"></script>
+    <script src="/ui.js?v=20260728-scanduration"></script>
+    <script src="/ui-weekly.js?v=20260728-ignorefix1"></script>
   </body>
 </html>

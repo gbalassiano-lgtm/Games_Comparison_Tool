@@ -4,7 +4,7 @@ const path = require('path');
 const ExcelJS = require('exceljs');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
-const { stripTeamYouthMarkers, canonicalizeCompYouthMarkers, canonicalizeRomanNumerals } = require('./lib/youth-markers');
+const { stripTeamYouthMarkers, canonicalizeCompYouthMarkers, canonicalizeRomanNumerals, fixturesCategoryCompatible } = require('./lib/youth-markers');
 const { timeDiffMinutes, isTimezoneBoundaryPair, resolveScanTargetDate, isStaleFinishedGameStatus, gameBelongsToScanTarget } = require('./lib/scan-timezone');
 const { normalizeTeamNameCore, flexibleNameSimilarity } = require('./lib/flexible-names');
 const { isNonFootballFlashMatch } = require('./lib/football-flash-filter');
@@ -994,6 +994,15 @@ function teamSim(h1, a1, h2, a2, sportKey = '', comp1 = '', comp2 = '') {
 }
 
 function smartTeamSim(g365, gFlash, sportKey) {
+  if (
+    !fixturesCategoryCompatible(
+      [g365.home, g365.away, g365.competition],
+      [gFlash.home, gFlash.away, gFlash.competition]
+    )
+  ) {
+    return 0;
+  }
+
   if (!isTennisMatch(sportKey)) {
     return teamSim(g365.home, g365.away, gFlash.home, gFlash.away, sportKey, g365.competition, gFlash.competition);
   }

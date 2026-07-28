@@ -7,6 +7,13 @@ const fetch = require('node-fetch');
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
+// Bounded sport parallelism: each Flash scraper launches its own Playwright browser.
+// Default 2 keeps Windows from spawning 5 Chromiums at once. Override with ALL_SPORTS_CONCURRENCY.
+const SPORT_CONCURRENCY = Math.max(
+  1,
+  Math.min(5, Number(process.env.ALL_SPORTS_CONCURRENCY || 2) || 2)
+);
+
 function runNodeScript(script, label) {
   return new Promise((resolve, reject) => {
     const file = path.join(__dirname, script);
@@ -59,6 +66,32 @@ function buildMemory(sportKey, label) {
       }
     });
   });
+}
+
+// Serialize shared_competitions.js writes (read-modify-write of one JSON file).
+let memoryQueue = Promise.resolve();
+function buildMemorySerialized(sportKey, label) {
+  const run = () => buildMemory(sportKey, label);
+  const next = memoryQueue.then(run, run);
+  memoryQueue = next.catch(() => {});
+  return next;
+}
+
+async function mapWithConcurrency(items, concurrency, fn) {
+  const results = new Array(items.length);
+  let nextIndex = 0;
+
+  async function worker() {
+    while (true) {
+      const i = nextIndex++;
+      if (i >= items.length) return;
+      results[i] = await fn(items[i], i);
+    }
+  }
+
+  const pool = Math.max(1, Math.min(concurrency, items.length));
+  await Promise.all(Array.from({ length: pool }, () => worker()));
+  return results;
 }
 
 async function sendResumoPipeline(stats) {
@@ -132,7 +165,7 @@ async function processSport(sport, JSON_PATHS) {
 
     // 2️⃣ Atualiza memória de competições compartilhadas (UI já atualiza no compare)
     if (process.env.UI_SCAN_MODE !== '1') {
-      await buildMemory(sport.key, sport.label);
+      await buildMemorySerialized(sport.key, sport.label);
     } else {
       console.log(`\n🧠 Memória de ${sport.label} ignorada (modo UI).`);
     }
@@ -145,6 +178,7 @@ async function processSport(sport, JSON_PATHS) {
     const allResults = await runCompare(sport.key);
 
     const snapshotPath = path.join(__dirname, 'output', sport.key, 'compare_snapshot.json');
+    fs.mkdirSync(path.dirname(snapshotPath), { recursive: true });
     fs.writeFileSync(snapshotPath, JSON.stringify({
       targetDate: /^\d{4}-\d{2}-\d{2}$/.test(targetDate) ? targetDate : '',
       savedAt: new Date().toISOString(),
@@ -194,7 +228,9 @@ async function processSport(sport, JSON_PATHS) {
 (async () => {
   const start = Date.now();
   console.log('\n🚀 Pipeline iniciado:', new Date().toLocaleString('pt-BR'));
-  console.log('⚙️  Modo: 1 esporte por vez | 2 scrapers em paralelo | memória atualizada antes do compare');
+  console.log(
+    `⚙️  Modo: até ${SPORT_CONCURRENCY} esporte(s) em paralelo | 2 scrapers/esporte | memória serializada`
+  );
 
   const sports = [
     { key: 'football',   label: 'Futebol',  scraper365: 'scrapers/365-football.js',    scraperFlash: 'scrapers/flashscore-football.js'    },
@@ -212,15 +248,16 @@ async function processSport(sport, JSON_PATHS) {
     tennis    : { s365: '365_tomorrow_tennis_by_country.json',       flash: 'flashscore_tomorrow_tennis_all_countries.json'       },
   };
 
-  const stats = [];
-  for (const sport of sports) {
-    const result = await processSport(sport, JSON_PATHS);
-    stats.push(result);
-  }
+  const stats = await mapWithConcurrency(sports, SPORT_CONCURRENCY, sport =>
+    processSport(sport, JSON_PATHS)
+  );
 
   const elapsed = ((Date.now() - start) / 1000 / 60).toFixed(1);
   console.log(`\n${'═'.repeat(60)}`);
   console.log(`✅ Pipeline concluído em ${elapsed} minutos`);
 
   await sendResumoPipeline(stats);
-})();
+})().catch(error => {
+  console.error('\n🚨 Pipeline falhou:', error?.message || error);
+  process.exitCode = 1;
+});

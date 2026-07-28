@@ -293,8 +293,15 @@
   font-size: 1rem;
 }
 
-.asana-task-assignee {
+.asana-task-assignee,
+.asana-task-assignee-sep {
   color: var(--nova-text2);
+}
+
+.asana-task-assignee-name {
+  color: var(--nova-text);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .asana-task-unassigned {
@@ -6034,8 +6041,15 @@ select {
   font-size: 1rem;
 }
 
-.asana-task-assignee {
+.asana-task-assignee,
+.asana-task-assignee-sep {
   color: var(--nova-text2);
+}
+
+.asana-task-assignee-name {
+  color: var(--nova-text);
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 .asana-task-unassigned {
@@ -6229,3 +6243,109 @@ input.date-input {
   cursor: pointer;
 }
 
+/* PDF export: report header buttons (Export PDF, Finish task, Close) never print.
+   Weekly/Monthly analysis reuses the report overlay + this print pipeline, so its
+   classes get their own compact rules here too. Placed last so it wins the cascade. */
+@media print {
+  .report-header-actions {
+    display: none !important;
+  }
+
+  .weekly-print-summary {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+    justify-content: center !important;
+    margin-bottom: 6px !important;
+  }
+
+  .weekly-body {
+    gap: 10px !important;
+  }
+
+  .weekly-sport-block {
+    break-inside: avoid-page;
+    margin-top: 6px !important;
+  }
+
+  .weekly-sport-head h3 {
+    font-size: 12px !important;
+  }
+
+  .weekly-sport-meta {
+    font-size: 8px !important;
+  }
+
+  .weekly-rank-grid {
+    gap: 6px !important;
+  }
+
+  .weekly-rank-card {
+    background: rgba(0, 48, 73, .04) !important;
+    border: 1px solid rgba(0, 48, 73, .18) !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    break-inside: avoid !important;
+    padding: 6px !important;
+    page-break-inside: avoid !important;
+  }
+
+  .weekly-rank-card h4 {
+    font-size: 9px !important;
+  }
+
+  .weekly-table-wrap {
+    overflow: visible !important;
+  }
+
+  .weekly-table {
+    font-size: 7px !important;
+  }
+
+  .weekly-table th,
+  .weekly-table td {
+    padding: 3px 4px !important;
+  }
+
+  .weekly-breakdown {
+    font-size: 7px !important;
+    gap: 5px !important;
+  }
+
+  .weekly-issue-dot {
+    height: 6px !important;
+    width: 6px !important;
+  }
+
+  .weekly-issues-row,
+  .weekly-expand-icon {
+    display: none !important;
+  }
+}
+
+
+
+.report-feedback-banner {
+  background: rgba(46, 160, 110, .14);
+  border: 1px solid rgba(46, 160, 110, .35);
+  border-radius: 12px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  margin: 0 0 14px;
+  padding: 10px 14px;
+}
+
+.report-feedback-banner[hidden] {
+  display: none;
+}
+
+.report-feedback-banner.ok {
+  background: rgba(46, 160, 110, .14);
+  border-color: rgba(46, 160, 110, .35);
+}
+
+.report-feedback-banner.error {
+  background: rgba(220, 80, 80, .12);
+  border-color: rgba(220, 80, 80, .35);
+}

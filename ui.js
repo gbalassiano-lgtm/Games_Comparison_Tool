@@ -166,7 +166,8 @@ const i18n = {
     reportDetailScanner: 'Scanner',
     reportDetailDate: 'Date',
     reportDetailSport: 'Sport',
-    downloadPdf: 'Download PDF',
+    reportDetailDuration: 'Duration',
+    downloadPdf: 'Export PDF',
     openLatestReport: 'Open latest report',
     closeReport: 'Close report',
     viewReport: 'View report',
@@ -415,7 +416,8 @@ const i18n = {
     reportDetailScanner: 'Scanner',
     reportDetailDate: 'Data',
     reportDetailSport: 'Esporte',
-    downloadPdf: 'Baixar PDF',
+    reportDetailDuration: 'Duração',
+    downloadPdf: 'Exportar PDF',
     openLatestReport: 'Abrir último relatório',
     closeReport: 'Fechar relatório',
     viewReport: 'Ver relatório',
@@ -934,13 +936,47 @@ function reportValueText(value) {
   return reportText(value || '-');
 }
 
+function errorMessage(error, fallback = 'Request failed') {
+  if (typeof error === 'string') {
+    const text = error.trim();
+    return text || fallback;
+  }
+  if (error == null) return fallback;
+  const candidates = [error.message, error.error, error.statusText];
+  for (const candidate of candidates) {
+    if (typeof candidate === 'string' && candidate.trim()) return candidate.trim();
+  }
+  return fallback;
+}
+
+function alertError(error, fallback = 'Request failed') {
+  const message = errorMessage(error, fallback);
+  console.error(error);
+  alert(message);
+}
+
 async function api(path, options = {}) {
   const res = await fetch(path, {
     headers: { 'Content-Type': 'application/json' },
     ...options,
   });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Request failed');
+  const text = await res.text();
+  let data = null;
+  if (text) {
+    try {
+      data = JSON.parse(text);
+    } catch {
+      if (!res.ok) throw new Error(text.slice(0, 200).trim() || `Request failed (${res.status})`);
+      throw new Error('Invalid JSON response');
+    }
+  }
+  if (!res.ok) {
+    const raw = data && (data.error || data.message);
+    const message = typeof raw === 'string' && raw.trim()
+      ? raw.trim()
+      : `Request failed (${res.status})`;
+    throw new Error(message);
+  }
   return data;
 }
 
@@ -956,15 +992,37 @@ function formatScraperSource() {
   return 'Flashscore';
 }
 
+function formatScanDuration(scan) {
+  const startMs = Date.parse(scan?.startedAt || '');
+  const endMs = Date.parse(scan?.finalizedAt || scan?.finishedAt || '');
+  if (!Number.isFinite(startMs) || !Number.isFinite(endMs) || endMs < startMs) return '';
+
+  const totalSec = Math.round((endMs - startMs) / 1000);
+  if (totalSec < 60) return `${totalSec}s`;
+
+  const minutes = Math.floor(totalSec / 60);
+  const seconds = totalSec % 60;
+  if (minutes < 60) return seconds ? `${minutes}m ${seconds}s` : `${minutes}m`;
+
+  const hours = Math.floor(minutes / 60);
+  const remMinutes = minutes % 60;
+  return remMinutes ? `${hours}h ${remMinutes}m` : `${hours}h`;
+}
+
 function reportDetailsHtml(scan) {
   const sportLabel = t(scan?.sport) || scan?.label || scan?.sport || '-';
+  const duration = formatScanDuration(scan);
   const queueLine = scanMatchesAsanaQueueHead(scan)
     ? `<span><b>${escapeHtml(asanaQueueProgressLabel())}</b></span>`
+    : '';
+  const durationLine = duration
+    ? `<span><b>${t('reportDetailDuration')}:</b> ${escapeHtml(duration)}</span>`
     : '';
   return `
     <span><b>${t('reportDetailScanner')}:</b> ${escapeHtml(formatScraperSource())}</span>
     <span><b>${t('reportDetailDate')}:</b> ${escapeHtml(scan?.date || '-')}</span>
     <span><b>${t('reportDetailSport')}:</b> ${escapeHtml(sportLabel)}</span>
+    ${durationLine}
     ${queueLine}
   `;
 }
@@ -1443,7 +1501,8 @@ function renderAsanaSingleTaskCard(task = {}) {
     <article class="asana-task-card ${statusClass}" data-asana-task-gid="${task.gid}">
       <div class="asana-task-main">
         <strong class="asana-task-name">${task.name}</strong>
-        <span class="asana-task-assignee">→ ${assignee}</span>
+        <span class="asana-task-assignee-sep" aria-hidden="true">→</span>
+        <strong class="asana-task-assignee-name">${assignee}</strong>
       </div>
       <div class="asana-task-meta">
         <span class="asana-task-badge ${statusClass}">${statusLabel}</span>
@@ -3569,6 +3628,12 @@ function reopenPinnedHistoryReport() {
 }
 
 function printReport() {
+  const scan = state.currentScan;
+  if (isMultiSportReport(scan) && state.reportSportFilter === 'all') {
+    alert(t('chooseSportForPdf'));
+    return;
+  }
+
   document.querySelectorAll('.report-toggle, .country-toggle, .competition-toggle').forEach(section => {
     section.open = true;
   });
@@ -3953,13 +4018,48 @@ function closeCompetitionMenus(exceptMenu = null) {
   });
 }
 
+function showReportFeedback(message, kind = 'ok') {
+  const text = String(message || '').trim();
+  if (!text) return;
+  const host = $('reportShell') || $('reportContent');
+  if (!host) {
+    alert(text);
+    return;
+  }
+
+  let banner = $('reportFeedbackBanner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'reportFeedbackBanner';
+    banner.className = 'report-feedback-banner';
+    banner.setAttribute('role', 'status');
+    banner.setAttribute('aria-live', 'polite');
+    const header = host.querySelector?.('.report-header') || host;
+    if (header && header !== host) header.insertAdjacentElement('afterend', banner);
+    else host.prepend(banner);
+  }
+
+  banner.className = `report-feedback-banner ${kind}`;
+  banner.textContent = text;
+  banner.hidden = false;
+  clearTimeout(showReportFeedback._timer);
+  showReportFeedback._timer = setTimeout(() => {
+    banner.hidden = true;
+  }, 4000);
+}
+
+
+
 async function toggleReportCompetitionIgnore(button) {
   const sport = button.dataset.sport;
   const side = button.dataset.side;
   const scope = button.dataset.scope;
   const competition = button.dataset.competition;
   const action = button.dataset.competitionIgnoreAction;
-  if (!sport || !side || !scope || !competition || !action) return;
+  if (!sport || !side || !scope || !competition || !action) {
+    alertError('Missing competition ignore data.');
+    return;
+  }
 
   try {
     let rules;
@@ -3983,16 +4083,19 @@ async function toggleReportCompetitionIgnore(button) {
 
     state.competitionRules = rules || {};
     closeCompetitionMenus();
-    await renderRules();
     renderReport(state.currentScan);
     const feedback = action === 'unignore'
       ? t('competitionUnignoredFeedback')
       : t('competitionIgnoredFeedback');
     setStatus('completed', feedback);
+    showReportFeedback(feedback, 'ok');
+    renderRules().catch(error => console.error(error));
   } catch (e) {
-    alert(e.message);
+    closeCompetitionMenus();
+    alertError(e);
   }
 }
+
 
 function reportGenStepIds(hasTermDecisions) {
   const steps = ['save', 'xlsx', 'finish'];
@@ -4368,7 +4471,9 @@ async function renderRules() {
   if (!state.sports.length) return;
   const rules = await api('/api/rules');
   state.competitionRules = rules || {};
-  $('rulesList').innerHTML = state.sports.map(sport => {
+  const list = $('rulesList');
+  if (!list) return;
+  list.innerHTML = state.sports.map(sport => {
     const sportRules = rules[sport.key] || {};
     return `
       <section class="rule-group">
@@ -4617,7 +4722,7 @@ async function init() {
     if (ignoreAction) {
       event.preventDefault();
       event.stopPropagation();
-      toggleReportCompetitionIgnore(ignoreAction).catch(e => alert(e.message));
+      toggleReportCompetitionIgnore(ignoreAction).catch(e => alertError(e));
       return;
     }
 

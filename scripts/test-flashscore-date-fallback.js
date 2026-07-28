@@ -14,6 +14,8 @@ assert.strictEqual(flashscoreDatePrefix('2026-07-06'), '06/07');
 assert.strictEqual(matchesFlashscoreDateOption('06/07 Sunday', '2026-07-06'), true);
 assert.strictEqual(matchesFlashscoreDateOption('05/07 Saturday', '2026-07-06'), false);
 assert.strictEqual(matchesFlashscoreDateOption('28/07 Tu', '2026-07-28'), true);
+assert.strictEqual(matchesFlashscoreDateOption('30.07 TH', '2026-07-30'), true);
+assert.strictEqual(matchesFlashscoreDateOption('Thu 30/07', '2026-07-30'), true);
 
 // URL date param alone must not count as "selected" — picker label is the source of truth.
 assert.strictEqual(
