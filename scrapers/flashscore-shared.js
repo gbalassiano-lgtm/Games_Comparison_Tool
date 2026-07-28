@@ -138,6 +138,7 @@ const {
   todayIsoInTimezone,
   resolveScanTargetDate,
   isStaleFinishedGameStatus,
+  isDeferredGameStatus,
   formatDateKeyInTimezone,
   gameBelongsToScanTarget,
   daysBetweenIso,
@@ -303,7 +304,9 @@ function assertExtractedFlashDatesMatchTarget(games = [], targetDate = '', conte
 function filterFlashGamesForScanTarget(games = [], targetDate = '', options = {}) {
   const normalized = (games || [])
     .map(game => normalizeFlashGameForScanTarget(game, targetDate, options))
-    .filter(game => !isStaleFinishedGameStatus(game.status));
+    .filter(game => !(
+      isStaleFinishedGameStatus(game.status) && !isDeferredGameStatus(game.status)
+    ));
 
   const passed = normalized.filter(game => {
     if (!targetDate) return true;

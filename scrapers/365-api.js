@@ -11,6 +11,7 @@ const {
   tomorrowIsoInTimezone,
   resolveScanTargetDate,
   isStaleFinishedGameStatus,
+  isDeferredGameStatus,
   shouldDropStaleFinishedGame,
   gameBelongsToScanTarget,
   localDateTimeInZoneToUtc,
@@ -191,7 +192,37 @@ function convertMobileScheduleToScanTimezone(schedule) {
   return formatLocalDateTimeFromUtc(utcDate, TIMEZONE);
 }
 
+// Mobile STID values observed for deferred fixtures (webws statusText confirms).
+const MOBILE_POSTPONED_STIDS = new Set([5]);
+const MOBILE_CANCELLED_STIDS = new Set([119]);
+
+function mobileStatusTextHint(game = {}) {
+  return String(
+    game.statusText ||
+    game.StatusText ||
+    game.shortStatusText ||
+    game.ShortStatusText ||
+    game.GTD ||
+    ''
+  ).toLowerCase();
+}
+
 function mobileGameStatus(game = {}) {
+  const stid = Number(game.STID ?? game.statusId ?? game.StatusId ?? 0);
+  if (MOBILE_POSTPONED_STIDS.has(stid)) return 'postponed';
+  if (MOBILE_CANCELLED_STIDS.has(stid)) return 'cancelled';
+
+  const hint = mobileStatusTextHint(game);
+  if (/\b(postponed|post\.?|adiado)\b/.test(hint)) return 'postponed';
+  if (/\b(cancelled|canceled|canc\.?|cancelado)\b/.test(hint)) return 'cancelled';
+  if (/\b(suspended|suspenso|interrompido)\b/.test(hint)) return 'suspended';
+
+  // NotPlaying + finished is how 365 marks postponed/cancelled on mobile light payloads
+  // (IsFinished alone would wrongly classify them as ended).
+  if (game.NotPlaying && !game.Active) {
+    return 'postponed';
+  }
+
   if (game.IsFinished) return 'ended';
   if (game.Active) return 'live';
   return 'scheduled';
@@ -333,7 +364,10 @@ function parseGames(json, { sportKey, targetDate, now } = {}) {
     let status = normalizeStatus(game.statusText || game.shortStatusText);
     if (shouldDropStaleFinishedGame(status, gameDateKey, time, staleOptions)) continue;
     // 365Scores sometimes flags future exhibition/UTS kickoffs as finished.
-    if (isStaleFinishedGameStatus(status)) status = 'scheduled';
+    // Keep postponed/cancelled/suspended as-is so compare can surface them.
+    if (isStaleFinishedGameStatus(status) && !isDeferredGameStatus(status)) {
+      status = 'scheduled';
+    }
 
     const competitionInfo = competitionsById.get(game.competitionId);
     const countryInfo = countriesById.get(competitionInfo?.countryId);
@@ -525,4 +559,5 @@ module.exports = {
   makeMobileApiUrl,
   normalizeMobileApiPayload,
   parseMobileSTimeParts,
+  mobileGameStatus,
 };

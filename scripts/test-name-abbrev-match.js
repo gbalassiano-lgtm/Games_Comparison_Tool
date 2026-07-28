@@ -25,6 +25,25 @@ assertMatch('Independiente Juniors', 'Ind. Juniors', 0.9);
 assertExact('Atlético FC', 'Atletico FC');
 assertMatch('Atlético FC', 'Atletico FC', 0.99);
 
+// Atlético Junior / Junior must not collapse to empty after junior stripping.
+assert.ok(
+  normalizeTeamNameCore('Junior'),
+  'standalone Junior must not normalize to empty'
+);
+assert.ok(
+  normalizeTeamNameCore('Junior FC'),
+  'Junior FC must not normalize to empty'
+);
+assertMatch('Junior', 'Junior FC', 0.99);
+assertMatch('Junior Barranquilla', 'Junior FC', 0.9);
+assertMatch('Atlético Junior', 'Junior', 0.9);
+// Still strip junior(s) as a longer-club modifier.
+assert.ok(
+  !/\bjunior/.test(normalizeTeamNameCore('Boca Juniors')),
+  'Boca Juniors should drop trailing Juniors modifier'
+);
+assertMatch('Independiente Juniors', 'Independiente', 0.9);
+
 // Common LatAm club truncations / accents.
 assertMatch('Independiente del Valle', 'Ind. del Valle', 0.9);
 assertMatch('Atlético Mineiro', 'Atletico Mineiro', 0.99);

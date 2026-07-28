@@ -62,6 +62,53 @@ assert.strictEqual(rows[0].away, 'Away FC');
 assert.strictEqual(rows[0].dateKey, '2026-07-03');
 assert.strictEqual(rows[0].time, '14:00');
 
+const postponedPayload = normalizeMobileApiPayload({
+  Countries: [{ ID: 21, Name: 'Brazil' }],
+  Competitions: [{ ID: 113, Name: 'Brasileirão Série A', CID: 21 }],
+  Games: [{
+    ID: 4632745,
+    Comp: 113,
+    STime: '29-07-2026 20:00',
+    IsFinished: true,
+    Active: false,
+    NotPlaying: true,
+    STID: 5,
+    Comps: [
+      { Name: 'Botafogo', SymbolicName: 'BOT' },
+      { Name: 'Gremio', SymbolicName: 'GRE' },
+    ],
+  }],
+});
+
+assert.strictEqual(
+  require('../scrapers/365-api').mobileGameStatus({
+    IsFinished: true,
+    Active: false,
+    NotPlaying: true,
+    STID: 5,
+  }),
+  'postponed'
+);
+assert.strictEqual(
+  require('../scrapers/365-api').mobileGameStatus({
+    IsFinished: true,
+    Active: false,
+    NotPlaying: true,
+    STID: 119,
+  }),
+  'cancelled'
+);
+
+const postponedRows = parseGames(postponedPayload, {
+  sportKey: 'football',
+  targetDate: '2026-07-29',
+  now: new Date('2026-07-28T12:00:00-03:00'),
+});
+assert.strictEqual(postponedRows.length, 1);
+assert.strictEqual(postponedRows[0].home, 'Botafogo');
+assert.strictEqual(postponedRows[0].away, 'Gremio');
+assert.strictEqual(postponedRows[0].status, 'postponed');
+
 const nextDayJerusalem = normalizeMobileApiPayload({
   Countries: [
     { ID: 18, Name: 'USA' },

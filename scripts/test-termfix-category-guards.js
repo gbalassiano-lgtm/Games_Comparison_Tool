@@ -134,6 +134,15 @@ assert.strictEqual(
 
 assert.strictEqual(
   fixturesCategoryCompatible(
+    ['Kansas City Current', 'Racing Louisville FC', 'NWSL'],
+    ['Kansas City Current W', 'Racing Louisville W', 'NWSL Women']
+  ),
+  true,
+  'NWSL without W markers should still match NWSL Women + W suffixes'
+);
+
+assert.strictEqual(
+  fixturesCategoryCompatible(
     ['Pärnu JK Vaprus', 'Levadia Tallinn', 'Meistriliiga'],
     ['Parnu JK Vaprus U21', 'Levadia U19', 'Esiliiga B']
   ),
@@ -143,11 +152,38 @@ assert.strictEqual(
 
 assert.strictEqual(
   fixturesCategoryCompatible(
-    ['Club América', 'Santos Laguna', 'Liga MX'],
+    ['Club América Men', 'Santos Laguna Men', 'Liga MX Men'],
     ['Santos Laguna W', 'Club America W', 'Liga MX Women - Apertura']
   ),
   false,
-  'men Liga MX vs women Liga MX must not sync'
+  'explicit men vs women must not sync'
+);
+
+assert.strictEqual(
+  fixturesCategoryCompatible(
+    ['Ureña SC', 'Puerto Cabello U20', 'Liga FUTVE 2'],
+    ['Urena', 'Puerto Cabello B', 'Liga FUTVE 2']
+  ),
+  true,
+  'U20 should be compatible with reserve/B developmental side'
+);
+
+assert.strictEqual(
+  fixturesCategoryCompatible(
+    ['Puerto Cabello', 'Ureña SC', 'Liga FUTVE'],
+    ['Puerto Cabello B', 'Urena', 'Liga FUTVE 2']
+  ),
+  false,
+  'senior (no youth) vs B-team must stay blocked'
+);
+
+assert.strictEqual(
+  extractSideCategoryMarkers('Puerto Cabello B').youthKey,
+  'reserve'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('Puerto Cabello U20').youthKey,
+  'u20'
 );
 
 console.log('test-termfix-category-guards: ok');

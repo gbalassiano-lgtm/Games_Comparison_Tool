@@ -5,7 +5,7 @@ const ExcelJS = require('exceljs');
 const fetch = require('node-fetch');
 const FormData = require('form-data');
 const { stripTeamYouthMarkers, canonicalizeCompYouthMarkers, canonicalizeRomanNumerals, fixturesCategoryCompatible } = require('./lib/youth-markers');
-const { timeDiffMinutes, isTimezoneBoundaryPair, resolveScanTargetDate, isStaleFinishedGameStatus, gameBelongsToScanTarget } = require('./lib/scan-timezone');
+const { timeDiffMinutes, isTimezoneBoundaryPair, resolveScanTargetDate, isStaleFinishedGameStatus, isDeferredGameStatus, gameBelongsToScanTarget } = require('./lib/scan-timezone');
 const { normalizeTeamNameCore, flexibleNameSimilarity } = require('./lib/flexible-names');
 const { isNonFootballFlashMatch } = require('./lib/football-flash-filter');
 const { resolveScopeKey } = require('./lib/country-flags');
@@ -1225,7 +1225,8 @@ function load365(filePath, sportKey = '') {
       for (const m of comp.matches || []) {
         if (!m.home || !m.away) continue;
         if (!matchBelongsToCompareTarget(m, targetDate)) continue;
-        if (isStaleFinishedGameStatus(m.status)) continue;
+        // Keep postponed/cancelled visible as only365 / statusDiff; drop ended/live.
+        if (isStaleFinishedGameStatus(m.status) && !isDeferredGameStatus(m.status)) continue;
 
         games.push({
           country: groupName,
@@ -1250,7 +1251,7 @@ function loadFlash(filePath, sportKey = '') {
   for (const group of raw) {
     if (group.home && group.away) {
       if (!matchBelongsToCompareTarget(group, targetDate)) continue;
-      if (isStaleFinishedGameStatus(group.status)) continue;
+      if (isStaleFinishedGameStatus(group.status) && !isDeferredGameStatus(group.status)) continue;
       games.push({
         country: getGroupName(group),
         competition: group.competition || group.tournament || group.league || 'Sem competição',
@@ -1268,7 +1269,7 @@ function loadFlash(filePath, sportKey = '') {
       for (const m of comp.matches || []) {
         if (!m.home || !m.away) continue;
         if (!matchBelongsToCompareTarget(m, targetDate)) continue;
-        if (isStaleFinishedGameStatus(m.status)) continue;
+        if (isStaleFinishedGameStatus(m.status) && !isDeferredGameStatus(m.status)) continue;
         games.push({
           country: groupName,
           competition: competitionName,
