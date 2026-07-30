@@ -50,6 +50,8 @@ assertMatch('Atlético Mineiro', 'Atletico Mineiro', 0.99);
 assertMatch('Deportivo Cuenca', 'Dep. Cuenca', 0.9);
 assertMatch('Estudiantes', 'Est.', 0.9);
 assertMatch('Nacional', 'Nac.', 0.9);
+assertMatch('U. Magdalena', 'Union Magdalena', 0.92);
+assertMatch('U. Católica', 'Universidad Catolica', 0.92);
 
 // Should still match existing flexible cases.
 assertMatch('Portland Timbers II', 'Portland Timbers 2', 0.9);

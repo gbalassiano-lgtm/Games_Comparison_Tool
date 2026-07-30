@@ -17,6 +17,16 @@ assert.strictEqual(matchesFlashscoreDateOption('28/07 Tu', '2026-07-28'), true);
 assert.strictEqual(matchesFlashscoreDateOption('30.07 TH', '2026-07-30'), true);
 assert.strictEqual(matchesFlashscoreDateOption('Thu 30/07', '2026-07-30'), true);
 
+// Unpadded day/month labels Flashscore sometimes shows on the day picker.
+assert.strictEqual(matchesFlashscoreDateOption('31/7 Wednesday', '2026-07-31'), true);
+assert.strictEqual(matchesFlashscoreDateOption('1/8 Saturday', '2026-08-01'), true);
+assert.strictEqual(matchesFlashscoreDateOption('1/08 Saturday', '2026-08-01'), true);
+assert.strictEqual(matchesFlashscoreDateOption('01/8 Saturday', '2026-08-01'), true);
+assert.strictEqual(matchesFlashscoreDateOption('31.7 We', '2026-07-31'), true);
+assert.strictEqual(matchesFlashscoreDateOption('1.8 Sa', '2026-08-01'), true);
+assert.strictEqual(matchesFlashscoreDateOption('Thu 31/7', '2026-07-31'), true);
+assert.strictEqual(matchesFlashscoreDateOption('30/7 Tu', '2026-07-31'), false);
+
 // URL date param alone must not count as "selected" — picker label is the source of truth.
 assert.strictEqual(
   matchesFlashscoreDateOption('28/06 Saturday', '2026-06-29'),

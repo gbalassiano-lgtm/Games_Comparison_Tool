@@ -348,25 +348,46 @@ function flashscoreDatePrefix(targetDate) {
   return `${day}/${month}`;
 }
 
+/** Padded + unpadded DD/MM (and ./ -) forms Flashscore may show, e.g. 31/7, 1/08, 01/8. */
+function flashscoreDatePrefixVariants(targetDate) {
+  const [, month, day] = String(targetDate || '').split('-');
+  if (!month || !day) return [];
+  const dayNums = [...new Set([String(day).padStart(2, '0'), String(Number(day))])];
+  const monthNums = [...new Set([String(month).padStart(2, '0'), String(Number(month))])];
+  const variants = [];
+  for (const d of dayNums) {
+    for (const m of monthNums) {
+      variants.push(`${d}/${m}`, `${d}.${m}`, `${d}-${m}`);
+    }
+  }
+  return variants;
+}
+
 function matchesFlashscoreDateOption(text = '', targetDate = '', ariaLabel = '') {
   const cleaned = cleanText(text);
   const aria = cleanText(ariaLabel);
   if (!targetDate) return false;
 
-  const prefix = flashscoreDatePrefix(targetDate); // DD/MM
-  const prefixDot = prefix.replace('/', '.');
-  const prefixDash = prefix.replace('/', '-');
+  const prefixes = flashscoreDatePrefixVariants(targetDate);
   const lower = cleaned.toLowerCase();
-  if (
-    cleaned &&
-    (lower.startsWith(prefix.toLowerCase()) ||
-      lower.startsWith(prefixDot.toLowerCase()) ||
-      lower.startsWith(prefixDash.toLowerCase()) ||
-      // e.g. "Thu 30/07" / "30.07.2026"
-      new RegExp(`\\b${prefix.replace('/', '[./-]')}\\b`, 'i').test(cleaned) ||
-      new RegExp(`\\b${prefixDot.replace('.', '\\.')}(?:\\.\\d{2,4})?\\b`, 'i').test(cleaned))
-  ) {
-    return true;
+  if (cleaned && prefixes.length) {
+    for (const prefix of prefixes) {
+      const prefixDot = prefix.includes('.') ? prefix : prefix.replace('/', '.');
+      const prefixSlashish = prefix.replace(/[./-]/g, '[./-]');
+      if (
+        lower.startsWith(prefix.toLowerCase()) ||
+        // e.g. "Thu 30/07" / "31/7" / "1.8" / "30.07.2026"
+        new RegExp(`\\b${prefixSlashish}\\b`, 'i').test(cleaned) ||
+        (prefix.includes('.') &&
+          new RegExp(`\\b${prefix.replace(/\./g, '\\.')}(?:\\.\\d{2,4})?\\b`, 'i').test(cleaned))
+      ) {
+        return true;
+      }
+      // Also allow startsWith on dotted form when iterating slash variants.
+      if (!prefix.includes('.') && lower.startsWith(prefixDot.toLowerCase())) {
+        return true;
+      }
+    }
   }
 
   const tz = scanTimezone();
@@ -415,7 +436,9 @@ async function readPickerDateText(page) {
 
 async function isDateAlreadySelected(page, targetDate) {
   const meta = await readPickerDateMeta(page);
-  return matchesFlashscoreDateOption(meta.text, targetDate, meta.aria);
+  if (matchesFlashscoreDateOption(meta.text, targetDate, meta.aria)) return true;
+  const yearHint = String(targetDate || '').split('-')[0];
+  return parsePickerDateKey(meta.text, yearHint) === targetDate;
 }
 
 async function closeDatePickerIfOpen(page) {
@@ -871,14 +894,12 @@ async function advancePickerToTargetDate(page, targetDate) {
       logStep(`WARN: calendário passou de ${targetDate} (picker=${pickerText || '?'})`);
       break;
     }
-    if (currentKey && daysBetweenIso(currentKey, targetDate) === 0) {
-      // Label parses as target but matcher disagreed — wait briefly for aria/text settle.
+    if (currentKey && currentKey === targetDate) {
+      // Parse already confirms the day (matcher may disagree on padding like 31/7 vs 31/07).
       await page.waitForTimeout(250);
-      if (await isDateAlreadySelected(page, targetDate)) {
-        logStep(`DATA SELECIONADA (calendário +${step}): ${await readPickerDateText(page)}`);
-        return true;
-      }
-      break;
+      const settledText = await readPickerDateText(page);
+      logStep(`DATA SELECIONADA (calendário +${step}): ${settledText || pickerText}`);
+      return true;
     }
 
     const remaining = currentKey
@@ -924,6 +945,10 @@ async function advancePickerToTargetDate(page, targetDate) {
 
   const finalText = await readPickerDateText(page);
   const finalKey = parsePickerDateKey(finalText, yearHint);
+  if (finalKey === targetDate) {
+    logStep(`DATA SELECIONADA (calendário, parse final): ${finalText}`);
+    return true;
+  }
   if (finalKey && daysBetweenIso(finalKey, targetDate) < 0) {
     logStep(`WARN: calendário ficou além do alvo (${finalText || '?'} vs ${targetDate})`);
   }
@@ -1103,7 +1128,20 @@ async function ensureTargetDate(page, targetDate, sportSlug) {
       await finalize('calendar-advance-first');
       return;
     }
-    logStep(`WARN: calendário não chegou em ${targetPrefix} — tentando lista do picker...`);
+    // Only WARN when picker clearly shows another day; missing/unparseable label is a soft fallback.
+    const afterCalendarText = await readPickerDateText(page);
+    const afterCalendarKey = parsePickerDateKey(afterCalendarText, String(targetDate).split('-')[0]);
+    if (afterCalendarKey === targetDate) {
+      await finalize('calendar-advance-parse');
+      return;
+    }
+    if (afterCalendarKey) {
+      logStep(
+        `WARN: calendário não chegou em ${targetPrefix} (picker=${afterCalendarText || '?'}) — tentando lista do picker...`
+      );
+    } else {
+      logStep(`Calendário sem confirmação de ${targetPrefix} — tentando lista do picker...`);
+    }
   }
 
   try {

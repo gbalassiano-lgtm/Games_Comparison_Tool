@@ -186,4 +186,37 @@ assert.strictEqual(
   'u20'
 );
 
+// Colombia / LatAm second divisions are league tiers, not reserve sides.
+assert.strictEqual(
+  extractSideCategoryMarkers('Primera B').youthKey,
+  null,
+  'Primera B competition must not be treated as reserve'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('Primera B - Clausura').youthKey,
+  null,
+  'Primera B - Clausura must not be treated as reserve'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('Serie B').youthKey,
+  null,
+  'Serie B competition must not be treated as reserve'
+);
+assert.strictEqual(
+  fixturesCategoryCompatible(
+    ['Real Santander', 'Patriotas', 'Primera B'],
+    ['Real Santander', 'Patriotas', 'Primera B - Clausura']
+  ),
+  true,
+  'Primera B ↔ Primera B - Clausura senior fixtures must stay compatible'
+);
+assert.strictEqual(
+  fixturesCategoryCompatible(
+    ['Union Magdalena', 'Orsomarso', 'Primera B'],
+    ['U. Magdalena', 'Orsomarso', 'Primera B - Clausura']
+  ),
+  true,
+  'Primera B with U./Union abbreviation must stay category-compatible'
+);
+
 console.log('test-termfix-category-guards: ok');
