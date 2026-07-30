@@ -53,9 +53,20 @@ assertMatch('Nacional', 'Nac.', 0.9);
 assertMatch('U. Magdalena', 'Union Magdalena', 0.92);
 assertMatch('U. Católica', 'Universidad Catolica', 0.92);
 
+// Club prefixes + reserve/AM aliases (Austria / Brazil style naming).
+assertMatch('First Vienna FC 1894', 'First Vienna', 0.99);
+assertMatch('SK Sturm AM', 'Sturm Graz II', 0.88);
+assertMatch('GE Gloria', 'Glória de Vacaria', 0.9);
+assertMatch('EC Guarani', 'Guarani-VA', 0.9);
+assertMatch('Esportivo/RS', 'Esportivo', 0.9);
+
 // Should still match existing flexible cases.
 assertMatch('Portland Timbers II', 'Portland Timbers 2', 0.9);
 assertMatch('Astana', 'FC Astana', 0.9);
+
+// Kazakhstan Latinization variants used by 365 vs Flash.
+assertMatch('FC Qyzyljar', 'Kyzylzhar', 0.9);
+assertMatch('Qyzyljar', 'Kyzylzhar', 0.9);
 
 // Avoid collapsing unrelated short names.
 assert.ok(

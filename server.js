@@ -481,6 +481,43 @@ function pairNameSimilarity(left = {}, right = {}) {
   return { score: reversed, minSide: Math.min(reversedHome, reversedAway), orientation: 'reversed' };
 }
 
+// Structural club-form / reserve tokens that must not alone justify a Term Fix
+// game pair. Do NOT include identity words (Racing, United, City, Real, …).
+const TERM_FIX_WEAK_TOKENS = new Set([
+  'fc', 'cf', 'sc', 'ac', 'fk', 'sk', 'nk', 'sv', 'bk', 'ik', 'ff', 'if',
+  'afc', 'cfc', 'ssc', 'asd', 'team', 'calcio', 'football',
+  '2', 'b', 'am', 'res', 'reserve', 'reserves', 'ii', 'iii',
+]);
+
+function significantClubTokens(name = '') {
+  // normalizeTeamTerm already strips youth markers / canonicalizes II→2.
+  const withoutReserve = normalizeTeamTerm(name)
+    .replace(/\b(reserves?|reservas?|res|amateure|ama)\b/g, ' ')
+    .replace(/\s+(2|b|am)\s*$/i, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  return withoutReserve
+    .split(/\s+/)
+    .map(token => token.trim().toLowerCase())
+    .filter(token => token.length >= 3 && !TERM_FIX_WEAK_TOKENS.has(token) && !/^\d+$/.test(token));
+}
+
+function pairHasSignificantClubOverlap(left = {}, right = {}, orientation = 'same') {
+  const leftHome = significantClubTokens(left.home);
+  const leftAway = significantClubTokens(left.away);
+  const rightHome = significantClubTokens(right.home);
+  const rightAway = significantClubTokens(right.away);
+  if (!leftHome.length || !leftAway.length || !rightHome.length || !rightAway.length) {
+    return false;
+  }
+
+  const overlap = (a, b) => a.some(token => b.includes(token));
+  if (orientation === 'reversed') {
+    return overlap(leftHome, rightAway) && overlap(leftAway, rightHome);
+  }
+  return overlap(leftHome, rightHome) && overlap(leftAway, rightAway);
+}
+
 function parseGameMinutes(value = '') {
   const match = String(value || '').match(/(\d{1,2}):(\d{2})/);
   if (!match) return null;
@@ -515,11 +552,13 @@ function possibleUnmatchedGameCandidate(game365 = {}, gameFlash = {}) {
   if (!gamesCategoryCompatible(game365, gameFlash)) return null;
 
   // Cheap competition check first — pairNameSimilarity is the heavy cost.
+  // Allow slightly weaker comps when teams later prove near-exact (merged
+  // Regionalliga-style parents vs Nord/West subdivisions).
   const competitionSimilarity = diceSimilarity(
     normalizeCompTerm(game365.competicao || game365.competition || ''),
     normalizeCompTerm(gameFlash.competicao || gameFlash.competition || '')
   );
-  if (competitionSimilarity < 0.55) return null;
+  if (competitionSimilarity < 0.40) return null;
 
   const timeDelta = candidateTimeDiff(game365, gameFlash);
   const timeIsClose = timeDelta !== null && (
@@ -531,15 +570,26 @@ function possibleUnmatchedGameCandidate(game365 = {}, gameFlash = {}) {
 
   const teamMeta = pairNameSimilarity(game365, gameFlash);
   const teamSimilarity = teamMeta.score;
-  // One shared club/country token is not enough (Atlante↔Atlante W, Colombia↔Colombia U23).
-  if (teamMeta.minSide < 0.34) return null;
-  const teamIsClose = teamSimilarity >= 0.45;
+  // Require real club-token evidence on both sides — not just II/B/SV leftovers.
+  if (teamMeta.minSide < 0.50) return null;
+  if (!pairHasSignificantClubOverlap(game365, gameFlash, teamMeta.orientation)) return null;
 
-  if (timeIsClose && teamIsClose) {
+  const teamIsClose = teamSimilarity >= 0.55 && teamMeta.minSide >= 0.50;
+  const teamsNearExact = teamSimilarity >= 0.88 && teamMeta.minSide >= 0.85;
+
+  // Strong teams can still be Term Fix candidates across split comps.
+  if (teamsNearExact && (timeIsClose || competitionSimilarity >= 0.55)) {
     return { timeDelta, teamSimilarity, competitionSimilarity };
   }
 
-  if (competitionSimilarity >= 0.72 && teamSimilarity >= 0.60) {
+  // Never accept high competition similarity with only weak team overlap.
+  if (competitionSimilarity >= 0.72 && teamSimilarity < 0.60) return null;
+
+  if (timeIsClose && teamIsClose && competitionSimilarity >= 0.55) {
+    return { timeDelta, teamSimilarity, competitionSimilarity };
+  }
+
+  if (competitionSimilarity >= 0.72 && teamSimilarity >= 0.60 && teamMeta.minSide >= 0.55) {
     return { timeDelta, teamSimilarity, competitionSimilarity };
   }
 

@@ -1700,6 +1700,15 @@
       "valueFlash": "AD Rosario / ADR Jicaral",
       "canonical": "AD Rosario / Jicaral Sercoba",
       "decidedAt": "2026-07-28T16:17:33.167Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger - Singles",
+      "value365": "Olle Wallin / Roberto Carballes",
+      "valueFlash": "Wallin O. / Carballes Baena R.",
+      "canonical": "Olle Wallin / Roberto Carballes",
+      "decidedAt": "2026-07-28T17:28:00.424Z"
     }
   ],
   "rejected": [

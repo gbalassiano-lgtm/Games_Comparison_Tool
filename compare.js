@@ -343,6 +343,18 @@ function diceSimilarity(a, b) {
   return (2 * matches) / (ba.length + bb.length);
 }
 
+function isContentTeamToken(token = '') {
+  const value = String(token || '').trim().toLowerCase();
+  if (!value || value.length < 3) return false;
+  if (/^\d+$/.test(value)) return false;
+  if (TEAM_TOKEN_STOPWORDS.has(value)) return false;
+  return true;
+}
+
+function contentTeamTokens(tokens = []) {
+  return (tokens || []).map(t => String(t || '').trim().toLowerCase()).filter(isContentTeamToken);
+}
+
 function tokenSetSimilarity(aTokens = [], bTokens = []) {
   if (!aTokens.length || !bTokens.length) return 0;
 
@@ -366,8 +378,9 @@ function teamNameSim(a = '', b = '', sportKey = '', compA = '', compB = '') {
   if (na === nb) return 1;
 
   const dice = diceSimilarity(na, nb);
-  const aTokens = canonicalTeamTokens(a, sportKey, compA);
-  const bTokens = canonicalTeamTokens(b, sportKey, compB);
+  // Score token overlap on club content only — ignore shared "2"/"sv"/"fc".
+  const aTokens = contentTeamTokens(canonicalTeamTokens(a, sportKey, compA));
+  const bTokens = contentTeamTokens(canonicalTeamTokens(b, sportKey, compB));
   const tokenScore = tokenSetSimilarity(aTokens, bTokens);
 
   const minTokens = Math.min(aTokens.length, bTokens.length);
@@ -1104,6 +1117,10 @@ function minimumTeamThreshold(g365, gFlash, sportKey, cs, td) {
   else threshold = 0.56;
 
   if (cs >= 0.85) threshold -= 0.03;
+  // Split parent/subdivision comps (Regionalliga ↔ Regionalliga West): demand
+  // strong team evidence; never let kickoff time alone bridge unrelated comps.
+  if (cs < 0.55) threshold = Math.max(threshold, 0.72);
+  if (cs < 0.35) threshold = Math.max(threshold, 0.85);
   if (isRegionalComp(g365.competition) || isRegionalComp(gFlash.competition)) threshold -= 0.02;
   if (isBasketballSport(sportKey) && normComp(g365.competition).includes('nba')) threshold -= 0.05;
 
@@ -1339,10 +1356,13 @@ function teamPairLookupKeys(home = '', away = '') {
 }
 
 const TEAM_TOKEN_STOPWORDS = new Set([
-  'fc', 'cf', 'sc', 'ac', 'fk', 'sk', 'nk', 'afc', 'cfc', 'ssc', 'asd',
+  'fc', 'cf', 'sc', 'ac', 'fk', 'sk', 'nk', 'sv', 'bk', 'ik', 'ff', 'if',
+  'afc', 'cfc', 'ssc', 'asd',
   'united', 'city', 'club', 'real', 'sporting', 'athletic', 'atletico',
   'deportivo', 'racing', 'olympic', 'olympique', 'youth', 'women', 'womens',
   'the', 'and', 'de', 'da', 'do', 'la', 'el', 'team', 'calcio', 'football',
+  // Reserve / developmental markers — shared "2"/"b" alone must not pair clubs.
+  '2', 'b', 'am', 'res', 'reserve', 'reserves', 'ii', 'iii',
 ]);
 
 function significantNameTokens(name = '') {

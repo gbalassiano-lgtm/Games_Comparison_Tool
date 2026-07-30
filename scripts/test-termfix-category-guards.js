@@ -219,4 +219,54 @@ assert.strictEqual(
   'Primera B with U./Union abbreviation must stay category-compatible'
 );
 
+// League tier "2" on the competition must not block senior fixtures (Gaucho 2, etc.).
+assert.strictEqual(
+  extractSideCategoryMarkers('Gaucho 2', { role: 'competition' }).youthKey,
+  null,
+  'Gaucho 2 competition must not be treated as reserve'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('2. Liga', { role: 'competition' }).youthKey,
+  null,
+  '2. Liga competition must not be treated as reserve'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('Sturm Graz II').youthKey,
+  'reserve',
+  'club II remains reserve'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('Mönchengladbach II').youthKey,
+  'reserve',
+  'two-token club II must be reserve, not a league-tier label'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('Lubeck II').youthKey,
+  'reserve',
+  'Lubeck II must be reserve'
+);
+assert.strictEqual(
+  extractSideCategoryMarkers('SK Sturm AM').youthKey,
+  'reserve',
+  'Amateure/AM club side is reserve'
+);
+
+assert.strictEqual(
+  fixturesCategoryCompatible(
+    ['Gramadense', 'Veranopolis', 'Gaucho A2'],
+    ['Gramadense', 'Veranopolis', 'Gaucho 2']
+  ),
+  true,
+  'Gaucho A2 ↔ Gaucho 2 must not be blocked by competition tier "2"'
+);
+
+assert.strictEqual(
+  fixturesCategoryCompatible(
+    ['First Vienna FC 1894', 'SK Sturm AM', '2. Liga'],
+    ['First Vienna', 'Sturm Graz II', '2. Liga']
+  ),
+  true,
+  'AM ↔ II reserve sides in the same league must stay compatible'
+);
+
 console.log('test-termfix-category-guards: ok');
