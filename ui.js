@@ -225,6 +225,8 @@ const i18n = {
     missing365Uncovered: 'Flash only (365 does not cover)',
     catalogCoveredBadge: '365 covers',
     catalogOutsideBadge: '365 does not cover',
+    popularityBadge: 'Top',
+    popularityBadgeTitle: 'Top 100 popularity — check first',
     timeMismatch: 'Time mismatch',
     statusMismatch: 'Status mismatch',
     nameMismatch: 'Name mismatch',
@@ -475,6 +477,8 @@ const i18n = {
     missing365Uncovered: 'Só Flash (365 não cobre)',
     catalogCoveredBadge: '365 cobre',
     catalogOutsideBadge: '365 não cobre',
+    popularityBadge: 'Top',
+    popularityBadgeTitle: 'Top 100 de popularidade — conferir primeiro',
     timeMismatch: 'Divergência de horário',
     statusMismatch: 'Divergência de status',
     nameMismatch: 'Divergência de nome',
@@ -2704,10 +2708,53 @@ function sortedReportRows(rows) {
   return [...rows].sort((a, b) => {
     const sportDiff = reportSportIndex(a) - reportSportIndex(b);
     if (sportDiff !== 0) return sportDiff;
+    const rankA = reportRowPopularityRankSafe(a);
+    const rankB = reportRowPopularityRankSafe(b);
+    if (rankA !== rankB) return rankA - rankB;
     const diff = reportTimeValue(a) - reportTimeValue(b);
     if (diff !== 0) return diff;
     return searchableText(a).localeCompare(searchableText(b));
   });
+}
+
+function reportRowPopularityRankSafe(row = {}) {
+  const popularityApi = window.FootballPopularity;
+  if (!popularityApi?.reportRowPopularityRank) return Number.POSITIVE_INFINITY;
+  const sport = row.sport || state.currentScan?.sport || 'football';
+  return popularityApi.reportRowPopularityRank(row, sport);
+}
+
+function reportGroupPopularityRank(rows = []) {
+  let best = Number.POSITIVE_INFINITY;
+  for (const row of rows || []) {
+    const rank = reportRowPopularityRankSafe(row);
+    if (rank < best) best = rank;
+  }
+  return best;
+}
+
+function isPopularFootballMissingRow(row = {}) {
+  if (row.type !== 'only365' && row.type !== 'onlyFlash') return false;
+  const rank = reportRowPopularityRankSafe(row);
+  return Number.isFinite(rank) && rank < Number.POSITIVE_INFINITY;
+}
+
+function popularityBadgeHtml(row) {
+  const rank = reportRowPopularityRankSafe(row);
+  if (!Number.isFinite(rank) || rank >= Number.POSITIVE_INFINITY) return '';
+  return `<span class="popularity-badge" title="${escapeHtml(t('popularityBadgeTitle'))}">${escapeHtml(t('popularityBadge'))} ${rank}</span>`;
+}
+
+async function loadFootballPopularityPriority() {
+  if (!window.FootballPopularity?.setPriorityList) return;
+  try {
+    const response = await fetch('/config/football_popularity_priority.json', { cache: 'no-store' });
+    if (!response.ok) return;
+    const data = await response.json();
+    window.FootballPopularity.setPriorityList(data);
+  } catch (_) {
+    // Popularity badges stay optional if the config fails to load.
+  }
 }
 
 function reportSportFiltersHtml(scan) {
@@ -3373,6 +3420,8 @@ function groupedReportRowsHtml(rows, tone = 'neutral', scan = null) {
   const orderedCountries = [...countries.values()].sort((a, b) => {
     const sportDiff = reportSportIndex(a.rows[0] || {}) - reportSportIndex(b.rows[0] || {});
     if (sportDiff !== 0) return sportDiff;
+    const rankDiff = reportGroupPopularityRank(a.rows) - reportGroupPopularityRank(b.rows);
+    if (rankDiff !== 0) return rankDiff;
     return compareLocalizedCountryNames(a.country, b.country);
   });
 
@@ -3381,22 +3430,32 @@ function groupedReportRowsHtml(rows, tone = 'neutral', scan = null) {
       ${orderedCountries.map(country => {
         const countryKey = `${country.rows[0]?.sport || ''}|||${String(country.country).toLowerCase()}`;
         const countryOpenKey = reportOpenKey('section', tone, 'country', countryKey);
+        const countryPopular = (tone === 'missing-365' || tone === 'missing-flash')
+          && country.rows.some(isPopularFootballMissingRow);
+        const orderedCompetitions = [...country.competitions.values()].sort((a, b) => {
+          const rankDiff = reportGroupPopularityRank(a.rows) - reportGroupPopularityRank(b.rows);
+          if (rankDiff !== 0) return rankDiff;
+          return String(a.competition || '').localeCompare(String(b.competition || ''));
+        });
         return `
-        <details class="country-toggle competition-block ${tone}" data-report-open-key="${escapeHtml(countryOpenKey)}">
+        <details class="country-toggle competition-block ${tone}${countryPopular ? ' popularity-priority' : ''}" data-report-open-key="${escapeHtml(countryOpenKey)}"${countryPopular ? ' open' : ''}>
           <summary class="competition-heading">
-            <span>${renderCountryHeading(country.country)}</span>
+            <span>${renderCountryHeading(country.country)}${countryPopular ? popularityBadgeHtml(country.rows.find(isPopularFootballMissingRow) || country.rows[0]) : ''}</span>
             <strong>${country.rows.length}</strong>
           </summary>
           <div class="country-competition-list">
-            ${[...country.competitions.values()].map(group => {
+            ${orderedCompetitions.map(group => {
               const competitionKey = reportCompetitionGroupKey(group.rows[0]);
               const competitionOpenKey = reportOpenKey('section', tone, 'country', countryKey, 'comp', competitionKey);
+              const popular = (tone === 'missing-365' || tone === 'missing-flash')
+                && group.rows.some(isPopularFootballMissingRow);
               return `
-              <details class="competition-toggle ${tone}" data-report-open-key="${escapeHtml(competitionOpenKey)}">
+              <details class="competition-toggle ${tone}${popular ? ' popularity-priority' : ''}" data-report-open-key="${escapeHtml(competitionOpenKey)}"${popular ? ' open' : ''}>
                 <summary>
                   <span>
                     ${sourceText(group.competition)}
                     ${scan ? catalogBadgeHtml(group.rows[0], scan) : ''}
+                    ${popular ? popularityBadgeHtml(group.rows[0]) : ''}
                   </span>
                   <span class="competition-summary-meta">
                     ${competitionIgnoreMenuHtml(group, tone, scan)}
@@ -4627,6 +4686,7 @@ async function init() {
   const asanaLoadPromise = loadAsanaTasks({ silent: hadCachedAsanaTasks, fresh: false });
 
   const { sports, defaultDate, defaultDates } = await api('/api/sports');
+  await loadFootballPopularityPriority();
   state.sports = sports;
   fillSportSelect($('sportSelect'), mainScannerSports(sports));
   fillSportSelect($('ruleSport'), sports.filter(sport =>
