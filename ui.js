@@ -994,7 +994,8 @@ function formatScraperSource() {
 
 function formatScanDuration(scan) {
   const startMs = Date.parse(scan?.startedAt || '');
-  const endMs = Date.parse(scan?.finalizedAt || scan?.finishedAt || '');
+  // Use scrape/compare end time — not Terms Fix finalize (that includes idle wait).
+  const endMs = Date.parse(scan?.finishedAt || scan?.finalizedAt || '');
   if (!Number.isFinite(startMs) || !Number.isFinite(endMs) || endMs < startMs) return '';
 
   const totalSec = Math.round((endMs - startMs) / 1000);
