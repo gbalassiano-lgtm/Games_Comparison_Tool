@@ -1718,6 +1718,24 @@
       "valueFlash": "Dellien Velasco M. A. / Galan D. E.",
       "canonical": "Murkel Dellien / Daniel Galan",
       "decidedAt": "2026-08-09T14:48:53.866Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "International",
+      "value365": "Reus FC Reddis / Atlético Saguntino",
+      "valueFlash": "Reus FCR (Esp) / Saguntino (Esp)",
+      "canonical": "Reus FC Reddis / Atlético Saguntino",
+      "decidedAt": "2026-08-13T16:13:35.865Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Saudi Arabia",
+      "value365": "Saudi League",
+      "valueFlash": "Saudi Professional League",
+      "canonical": "Saudi League",
+      "decidedAt": "2026-08-13T16:13:35.866Z"
     }
   ],
   "rejected": [
