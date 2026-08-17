@@ -135,5 +135,26 @@ assert(rowIgnoredByRule(rowFlashSide, null) === true, 'rowIgnoredByRule ignora l
 assert(rowIgnoredByRule(row365Side, null) === true, 'rowIgnoredByRule ignora lado 365 "Catarinense - Serie B" via alias');
 assert(rowIgnoredByRule(rowUnrelated, null) === false, 'rowIgnoredByRule NAO ignora competicao nao relacionada');
 
+state.competitionRules.hockey = {
+  ignoreFlashOnly: [{ scope: 'NEW ZEALAND', competition: 'NZIHL' }],
+  ignore365Only: [],
+};
+const rowHockeyMatched = {
+  sport: 'hockey',
+  country: 'New Zealand',
+  competition: 'NZIHL',
+  competition365: 'NZIHL',
+  competitionFlash: 'NZIHL - Play Offs',
+  type: 'matched',
+};
+const rowHockeyOnlyFlash = {
+  sport: 'hockey',
+  country: 'New Zealand',
+  competitionFlash: 'NZIHL',
+  type: 'onlyFlash',
+};
+assert(rowIgnoredByRule(rowHockeyMatched, null) === false, 'rowIgnoredByRule NAO esconde jogos sincronizados');
+assert(rowIgnoredByRule(rowHockeyOnlyFlash, null) === true, 'rowIgnoredByRule ainda esconde só-Flash ignorado');
+
 if (failed) { console.error(`\n${failed} assertion(s) failed.`); process.exit(1); }
 console.log('\ntest-catarinense-ignore-ui: ok');

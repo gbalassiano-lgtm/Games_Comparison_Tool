@@ -269,4 +269,18 @@ assert.strictEqual(
   'AM ↔ II reserve sides in the same league must stay compatible'
 );
 
+assert.strictEqual(
+  extractSideCategoryMarkers('Villarreal B (Esp)').youthKey,
+  'reserve',
+  'Flash country code after B must still count as reserve'
+);
+assert.strictEqual(
+  fixturesCategoryCompatible(
+    ['CF Intercity', 'Villarreal B', 'Club Friendlies'],
+    ['CF Intercity (Esp)', 'Villarreal B (Esp)', 'Club Friendly']
+  ),
+  true,
+  'Club Friendlies with (Esp) reserve suffix must match plain 365 names'
+);
+
 console.log('test-termfix-category-guards: ok');

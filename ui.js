@@ -3045,7 +3045,14 @@ function rowIgnoredByRule(row, scan) {
 
   if (!competitions.length) return false;
 
-  // Ignore rules are stored per side, but an ignored competition should leave the report entirely.
+  // Ignore lists only hide missing-side noise (só Flash / só 365). Synced and
+  // divergence rows stay visible so multi-sport matched counts match the sections
+  // (e.g. hockey NZIHL matched while ignoreFlashOnly still hides uncovered Flash-only).
+  if (row.type && row.type !== 'onlyFlash' && row.type !== 'only365') {
+    return false;
+  }
+
+  // Ignore rules are stored per side; aliases hide the opposite missing side too.
   const lists = [
     ...(sportRules.ignoreFlashOnly || []),
     ...(sportRules.ignore365Only || []),

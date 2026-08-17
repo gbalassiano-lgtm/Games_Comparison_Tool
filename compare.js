@@ -8,7 +8,7 @@ const { stripTeamYouthMarkers, canonicalizeCompYouthMarkers, canonicalizeRomanNu
 const { timeDiffMinutes, isTimezoneBoundaryPair, resolveScanTargetDate, isStaleFinishedGameStatus, isDeferredGameStatus, gameBelongsToScanTarget } = require('./lib/scan-timezone');
 const { normalizeTeamNameCore, flexibleNameSimilarity } = require('./lib/flexible-names');
 const { isNonFootballFlashMatch } = require('./lib/football-flash-filter');
-const { resolveScopeKey } = require('./lib/country-flags');
+const { resolveScopeKey, COUNTRY_NAME_ALIASES } = require('./lib/country-flags');
 const {
   isFootballSportKey,
   loadPriorityListSync,
@@ -438,7 +438,23 @@ function normCountry(text = '') {
     .replace(/\band\b/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
-  return COUNTRY_ALIASES[n] || n;
+  // Region merges (America, International, …) win over generic country aliases.
+  if (COUNTRY_ALIASES[n]) return COUNTRY_ALIASES[n];
+
+  // Shared EN / PT / official spellings so scopes group together
+  // (Turkey ↔ Türkiye ↔ Turquia, Czechia ↔ República Tcheca, …).
+  const fromFlags = COUNTRY_NAME_ALIASES[n];
+  if (fromFlags) {
+    const aliased = String(fromFlags)
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/\s+/g, ' ')
+      .trim();
+    return COUNTRY_ALIASES[aliased] || aliased;
+  }
+
+  return n;
 }
 
 function getGroupName(obj = {}) {

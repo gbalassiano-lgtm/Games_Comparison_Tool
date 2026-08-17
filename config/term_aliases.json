@@ -1709,6 +1709,15 @@
       "valueFlash": "Wallin O. / Carballes Baena R.",
       "canonical": "Olle Wallin / Roberto Carballes",
       "decidedAt": "2026-07-28T17:28:00.424Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger Women - Singles",
+      "value365": "Warsaw Open",
+      "valueFlash": "Warsaw (Poland), hard",
+      "canonical": "Warsaw Open",
+      "decidedAt": "2026-08-03T14:10:55.414Z"
     }
   ],
   "rejected": [
@@ -2080,6 +2089,15 @@
       "valueFlash": "Mexico U23 / Guatemala U23",
       "canonical": "",
       "decidedAt": "2026-07-28T15:58:31.992Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger Women - Singles",
+      "value365": "Marcelina Podlinska / Vendula Valdmannova",
+      "valueFlash": "Vandromme J. / Valdmannova V.",
+      "canonical": "",
+      "decidedAt": "2026-08-03T14:10:55.412Z"
     }
   ]
 }

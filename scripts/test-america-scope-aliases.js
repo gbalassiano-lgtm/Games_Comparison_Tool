@@ -19,4 +19,14 @@ assert.strictEqual(
   'CentroBasket scopes must merge'
 );
 
+assert.strictEqual(normCountry('Turkiye'), 'turkiye');
+assert.strictEqual(normCountry('TURKEY:'), 'turkiye');
+assert.strictEqual(normCountry('Turkey'), 'turkiye');
+assert.strictEqual(normCountry('Turquia'), 'turkiye');
+assert.strictEqual(
+  normCountry('Turkiye'),
+  normCountry('TURKEY:'),
+  'Turkey / Türkiye / Turquia scopes must merge'
+);
+
 console.log('test-america-scope-aliases: ok');
