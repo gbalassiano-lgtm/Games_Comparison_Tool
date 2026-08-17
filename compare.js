@@ -286,6 +286,18 @@ function normTeam(text = '') {
 }
 
 
+function isGauchoA2Competition(competition = '') {
+  const comp = norm(competition || '');
+  if (!comp) return false;
+  // 365: "Gaucho A2" | Flash: "Gaucho 2" (Divisão de Acesso).
+  // Do not match elite "Gaucho" / "Gaucho A1".
+  return (
+    /\bgaucho a2\b/.test(comp) ||
+    /\bgaucho 2\b/.test(comp) ||
+    (comp.includes('gaucho') && comp.includes('acesso'))
+  );
+}
+
 function resolveContextualNickname(text = '', sportKey = '', competition = '') {
   const raw = normTeam(resolveTermAlias(text, 'name', sportKey));
   const comp = norm(competition || '');
@@ -302,6 +314,14 @@ function resolveContextualNickname(text = '', sportKey = '', competition = '') {
   }
 
   if (raw === 'usc trojans') return 'southern california';
+
+  // União Frederiquense: 365 often uses "Uniao", Flash "Frederiquense" (Gaucho A2 only).
+  if (
+    isGauchoA2Competition(comp) &&
+    (raw === 'uniao' || raw === 'frederiquense' || raw === 'uniao frederiquense')
+  ) {
+    return 'uniao frederiquense';
+  }
 
   return resolveNickname(raw);
 }
@@ -421,6 +441,10 @@ const COUNTRY_ALIASES = {
   'czechia': 'republica tcheca',
   'coreia': 'coreia do sul',
   'south korea': 'coreia do sul',
+  // 365 renamed the country to "Turkiye"; Flashscore still sends "TURKEY:".
+  'turkey': 'turkiye',
+  'turkiye': 'turkiye',
+  'turquia': 'turkiye',
   'world': 'internacional',
   'mundo': 'internacional',
   'international': 'internacional',

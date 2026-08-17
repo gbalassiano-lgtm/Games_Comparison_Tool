@@ -16,6 +16,9 @@ assert.strictEqual(competitionPopularityRank('Serie A', 'Italy'), 4);
 assert.strictEqual(competitionPopularityRank('Serie A', 'Brazil'), 8);
 assert.strictEqual(competitionPopularityRank('Brasileirão Série A', 'Brazil'), 8);
 assert.strictEqual(competitionPopularityRank('Random Cup', 'Brazil'), Number.POSITIVE_INFINITY);
+assert.strictEqual(competitionPopularityRank('Primera Division', 'Guatemala'), Number.POSITIVE_INFINITY);
+assert.strictEqual(competitionPopularityRank('Primera Division', 'Spain'), 2);
+assert.strictEqual(competitionPopularityRank('LaLiga', ''), 2);
 assert.strictEqual(competitionPopularityRank('Premier League', ''), Number.POSITIVE_INFINITY);
 assert.strictEqual(
   competitionPopularityRank('Champions League', 'Europe', 'basketball'),

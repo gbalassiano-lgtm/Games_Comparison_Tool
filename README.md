@@ -1,4 +1,4 @@
-# Daily Games Overview
+# Games_Comparison_Tool
 
 Compara jogos do Flashscore e 365Scores, com UI web, integração Asana e lembretes Telegram.
 
@@ -10,8 +10,8 @@ Compara jogos do Flashscore e 365Scores, com UI web, integração Asana e lembre
 ## Setup em uma máquina nova
 
 ```bash
-git clone https://github.com/gbalassiano-lgtm/Cursor-verison-2.git
-cd Cursor-verison-2
+git clone https://github.com/gbalassiano-lgtm/Games_Comparison_Tool.git
+cd Games_Comparison_Tool
 npm install
 npx playwright install chromium
 cp .env.example .env
