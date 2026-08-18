@@ -1727,6 +1727,42 @@
       "valueFlash": "Dellien Velasco M. A. / Galan D. E.",
       "canonical": "Murkel Dellien / Daniel Galan",
       "decidedAt": "2026-08-09T14:48:53.866Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Saudi Arabia",
+      "value365": "Al-Akhdoud / Al Khaleej Club",
+      "valueFlash": "Al Okhdood / Al Khaleej",
+      "canonical": "Al-Akhdoud / Al Khaleej Club",
+      "decidedAt": "2026-08-18T13:50:51.587Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Saudi Arabia",
+      "value365": "King's Cup",
+      "valueFlash": "King Cup",
+      "canonical": "King's Cup",
+      "decidedAt": "2026-08-18T13:50:51.589Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Saudi Arabia",
+      "value365": "Al Faysaly / NEOM SC",
+      "valueFlash": "Al-Faisaly / Neom SC",
+      "canonical": "Al Faysaly / NEOM SC",
+      "decidedAt": "2026-08-18T13:50:51.591Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Slovakia",
+      "value365": "Slovakia Cup",
+      "valueFlash": "Slovak Cup",
+      "canonical": "Slovakia Cup",
+      "decidedAt": "2026-08-18T14:03:19.434Z"
     }
   ],
   "rejected": [
@@ -2107,6 +2143,15 @@
       "valueFlash": "Vandromme J. / Valdmannova V.",
       "canonical": "",
       "decidedAt": "2026-08-03T14:10:55.412Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Slovakia",
+      "value365": "Trencianska Stankovc / Spartak Trnava",
+      "valueFlash": "Trnava / Stankovce",
+      "canonical": "",
+      "decidedAt": "2026-08-18T14:03:19.415Z"
     }
   ]
 }
