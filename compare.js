@@ -432,6 +432,10 @@ const COUNTRY_ALIASES = {
   'america central': 'america',
   'norte e centro america': 'america',
   'concacaf': 'america',
+  // 365 uses "Oceania"; Flashscore uses "AUSTRALIA & OCEANIA:".
+  'oceania': 'oceania',
+  'australia oceania': 'oceania',
+  'australia and oceania': 'oceania',
   'paises baixos': 'holanda',
   'netherlands': 'holanda',
   'holland': 'holanda',

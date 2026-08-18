@@ -72,4 +72,56 @@ assert.strictEqual(
 assert.strictEqual(friendlyResult.so_no_365.length, 0);
 assert.strictEqual(friendlyResult.so_no_flash.length, 0);
 
+const ofc365 = [
+  {
+    home: 'Auckland City',
+    away: 'Rewa',
+    time: '00:00',
+    status: 'scheduled',
+    competition: 'OFC Champions League',
+    country: 'Oceania',
+  },
+  {
+    home: 'Abm Galaxy',
+    away: 'Central Coast',
+    time: '04:00',
+    status: 'scheduled',
+    competition: 'OFC Champions League',
+    country: 'Oceania',
+  },
+];
+const ofcFlash = [
+  {
+    home: 'Auckland City (Nzl)',
+    away: 'Rewa (Fij)',
+    time: '00:00',
+    status: 'scheduled',
+    competition: 'OFC Champions League - Play Offs',
+    country: 'AUSTRALIA & OCEANIA:',
+  },
+  {
+    home: 'ABM Galaxy (Van)',
+    away: 'Central Coast (Sol)',
+    time: '04:00',
+    status: 'scheduled',
+    competition: 'OFC Champions League - Play Offs',
+    country: 'AUSTRALIA & OCEANIA:',
+  },
+];
+
+const by365Ofc = groupByScope(ofc365, 'football', '365');
+const byFlashOfc = groupByScope(ofcFlash, 'football', 'flash');
+const ofcKeys = [...new Set([...Object.keys(by365Ofc), ...Object.keys(byFlashOfc)])];
+assert.strictEqual(ofcKeys.length, 1, `OFC scopes must share one key, got ${ofcKeys.join(',')}`);
+
+const ofcResult = compareCountry(
+  by365Ofc[ofcKeys[0]].countryName,
+  by365Ofc[ofcKeys[0]].games,
+  byFlashOfc[ofcKeys[0]].games,
+  'football'
+);
+assert.strictEqual(ofcResult.matched_pairs.length, 2, 'OFC Champions League playoff ties must match');
+assert.strictEqual(ofcResult.so_no_365.length, 0);
+assert.strictEqual(ofcResult.so_no_flash.length, 0);
+
 console.log('test-scope-country-merge-match: ok');
