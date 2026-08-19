@@ -504,7 +504,15 @@
       },
       {
         "scope": "Brazil",
+        "competition": "Amazonense Women"
+      },
+      {
+        "scope": "Brazil",
         "competition": "Gaucho Women - First stage"
+      },
+      {
+        "scope": "Brazil",
+        "competition": "Pernambucano U20"
       }
     ],
     "acknowledgedFlashOnly": [

@@ -1712,6 +1712,15 @@
     },
     {
       "sport": "tennis",
+      "type": "competition",
+      "scope": "Challenger Women - Singles",
+      "value365": "Warsaw Open",
+      "valueFlash": "Warsaw (Poland), hard",
+      "canonical": "Warsaw Open",
+      "decidedAt": "2026-08-03T14:10:55.414Z"
+    },
+    {
+      "sport": "tennis",
       "type": "name",
       "scope": "Challenger - Singles",
       "value365": "Murkel Dellien / Daniel Galan",
@@ -1730,12 +1739,48 @@
     },
     {
       "sport": "football",
+      "type": "name",
+      "scope": "Saudi Arabia",
+      "value365": "Al-Akhdoud / Al Khaleej Club",
+      "valueFlash": "Al Okhdood / Al Khaleej",
+      "canonical": "Al-Akhdoud / Al Khaleej Club",
+      "decidedAt": "2026-08-18T13:50:51.587Z"
+    },
+    {
+      "sport": "football",
       "type": "competition",
       "scope": "Saudi Arabia",
       "value365": "Saudi League",
       "valueFlash": "Saudi Professional League",
       "canonical": "Saudi League",
       "decidedAt": "2026-08-13T16:13:35.866Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Saudi Arabia",
+      "value365": "King's Cup",
+      "valueFlash": "King Cup",
+      "canonical": "King's Cup",
+      "decidedAt": "2026-08-18T13:50:51.589Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Saudi Arabia",
+      "value365": "Al Faysaly / NEOM SC",
+      "valueFlash": "Al-Faisaly / Neom SC",
+      "canonical": "Al Faysaly / NEOM SC",
+      "decidedAt": "2026-08-18T13:50:51.591Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Slovakia",
+      "value365": "Slovakia Cup",
+      "valueFlash": "Slovak Cup",
+      "canonical": "Slovakia Cup",
+      "decidedAt": "2026-08-18T14:03:19.434Z"
     }
   ],
   "rejected": [
@@ -2107,6 +2152,24 @@
       "valueFlash": "Mexico U23 / Guatemala U23",
       "canonical": "",
       "decidedAt": "2026-07-28T15:58:31.992Z"
+    },
+    {
+      "sport": "tennis",
+      "type": "name",
+      "scope": "Challenger Women - Singles",
+      "value365": "Marcelina Podlinska / Vendula Valdmannova",
+      "valueFlash": "Vandromme J. / Valdmannova V.",
+      "canonical": "",
+      "decidedAt": "2026-08-03T14:10:55.412Z"
+    },
+    {
+      "sport": "football",
+      "type": "name",
+      "scope": "Slovakia",
+      "value365": "Trencianska Stankovc / Spartak Trnava",
+      "valueFlash": "Trnava / Stankovce",
+      "canonical": "",
+      "decidedAt": "2026-08-18T14:03:19.415Z"
     }
   ]
 }
