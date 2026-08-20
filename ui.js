@@ -843,7 +843,7 @@ function localizeCountryName(value = '') {
 }
 
 function countrySortLocale() {
-  return state.language === 'pt' ? 'pt' : 'en';
+  return state.language === 'pt' ? 'pt-BR' : 'en';
 }
 
 function compareLocalizedCountryNames(left = '', right = '') {
@@ -2340,6 +2340,10 @@ function isNoisyScanDetailLine(line) {
   if (/^rodada\s+\d+/i.test(text)) return true;
   if (/show matches clicks:/i.test(text)) return true;
   if (/cliques em ["']show matches["']/i.test(text)) return true;
+  // Soft Flashscore date fallback — expected per sport in run-all; keep WARN lines visible.
+  if (/^calendário sem confirmação\b/i.test(text)) return true;
+  if (/^calendário:\s/i.test(text)) return true;
+  if (/^selecionando .+ via calendário/i.test(text)) return true;
   return false;
 }
 
@@ -3427,8 +3431,6 @@ function groupedReportRowsHtml(rows, tone = 'neutral', scan = null) {
   const orderedCountries = [...countries.values()].sort((a, b) => {
     const sportDiff = reportSportIndex(a.rows[0] || {}) - reportSportIndex(b.rows[0] || {});
     if (sportDiff !== 0) return sportDiff;
-    const rankDiff = reportGroupPopularityRank(a.rows) - reportGroupPopularityRank(b.rows);
-    if (rankDiff !== 0) return rankDiff;
     return compareLocalizedCountryNames(a.country, b.country);
   });
 

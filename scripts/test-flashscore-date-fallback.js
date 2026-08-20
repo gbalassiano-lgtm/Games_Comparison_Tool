@@ -3,6 +3,7 @@ const {
   urlHasTargetDate,
   matchesFlashscoreDateOption,
   flashscoreDatePrefix,
+  parsePickerDateKey,
 } = require('../scrapers/flashscore-shared');
 const { todayIsoInTimezone, tomorrowIsoInTimezone, addDaysIso } = require('../lib/scan-timezone');
 
@@ -11,6 +12,10 @@ assert.strictEqual(urlHasTargetDate('https://www.flashscore.com/football/', '202
 assert.strictEqual(urlHasTargetDate('https://www.flashscore.com/snooker/', '2026-07-06'), false);
 
 assert.strictEqual(flashscoreDatePrefix('2026-07-06'), '06/07');
+assert.strictEqual(parsePickerDateKey('21/08', '2026'), '2026-08-21');
+assert.strictEqual(parsePickerDateKey('Thu 21/08', '2026'), '2026-08-21');
+assert.strictEqual(parsePickerDateKey('21.08 Sa', '2026'), '2026-08-21');
+assert.strictEqual(parsePickerDateKey('Tomorrow', '2026'), null);
 assert.strictEqual(matchesFlashscoreDateOption('06/07 Sunday', '2026-07-06'), true);
 assert.strictEqual(matchesFlashscoreDateOption('05/07 Saturday', '2026-07-06'), false);
 assert.strictEqual(matchesFlashscoreDateOption('28/07 Tu', '2026-07-28'), true);

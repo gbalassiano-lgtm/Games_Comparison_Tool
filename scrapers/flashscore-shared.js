@@ -785,7 +785,11 @@ async function selectDateViaPicker(page, targetDate) {
 }
 
 function parsePickerDateKey(pickerText = '', yearHint = '') {
-  const match = cleanText(pickerText).match(/^(\d{1,2})\/(\d{1,2})/);
+  const cleaned = cleanText(pickerText);
+  // Leading "21/08..." or embedded "Thu 21/08" / "21.08" (Flashscore varies by locale).
+  const match =
+    cleaned.match(/^(\d{1,2})[./-](\d{1,2})/) ||
+    cleaned.match(/\b(\d{1,2})[./-](\d{1,2})\b/);
   if (!match) return null;
   const [, day, month] = match;
   const year = yearHint || String(new Date().getFullYear());
@@ -813,8 +817,13 @@ function buildFlashDateSelectionError(targetDate, pickerText = '', context = '')
   );
 }
 
+function pickerMetaFingerprint(meta = {}) {
+  return `${cleanText(meta.text)}|${cleanText(meta.aria)}`;
+}
+
 async function clickPickerNextDay(page, options = {}) {
-  const before = cleanText(await readPickerDateText(page));
+  const beforeMeta = await readPickerDateMeta(page);
+  const beforeFp = pickerMetaFingerprint(beforeMeta);
   const changeTimeoutMs = Number(options.changeTimeoutMs || 900);
   // Prefer the real Flashscore control — avoid scanning many selectors with long waits.
   const button = page.locator('button[data-day-picker-arrow="next"], button[aria-label="Next day"]').first();
@@ -822,11 +831,20 @@ async function clickPickerNextDay(page, options = {}) {
   const waitForPickerChange = async (timeoutMs = changeTimeoutMs) => {
     const deadline = Date.now() + timeoutMs;
     while (Date.now() < deadline) {
-      const after = cleanText(await readPickerDateText(page));
-      if (after && after !== before) return after;
+      const afterMeta = await readPickerDateMeta(page);
+      const afterFp = pickerMetaFingerprint(afterMeta);
+      // Text or aria change counts — label often lags while aria-label updates first.
+      if (afterFp !== beforeFp && (cleanText(afterMeta.text) || cleanText(afterMeta.aria))) {
+        return afterMeta;
+      }
       await page.waitForTimeout(70);
     }
-    return cleanText(await readPickerDateText(page));
+    return readPickerDateMeta(page);
+  };
+
+  const changedFromBefore = meta => {
+    const fp = pickerMetaFingerprint(meta);
+    return fp !== beforeFp && (cleanText(meta.text) || cleanText(meta.aria));
   };
 
   const visible = await button.isVisible({ timeout: 400 }).catch(() => false);
@@ -840,8 +858,7 @@ async function clickPickerNextDay(page, options = {}) {
         el.click();
       }).catch(() => {});
     }
-    const after = await waitForPickerChange();
-    if (after && after !== before) return true;
+    if (changedFromBefore(await waitForPickerChange())) return true;
   }
 
   const advanced = await page.evaluate(() => {
@@ -856,8 +873,7 @@ async function clickPickerNextDay(page, options = {}) {
   }).catch(() => false);
 
   if (!advanced) return false;
-  const after = await waitForPickerChange(Math.max(changeTimeoutMs, 1400));
-  return Boolean(after && after !== before);
+  return changedFromBefore(await waitForPickerChange(Math.max(changeTimeoutMs, 1400)));
 }
 
 function isMonthBoundaryDay(pickerText = '') {
@@ -1128,6 +1144,12 @@ async function ensureTargetDate(page, targetDate, sportSlug) {
       await finalize('calendar-advance-first');
       return;
     }
+    // Day-picker label often lags after next-day clicks; settle before soft-fallback / WARN.
+    await page.waitForTimeout(450);
+    if (await isDateAlreadySelected(page, targetDate)) {
+      await finalize('calendar-advance-settle');
+      return;
+    }
     // Only WARN when picker clearly shows another day; missing/unparseable label is a soft fallback.
     const afterCalendarText = await readPickerDateText(page);
     const afterCalendarKey = parsePickerDateKey(afterCalendarText, String(targetDate).split('-')[0]);
@@ -1140,6 +1162,7 @@ async function ensureTargetDate(page, targetDate, sportSlug) {
         `WARN: calendário não chegou em ${targetPrefix} (picker=${afterCalendarText || '?'}) — tentando lista do picker...`
       );
     } else {
+      // Expected when Flashscore leaves the button blank/unparseable — list picker is next.
       logStep(`Calendário sem confirmação de ${targetPrefix} — tentando lista do picker...`);
     }
   }
@@ -1336,12 +1359,16 @@ async function loadAllVisibleMatches(page, label = 'page', options = {}) {
 
   for (let pass = 1; pass <= expandPasses; pass++) {
     if (targetDate && !(await isDateAlreadySelected(page, targetDate))) {
-      logStep(
-        `WARN: data mudou durante carregamento (picker=${cleanText(await readPickerDateText(page)) || '?'}) ` +
-        `— re-selecionando ${targetDate}...`
-      );
-      await ensureTargetDate(page, targetDate, sportSlug);
-      await waitForMatchList(page);
+      // Transient empty picker labels during scroll look like a date change — recheck briefly.
+      await page.waitForTimeout(300);
+      if (!(await isDateAlreadySelected(page, targetDate))) {
+        logStep(
+          `WARN: data mudou durante carregamento (picker=${cleanText(await readPickerDateText(page)) || '?'}) ` +
+          `— re-selecionando ${targetDate}...`
+        );
+        await ensureTargetDate(page, targetDate, sportSlug);
+        await waitForMatchList(page);
+      }
     }
 
     await deepScrollToLoadAll(page, label, { light: pass > 1 });
