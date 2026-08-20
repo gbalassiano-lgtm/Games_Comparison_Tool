@@ -1781,6 +1781,15 @@
       "valueFlash": "Slovak Cup",
       "canonical": "Slovakia Cup",
       "decidedAt": "2026-08-18T14:03:19.434Z"
+    },
+    {
+      "sport": "football",
+      "type": "competition",
+      "scope": "Iraq",
+      "value365": "Iraqi League",
+      "valueFlash": "Stars League",
+      "canonical": "Iraqi League",
+      "decidedAt": "2026-08-19T11:32:10.899Z"
     }
   ],
   "rejected": [
